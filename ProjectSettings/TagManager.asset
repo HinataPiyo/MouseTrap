@@ -11,7 +11,7 @@ TagManager:
   - Player
   - Water
   - UI
-  - 
+  - CullingMainFloorObject
   - 
   - 
   - 
@@ -38,11 +38,20 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: SubFloor
+    uniqueID: 3256618987
+    locked: 0
   - name: Floor
     uniqueID: 1469211355
     locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: SubObject
+    uniqueID: 3404170161
+    locked: 0
+  - name: FrontOblect
+    uniqueID: 388877333
     locked: 0
   m_RenderingLayers:
   - Default
