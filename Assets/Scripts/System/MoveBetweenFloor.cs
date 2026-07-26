@@ -16,6 +16,7 @@ public class MoveBetweenFloor : MonoBehaviour
     [SerializeField] Camera mainCamera;
 
     SpriteRenderer playerSprite;
+    int isMoveDistance;
 
     void Start()
     {
@@ -39,19 +40,7 @@ public class MoveBetweenFloor : MonoBehaviour
         if (col.CompareTag("Player"))
         {
             // プレイヤーがフロアの境界にいるとき、プレイヤーの位置に応じてライトの強さを調整する
-            int isMoveDistance = transform.position.x < col.transform.position.x ? 1 : -1;      // プレイヤーが右側にいる場合はメインフロアのライトを点灯
-            if (isMoveDistance == 1)    // プレイヤーが右側にいる場合はメインフロアのライトを点灯
-            {
-                playerSprite.sortingLayerName = "Default";
-                // 全て対象にする
-                mainCamera.cullingMask = ~0;
-            }
-            else    // プレイヤーが左側にいる場合はサブフロアのライトを点灯
-            {
-                playerSprite.sortingLayerName = "SubObject";
-                // CullingMaskを除外する
-                mainCamera.cullingMask = ~LayerMask.GetMask("CullingMainFloorObject");
-            }
+            isMoveDistance = transform.position.x < col.transform.position.x ? 1 : -1;      // プレイヤーが右側にいる場合はメインフロアのライトを点灯
 
             // プレイヤーがフロアの境界に近いほど両方を半分ずつ点灯し、
             // 離れるほど片側を強くする
@@ -61,12 +50,19 @@ public class MoveBetweenFloor : MonoBehaviour
 
             if (isMoveDistance == 1)
             {
+                playerSprite.sortingLayerName = "Default";
+                // 全て対象にする
+                mainCamera.cullingMask = ~0;
+
                 // プレイヤーが右側にいる場合はメインフロアのライトを点灯
                 mainFloorLight.intensity = Mathf.Lerp(0.5f, 1f, blend);
                 subFloorLight.intensity = Mathf.Lerp(0.5f, 0f, blend);
             }
             else
             {
+                playerSprite.sortingLayerName = "SubObject";
+                // CullingMaskを除外する
+                mainCamera.cullingMask = ~LayerMask.GetMask("CullingMainFloorObject");
                 // プレイヤーが左側にいる場合はサブフロアのライトを点灯
                 mainFloorLight.intensity = Mathf.Lerp(0.5f, 0f, blend);
                 subFloorLight.intensity = Mathf.Lerp(0.5f, 1f, blend);
@@ -79,7 +75,7 @@ public class MoveBetweenFloor : MonoBehaviour
         if (col.CompareTag("Player"))
         {
             // プレイヤーがフロアの境界から離れたとき、両方のライトを片方だけ点灯させる
-            if (mainFloorLight.intensity > subFloorLight.intensity)
+            if(isMoveDistance == 1)    // プレイヤーが右側にいる場合はメインフロアのライトを点灯
             {
                 mainFloorLight.enabled = true;
                 subFloorLight.enabled = false;

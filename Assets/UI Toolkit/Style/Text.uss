@@ -1,0 +1,6 @@
+.base-text {
+    -unity-font-definition: url("project://database/Assets/Fonts/WaonJoyo-R.otf?fileID=12800000&guid=c5322e1a6d9c4154a9dc67844b979638&type=3#WaonJoyo-R");
+    font-size: 36px;
+    -unity-text-align: middle-center;
+    color: rgb(255, 255, 255);
+}
