@@ -1,8 +1,5 @@
 using UnityEngine.InputSystem;
 using VContainer.Unity;
-using UnityEngine;
-using VContainer;
-
 
 public interface IInputTrigger
 {
@@ -12,7 +9,7 @@ public interface IInputTrigger
 public class PlayerInputController : ITickable, IInputTrigger
 {
     public event System.Action OnInputEKeyPressed;
-    
+
     public void Tick()
     {
         if(Keyboard.current.eKey.wasPressedThisFrame)
