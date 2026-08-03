@@ -3,22 +3,21 @@ using VContainer.Unity;
 using UnityEngine;
 using VContainer;
 
-public class PlayerInputController : ITickable
+
+public interface IInputTrigger
 {
-    IEventBus eventBus;
+    public event System.Action OnInputEKeyPressed;
+}
 
-    [Inject]
-    public void Construct(IEventBus eventBus)
-    {
-        this.eventBus = eventBus;
-    }
-
+public class PlayerInputController : ITickable, IInputTrigger
+{
+    public event System.Action OnInputEKeyPressed;
+    
     public void Tick()
     {
-        if(Keyboard.current.spaceKey.wasPressedThisFrame)
+        if(Keyboard.current.eKey.wasPressedThisFrame)
         {
-            //! テスト
-            eventBus.Publish(new ToggleTakeObjectPanelVisibility(new ShowTakeObjectPanel(null, "テスト")));
+            OnInputEKeyPressed?.Invoke();
         }
     }
 

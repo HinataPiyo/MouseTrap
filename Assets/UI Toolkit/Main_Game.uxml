@@ -1,7 +1,7 @@
 <ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/UI%20Toolkit/Style/Text.uss?fileID=7433441132597879392&amp;guid=5674d4550a091bd468fc8e19db31b047&amp;type=3#Text" />
     <ui:VisualElement name="root" style="flex-grow: 1;">
-        <ui:VisualElement name="get-item-container" style="position: absolute; align-self: center; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.8);">
+        <ui:VisualElement name="get-item-container" style="position: absolute; align-self: center; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.8); display: none;">
             <ui:VisualElement name="image" style="width: 350px; height: 350px; align-self: center; top: 25%; background-image: url(&quot;project://database/Assets/Sprites/DummySprite.png?fileID=21300000&amp;guid=5f33250c300134848ae770ddd8f58f6c&amp;type=3#DummySprite&quot;);" />
             <ui:Label text="落とし物を拾いました。" name="text" class="base-text" style="bottom: 20%; position: absolute; align-self: center;" />
             <ui:VisualElement name="click-action-image" style="background-image: url(&quot;project://database/Assets/Sprites/Arrow.png?fileID=2800000&amp;guid=6a0e9f1f91699b443a304f2796b59ca2&amp;type=3#Arrow&quot;); -unity-background-scale-mode: scale-to-fit; width: 25px; height: 25px; position: absolute; align-self: center; scale: 1 -1; bottom: 10%;" />
