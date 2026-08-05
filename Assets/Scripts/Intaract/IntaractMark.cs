@@ -2,32 +2,32 @@ using UnityEngine;
 using UnityEngine.UI;
 
 /// <summary>
-/// WorldCanvasに表示するIntaractMarkのPrefabを管理するクラス
+/// WorldCanvasに表示するInteractMarkのPrefabを管理するクラス
 /// </summary>
-public class IntaractMark : MonoBehaviour
+public class InteractMark : MonoBehaviour
 {
     [System.Serializable]
-    public class IntaractMarkData
+    public class InteractMarkData
     {
-        public IntaractMarkType type;
+        public InteractMarkType type;
         public Sprite sprite;
     }
 
-    [SerializeField] IntaractMarkData[] intaractMarkDatas;
+    [SerializeField] InteractMarkData[] interactMarkDatas;
     [SerializeField] Image image;
     Transform point;
 
     bool isVisible = false;
 
     /// <summary>
-    /// IntaractMarkTypeに応じて、IntaractMarkのSpriteを変更する
+    /// InteractMarkTypeに応じて、InteractMarkのSpriteを変更する
     /// </summary>
-    public void SetMark(IntaractMarkType type, Transform point)
+    public void SetMark(InteractMarkType type, Transform point)
     {
         this.point = point;
         isVisible = true;
 
-        foreach (var data in intaractMarkDatas)
+        foreach (var data in interactMarkDatas)
         {
             if (data.type == type)
             {

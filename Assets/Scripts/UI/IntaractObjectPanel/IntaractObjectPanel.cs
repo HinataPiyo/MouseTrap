@@ -4,70 +4,70 @@ using UnityEngine.UIElements;
 using VContainer;
 
 
-public enum IntaractMarkType { None, Exclamation, Question }
-public readonly struct ShowIntaractMark
+public enum InteractMarkType { None, Exclamation, Question }
+public readonly struct ShowInteractMark
 {
-    public readonly IIntaract intaract;
+    public readonly IInteract interact;
 
-    public ShowIntaractMark(IIntaract intaract)
+    public ShowInteractMark(IInteract interact)
     {
-        this.intaract = intaract;
+        this.interact = interact;
     }
 }
 
-public readonly struct HideIntaractMark
+public readonly struct HideInteractMark
 {
-    public readonly IIntaract intaract;
+    public readonly IInteract interact;
 
-    public HideIntaractMark(IIntaract intaract)
+    public HideInteractMark(IInteract interact)
     {
-        this.intaract = intaract;
+        this.interact = interact;
     }
 }
 
-public readonly struct ShowIntaractObjectPanel
+public readonly struct ShowInteractObjectPanel
 {
     public readonly Sprite sprite;
     public readonly string text;
 
-    public ShowIntaractObjectPanel(Sprite sprite, string text)
+    public ShowInteractObjectPanel(Sprite sprite, string text)
     {
         this.sprite = sprite;
         this.text = text;
     }
 }
 
-public readonly struct HideIntaractObjectPanel {
+public readonly struct HideInteractObjectPanel {
     
 }
 
-public readonly struct ToggleIntaractObjectPanelVisibility
+public readonly struct ToggleInteractObjectPanelVisibility
 {
-    public readonly ShowIntaractObjectPanel show;
+    public readonly ShowInteractObjectPanel show;
 
-    public ToggleIntaractObjectPanelVisibility(ShowIntaractObjectPanel show)
+    public ToggleInteractObjectPanelVisibility(ShowInteractObjectPanel show)
     {
         this.show = show;
     }
 }
 
-public class IntaractObjectPanel : PanelView
+public class InteractObjectPanel : PanelView
 {
-    [Header("Intaract")]
+    [Header("Interact")]
     [SerializeField] Canvas canvas;
-    [SerializeField] GameObject intaractMarkPrefab;
+    [SerializeField] GameObject interactMarkPrefab;
 
     List<CreatedMark> createdMarks = new List<CreatedMark>();
 
     readonly struct CreatedMark
     {
-        public readonly IntaractMark mark;
-        public readonly IIntaract intaract;
+        public readonly InteractMark mark;
+        public readonly IInteract interact;
 
-        public CreatedMark(IntaractMark mark, IIntaract intaract)
+        public CreatedMark(InteractMark mark, IInteract interact)
         {
             this.mark = mark;
-            this.intaract = intaract;
+            this.interact = interact;
         }
     }
 
@@ -85,13 +85,13 @@ public class IntaractObjectPanel : PanelView
     public void Construct(IEventBus eventBus)
     {
         this.eventBus = eventBus;
-        eventBus.Subscribe<ToggleIntaractObjectPanelVisibility>(OnTogglePanelVisibility);
+        eventBus.Subscribe<ToggleInteractObjectPanelVisibility>(OnTogglePanelVisibility);
 
-        eventBus.Subscribe<ShowIntaractObjectPanel>(ShowIntaractObjectPanel);
-        eventBus.Subscribe<HideIntaractObjectPanel>(data => HideIntaractObjectPanel());
+        eventBus.Subscribe<ShowInteractObjectPanel>(ShowInteractObjectPanel);
+        eventBus.Subscribe<HideInteractObjectPanel>(data => HideInteractObjectPanel());
 
-        eventBus.Subscribe<ShowIntaractMark>(data => ShowIntaractMark(data.intaract));
-        eventBus.Subscribe<HideIntaractMark>(data => HideIntaractMark(data.intaract));
+        eventBus.Subscribe<ShowInteractMark>(data => ShowInteractMark(data.interact));
+        eventBus.Subscribe<HideInteractMark>(data => HideInteractMark(data.interact));
     }
 
     void Awake()
@@ -99,33 +99,33 @@ public class IntaractObjectPanel : PanelView
         uiDocument = GetComponent<UIDocument>();
         var root = uiDocument.rootVisualElement;
 
-        panel = root.Q<VisualElement>("get-item-container");
+        panel = root.Q<VisualElement>("interact-object-container");
         image = panel.Q<VisualElement>("image");
         text = panel.Q<Label>("text");
 
-        HideIntaractObjectPanel();
+        HideInteractObjectPanel();
         SetVisible(false);
     }
 
     /// <summary>
-    /// ShowIntaractObjectPanelを受け取り、パネルを表示する
+    /// ShowInteractObjectPanelを受け取り、パネルを表示する
     /// </summary>
-    void ShowIntaractObjectPanel(ShowIntaractObjectPanel data)
+    void ShowInteractObjectPanel(ShowInteractObjectPanel data)
     {
         image.style.backgroundImage = data.sprite != null ? new StyleBackground(data.sprite) : new StyleBackground();
         text.text = data.text;
     }
 
     /// <summary>
-    /// HideIntaractObjectPanelを受け取り、パネルを非表示にする
+    /// HideInteractObjectPanelを受け取り、パネルを非表示にする
     /// </summary>
-    void HideIntaractObjectPanel()
+    void HideInteractObjectPanel()
     {
         image.style.backgroundImage = new StyleBackground();
         text.text = string.Empty;
     }
 
-    void OnTogglePanelVisibility(ToggleIntaractObjectPanelVisibility data)
+    void OnTogglePanelVisibility(ToggleInteractObjectPanelVisibility data)
     {
         isVisible = !isVisible;
         SetVisible(isVisible);
@@ -133,34 +133,34 @@ public class IntaractObjectPanel : PanelView
         if(isVisible)
             eventBus.Publish(data.show);
         else
-            eventBus.Publish(new HideIntaractObjectPanel());
+            eventBus.Publish(new HideInteractObjectPanel());
     }
 
     /// <summary>
-    /// IntaractMarkを表示する
+    /// InteractMarkを表示する
     /// </summary>
-    void ShowIntaractMark(IIntaract intaract)
+    void ShowInteractMark(IInteract interact)
     {
         // すでに表示されている場合は何もしない
-        if(createdMarks.Exists(p => p.intaract == intaract)) return;
+        if(createdMarks.Exists(p => p.interact == interact)) return;
 
-        GameObject obj = Instantiate(intaractMarkPrefab, canvas.transform);
-        IntaractMark mark = obj.GetComponent<IntaractMark>();
-        mark.SetMark(intaract.IntaractMarkType, intaract.GetMarkPoint());
+        GameObject obj = Instantiate(interactMarkPrefab, canvas.transform);
+        InteractMark mark = obj.GetComponent<InteractMark>();
+        mark.SetMark(interact.InteractMarkType, interact.GetMarkPoint());
 
-        createdMarks.Add(new CreatedMark(mark, intaract));
+        createdMarks.Add(new CreatedMark(mark, interact));
     }
 
     /// <summary>
-    /// IntaractMarkを非表示にする
+    /// InteractMarkを非表示にする
     /// </summary>
-    /// <param name="position">非表示にするIntaractMarkの位置</param>
-    void HideIntaractMark(IIntaract intaract)
+    /// <param name="interact">非表示にするInteractMarkの対象</param>
+    void HideInteractMark(IInteract interact)
     {
         // すでに非表示になっている場合は何もしない
-        if(!createdMarks.Exists(p => p.intaract == intaract)) return;
+        if(!createdMarks.Exists(p => p.interact == interact)) return;
 
-        var createdMark = createdMarks.Find(p => p.intaract == intaract);
+        var createdMark = createdMarks.Find(p => p.interact == interact);
         if (createdMark.mark != null)
         {
             Destroy(createdMark.mark.gameObject);

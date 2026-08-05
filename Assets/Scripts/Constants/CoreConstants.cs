@@ -1,4 +1,4 @@
 public static class Layer
 {
-    public const string Intaractable = "Intaractable";
+    public const string Interactable = "Interactable";
 }

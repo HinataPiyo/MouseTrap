@@ -30,11 +30,12 @@ public class GameLifetimeScope : LifetimeScope
     {
         // EventBusをシングルトンとして登録
         builder.Register<EventBus>(Lifetime.Singleton).As<IEventBus>();
+        builder.Register<Inventory>(Lifetime.Singleton).As<IInventoryService>();
         
         builder.RegisterEntryPoint<PlayerInputController>(Lifetime.Singleton).As<ITickable>().As<IInputTrigger>();
 
-        builder.RegisterComponentInHierarchy<IntaractObjectPanel>();
-        builder.RegisterComponentInHierarchy<Intaract>();
-        builder.RegisterComponentInHierarchy<SearchIntaractObjects>();
+        builder.RegisterComponentInHierarchy<InteractObjectPanel>();
+        builder.RegisterComponentInHierarchy<Interact>();
+        builder.RegisterComponentInHierarchy<SearchInteractObjects>();
     }
 }

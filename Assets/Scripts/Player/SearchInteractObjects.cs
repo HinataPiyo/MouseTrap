@@ -4,11 +4,11 @@ using VContainer;
 
 
 /// <summary>
-/// Intaract可能なオブジェクトを範囲から取得するクラス
+/// Interact可能なオブジェクトを範囲から取得するクラス
 /// </summary>
-public class SearchIntaractObjects : MonoBehaviour
+public class SearchInteractObjects : MonoBehaviour
 {
-    IIntaract closestIntaract;
+    IInteract closestInteract;
 
     [Inject]
     IInputTrigger inputTrigger;
@@ -24,29 +24,29 @@ public class SearchIntaractObjects : MonoBehaviour
     /// </summary>
     void OnInputAction()
     {
-        if (closestIntaract != null) closestIntaract.Interact();
+        if (closestInteract != null) closestInteract.ApplyInteract();
     }
 
     void OnTriggerEnter2D(Collider2D col)
     {
-        if(col.gameObject.layer != LayerMask.NameToLayer(Layer.Intaractable)) return;
+        if(col.gameObject.layer != LayerMask.NameToLayer(Layer.Interactable)) return;
 
-        IIntaract intaract = col.GetComponent<IIntaract>();
-        if (intaract != null)
+        IInteract interact = col.GetComponent<IInteract>();
+        if (interact != null)
         {
-            closestIntaract = intaract;
-            closestIntaract.ShowMark();
+            closestInteract = interact;
+            closestInteract.ShowMark();
         }
     }
 
     void OnTriggerExit2D(Collider2D col)
     {
-        if(col.gameObject.layer != LayerMask.NameToLayer(Layer.Intaractable)) return;
+        if(col.gameObject.layer != LayerMask.NameToLayer(Layer.Interactable)) return;
 
-        if (closestIntaract != null)
+        if (closestInteract != null)
         {
-            closestIntaract.HideMark();
-            closestIntaract = null;
+            closestInteract.HideMark();
+            closestInteract = null;
         }
     }
 

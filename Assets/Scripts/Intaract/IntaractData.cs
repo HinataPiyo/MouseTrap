@@ -1,14 +1,14 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "IntaractData", menuName = "Data/IntaractData")]
-public class IntaractData : ScriptableObject
+[CreateAssetMenu(fileName = "InteractData", menuName = "Data/InteractData")]
+public class InteractData : ScriptableObject
 {
     [Header("UIに表示するデータ")]
-    [SerializeField] IntaractMarkType intaractMarkType;
+    [SerializeField] InteractMarkType interactMarkType;
     [SerializeField] Sprite sprite;
     [SerializeField] string text;
 
-    public IntaractMarkType IntaractMarkType => intaractMarkType;
+    public InteractMarkType InteractMarkType => interactMarkType;
     public Sprite Sprite => sprite;
     public string Text => text;
 
