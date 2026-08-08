@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
 using VContainer;
 
 
@@ -9,9 +8,13 @@ using VContainer;
 public class SearchInteractObjects : MonoBehaviour
 {
     IInteract closestInteract;
+    IInputTrigger inputTrigger;
 
     [Inject]
-    IInputTrigger inputTrigger;
+    public void Construct(IInputTrigger inputTrigger, IEventBus eventBus)
+    {
+        this.inputTrigger = inputTrigger;
+    }
 
     void OnEnable()
     {
@@ -24,7 +27,10 @@ public class SearchInteractObjects : MonoBehaviour
     /// </summary>
     void OnInputAction()
     {
-        if (closestInteract != null) closestInteract.ApplyInteract();
+        if (closestInteract != null)
+        {
+            closestInteract.ApplyInteract();
+        }
     }
 
     void OnTriggerEnter2D(Collider2D col)

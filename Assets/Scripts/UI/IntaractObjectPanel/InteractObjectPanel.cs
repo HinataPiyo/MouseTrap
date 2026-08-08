@@ -5,49 +5,29 @@ using VContainer;
 
 
 public enum InteractMarkType { None, Exclamation, Question }
-public readonly struct ShowInteractMark
+
+public readonly struct ToggleMarkVisibility
 {
     public readonly IInteract interact;
+    public readonly bool isVisible;
 
-    public ShowInteractMark(IInteract interact)
+    public ToggleMarkVisibility(IInteract interact, bool isVisible)
     {
         this.interact = interact;
+        this.isVisible = isVisible;
     }
 }
 
-public readonly struct HideInteractMark
-{
-    public readonly IInteract interact;
 
-    public HideInteractMark(IInteract interact)
-    {
-        this.interact = interact;
-    }
-}
-
-public readonly struct ShowInteractObjectPanel
+public readonly struct ToggleInteractObjectPanelVisibility
 {
     public readonly Sprite sprite;
     public readonly string text;
 
-    public ShowInteractObjectPanel(Sprite sprite, string text)
+    public ToggleInteractObjectPanelVisibility(Sprite sprite, string text)
     {
         this.sprite = sprite;
         this.text = text;
-    }
-}
-
-public readonly struct HideInteractObjectPanel {
-    
-}
-
-public readonly struct ToggleInteractObjectPanelVisibility
-{
-    public readonly ShowInteractObjectPanel show;
-
-    public ToggleInteractObjectPanelVisibility(ShowInteractObjectPanel show)
-    {
-        this.show = show;
     }
 }
 
@@ -77,21 +57,11 @@ public class InteractObjectPanel : PanelView
     VisualElement image;
     Label text;
 
-    bool isVisible = false;
-
-    IEventBus eventBus;
-
     [Inject]
     public void Construct(IEventBus eventBus)
     {
-        this.eventBus = eventBus;
         eventBus.Subscribe<ToggleInteractObjectPanelVisibility>(OnTogglePanelVisibility);
-
-        eventBus.Subscribe<ShowInteractObjectPanel>(ShowInteractObjectPanel);
-        eventBus.Subscribe<HideInteractObjectPanel>(data => HideInteractObjectPanel());
-
-        eventBus.Subscribe<ShowInteractMark>(data => ShowInteractMark(data.interact));
-        eventBus.Subscribe<HideInteractMark>(data => HideInteractMark(data.interact));
+        eventBus.Subscribe<ToggleMarkVisibility>(OnToggleMarkVisibility);
     }
 
     void Awake()
@@ -103,14 +73,14 @@ public class InteractObjectPanel : PanelView
         image = panel.Q<VisualElement>("image");
         text = panel.Q<Label>("text");
 
-        HideInteractObjectPanel();
+        OnTogglePanelVisibility(new ToggleInteractObjectPanelVisibility(null, string.Empty));
         SetVisible(false);
     }
 
     /// <summary>
     /// ShowInteractObjectPanelを受け取り、パネルを表示する
     /// </summary>
-    void ShowInteractObjectPanel(ShowInteractObjectPanel data)
+    void ShowInteractObjectPanel(ToggleInteractObjectPanelVisibility data)
     {
         image.style.backgroundImage = data.sprite != null ? new StyleBackground(data.sprite) : new StyleBackground();
         text.text = data.text;
@@ -119,7 +89,7 @@ public class InteractObjectPanel : PanelView
     /// <summary>
     /// HideInteractObjectPanelを受け取り、パネルを非表示にする
     /// </summary>
-    void HideInteractObjectPanel()
+    void HideInteractObjectPanel(ToggleInteractObjectPanelVisibility data)
     {
         image.style.backgroundImage = new StyleBackground();
         text.text = string.Empty;
@@ -127,15 +97,30 @@ public class InteractObjectPanel : PanelView
 
     void OnTogglePanelVisibility(ToggleInteractObjectPanelVisibility data)
     {
-        isVisible = !isVisible;
-        SetVisible(isVisible);
-
-        if(isVisible)
-            eventBus.Publish(data.show);
+        if (!isVisible)
+        {
+            ShowInteractObjectPanel(data);
+            SetVisible(true);
+        }
         else
-            eventBus.Publish(new HideInteractObjectPanel());
+        {
+            HideInteractObjectPanel(data);
+            SetVisible(false);
+        }
     }
 
+    void OnToggleMarkVisibility(ToggleMarkVisibility data)
+    {
+        if (data.isVisible)
+        {
+            ShowInteractMark(data.interact);
+        }
+        else
+        {
+            HideInteractMark(data.interact);
+        }
+    }
+    
     /// <summary>
     /// InteractMarkを表示する
     /// </summary>

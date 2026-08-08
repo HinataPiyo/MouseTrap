@@ -1,6 +1,17 @@
 namespace Player
 {
     using UnityEngine;
+    using VContainer;
+
+    public readonly struct OnChangePlayerStop
+    {
+        public readonly bool isStopped;
+
+        public OnChangePlayerStop(bool isStopped)
+        {
+            this.isStopped = isStopped;
+        }
+    }
 
     public class Movement : MonoBehaviour
     {
@@ -12,6 +23,14 @@ namespace Player
         Vector2 moveDir;
         Rigidbody2D rb;
         MoveType currentMoveType;
+
+        bool isStopped = false;
+
+        [Inject]
+        public void Construct(IEventBus eventBus)
+        {
+            eventBus.Subscribe<OnChangePlayerStop>(OnChangePlayerStop);
+        }
 
         void Awake()
         {
@@ -29,7 +48,10 @@ namespace Player
 
         void LateUpdate()
         {
-            rb.linearVelocity = moveDir * moveSpeed;
+            if (!isStopped)
+            {
+                rb.linearVelocity = moveDir * moveSpeed;
+            }
         }
 
         public void DirectionToAnimation(Vector2 dir)
@@ -57,6 +79,19 @@ namespace Player
                 currentMoveType = previousMoveType;
                 ainm.SetInteger("MoveType", (int)currentMoveType);
             }
+        }
+
+        void OnChangePlayerStop(OnChangePlayerStop data)
+        {
+            isStopped = data.isStopped;
+            if (isStopped)
+            {
+                rb.linearVelocity = Vector2.zero;
+                moveDir = Vector2.zero;
+                DirectionToAnimation(Vector2.zero);
+            }
+
+            Debug.Log($"Player movement stopped: {isStopped}");
         }
     }
 

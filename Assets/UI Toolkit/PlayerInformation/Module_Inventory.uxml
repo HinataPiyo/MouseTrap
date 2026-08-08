@@ -1,0 +1,7 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:Template name="Temp_InventoryElement" src="project://database/Assets/UI%20Toolkit/PlayerInformation/Temp_InventoryElement.uxml?fileID=9197481963319205126&amp;guid=ec6b9ffc192263f42ab6a5b5ede4f422&amp;type=3#Temp_InventoryElement" />
+    <ui:VisualElement name="root" style="flex-wrap: wrap; flex-grow: 1; flex-direction: row; padding-top: 10px; padding-right: 10px; padding-bottom: 10px; padding-left: 10px; justify-content: space-between;">
+        <ui:Instance template="Temp_InventoryElement" />
+        <ui:Instance template="Temp_InventoryElement" />
+    </ui:VisualElement>
+</ui:UXML>
