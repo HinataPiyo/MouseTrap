@@ -177,7 +177,7 @@ CircleCollider2D:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -1617,7 +1617,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 921842213}
-  - component: {fileID: 921842214}
   m_Layer: 0
   m_Name: Wall
   m_TagString: Untagged
@@ -1651,18 +1650,6 @@ Transform:
   - {fileID: 1631657411}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!210 &921842214
-SortingGroup:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 921842212}
-  m_Enabled: 1
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: -10
-  m_SortAtRoot: 0
 --- !u!1001 &990206685
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1934,6 +1921,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 2798692177901113450, guid: 4c3c55c504912714b9bb2b2e88106b0c, type: 3}
   m_PrefabInstance: {fileID: 1075744143}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1084782446 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5618067024733956197, guid: a9d8afb16dcb5dd45bdd9883615cb275, type: 3}
+  m_PrefabInstance: {fileID: 2031176584802514383}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1112817986
 PrefabInstance:
@@ -2511,6 +2503,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 8455458829855207409, guid: 57830eb7ea3928c40a8bbbf5cc187083, type: 3}
   m_PrefabInstance: {fileID: 1441350457}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1521489953 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 97884606574817174, guid: d63411126afc659428b1f572ac77b0b4, type: 3}
+  m_PrefabInstance: {fileID: 3463655518284340620}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1593102383
 GameObject:
@@ -3925,10 +3922,6 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1749269935760985725, guid: 4c3c55c504912714b9bb2b2e88106b0c, type: 3}
-      propertyPath: m_SortingOrder
-      value: -1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1749269935760985725, guid: 4c3c55c504912714b9bb2b2e88106b0c, type: 3}
       propertyPath: m_SortingLayerID
       value: -890797135
       objectReference: {fileID: 0}
@@ -4128,7 +4121,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 0
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!224 &1704173008
 RectTransform:
@@ -4160,10 +4153,6 @@ PrefabInstance:
     - target: {fileID: 1749269935760985725, guid: 4c3c55c504912714b9bb2b2e88106b0c, type: 3}
       propertyPath: m_SortingLayer
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1749269935760985725, guid: 4c3c55c504912714b9bb2b2e88106b0c, type: 3}
-      propertyPath: m_SortingOrder
-      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 1749269935760985725, guid: 4c3c55c504912714b9bb2b2e88106b0c, type: 3}
       propertyPath: m_SortingLayerID
@@ -4813,10 +4802,6 @@ PrefabInstance:
     - target: {fileID: 1749269935760985725, guid: 4c3c55c504912714b9bb2b2e88106b0c, type: 3}
       propertyPath: m_SortingLayer
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1749269935760985725, guid: 4c3c55c504912714b9bb2b2e88106b0c, type: 3}
-      propertyPath: m_SortingOrder
-      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 1749269935760985725, guid: 4c3c55c504912714b9bb2b2e88106b0c, type: 3}
       propertyPath: m_SortingLayerID
@@ -5920,6 +5905,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 11063094718154203, guid: 68279c5fc1b1a74439a26d4778f2e416, type: 3}
+      propertyPath: autoInjectGameObjects.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 11063094718154203, guid: 68279c5fc1b1a74439a26d4778f2e416, type: 3}
+      propertyPath: 'autoInjectGameObjects.Array.data[0]'
+      value: 
+      objectReference: {fileID: 1084782446}
+    - target: {fileID: 11063094718154203, guid: 68279c5fc1b1a74439a26d4778f2e416, type: 3}
+      propertyPath: 'autoInjectGameObjects.Array.data[1]'
+      value: 
+      objectReference: {fileID: 1521489953}
     - target: {fileID: 3784671100781456159, guid: 68279c5fc1b1a74439a26d4778f2e416, type: 3}
       propertyPath: m_Name
       value: GameLifetimeScorp

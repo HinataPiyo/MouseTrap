@@ -97,20 +97,27 @@ public class InteractObjectPanel : PanelView
 
     void OnTogglePanelVisibility(ToggleInteractObjectPanelVisibility data)
     {
-        if (!isVisible)
+        if (data.sprite == null && string.IsNullOrEmpty(data.text))
         {
-            ShowInteractObjectPanel(data);
-            SetVisible(true);
-        }
-        else
-        {
+            Debug.Log("HideInteractObjectPanel");
             HideInteractObjectPanel(data);
             SetVisible(false);
+            return;
         }
+
+        Debug.Log("ShowInteractObjectPanel");
+        ShowInteractObjectPanel(data);
+        SetVisible(true);
     }
 
     void OnToggleMarkVisibility(ToggleMarkVisibility data)
     {
+        if(data.interact == null)
+        {
+            HideInteractMark(data.interact);
+            return;
+        }
+
         if (data.isVisible)
         {
             ShowInteractMark(data.interact);

@@ -1,5 +1,4 @@
 using UnityEngine;
-using VContainer;
 
 public class Interact : MonoBehaviour, IInteract
 {
@@ -9,37 +8,30 @@ public class Interact : MonoBehaviour, IInteract
 
     public Transform GetMarkPoint() => interactMarkPosition;
     public InteractMarkType InteractMarkType => interactData.InteractMarkType;
-
-    [Inject]
-    IEventBus eventBus;
+    public bool IsAvailable => !hasAcquiredItem;
 
     /// <summary>
-    /// Interactオブジェクトを取得した際にPanelに表示する処理
+    /// Interact可能なオブジェクトを取得する処理
     /// </summary>
-    public void ApplyInteract()
+    /// <param name="result">取得したInteractData</param>
+    /// <returns>取得に成功したかどうか</returns>
+    public bool TryInteract(out InteractData result)
     {
-        Debug.Log($"Interact: {interactData.name}");
-        eventBus.Publish(new ToggleInteractObjectPanelVisibility(interactData.Sprite, interactData.Text));
+        result = interactData;
 
-        if (!hasAcquiredItem)
+        if (hasAcquiredItem)
         {
-            eventBus.Publish(new OnItemChanged(new Inventory.ItemData { item = interactData, count = 1 }, true));
-            eventBus.Publish(new Player.OnChangePlayerStop(true));
-            hasAcquiredItem = true;
+            return false;
         }
-        else
+
+        hasAcquiredItem = true;
+        Debug.Log($"Interact acquired: {interactData.name}");
+
+        if (interactData.IsDisabledAfterInteract)
         {
-            eventBus.Publish(new Player.OnChangePlayerStop(false));
+            gameObject.SetActive(false);
         }
-    }
 
-    public void ShowMark()
-    {
-        eventBus.Publish(new ToggleMarkVisibility(this, true));
-    }
-
-    public void HideMark()
-    {
-        eventBus.Publish(new ToggleMarkVisibility(this, false));
+        return true;
     }
 }

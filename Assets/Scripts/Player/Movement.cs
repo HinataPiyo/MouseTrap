@@ -2,6 +2,7 @@ namespace Player
 {
     using UnityEngine;
     using VContainer;
+    using UnityEngine.InputSystem;
 
     public readonly struct OnChangePlayerStop
     {
@@ -39,8 +40,8 @@ namespace Player
 
         void Update()
         {
-            float x = Input.GetAxisRaw("Horizontal");
-            float y = Input.GetAxisRaw("Vertical");
+            float x = Keyboard.current.aKey.isPressed ? -1f : Keyboard.current.dKey.isPressed ? 1f : 0f;
+            float y = Keyboard.current.sKey.isPressed ? -1f : Keyboard.current.wKey.isPressed ? 1f : 0f;
             moveDir = new Vector2(x, y).normalized;
 
             DirectionToAnimation(moveDir);

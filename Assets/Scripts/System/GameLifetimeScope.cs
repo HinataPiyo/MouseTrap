@@ -38,7 +38,6 @@ public class GameLifetimeScope : LifetimeScope
 
         builder.RegisterComponentInHierarchy<Player.Movement>();
         builder.RegisterComponentInHierarchy<InteractObjectPanel>();
-        builder.RegisterComponentInHierarchy<Interact>();
         builder.RegisterComponentInHierarchy<SearchInteractObjects>();
     }
 }
