@@ -1,9 +1,14 @@
-<?xml version="1.0" encoding="utf-8"?>
-<ui:UXML
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:ui="UnityEngine.UIElements"
-    xmlns:uie="UnityEditor.UIElements"
-    xsi:noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd"
->
-    
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI%20Toolkit/Style/Text.uss?fileID=7433441132597879392&amp;guid=5674d4550a091bd468fc8e19db31b047&amp;type=3#Text" />
+    <ui:VisualElement name="root" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0.5);">
+        <ui:VisualElement name="character-container" style="flex-grow: 1;">
+            <ui:VisualElement name="left-character" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/Sprites/Character/Idle.png?fileID=4723107735738678597&amp;guid=76757b61b369a1747a0492da2c587d60&amp;type=3#Idle_0&quot;); -unity-background-scale-mode: scale-to-fit; position: absolute; width: 400px; height: 650px; bottom: 100px; left: 40px;" />
+            <ui:VisualElement name="right-character" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/Sprites/Character/Idle.png?fileID=4723107735738678597&amp;guid=76757b61b369a1747a0492da2c587d60&amp;type=3#Idle_0&quot;); -unity-background-scale-mode: scale-to-fit; position: absolute; width: 400px; height: 650px; right: 40px; bottom: 100px; display: none;" />
+        </ui:VisualElement>
+        <ui:VisualElement name="body-background" style="flex-grow: 1; position: absolute; bottom: 5%; top: 70%; left: 0; right: 0; border-left-color: rgb(255, 255, 255); border-right-color: rgb(255, 255, 255); border-top-color: rgb(255, 255, 255); border-bottom-color: rgb(255, 255, 255); border-top-width: 3px; border-right-width: 3px; border-bottom-width: 3px; border-left-width: 3px; border-top-left-radius: 5px; border-top-right-radius: 5px; border-bottom-right-radius: 5px; border-bottom-left-radius: 5px; background-color: rgb(19, 19, 19); padding-top: 14px; padding-right: 14px; padding-bottom: 14px; padding-left: 14px;">
+            <ui:Label text="少年" name="name" class="base-text" style="-unity-text-align: middle-left; font-size: 40px;" />
+            <ui:Label text="ここに文章が入ります。ここに文章が入ります。ここに文章が入ります。ここに文章が入ります。ここに文章が入ります。ここに文章が入ります。ここに文章が入ります" name="body" class="base-text" style="-unity-text-align: upper-left; white-space: normal; font-size: 40px; flex-grow: 1; -unity-font-definition: url(&quot;project://database/Assets/UI%20Toolkit/UnityThemes/UnityDefaultRuntimeTheme.tss?fileID=2230732570650464555&amp;guid=a7b75add532b8ed46bef9182144365cc&amp;type=3#NotInter-Regular&quot;); margin-top: 10px; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0;" />
+            <ui:VisualElement name="arrow" style="position: absolute; height: 40px; width: 40px; background-image: url(&quot;project://database/Assets/Sprites/Arrow.png?fileID=21300000&amp;guid=6a0e9f1f91699b443a304f2796b59ca2&amp;type=3#Arrow&quot;); -unity-background-scale-mode: scale-to-fit; scale: 1 -1; bottom: -10%; align-self: center;" />
+        </ui:VisualElement>
+    </ui:VisualElement>
 </ui:UXML>
