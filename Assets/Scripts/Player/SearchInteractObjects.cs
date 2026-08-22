@@ -1,5 +1,4 @@
 using UnityEngine;
-using VContainer;
 
 /// <summary>
 /// Interact可能なオブジェクトを範囲から取得するクラス
@@ -8,17 +7,12 @@ public class SearchInteractObjects : MonoBehaviour
 {
     IInteract closestInteract;
     IInputTrigger inputTrigger;
-    IEventBus eventBus;
+    IInteractObjectPanel interactObjectPanel;
 
-    [Inject]
-    public void Construct(IInputTrigger inputTrigger, IEventBus eventBus)
+    void Start()
     {
-        this.inputTrigger = inputTrigger;
-        this.eventBus = eventBus;
-    }
-
-    void OnEnable()
-    {
+        inputTrigger = ApiProvider.Get<IInputTrigger>();
+        interactObjectPanel = ApiProvider.Get<IInteractObjectPanel>();
         inputTrigger.OnInputEKeyPressed += OnInputAction;
     }
 
@@ -30,17 +24,28 @@ public class SearchInteractObjects : MonoBehaviour
         // 取得可能なInteractオブジェクトがなければ何もしない
         if (closestInteract == null || !closestInteract.IsAvailable)
         {
+            Debug.Log("<color=red>No interactable object found.</color>");
             ClearCurrentInteract();
-            eventBus.Publish(new Player.OnChangePlayerStop(false));
+            interactObjectPanel.TogglePanelVisibility(null, string.Empty);
             return;
         }
 
         // Interact可能なオブジェクトを取得する
         if (closestInteract.TryInteract(out var interactData))
         {
-            eventBus.Publish(new ToggleInteractObjectPanelVisibility(interactData.Sprite, interactData.Text));
-            eventBus.Publish(new OnItemChanged(new Inventory.ItemData { item = interactData, count = 1 }, true));
-            eventBus.Publish(new Player.OnChangePlayerStop(true));
+            // 取得後にオブジェクトを破棄する場合は、InteractMarkの表示を消す
+            if(interactData.IsShowPanel)
+            {
+                interactObjectPanel.TogglePanelVisibility(interactData.Sprite, interactData.Text);
+                Debug.Log($"<color=green>ShowInteractObjectPanel</color> Sprite: {interactData.Sprite}, Text: {interactData.Text}");
+            }
+            else
+            {
+                interactObjectPanel.TogglePanelVisibility(null, string.Empty);
+            }
+
+            interactData.OnInteractAction?.Invoke();
+            Debug.Log($"<color=green>Interact successful.</color> InteractData: {interactData}");
         }
     }
 
@@ -59,11 +64,12 @@ public class SearchInteractObjects : MonoBehaviour
         // すでに別のInteractオブジェクトがあれば、そちらのInteractMarkを非表示にする
         if (closestInteract != null && closestInteract != interact)
         {
-            eventBus.Publish(new ToggleMarkVisibility(closestInteract, false));
+            interactObjectPanel.ToggleMarkVisibility(closestInteract, false);
+            return;
         }
 
         closestInteract = interact;
-        eventBus.Publish(new ToggleMarkVisibility(closestInteract, true));
+        interactObjectPanel.ToggleMarkVisibility(closestInteract, true);
     }
 
     /// <summary>
@@ -79,8 +85,10 @@ public class SearchInteractObjects : MonoBehaviour
 
         // 離れたオブジェクトが現在のInteractと同じでなければ何もしない
         if (interact == null) return;
-
-        eventBus.Publish(new ToggleMarkVisibility(interact, false));
+        if (closestInteract != null && closestInteract == interact)
+        {
+            interactObjectPanel.ToggleMarkVisibility(closestInteract, false);
+        }
         closestInteract = null;
     }
 
@@ -92,10 +100,9 @@ public class SearchInteractObjects : MonoBehaviour
     {
         if (closestInteract != null)
         {
-            eventBus.Publish(new ToggleMarkVisibility(closestInteract, false));
+            interactObjectPanel.ToggleMarkVisibility(closestInteract, false);
         }
 
-        eventBus.Publish(new ToggleInteractObjectPanelVisibility(null, string.Empty));
         closestInteract = null;
     }
 

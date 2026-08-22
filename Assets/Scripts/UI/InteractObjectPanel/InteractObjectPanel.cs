@@ -1,37 +1,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
-using VContainer;
-
 
 public enum InteractMarkType { None, Exclamation, Question }
 
-public readonly struct ToggleMarkVisibility
+public interface IInteractObjectPanel
 {
-    public readonly IInteract interact;
-    public readonly bool isVisible;
-
-    public ToggleMarkVisibility(IInteract interact, bool isVisible)
-    {
-        this.interact = interact;
-        this.isVisible = isVisible;
-    }
+    void TogglePanelVisibility(Sprite sprite, string text);
+    void ToggleMarkVisibility(IInteract interact, bool isVisible);
 }
 
-
-public readonly struct ToggleInteractObjectPanelVisibility
-{
-    public readonly Sprite sprite;
-    public readonly string text;
-
-    public ToggleInteractObjectPanelVisibility(Sprite sprite, string text)
-    {
-        this.sprite = sprite;
-        this.text = text;
-    }
-}
-
-public class InteractObjectPanel : PanelView
+public class InteractObjectPanel : PanelView, IInteractObjectPanel
 {
     [Header("Interact")]
     [SerializeField] Canvas canvas;
@@ -57,15 +36,10 @@ public class InteractObjectPanel : PanelView
     VisualElement image;
     Label text;
 
-    [Inject]
-    public void Construct(IEventBus eventBus)
-    {
-        eventBus.Subscribe<ToggleInteractObjectPanelVisibility>(OnTogglePanelVisibility);
-        eventBus.Subscribe<ToggleMarkVisibility>(OnToggleMarkVisibility);
-    }
-
     void Awake()
     {
+        ApiProvider.Register<IInteractObjectPanel>(this);
+        
         uiDocument = GetComponent<UIDocument>();
         var root = uiDocument.rootVisualElement;
 
@@ -73,58 +47,58 @@ public class InteractObjectPanel : PanelView
         image = panel.Q<VisualElement>("image");
         text = panel.Q<Label>("text");
 
-        OnTogglePanelVisibility(new ToggleInteractObjectPanelVisibility(null, string.Empty));
+        TogglePanelVisibility(null, string.Empty);
         SetVisible(false);
     }
 
     /// <summary>
     /// ShowInteractObjectPanelを受け取り、パネルを表示する
     /// </summary>
-    void ShowInteractObjectPanel(ToggleInteractObjectPanelVisibility data)
+    void ShowInteractObjectPanel(Sprite sprite, string _text)
     {
-        image.style.backgroundImage = data.sprite != null ? new StyleBackground(data.sprite) : new StyleBackground();
-        text.text = data.text;
+        image.style.backgroundImage = sprite != null ? new StyleBackground(sprite) : new StyleBackground();
+        text.text = _text;
     }
 
     /// <summary>
     /// HideInteractObjectPanelを受け取り、パネルを非表示にする
     /// </summary>
-    void HideInteractObjectPanel(ToggleInteractObjectPanelVisibility data)
+    void HideInteractObjectPanel()
     {
         image.style.backgroundImage = new StyleBackground();
         text.text = string.Empty;
     }
 
-    void OnTogglePanelVisibility(ToggleInteractObjectPanelVisibility data)
+    public void TogglePanelVisibility(Sprite sprite, string text)
     {
-        if (data.sprite == null && string.IsNullOrEmpty(data.text))
+        if (sprite == null && string.IsNullOrEmpty(text))
         {
             Debug.Log("HideInteractObjectPanel");
-            HideInteractObjectPanel(data);
+            HideInteractObjectPanel();
             SetVisible(false);
             return;
         }
 
         Debug.Log("ShowInteractObjectPanel");
-        ShowInteractObjectPanel(data);
+        ShowInteractObjectPanel(sprite, text);
         SetVisible(true);
     }
 
-    void OnToggleMarkVisibility(ToggleMarkVisibility data)
+    public void ToggleMarkVisibility(IInteract interact, bool isVisible)
     {
-        if(data.interact == null)
+        if(interact == null)
         {
-            HideInteractMark(data.interact);
+            HideInteractMark(interact);
             return;
         }
 
-        if (data.isVisible)
+        if (isVisible)
         {
-            ShowInteractMark(data.interact);
+            ShowInteractMark(interact);
         }
         else
         {
-            HideInteractMark(data.interact);
+            HideInteractMark(interact);
         }
     }
     

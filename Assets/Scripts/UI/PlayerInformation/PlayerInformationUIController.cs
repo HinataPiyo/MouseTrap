@@ -1,7 +1,4 @@
 using UnityEngine.UIElements;
-using VContainer;
-using UnityEngine;
-
 public interface IPlayerInformationUIController {
     void TogglePlayerInformationVisibility();
     void ShowPlayerInformation();
@@ -15,13 +12,6 @@ public class PlayerInformationUIController : PanelView, IPlayerInformationUICont
     VisualElement root;
 
     IInventoryUIPanel inventoryUIPanel;
-
-    [Inject]
-    public void Construct(IInputTrigger inputTrigger, IInventoryUIPanel inventoryUIPanel)
-    {
-        this.inventoryUIPanel = inventoryUIPanel;
-        inputTrigger.OnInputTabKeyPressed += TogglePlayerInformationVisibility;
-    }
 
     void Awake()
     {

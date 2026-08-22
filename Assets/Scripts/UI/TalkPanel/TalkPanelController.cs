@@ -3,6 +3,16 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
 
+public readonly struct ToTalk
+{
+    public readonly TalkData talkData;
+
+    public ToTalk(TalkData talkData)
+    {
+        this.talkData = talkData;
+    }
+}
+
 public class TalkPanelController : MonoBehaviour
 {
     UIDocument uiDocument;
@@ -22,6 +32,7 @@ public class TalkPanelController : MonoBehaviour
 
     bool isWriting = false;
     bool isSkipping = false;
+
 
     void Awake()
     {
@@ -49,6 +60,12 @@ public class TalkPanelController : MonoBehaviour
                 isSkipping = true;
             }
         }
+    }
+
+    void OnToTalk(ToTalk toTalk)
+    {
+        testData = toTalk.talkData;
+        writingCoroutine = StartCoroutine(Writing());
     }
 
     IEnumerator Writing()

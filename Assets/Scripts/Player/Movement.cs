@@ -1,7 +1,6 @@
 namespace Player
 {
     using UnityEngine;
-    using VContainer;
     using UnityEngine.InputSystem;
 
     public readonly struct OnChangePlayerStop
@@ -27,11 +26,6 @@ namespace Player
 
         bool isStopped = false;
 
-        [Inject]
-        public void Construct(IEventBus eventBus)
-        {
-            eventBus.Subscribe<OnChangePlayerStop>(OnChangePlayerStop);
-        }
 
         void Awake()
         {

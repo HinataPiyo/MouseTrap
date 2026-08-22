@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Interact : MonoBehaviour, IInteract
 {
-    [SerializeField] InteractData interactData;
+    [SerializeField] protected InteractData interactData;
     [SerializeField] Transform interactMarkPosition;
     bool hasAcquiredItem;
 

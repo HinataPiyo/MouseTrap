@@ -1,7 +1,5 @@
 using UnityEngine;
-using UnityEngine.Rendering;
 using UnityEngine.UIElements;
-using VContainer;
 
 public interface IInventoryUIPanel
 {
@@ -20,20 +18,20 @@ public class InventoryUIPanel : PanelView, IInventoryUIPanel
 
     const string PANEL_NAME = "InventoryPanel";
 
-    [Inject]
-    public void Construct(IInventoryService inventoryService)
-    {
-        this.inventoryService = inventoryService;
-    }
-
 
     void Awake()
     {
+        ApiProvider.Register<IInventoryUIPanel>(this);
         uiDoc = GetComponent<UIDocument>();
         panel = uiDoc.rootVisualElement.Q<VisualElement>(PANEL_NAME);
         container = panel.Q<VisualElement>("root");
 
         container.Clear();
+    }
+
+    void Start()
+    {
+        inventoryService = ApiProvider.Get<IInventoryService>();
     }
 
     public void TogglePanelVisibility()

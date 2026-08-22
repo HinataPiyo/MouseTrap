@@ -1,5 +1,5 @@
+using UnityEngine;
 using UnityEngine.InputSystem;
-using VContainer.Unity;
 
 public interface IInputTrigger
 {
@@ -7,11 +7,17 @@ public interface IInputTrigger
     public event System.Action OnInputTabKeyPressed;
 }
 
-public class PlayerInputController : ITickable, IInputTrigger
+public class PlayerInputController : MonoBehaviour, IInputTrigger
 {
     public event System.Action OnInputEKeyPressed;
     public event System.Action OnInputTabKeyPressed;
-    public void Tick()
+
+    void Awake()
+    {
+        ApiProvider.Register<IInputTrigger>(this);
+    }
+
+    public void Update()
     {
         if(Keyboard.current.eKey.wasPressedThisFrame)
         {

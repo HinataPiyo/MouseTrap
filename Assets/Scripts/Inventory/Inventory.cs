@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using VContainer;
 using UnityEngine;
 
 public struct OnItemChanged
@@ -14,7 +13,16 @@ public struct OnItemChanged
     }
 }
 
-public class Inventory : IInventoryService
+public interface IInventoryService
+{
+    void ChangeItemCount(OnItemChanged item);
+    void AddItem(OnItemChanged item);
+    void RemoveItem(OnItemChanged item);
+    bool HasItem(InteractData item);
+    List<Inventory.ItemData> GetItems();
+}
+
+public class Inventory : MonoBehaviour, IInventoryService
 {
     List<ItemData> items = new List<ItemData>();
 
@@ -25,10 +33,9 @@ public class Inventory : IInventoryService
         public int count;
     }
 
-    [Inject]
-    public void Construct(IEventBus eventBus)
+    void Awake()
     {
-        eventBus.Subscribe<OnItemChanged>(ChangeItemCount);
+        ApiProvider.Register<IInventoryService>(this);
     }
 
     public void ChangeItemCount(OnItemChanged item)

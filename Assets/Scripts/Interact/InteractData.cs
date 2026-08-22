@@ -8,11 +8,13 @@ public class InteractData : ScriptableObject
     [SerializeField] Sprite sprite;
     [SerializeField] string text;
     [SerializeField] bool isDisabledAfterInteract;       // 取得後にオブジェクトを破棄するかどうかのフラグ
+    [SerializeField] bool isShowPanel;      // 取得後にパネルを表示するかどうかのフラグ
+    System.Action onInteractAction;         // Interact時に行う処理を登録するためのAction
 
     public InteractMarkType InteractMarkType => interactMarkType;
     public Sprite Sprite => sprite;
     public string Text => text;
     public bool IsDisabledAfterInteract => isDisabledAfterInteract;
-
-    // ここにCommandデータを追加し、行いたい状態に応じてイベントを発火させることができるようにする。
+    public bool IsShowPanel => isShowPanel;
+    public System.Action OnInteractAction { get => onInteractAction; set => onInteractAction = value; }
 }
