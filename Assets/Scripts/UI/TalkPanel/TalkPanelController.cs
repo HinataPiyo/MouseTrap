@@ -3,21 +3,19 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
 
-public readonly struct ToTalk
+interface ITalk
 {
-    public readonly TalkData talkData;
-
-    public ToTalk(TalkData talkData)
-    {
-        this.talkData = talkData;
-    }
+    void OnToTalk(TalkData data, float delay);
 }
 
-public class TalkPanelController : MonoBehaviour
+public class TalkPanelController : MonoBehaviour, ITalk
 {
     UIDocument uiDocument;
-    [SerializeField] TalkData testData;
     [SerializeField] float writingSpeed = 0.05f;
+    TalkData currentTalkData;
+
+    IGameState gameState;
+
 
     VisualElement root;
 
@@ -36,6 +34,8 @@ public class TalkPanelController : MonoBehaviour
 
     void Awake()
     {
+        ApiProvider.Register<ITalk>(this);
+
         uiDocument = GetComponent<UIDocument>();
         root = uiDocument.rootVisualElement;
         characterName = root.Q<Label>("name");
@@ -45,6 +45,11 @@ public class TalkPanelController : MonoBehaviour
         writingWait = new WaitForSeconds(writingSpeed);
 
         root.style.display = DisplayStyle.None;
+    }
+
+    void Start()
+    {
+        gameState = ApiProvider.Get<IGameState>();
     }
 
     void Update()
@@ -62,19 +67,24 @@ public class TalkPanelController : MonoBehaviour
         }
     }
 
-    void OnToTalk(ToTalk toTalk)
+    public void OnToTalk(TalkData data, float delay = 0f)
     {
-        testData = toTalk.talkData;
-        writingCoroutine = StartCoroutine(Writing());
+        currentTalkData = data;
+        // キャラの操作をできなくする
+        gameState.ChangeState(StateType.Talk);
+
+        writingCoroutine = StartCoroutine(Writing(delay));
     }
 
-    IEnumerator Writing()
+    IEnumerator Writing(float delay = 0f)
     {
+        yield return new WaitForSeconds(delay);
+        
         root.style.display = DisplayStyle.Flex;
 
-        for (int i = 0; i < testData.entries.Length; i++)
+        for (int i = 0; i < currentTalkData.entries.Length; i++)
         {
-            var entry = testData.entries[i];
+            var entry = currentTalkData.entries[i];
             isWriting = true;
 
             characterImage.style.backgroundImage = new StyleBackground(entry.character);

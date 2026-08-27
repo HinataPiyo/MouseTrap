@@ -3,16 +3,6 @@ namespace Player
     using UnityEngine;
     using UnityEngine.InputSystem;
 
-    public readonly struct OnChangePlayerStop
-    {
-        public readonly bool isStopped;
-
-        public OnChangePlayerStop(bool isStopped)
-        {
-            this.isStopped = isStopped;
-        }
-    }
-
     public class Movement : MonoBehaviour
     {
 
@@ -24,12 +14,19 @@ namespace Player
         Rigidbody2D rb;
         MoveType currentMoveType;
 
+        IGameState gameState;
+
         bool isStopped = false;
 
 
         void Awake()
         {
             rb = GetComponent<Rigidbody2D>();
+        }
+
+        void Start()
+        {
+            gameState = ApiProvider.Get<IGameState>();
         }
 
         void Update()
@@ -53,7 +50,7 @@ namespace Player
         {
             MoveType previousMoveType;
 
-            if(dir.sqrMagnitude < 0.0001f)
+            if(dir.sqrMagnitude < 0.0001f || gameState.CurrentState == StateType.Talk)
             {
                 previousMoveType = MoveType.Idle;
             }
@@ -74,19 +71,6 @@ namespace Player
                 currentMoveType = previousMoveType;
                 ainm.SetInteger("MoveType", (int)currentMoveType);
             }
-        }
-
-        void OnChangePlayerStop(OnChangePlayerStop data)
-        {
-            isStopped = data.isStopped;
-            if (isStopped)
-            {
-                rb.linearVelocity = Vector2.zero;
-                moveDir = Vector2.zero;
-                DirectionToAnimation(Vector2.zero);
-            }
-
-            Debug.Log($"Player movement stopped: {isStopped}");
         }
     }
 

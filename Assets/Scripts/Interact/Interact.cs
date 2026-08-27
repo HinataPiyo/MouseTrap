@@ -15,7 +15,7 @@ public class Interact : MonoBehaviour, IInteract
     /// </summary>
     /// <param name="result">取得したInteractData</param>
     /// <returns>取得に成功したかどうか</returns>
-    public bool TryInteract(out InteractData result)
+    public virtual bool TryInteract(out InteractData result)
     {
         result = interactData;
 
