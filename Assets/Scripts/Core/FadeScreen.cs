@@ -1,0 +1,69 @@
+using UnityEngine;
+using System.Collections;
+public interface IFadeScreen
+{
+    public event System.Action OnFadeInComplete;
+    public event System.Action OnFadeOutComplete;
+    public void FadeInToFadeOut(float duration = 1f);
+}
+
+public class FadeScreen : MonoBehaviour, IFadeScreen
+{
+    [SerializeField] CanvasGroup canvasGroup;
+
+    public event System.Action OnFadeInComplete;
+    public event System.Action OnFadeOutComplete;
+
+    const float WAIT_BLACK_SCREEN_DURATION = 1f;
+    WaitForSeconds waitBlackScreenDuration = new WaitForSeconds(WAIT_BLACK_SCREEN_DURATION);
+
+    void Awake()
+    {
+        ApiProvider.Register<IFadeScreen>(this);
+    }
+
+    void FadeIn(float duration = 1f)
+    {
+        StartCoroutine(FadeCanvasGroup(canvasGroup, canvasGroup.alpha, 1, duration));
+    }
+
+    void FadeOut(float duration = 1f)
+    {
+        StartCoroutine(FadeCanvasGroup(canvasGroup, canvasGroup.alpha, 0, duration));
+    }
+
+    public void FadeInToFadeOut(float duration = 1f)
+    {
+        StartCoroutine(FadeInThenOut(duration));
+    }
+
+    private IEnumerator FadeInThenOut(float duration)
+    {
+        FadeIn(duration);
+        yield return new WaitUntil(() => canvasGroup.alpha == 1);
+        yield return waitBlackScreenDuration;
+        FadeOut(duration);
+    }
+
+    private IEnumerator FadeCanvasGroup(CanvasGroup cg, float start, float end, float duration)
+    {
+        float elapsed = 0f;
+        while (elapsed < duration)
+        {
+            elapsed += Time.deltaTime;
+            cg.alpha = Mathf.Lerp(start, end, elapsed / duration);
+            yield return null;
+        }
+
+        cg.alpha = end;
+
+        if (end == 1)
+        {
+            OnFadeInComplete?.Invoke();
+        }
+        else if (end == 0)
+        {
+            OnFadeOutComplete?.Invoke();
+        }
+    }
+}

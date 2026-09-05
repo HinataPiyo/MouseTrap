@@ -45,6 +45,7 @@ public class SearchInteractObjects : MonoBehaviour
             }
 
             interactData.OnInteractAction?.Invoke();
+            interactObjectPanel.ToggleMarkVisibility(closestInteract, false);
             Debug.Log($"<color=green>Interact successful.</color> InteractData: {interactData}");
         }
     }

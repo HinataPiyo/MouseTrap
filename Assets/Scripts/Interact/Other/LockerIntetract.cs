@@ -1,5 +1,6 @@
 namespace Intetract
 {
+    using System.Collections;
     using UnityEngine;
     
     public class LockerIntetract : Interact
@@ -11,11 +12,17 @@ namespace Intetract
         [SerializeField] GameObject subCharacter;
 
         ITalk talk;
+        IFadeScreen fadeScreen;
+        Player.ICharacterState characterState;
 
         void Start()
         {
             talk = ApiProvider.Get<ITalk>();
-            subCharacter.SetActive(false);
+            characterState = ApiProvider.Get<Player.ICharacterState>();
+            HideSubCharacter();
+
+            fadeScreen = ApiProvider.Get<IFadeScreen>();
+            fadeScreen.OnFadeInComplete += HideSubCharacter;
         }
 
         public override bool TryInteract(out InteractData result)
@@ -33,9 +40,23 @@ namespace Intetract
         /// </summary>
         public void ShowSubCharacter()
         {
-            subCharacter.SetActive(true);
+            StartCoroutine(TalkToBoy());
+        }
 
+        public IEnumerator TalkToBoy()
+        {
+            subCharacter.SetActive(true);
+            characterState.SetCharacterControlState(Character.Name.Boy, true);
             talk.OnToTalk(talkData, 1f);
+
+            yield return new WaitUntil(() => ApiProvider.Get<IGameState>().CurrentState == StateType.None);
+
+            fadeScreen.FadeInToFadeOut();
+        }
+
+        void HideSubCharacter()
+        {
+            subCharacter.SetActive(false);
         }
     }
 }

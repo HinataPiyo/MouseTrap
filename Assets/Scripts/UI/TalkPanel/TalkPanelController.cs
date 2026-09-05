@@ -67,6 +67,11 @@ public class TalkPanelController : MonoBehaviour, ITalk
         }
     }
 
+    /// <summary>
+    /// 会話を開始する
+    /// </summary>
+    /// <param name="data">会話データ</param>
+    /// <param name="delay">会話開始までの遅延時間</param>
     public void OnToTalk(TalkData data, float delay = 0f)
     {
         currentTalkData = data;
@@ -74,6 +79,11 @@ public class TalkPanelController : MonoBehaviour, ITalk
         gameState.ChangeState(StateType.Talk);
 
         writingCoroutine = StartCoroutine(Writing(delay));
+    }
+
+    void OnTalkEnd()
+    {
+        gameState.ChangeState(StateType.None);
     }
 
     IEnumerator Writing(float delay = 0f)
@@ -114,5 +124,7 @@ public class TalkPanelController : MonoBehaviour, ITalk
 
         writingCoroutine = null;
         root.style.display = DisplayStyle.None;
+
+        OnTalkEnd();        // 会話終了時の処理を呼び出す
     }
 }
