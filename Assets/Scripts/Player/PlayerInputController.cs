@@ -1,3 +1,4 @@
+using Player;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -19,6 +20,7 @@ public interface IGameState
 
 public class PlayerInputController : MonoBehaviour, IInputTrigger, IGameState
 {
+    ICharacterState characterControlHandler;
     public StateType CurrentState { get; private set; } = StateType.None;
 
     public void ChangeState(StateType newState) => CurrentState = newState;
@@ -34,6 +36,11 @@ public class PlayerInputController : MonoBehaviour, IInputTrigger, IGameState
         ChangeState(StateType.None);
     }
 
+    void Start()
+    {
+        characterControlHandler = ApiProvider.Get<ICharacterState>();
+    }
+
     public void Update()
     {
         if(Keyboard.current.eKey.wasPressedThisFrame)
@@ -44,6 +51,28 @@ public class PlayerInputController : MonoBehaviour, IInputTrigger, IGameState
         {
             // Tabキーが押されたときの処理
             OnInputTabKeyPressed?.Invoke();
+        }
+
+        // < -- キャラクター切り替え処理 -->
+        if(Keyboard.current.digit1Key.wasPressedThisFrame)
+        {
+            characterControlHandler.ChangeCharacterControlState(Character.Name.Girl);
+        }
+        else if(Keyboard.current.digit2Key.wasPressedThisFrame)
+        {
+            characterControlHandler.ChangeCharacterControlState(Character.Name.Boy);
+        }
+        else if(Keyboard.current.digit3Key.wasPressedThisFrame)
+        {
+            characterControlHandler.ChangeCharacterControlState(Character.Name.Glasses_Boy);
+        }
+        else if(Keyboard.current.digit4Key.wasPressedThisFrame)
+        {
+            characterControlHandler.ChangeCharacterControlState(Character.Name.Delinquent_Boy);
+        }
+        else if(Keyboard.current.digit5Key.wasPressedThisFrame)
+        {
+            characterControlHandler.ChangeCharacterControlState(Character.Name.Girl_TwinTail);
         }
     }
 

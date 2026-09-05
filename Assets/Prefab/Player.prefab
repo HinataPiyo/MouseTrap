@@ -331,3 +331,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3603638f5d157443937e21cbee089bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  charactersWithAnimators:
+  - characterName: 0
+    animation: {fileID: 9100000, guid: 5f4803541e3f87347894d87ef413322e, type: 2}
+  - characterName: 1
+    animation: {fileID: 9100000, guid: 4790abb59a293d24884bec46f9df239a, type: 2}
