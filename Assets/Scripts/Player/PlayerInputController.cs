@@ -43,11 +43,19 @@ public class PlayerInputController : MonoBehaviour, IInputTrigger, IGameState
 
     public void Update()
     {
+        // 取得処理
         if(Keyboard.current.eKey.wasPressedThisFrame)
         {
             OnInputEKeyPressed?.Invoke();
         }
-        else if (Keyboard.current.tabKey.wasPressedThisFrame)
+
+        if(CurrentState == StateType.Talk || CurrentState == StateType.Interact)
+        {
+            return;
+        }
+
+        // インフォメーション表示処理
+        if (Keyboard.current.tabKey.wasPressedThisFrame)
         {
             // Tabキーが押されたときの処理
             OnInputTabKeyPressed?.Invoke();

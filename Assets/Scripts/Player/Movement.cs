@@ -44,15 +44,20 @@ namespace Player
             {
                 rb.linearVelocity = moveDir * moveSpeed;
             }
+            else
+            {
+                rb.linearVelocity = Vector2.zero;
+            }
         }
 
         public void DirectionToAnimation(Vector2 dir)
         {
             MoveType previousMoveType;
-            if(gameState.CurrentState == StateType.Talk)
+            if(gameState.CurrentState == StateType.Talk || gameState.CurrentState == StateType.Interact)
             {
                 currentMoveType = MoveType.Idle;
                 isStopped = true;
+                ainm.SetInteger("MoveType", (int)currentMoveType);
                 return;
             }
             else
