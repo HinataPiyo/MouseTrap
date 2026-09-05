@@ -8,11 +8,15 @@ public class SearchInteractObjects : MonoBehaviour
     IInteract closestInteract;
     IInputTrigger inputTrigger;
     IInteractObjectPanel interactObjectPanel;
+    IInventoryService inventory;
+    IGameState gameState;
 
     void Start()
     {
         inputTrigger = ApiProvider.Get<IInputTrigger>();
         interactObjectPanel = ApiProvider.Get<IInteractObjectPanel>();
+        gameState = ApiProvider.Get<IGameState>();
+        inventory = ApiProvider.Get<IInventoryService>();
         inputTrigger.OnInputEKeyPressed += OnInputAction;
     }
 
@@ -21,22 +25,27 @@ public class SearchInteractObjects : MonoBehaviour
     /// </summary>
     void OnInputAction()
     {
-        // 取得可能なInteractオブジェクトがなければ何もしない
-        if (closestInteract == null || !closestInteract.IsAvailable)
+        if (gameState.CurrentState != StateType.None)
         {
-            Debug.Log("<color=red>No interactable object found.</color>");
-            ClearCurrentInteract();
-            interactObjectPanel.TogglePanelVisibility(null, string.Empty);
-            return;
+            // Interact状態の場合
+            if (gameState.CurrentState == StateType.Interact)
+            {
+                Debug.Log("<color=red>No interactable object found.</color>");
+                ClearCurrentInteract();
+                interactObjectPanel.TogglePanelVisibility(null, string.Empty);
+                return;
+            }
         }
 
+
         // Interact可能なオブジェクトを取得する
-        if (closestInteract.TryInteract(out var interactData))
+        if (closestInteract != null && closestInteract.TryInteract(out var interactData))
         {
             // 取得後にオブジェクトを破棄する場合は、InteractMarkの表示を消す
-            if(interactData.IsShowPanel)
+            if (interactData.IsShowPanel)
             {
                 interactObjectPanel.TogglePanelVisibility(interactData.Sprite, interactData.Text);
+                inventory.AddItem(interactData);
                 Debug.Log($"<color=green>ShowInteractObjectPanel</color> Sprite: {interactData.Sprite}, Text: {interactData.Text}");
             }
             else

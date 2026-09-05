@@ -13,7 +13,6 @@ public class Interact : MonoBehaviour, IInteract
     [SerializeField] protected InteractData interactData;
     [SerializeField] Transform interactMarkPosition;
     bool hasAcquiredItem;
-
     public Transform GetMarkPoint() => interactMarkPosition;
     public InteractMarkType InteractMarkType => interactData.InteractMarkType;
     public bool IsAvailable => !hasAcquiredItem;

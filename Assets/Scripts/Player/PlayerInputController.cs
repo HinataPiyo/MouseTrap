@@ -10,6 +10,7 @@ public interface IInputTrigger
 {
     public event System.Action OnInputEKeyPressed;
     public event System.Action OnInputTabKeyPressed;
+    public event System.Action OnInputSpaceKeyPressed;
 }
 
 public interface IGameState
@@ -27,6 +28,7 @@ public class PlayerInputController : MonoBehaviour, IInputTrigger, IGameState
 
     public event System.Action OnInputEKeyPressed;
     public event System.Action OnInputTabKeyPressed;
+    public event System.Action OnInputSpaceKeyPressed;
 
     void Awake()
     {
@@ -43,13 +45,22 @@ public class PlayerInputController : MonoBehaviour, IInputTrigger, IGameState
 
     public void Update()
     {
+        Debug.Log(CurrentState);
+        
         // 取得処理
         if(Keyboard.current.eKey.wasPressedThisFrame)
         {
             OnInputEKeyPressed?.Invoke();
         }
 
-        if(CurrentState == StateType.Talk || CurrentState == StateType.Interact)
+        if(CurrentState == StateType.Talk)
+        {
+            if(Keyboard.current.spaceKey.wasPressedThisFrame)
+                OnInputSpaceKeyPressed?.Invoke();
+            return;
+        }
+
+        if(CurrentState == StateType.Interact)
         {
             return;
         }

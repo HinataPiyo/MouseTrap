@@ -13,10 +13,19 @@ public class PlayerInformationUIController : PanelView, IPlayerInformationUICont
 
     IInventoryUIPanel inventoryUIPanel;
 
+    IInputTrigger inputTrigger;
+
     void Awake()
     {
         uiDoc = GetComponent<UIDocument>();
         root = uiDoc.rootVisualElement.Q<VisualElement>("root");
+    }
+
+    void Start()
+    {
+        inputTrigger = ApiProvider.Get<IInputTrigger>();
+        inventoryUIPanel = ApiProvider.Get<IInventoryUIPanel>();
+        inputTrigger.OnInputTabKeyPressed += TogglePlayerInformationVisibility;
         HidePlayerInformation();
     }
 
@@ -40,6 +49,7 @@ public class PlayerInformationUIController : PanelView, IPlayerInformationUICont
 
     public void HidePlayerInformation()
     {
+        inventoryUIPanel.HideInventoryPanel();
         root.style.display = DisplayStyle.None;
     }
 }

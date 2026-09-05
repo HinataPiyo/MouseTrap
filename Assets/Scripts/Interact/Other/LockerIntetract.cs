@@ -22,7 +22,7 @@ namespace Intetract
             HideSubCharacter();
 
             fadeScreen = ApiProvider.Get<IFadeScreen>();
-            fadeScreen.OnFadeInComplete += HideSubCharacter;
+            fadeScreen.OnFadeInComplete += HideSubCharacter;        // フェードイン完了時にサブキャラクターを非表示にする
         }
 
         public override bool TryInteract(out InteractData result)
@@ -49,7 +49,7 @@ namespace Intetract
             characterState.SetCharacterControlState(Character.Name.Boy, true);
             talk.OnToTalk(talkData, 1f);
 
-            yield return new WaitUntil(() => ApiProvider.Get<IGameState>().CurrentState == StateType.None);
+            yield return new WaitUntil(() => talk.IsWriting == false);
 
             fadeScreen.FadeInToFadeOut();
         }

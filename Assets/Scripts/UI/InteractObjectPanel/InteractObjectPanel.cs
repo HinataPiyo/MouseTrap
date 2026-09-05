@@ -30,6 +30,7 @@ public class InteractObjectPanel : PanelView, IInteractObjectPanel
         }
     }
 
+    IGameState gameState;
 
     UIDocument uiDocument;
 
@@ -39,13 +40,18 @@ public class InteractObjectPanel : PanelView, IInteractObjectPanel
     void Awake()
     {
         ApiProvider.Register<IInteractObjectPanel>(this);
-        
+
         uiDocument = GetComponent<UIDocument>();
         var root = uiDocument.rootVisualElement;
 
         panel = root.Q<VisualElement>("interact-object-container");
         image = panel.Q<VisualElement>("image");
         text = panel.Q<Label>("text");
+    }
+
+    void Start()
+    {
+        gameState = ApiProvider.Get<IGameState>();
 
         TogglePanelVisibility(null, string.Empty);
         SetVisible(false);
@@ -73,15 +79,15 @@ public class InteractObjectPanel : PanelView, IInteractObjectPanel
     {
         if (sprite == null && string.IsNullOrEmpty(text))
         {
-            Debug.Log("HideInteractObjectPanel");
             HideInteractObjectPanel();
             SetVisible(false);
+            gameState.ChangeState(StateType.None);
             return;
         }
 
-        Debug.Log("ShowInteractObjectPanel");
         ShowInteractObjectPanel(sprite, text);
         SetVisible(true);
+        gameState.ChangeState(StateType.Interact);
     }
 
     public void ToggleMarkVisibility(IInteract interact, bool isVisible)

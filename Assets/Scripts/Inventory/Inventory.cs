@@ -1,23 +1,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public struct OnItemChanged
-{
-    public Inventory.ItemData itemData;
-    public bool isAdded; // true: アイテム追加, false: アイテム削除
-
-    public OnItemChanged(Inventory.ItemData itemData, bool isAdded)
-    {
-        this.itemData = itemData;
-        this.isAdded = isAdded;
-    }
-}
 
 public interface IInventoryService
 {
-    void ChangeItemCount(OnItemChanged item);
-    void AddItem(OnItemChanged item);
-    void RemoveItem(OnItemChanged item);
+    void AddItem(InteractData item);
+    void RemoveItem(InteractData item);
     bool HasItem(InteractData item);
     List<Inventory.ItemData> GetItems();
 }
@@ -37,24 +25,11 @@ public class Inventory : MonoBehaviour, IInventoryService
     {
         ApiProvider.Register<IInventoryService>(this);
     }
-
-    public void ChangeItemCount(OnItemChanged item)
-    {
-        if (item.isAdded)
-        {
-            AddItem(new OnItemChanged(item.itemData, true));
-        }
-        else
-        {
-            RemoveItem(new OnItemChanged(item.itemData, false));
-        }
-    }
     
-    
-    public void AddItem(OnItemChanged message)
+    public void AddItem(InteractData message)
     {
-        var item = message.itemData.item;
-        var count = message.itemData.count;
+        var item = message;
+        var count = 1;
         Debug.Log($"Adding item: {item.name}, Count: {count}");
 
         for (int i = 0; i < items.Count; i++)
@@ -69,12 +44,12 @@ public class Inventory : MonoBehaviour, IInventoryService
         items.Add(new ItemData { item = item, count = count });
     }
 
-    public void RemoveItem(OnItemChanged item)
+    public void RemoveItem(InteractData item)
     {
-        Debug.Log($"Removing item: {item.itemData.item.name}, Count: {item.itemData.count}");
+        Debug.Log($"Removing item: {item.name}");
         for (int i = 0; i < items.Count; i++)
         {
-            if (items[i].item == item.itemData.item)
+            if (items[i].item == item)
             {
                 items[i].count--;
 

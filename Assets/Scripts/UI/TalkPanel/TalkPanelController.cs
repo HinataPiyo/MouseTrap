@@ -6,6 +6,7 @@ using UnityEngine.UIElements;
 interface ITalk
 {
     void OnToTalk(TalkData data, float delay);
+    bool IsWriting { get; }
 }
 
 public class TalkPanelController : MonoBehaviour, ITalk
@@ -15,6 +16,7 @@ public class TalkPanelController : MonoBehaviour, ITalk
     TalkData currentTalkData;
 
     IGameState gameState;
+    IInputTrigger inputTrigger;
 
 
     VisualElement root;
@@ -30,6 +32,8 @@ public class TalkPanelController : MonoBehaviour, ITalk
 
     bool isWriting = false;
     bool isSkipping = false;
+
+    public bool IsWriting => isWriting || currentTalkData != null;
 
 
     void Awake()
@@ -50,21 +54,23 @@ public class TalkPanelController : MonoBehaviour, ITalk
     void Start()
     {
         gameState = ApiProvider.Get<IGameState>();
+        inputTrigger = ApiProvider.Get<IInputTrigger>();
+        inputTrigger.OnInputSpaceKeyPressed += OnClick;
     }
 
-    void Update()
+    void OnClick()
     {
-        if(Keyboard.current.spaceKey.wasPressedThisFrame)
+        if(currentTalkData == null) return;
+
+        if (isWriting && writingCoroutine != null)
         {
-            if(writingCoroutine == null)
-            {
-                writingCoroutine = StartCoroutine(Writing());
-            }
-            else if(isWriting)
-            {
-                isSkipping = true;
-            }
+            isSkipping = true;
         }
+    }
+
+    void OnDestroy()
+    {
+        inputTrigger.OnInputSpaceKeyPressed -= OnClick;
     }
 
     /// <summary>
@@ -89,7 +95,7 @@ public class TalkPanelController : MonoBehaviour, ITalk
     IEnumerator Writing(float delay = 0f)
     {
         yield return new WaitForSeconds(delay);
-        
+
         root.style.display = DisplayStyle.Flex;
 
         for (int i = 0; i < currentTalkData.entries.Length; i++)
@@ -107,7 +113,7 @@ public class TalkPanelController : MonoBehaviour, ITalk
                 body.text += c;
 
                 // スキップ中の場合はループを抜ける
-                if(isSkipping)
+                if (isSkipping)
                 {
                     isSkipping = false;
                     break;
@@ -123,6 +129,7 @@ public class TalkPanelController : MonoBehaviour, ITalk
         }
 
         writingCoroutine = null;
+        currentTalkData = null;
         root.style.display = DisplayStyle.None;
 
         OnTalkEnd();        // 会話終了時の処理を呼び出す
