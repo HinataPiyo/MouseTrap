@@ -80,6 +80,8 @@ public class TalkPanelController : MonoBehaviour, ITalk
     /// <param name="delay">会話開始までの遅延時間</param>
     public void OnToTalk(TalkData data, float delay = 0f)
     {
+        if(isWriting) return;
+        
         currentTalkData = data;
         // キャラの操作をできなくする
         gameState.ChangeState(StateType.Talk);

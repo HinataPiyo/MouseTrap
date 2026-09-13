@@ -57,6 +57,8 @@ public class SearchInteractObjects : MonoBehaviour
             interactObjectPanel.ToggleMarkVisibility(closestInteract, false);
             Debug.Log($"<color=green>Interact successful.</color> InteractData: {interactData}");
         }
+
+        closestInteract = null;
     }
 
     /// <summary>

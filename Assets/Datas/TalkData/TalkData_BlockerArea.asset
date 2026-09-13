@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: TalkData_BlockerArea
   m_EditorClassIdentifier: 
   entries:
-  - character: {fileID: 6794834511678964113, guid: 94a1363927968cb48a4be81ad4169587, type: 3}
+  - character: {fileID: 6373048116405451881, guid: 76757b61b369a1747a0492da2c587d60, type: 3}
     characterName: 0
     body: "\u3053\u3053\u306F \u307E\u3060\u3044\u3044\u304B\u306A"

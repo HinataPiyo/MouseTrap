@@ -1,4 +1,4 @@
-namespace Intetract
+namespace Intetract.StaffRoom.Boy
 {
     using System.Collections;
     using UnityEngine;
@@ -11,18 +11,24 @@ namespace Intetract
         [Header("表示するキャラクター")]
         [SerializeField] GameObject subCharacter;
 
+        [Header("会話終了後待機する次の位置")]
+        [SerializeField] NextPosition nextPosition;
+
         ITalk talk;
         IFadeScreen fadeScreen;
-        Player.ICharacterState characterState;
 
         void Start()
         {
             talk = ApiProvider.Get<ITalk>();
-            characterState = ApiProvider.Get<Player.ICharacterState>();
             HideSubCharacter();
 
             fadeScreen = ApiProvider.Get<IFadeScreen>();
-            fadeScreen.OnFadeInComplete += HideSubCharacter;        // フェードイン完了時にサブキャラクターを非表示にする
+            fadeScreen.OnFadeInComplete += SetNextPosition;        // フェードイン完了時にサブキャラクターの位置を次の位置に設定する
+        }
+
+        void OnDestroy()
+        {
+            fadeScreen.OnFadeInComplete -= SetNextPosition;
         }
 
         public override bool TryInteract(out InteractData result)
@@ -47,7 +53,8 @@ namespace Intetract
         public IEnumerator TalkToBoy()
         {
             subCharacter.SetActive(true);
-            characterState.SetCharacterControlState(Character.Name.Boy, true);
+            //! ここではキャラクターの操作を有効にしない
+            // characterState.SetCharacterControlState(Character.Name.Boy, true);
             talk.OnToTalk(talkData, 1f);
 
             yield return new WaitUntil(() => talk.IsWriting == false);
@@ -58,6 +65,15 @@ namespace Intetract
         void HideSubCharacter()
         {
             subCharacter.SetActive(false);
+            if (fadeScreen != null)
+            {
+                fadeScreen.OnFadeInComplete -= SetNextPosition;
+            }
+        }
+
+        void SetNextPosition()
+        {
+            nextPosition.SetNextPosition(subCharacter);
         }
     }
 }

@@ -27,14 +27,16 @@ public class Interact : MonoBehaviour, IInteract
     {
         result = interactData;
 
-        if (hasAcquiredItem)
-        {
-            return false;
-        }
+        // すでにアイテムを取得している場合はInteract不可
+        if (hasAcquiredItem) return false;
 
-        hasAcquiredItem = true;
+        // アイテムが再利用可能でない場合は取得済みフラグを立てる
+        if(!interactData.IsReusable)
+            hasAcquiredItem = true;
+
         Debug.Log($"Interact acquired: {interactData.name}");
 
+        // Interact後にオブジェクトを無効化するかどうかの処理
         if (interactData.IsDisabledAfterInteract)
         {
             gameObject.SetActive(false);

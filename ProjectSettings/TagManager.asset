@@ -53,5 +53,8 @@ TagManager:
   - name: FrontOblect
     uniqueID: 388877333
     locked: 0
+  - name: UI
+    uniqueID: 501819469
+    locked: 0
   m_RenderingLayers:
   - Default
