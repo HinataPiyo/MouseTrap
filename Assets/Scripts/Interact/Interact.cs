@@ -12,7 +12,8 @@ public class Interact : MonoBehaviour, IInteract
 {
     [SerializeField] protected InteractData interactData;
     [SerializeField] Transform interactMarkPosition;
-    bool hasAcquiredItem;
+    bool hasAcquiredItem;       // アイテムを取得したかどうかを管理するフラグ
+    public bool IsEventCompleted { get; protected set; } = false;   // イベントが完了したかどうかを管理するフラグ
     public Transform GetMarkPoint() => interactMarkPosition;
     public InteractMarkType InteractMarkType => interactData.InteractMarkType;
     public bool IsAvailable => !hasAcquiredItem;

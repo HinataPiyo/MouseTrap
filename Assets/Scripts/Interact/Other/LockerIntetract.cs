@@ -30,6 +30,7 @@ namespace Intetract
             if (base.TryInteract(out result))
             {
                 ShowSubCharacter();
+                IsEventCompleted = true; // イベントが完了したことを設定
                 return true;
             }
             return false;
