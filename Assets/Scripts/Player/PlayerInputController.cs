@@ -4,13 +4,14 @@ using UnityEngine.InputSystem;
 
 // 基本None
 public enum StateType
-{ None = -1, Talk, Interact }
+{ None = -1, Talk, Interact, RoomChange}
 
 public interface IInputTrigger
 {
     public event System.Action OnInputEKeyPressed;
     public event System.Action OnInputTabKeyPressed;
     public event System.Action OnInputSpaceKeyPressed;
+    public event System.Action OnInputESCKeyPressed;
 }
 
 public interface IGameState
@@ -29,6 +30,7 @@ public class PlayerInputController : MonoBehaviour, IInputTrigger, IGameState
     public event System.Action OnInputEKeyPressed;
     public event System.Action OnInputTabKeyPressed;
     public event System.Action OnInputSpaceKeyPressed;
+    public event System.Action OnInputESCKeyPressed;
 
     void Awake()
     {
@@ -41,16 +43,27 @@ public class PlayerInputController : MonoBehaviour, IInputTrigger, IGameState
     void Start()
     {
         characterControlHandler = ApiProvider.Get<ICharacterState>();
+
+        OnInputESCKeyPressed += () => ChangeState(StateType.None);
     }
 
     public void Update()
     {
         Debug.Log(CurrentState);
-        
-        // 取得処理
-        if(Keyboard.current.eKey.wasPressedThisFrame)
+
+        if(CurrentState == StateType.RoomChange)
         {
-            OnInputEKeyPressed?.Invoke();
+            if(Keyboard.current.escapeKey.wasPressedThisFrame)
+                OnInputESCKeyPressed?.Invoke();
+            return;
+        }
+
+        if(CurrentState == StateType.None || CurrentState == StateType.Interact)
+        {
+            // 取得処理
+            if(Keyboard.current.eKey.wasPressedThisFrame)
+                OnInputEKeyPressed?.Invoke();
+            return;
         }
 
         if(CurrentState == StateType.Talk)

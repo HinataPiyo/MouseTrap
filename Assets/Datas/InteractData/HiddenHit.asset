@@ -17,3 +17,4 @@ MonoBehaviour:
   text: 
   isDisabledAfterInteract: 0
   isShowPanel: 0
+  isReusable: 1

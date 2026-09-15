@@ -59,7 +59,8 @@ namespace Player
         public void DirectionToAnimation(Vector2 dir)
         {
             MoveType previousMoveType;
-            if (gameState.CurrentState == StateType.Talk || gameState.CurrentState == StateType.Interact)
+            if (gameState.CurrentState == StateType.Talk || gameState.CurrentState == StateType.Interact
+            || gameState.CurrentState == StateType.RoomChange)
             {
                 currentMoveType = MoveType.Idle;
                 isStopped = true;

@@ -56,6 +56,7 @@ namespace Intetract.StaffRoom.Boy
 
             // 資料室と図書室に行けるようになる
             IsEventCompleted = true;
+            ApiProvider.Get<ISceneChange>().CanMoveRoom(Room.Name.Library, true);
         }
     }
 }
