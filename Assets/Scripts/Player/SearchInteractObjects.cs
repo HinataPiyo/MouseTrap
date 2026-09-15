@@ -25,18 +25,16 @@ public class SearchInteractObjects : MonoBehaviour
     /// </summary>
     void OnInputAction()
     {
-        if (gameState.CurrentState != StateType.None)
+        // Interact状態の場合
+        if (gameState.CurrentState == StateType.Interact)
         {
-            // Interact状態の場合
-            if (gameState.CurrentState == StateType.Interact)
-            {
-                Debug.Log("<color=red>No interactable object found.</color>");
-                ClearCurrentInteract();
-                interactObjectPanel.TogglePanelVisibility(null, string.Empty);
-                return;
-            }
+            Debug.Log("<color=red>No interactable object found.</color>");
+            ClearCurrentInteract();
+            interactObjectPanel.TogglePanelVisibility(null, string.Empty);
+            return;
         }
-
+        
+        if(gameState.CurrentState == StateType.Talk || gameState.CurrentState == StateType.RoomChange) return;
 
         // Interact可能なオブジェクトを取得する
         if (closestInteract != null && closestInteract.TryInteract(out var interactData))
@@ -47,10 +45,6 @@ public class SearchInteractObjects : MonoBehaviour
                 interactObjectPanel.TogglePanelVisibility(interactData.Sprite, interactData.Text);
                 inventory.AddItem(interactData);
                 Debug.Log($"<color=green>ShowInteractObjectPanel</color> Sprite: {interactData.Sprite}, Text: {interactData.Text}");
-            }
-            else
-            {
-                interactObjectPanel.TogglePanelVisibility(null, string.Empty);
             }
 
             interactData.OnInteractAction?.Invoke();
