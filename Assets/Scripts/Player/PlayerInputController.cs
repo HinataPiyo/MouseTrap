@@ -4,14 +4,14 @@ using UnityEngine.InputSystem;
 
 // 基本None
 public enum StateType
-{ None = -1, Talk, Interact, RoomChange}
+{ None = -1, Movie, Talk, Interact, RoomChange}
 
 public interface IInputTrigger
 {
     public event System.Action OnInputEKeyPressed;
     public event System.Action OnInputTabKeyPressed;
     public event System.Action OnInputSpaceKeyPressed;
-    public event System.Action OnInputESCKeyPressed;
+    public event System.Action OnInputESCKeyDisabled;
 }
 
 public interface IGameState
@@ -30,7 +30,7 @@ public class PlayerInputController : MonoBehaviour, IInputTrigger, IGameState
     public event System.Action OnInputEKeyPressed;
     public event System.Action OnInputTabKeyPressed;
     public event System.Action OnInputSpaceKeyPressed;
-    public event System.Action OnInputESCKeyPressed;
+    public event System.Action OnInputESCKeyDisabled;
 
     void Awake()
     {
@@ -44,7 +44,7 @@ public class PlayerInputController : MonoBehaviour, IInputTrigger, IGameState
     {
         characterControlHandler = ApiProvider.Get<ICharacterState>();
 
-        OnInputESCKeyPressed += () => ChangeState(StateType.None);
+        OnInputESCKeyDisabled += () => ChangeState(StateType.None);
     }
 
     public void Update()
@@ -54,7 +54,7 @@ public class PlayerInputController : MonoBehaviour, IInputTrigger, IGameState
         if(CurrentState == StateType.RoomChange)
         {
             if(Keyboard.current.escapeKey.wasPressedThisFrame)
-                OnInputESCKeyPressed?.Invoke();
+                OnInputESCKeyDisabled?.Invoke();
             return;
         }
 

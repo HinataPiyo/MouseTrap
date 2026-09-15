@@ -5,10 +5,13 @@ public interface IFadeScreen
     public event System.Action OnFadeInComplete;
     public event System.Action OnFadeOutComplete;
     public void FadeInToFadeOut(float duration = 1f);
+    public IEnumerator FadeInCoroutine(float duration = 1f);
+    public IEnumerator FadeOutCoroutine(float duration = 1f);
 }
 
 public class FadeScreen : MonoBehaviour, IFadeScreen
 {
+    static FadeScreen instance;
     [SerializeField] CanvasGroup canvasGroup;
 
     public event System.Action OnFadeInComplete;
@@ -19,17 +22,37 @@ public class FadeScreen : MonoBehaviour, IFadeScreen
 
     void Awake()
     {
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+            return;
+        }
+
         ApiProvider.Register<IFadeScreen>(this);
     }
-
     void FadeIn(float duration = 1f)
     {
-        StartCoroutine(FadeCanvasGroup(canvasGroup, canvasGroup.alpha, 1, duration));
+        StartCoroutine(FadeInCoroutine(duration));
     }
 
     void FadeOut(float duration = 1f)
     {
-        StartCoroutine(FadeCanvasGroup(canvasGroup, canvasGroup.alpha, 0, duration));
+        StartCoroutine(FadeOutCoroutine(duration));
+    }
+
+    public IEnumerator FadeInCoroutine(float duration = 1f)
+    {
+        yield return FadeCanvasGroup(canvasGroup, canvasGroup.alpha, 1, duration);
+    }
+
+    public IEnumerator FadeOutCoroutine(float duration = 1f)
+    {
+        yield return FadeCanvasGroup(canvasGroup, canvasGroup.alpha, 0, duration);
     }
 
     public void FadeInToFadeOut(float duration = 1f)
@@ -47,6 +70,7 @@ public class FadeScreen : MonoBehaviour, IFadeScreen
 
     private IEnumerator FadeCanvasGroup(CanvasGroup cg, float start, float end, float duration)
     {
+        cg.blocksRaycasts = true;
         float elapsed = 0f;
         while (elapsed < duration)
         {
@@ -65,5 +89,6 @@ public class FadeScreen : MonoBehaviour, IFadeScreen
         {
             OnFadeOutComplete?.Invoke();
         }
+        cg.blocksRaycasts = false;
     }
 }

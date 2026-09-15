@@ -60,7 +60,7 @@ namespace Player
         {
             MoveType previousMoveType;
             if (gameState.CurrentState == StateType.Talk || gameState.CurrentState == StateType.Interact
-            || gameState.CurrentState == StateType.RoomChange)
+            || gameState.CurrentState == StateType.RoomChange || gameState.CurrentState == StateType.Movie)
             {
                 currentMoveType = MoveType.Idle;
                 isStopped = true;

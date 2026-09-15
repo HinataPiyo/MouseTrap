@@ -59,6 +59,8 @@ namespace Intetract.StaffRoom.Boy
 
             yield return new WaitUntil(() => talk.IsWriting == false);
 
+            ApiProvider.Get<IGameState>().ChangeState(StateType.Movie);     // 演出状態に遷移する
+
             fadeScreen.FadeInToFadeOut();
         }
 
@@ -74,6 +76,7 @@ namespace Intetract.StaffRoom.Boy
         void SetNextPosition()
         {
             nextPosition.SetNextPosition(subCharacter);
+            ApiProvider.Get<IGameState>().ChangeState(StateType.None);     // 演出が終了したら解除
         }
     }
 }

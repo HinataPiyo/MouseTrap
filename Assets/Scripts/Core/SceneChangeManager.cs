@@ -13,23 +13,36 @@ public interface ISceneChange
 
 public class SceneChangeManager : MonoBehaviour, ISceneChange
 {
+    static SceneChangeManager instance;
     Room.Name currentRoom = Room.Name.None;
 
     // 移動可能な部屋を管理する
     Dictionary<Room.Name, bool> canMoveRooms = new Dictionary<Room.Name, bool>();
     IGameState gameState;
+    IFadeScreen fadeScreen;
 
     void Awake()
     {
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+            return;
+        }
+
         ApiProvider.Register<ISceneChange>(this);
         currentRoom = Room.GetCurrentRoom(SceneManager.GetActiveScene().name);
         CanMoveRoom(Room.Name.Staffroom, true);
-        CanMoveRoom(Room.Name.Library, true);   // テストとして開放
     }
 
     void Start()
     {
         gameState = ApiProvider.Get<IGameState>();
+        fadeScreen = ApiProvider.Get<IFadeScreen>();
     }
 
     /// <summary>
@@ -65,13 +78,13 @@ public class SceneChangeManager : MonoBehaviour, ISceneChange
 
     IEnumerator SceneChangeCoroutine(Room.Name room)
     {
-
-        // フェードなどを実装
+        yield return fadeScreen.FadeInCoroutine();
         currentRoom = room;
-        yield return null;
 
         SceneManager.LoadScene(Room.RoomNameWithSceneName[room]);
         gameState.ChangeState(StateType.None);
+
+        yield return fadeScreen.FadeOutCoroutine();
     }
 
     public Room.Name GetCurrentRoom()

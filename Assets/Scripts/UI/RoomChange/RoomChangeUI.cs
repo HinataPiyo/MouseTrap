@@ -17,6 +17,7 @@ public class RoomChangeUI : MonoBehaviour, IRoomChangeUI
     List<Button> buttons = new List<Button>();
     ISceneChange sceneChangeManager;
     IGameState gameState;
+    IInputTrigger inputTrigger;
 
     void Awake()
     {
@@ -30,6 +31,9 @@ public class RoomChangeUI : MonoBehaviour, IRoomChangeUI
     {
         sceneChangeManager = ApiProvider.Get<ISceneChange>();
         gameState = ApiProvider.Get<IGameState>();
+        inputTrigger = ApiProvider.Get<IInputTrigger>();
+
+        inputTrigger.OnInputESCKeyDisabled += HidePanel;
         HidePanel();
     }
 
