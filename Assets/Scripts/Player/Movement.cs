@@ -1,6 +1,7 @@
 namespace Player
 {
     using UnityEngine;
+    using UnityEngine.InputSystem;
 
     public class Movement : MonoBehaviour
     {
@@ -13,15 +14,31 @@ namespace Player
         Rigidbody2D rb;
         MoveType currentMoveType;
 
+        IGameState gameState;
+
+        bool isStopped = false;
+
+
         void Awake()
         {
             rb = GetComponent<Rigidbody2D>();
         }
 
+        void Start()
+        {
+            gameState = ApiProvider.Get<IGameState>();
+        }
+
         void Update()
         {
-            float x = Input.GetAxisRaw("Horizontal");
-            float y = Input.GetAxisRaw("Vertical");
+            float x = 0f;
+            float y = 0f;
+
+            if (!isStopped)
+            {
+                x = Keyboard.current.aKey.isPressed ? -1f : Keyboard.current.dKey.isPressed ? 1f : 0f;
+                y = Keyboard.current.sKey.isPressed ? -1f : Keyboard.current.wKey.isPressed ? 1f : 0f;
+            }
             moveDir = new Vector2(x, y).normalized;
 
             DirectionToAnimation(moveDir);
@@ -29,19 +46,38 @@ namespace Player
 
         void LateUpdate()
         {
-            rb.linearVelocity = moveDir * moveSpeed;
+            if (!isStopped)
+            {
+                rb.linearVelocity = moveDir * moveSpeed;
+            }
+            else
+            {
+                rb.linearVelocity = Vector2.zero;
+            }
         }
 
         public void DirectionToAnimation(Vector2 dir)
         {
             MoveType previousMoveType;
+            if (gameState.CurrentState == StateType.Talk || gameState.CurrentState == StateType.Interact
+            || gameState.CurrentState == StateType.RoomChange || gameState.CurrentState == StateType.Movie)
+            {
+                currentMoveType = MoveType.Idle;
+                isStopped = true;
+                ainm.SetInteger("MoveType", (int)currentMoveType);
+                return;
+            }
+            else
+            {
+                isStopped = false;
+            }
 
-            if(dir.sqrMagnitude < 0.0001f)
+            if (dir.sqrMagnitude < 0.0001f)
             {
                 previousMoveType = MoveType.Idle;
             }
             // 入力の絶対値が大きい方を優先してアニメーションを切り替える
-            else if(Mathf.Abs(dir.y) >= Mathf.Abs(dir.x))
+            else if (Mathf.Abs(dir.y) >= Mathf.Abs(dir.x))
             {
                 previousMoveType = dir.y > 0 ? MoveType.Up : MoveType.Down;
             }
@@ -52,7 +88,7 @@ namespace Player
             }
 
             // 入力の方向が変わったときだけアニメーションを切り替える
-            if(previousMoveType != currentMoveType)
+            if (previousMoveType != currentMoveType)
             {
                 currentMoveType = previousMoveType;
                 ainm.SetInteger("MoveType", (int)currentMoveType);

@@ -1,0 +1,5 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI%20Toolkit/Style/Text.uss?fileID=7433441132597879392&amp;guid=5674d4550a091bd468fc8e19db31b047&amp;type=3#Text" />
+    <Style src="project://database/Assets/UI%20Toolkit/RoomChange/Style_Button.uss?fileID=7433441132597879392&amp;guid=c073200f0e6ef43479f1535bdf484714&amp;type=3#Style_Button" />
+    <ui:Button text="しょくいんしつ" class="base-text button" />
+</ui:UXML>
