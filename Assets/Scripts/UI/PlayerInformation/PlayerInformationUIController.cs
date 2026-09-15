@@ -1,4 +1,6 @@
 using UnityEngine.UIElements;
+using UnityEngine;
+
 public interface IPlayerInformationUIController {
     void TogglePlayerInformationVisibility();
     void ShowPlayerInformation();
@@ -14,6 +16,7 @@ public class PlayerInformationUIController : PanelView, IPlayerInformationUICont
     IInventoryUIPanel inventoryUIPanel;
 
     IInputTrigger inputTrigger;
+    IGameState gameState;
 
     void Awake()
     {
@@ -25,19 +28,24 @@ public class PlayerInformationUIController : PanelView, IPlayerInformationUICont
     {
         inputTrigger = ApiProvider.Get<IInputTrigger>();
         inventoryUIPanel = ApiProvider.Get<IInventoryUIPanel>();
+        gameState = ApiProvider.Get<IGameState>();
         inputTrigger.OnInputTabKeyPressed += TogglePlayerInformationVisibility;
+        inputTrigger.OnInputESCKeyDisabled += HidePlayerInformation;
         HidePlayerInformation();
     }
 
     public void TogglePlayerInformationVisibility()
     {
+        Debug.LogFormat("Toggling Player Information Visibility. Current display: {0}", root.style.display);
         if (root.style.display == DisplayStyle.None)
         {
+            gameState.ChangeState(StateType.PlayerInfo);
             ShowPlayerInformation();
         }
         else
         {
             HidePlayerInformation();
+            gameState.ChangeState(StateType.None);
         }
     }
 

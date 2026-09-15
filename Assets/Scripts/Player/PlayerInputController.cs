@@ -4,7 +4,7 @@ using UnityEngine.InputSystem;
 
 // 基本None
 public enum StateType
-{ None = -1, Movie, Talk, Interact, RoomChange}
+{ None = -1, PlayerInfo, Movie, Talk, Interact, RoomChange }
 
 public interface IInputTrigger
 {
@@ -36,7 +36,7 @@ public class PlayerInputController : MonoBehaviour, IInputTrigger, IGameState
     {
         ApiProvider.Register<IInputTrigger>(this);
         ApiProvider.Register<IGameState>(this);
-        
+
         ChangeState(StateType.None);
     }
 
@@ -51,60 +51,70 @@ public class PlayerInputController : MonoBehaviour, IInputTrigger, IGameState
     {
         Debug.Log(CurrentState);
 
-        if(CurrentState == StateType.RoomChange)
+        switch (CurrentState)
         {
-            if(Keyboard.current.escapeKey.wasPressedThisFrame)
-                OnInputESCKeyDisabled?.Invoke();
-            return;
-        }
+            case StateType.RoomChange:
+                if (Keyboard.current.escapeKey.wasPressedThisFrame)
+                    OnInputESCKeyDisabled?.Invoke();
+                return;
 
-        if(CurrentState == StateType.None || CurrentState == StateType.Interact)
-        {
-            // 取得処理
-            if(Keyboard.current.eKey.wasPressedThisFrame)
-                OnInputEKeyPressed?.Invoke();
-            return;
-        }
+            case StateType.Talk:
+                if (Keyboard.current.spaceKey.wasPressedThisFrame)
+                    OnInputSpaceKeyPressed?.Invoke();
+                return;
 
-        if(CurrentState == StateType.Talk)
-        {
-            if(Keyboard.current.spaceKey.wasPressedThisFrame)
-                OnInputSpaceKeyPressed?.Invoke();
-            return;
-        }
+            case StateType.Interact:
+                if (Keyboard.current.eKey.wasPressedThisFrame)
+                    OnInputEKeyPressed?.Invoke();
+                return;
 
-        if(CurrentState == StateType.Interact)
-        {
-            return;
-        }
+            case StateType.None:
+                if (Keyboard.current.eKey.wasPressedThisFrame)
+                {
+                    OnInputEKeyPressed?.Invoke();
+                    return;
+                }
+                if (Keyboard.current.tabKey.wasPressedThisFrame)
+                {
+                    OnInputTabKeyPressed?.Invoke();
+                    return;
+                }
+                break;
 
-        // インフォメーション表示処理
-        if (Keyboard.current.tabKey.wasPressedThisFrame)
-        {
-            // Tabキーが押されたときの処理
-            OnInputTabKeyPressed?.Invoke();
+            case StateType.PlayerInfo:
+                if (Keyboard.current.escapeKey.wasPressedThisFrame)
+                    OnInputESCKeyDisabled?.Invoke();
+                if (Keyboard.current.tabKey.wasPressedThisFrame)
+                {
+                    OnInputTabKeyPressed?.Invoke();
+                    return;
+                }
+                break;
         }
 
         // < -- キャラクター切り替え処理 -->
-        if(Keyboard.current.digit1Key.wasPressedThisFrame)
+        if (CurrentState == StateType.None || CurrentState == StateType.PlayerInfo)
         {
-            characterControlHandler.ChangeCharacterControlState(Character.Name.Girl);
-        }
-        else if(Keyboard.current.digit2Key.wasPressedThisFrame)
-        {
-            characterControlHandler.ChangeCharacterControlState(Character.Name.Boy);
-        }
-        else if(Keyboard.current.digit3Key.wasPressedThisFrame)
-        {
-            characterControlHandler.ChangeCharacterControlState(Character.Name.Glasses_Boy);
-        }
-        else if(Keyboard.current.digit4Key.wasPressedThisFrame)
-        {
-            characterControlHandler.ChangeCharacterControlState(Character.Name.Delinquent_Boy);
-        }
-        else if(Keyboard.current.digit5Key.wasPressedThisFrame)
-        {
-            characterControlHandler.ChangeCharacterControlState(Character.Name.Girl_TwinTail);
+            if (Keyboard.current.digit1Key.wasPressedThisFrame)
+            {
+                characterControlHandler.ChangeCharacterControlState(Character.Name.Girl);
+            }
+            else if (Keyboard.current.digit2Key.wasPressedThisFrame)
+            {
+                characterControlHandler.ChangeCharacterControlState(Character.Name.Boy);
+            }
+            else if (Keyboard.current.digit3Key.wasPressedThisFrame)
+            {
+                characterControlHandler.ChangeCharacterControlState(Character.Name.Glasses_Boy);
+            }
+            else if (Keyboard.current.digit4Key.wasPressedThisFrame)
+            {
+                characterControlHandler.ChangeCharacterControlState(Character.Name.Delinquent_Boy);
+            }
+            else if (Keyboard.current.digit5Key.wasPressedThisFrame)
+            {
+                characterControlHandler.ChangeCharacterControlState(Character.Name.Girl_TwinTail);
+            }
         }
     }
 
