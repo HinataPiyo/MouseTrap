@@ -37,6 +37,8 @@ public class SceneChangeManager : MonoBehaviour, ISceneChange
         ApiProvider.Register<ISceneChange>(this);
         currentRoom = Room.GetCurrentRoom(SceneManager.GetActiveScene().name);
         CanMoveRoom(Room.Name.Staffroom, true);
+
+        CanMoveRoom(Room.Name.Library, true);       //! テスト 
     }
 
     void Start()

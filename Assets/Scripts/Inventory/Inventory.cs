@@ -12,6 +12,7 @@ public interface IInventoryService
 
 public class Inventory : MonoBehaviour, IInventoryService
 {
+    static Inventory instance;
     List<ItemData> items = new List<ItemData>();
 
     [System.Serializable]
@@ -23,7 +24,16 @@ public class Inventory : MonoBehaviour, IInventoryService
 
     void Awake()
     {
-        ApiProvider.Register<IInventoryService>(this);
+        if (instance == null)
+        {
+            instance = this;
+            ApiProvider.Register<IInventoryService>(this);
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
     
     public void AddItem(InteractData message)

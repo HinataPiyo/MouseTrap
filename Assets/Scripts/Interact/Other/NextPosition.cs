@@ -22,6 +22,7 @@ namespace Intetract.StaffRoom.Boy
             localCol = GetComponent<Collider2D>();
 
             localCol.enabled = false;
+            IsEventCompleted = true;        //! テスト
         }
 
         public void SetNextPosition(GameObject target)
