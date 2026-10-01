@@ -3,6 +3,7 @@ using System.Collections.Generic;
 public static class Layer
 {
     public const string Interactable = "Interactable";
+    public const string Player = "Player";
 }
 
 public static class Character

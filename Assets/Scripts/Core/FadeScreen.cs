@@ -25,7 +25,6 @@ public class FadeScreen : MonoBehaviour, IFadeScreen
         if (instance == null)
         {
             instance = this;
-            DontDestroyOnLoad(gameObject);
         }
         else
         {
