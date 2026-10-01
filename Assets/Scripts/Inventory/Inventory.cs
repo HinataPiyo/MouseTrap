@@ -13,7 +13,7 @@ public interface IInventoryService
 public class Inventory : MonoBehaviour, IInventoryService
 {
     static Inventory instance;
-    List<ItemData> items = new List<ItemData>();
+    static List<ItemData> items = new List<ItemData>();
 
     [System.Serializable]
     public class ItemData
@@ -28,7 +28,6 @@ public class Inventory : MonoBehaviour, IInventoryService
         {
             instance = this;
             ApiProvider.Register<IInventoryService>(this);
-            DontDestroyOnLoad(gameObject);
         }
         else
         {
