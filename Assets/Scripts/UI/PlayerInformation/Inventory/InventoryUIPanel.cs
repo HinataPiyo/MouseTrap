@@ -11,7 +11,7 @@ public interface IInventoryUIPanel
 public class InventoryUIPanel : PanelView, IInventoryUIPanel
 {
     UIDocument uiDoc;
-    VisualElement container;
+    ScrollView container;
     [SerializeField] VisualTreeAsset temp_InventoryItem;
 
     IInventoryService inventoryService;
@@ -24,7 +24,7 @@ public class InventoryUIPanel : PanelView, IInventoryUIPanel
         ApiProvider.Register<IInventoryUIPanel>(this);
         uiDoc = GetComponent<UIDocument>();
         panel = uiDoc.rootVisualElement.Q<VisualElement>(PANEL_NAME);
-        container = panel.Q<VisualElement>("root");
+        container = panel.Q<ScrollView>();
 
         container.Clear();
     }
