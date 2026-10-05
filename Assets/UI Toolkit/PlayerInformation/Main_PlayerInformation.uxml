@@ -1,12 +1,6 @@
 <ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <ui:Template name="Module_Inventory" src="project://database/Assets/UI%20Toolkit/PlayerInformation/Module_Inventory.uxml?fileID=9197481963319205126&amp;guid=32a45c6550a77e349bfc2ee2850cfa54&amp;type=3#Module_Inventory" />
-    <ui:VisualElement name="root" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0.8); display: none;">
-        <ui:VisualElement style="width: 20%; height: 80%; top: 10%; left: 5%; background-color: rgba(0, 0, 0, 0.8); border-top-width: 1px; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px; border-left-color: rgb(255, 255, 255); border-right-color: rgb(255, 255, 255); border-top-color: rgb(255, 255, 255); border-bottom-color: rgb(255, 255, 255);" />
-        <ui:VisualElement name="main-view-container" style="top: 10%; position: absolute; left: 26%; width: 70%; height: 80%; background-color: rgba(0, 0, 0, 0.8); padding-top: 5px; padding-right: 5px; padding-bottom: 5px; padding-left: 5px; border-left-color: rgb(255, 255, 255); border-right-color: rgb(255, 255, 255); border-top-color: rgb(255, 255, 255); border-bottom-color: rgb(255, 255, 255); border-top-width: 1px; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px;">
-            <ui:Instance template="Module_Inventory" name="InventoryPanel" />
-        </ui:VisualElement>
-        <ui:VisualElement name="view-title-container" style="position: absolute; top: 5%; left: 26%; width: 20%; height: 5%; background-color: rgba(0, 0, 0, 0.8); border-left-color: rgb(255, 255, 255); border-right-color: rgb(255, 255, 255); border-top-color: rgb(255, 255, 255); border-bottom-color: rgb(255, 255, 255); border-bottom-width: 0; border-top-width: 1px; border-right-width: 1px; border-left-width: 1px;">
-            <ui:Label text="インベントリ" style="flex-grow: 1; -unity-text-align: middle-left; font-size: 26px; color: rgb(255, 255, 255); padding-left: 6px;" />
-        </ui:VisualElement>
+    <ui:VisualElement name="root" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0.2); display: none;">
+        <ui:Instance template="Module_Inventory" name="InventoryPanel" style="flex-grow: 1;" />
     </ui:VisualElement>
 </ui:UXML>

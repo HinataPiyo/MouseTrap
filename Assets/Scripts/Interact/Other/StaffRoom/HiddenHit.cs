@@ -12,8 +12,7 @@ namespace Intetract.StaffRoom
             if (base.TryInteract(out result))
             {
                 // 会話を開始する処理をここに記述
-                ITalk talk = ApiProvider.Get<ITalk>();
-                talk.OnToTalk(talkData_HiddenHit, 0f);
+                TalkPanelController.Instance.OnToTalk(talkData_HiddenHit, 0f);
 
                 IsEventCompleted = true; // イベントが完了したことを設定
                 return true;

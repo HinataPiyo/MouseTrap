@@ -2,17 +2,21 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public interface IInventoryService
+public class Inventory : MonoBehaviour
 {
-    void AddItem(InteractData item);
-    void RemoveItem(InteractData item);
-    bool HasItem(InteractData item);
-    List<Inventory.ItemData> GetItems();
-}
-
-public class Inventory : MonoBehaviour, IInventoryService
-{
+    public static Inventory Instance { get; private set; }
     List<ItemData> items = new List<ItemData>();
+
+    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+    static void ResetInstance()
+    {
+        if (Instance != null)
+        {
+            Instance.items.Clear();
+        }
+
+        Instance = null;
+    }
 
     [System.Serializable]
     public class ItemData
@@ -21,9 +25,15 @@ public class Inventory : MonoBehaviour, IInventoryService
         public int count;
     }
 
-    void Awake()
+    void OnEnable()
     {
-        ApiProvider.Register<IInventoryService>(this);
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        Instance = this;
     }
     
     public void AddItem(InteractData message)

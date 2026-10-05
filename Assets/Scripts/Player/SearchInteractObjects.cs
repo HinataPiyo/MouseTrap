@@ -6,18 +6,12 @@ using UnityEngine;
 public class SearchInteractObjects : MonoBehaviour
 {
     IInteract closestInteract;
-    IInputTrigger inputTrigger;
-    IInteractObjectPanel interactObjectPanel;
-    IInventoryService inventory;
-    IGameState gameState;
+    PlayerInputController inputController;
 
     void Start()
     {
-        inputTrigger = ApiProvider.Get<IInputTrigger>();
-        interactObjectPanel = ApiProvider.Get<IInteractObjectPanel>();
-        gameState = ApiProvider.Get<IGameState>();
-        inventory = ApiProvider.Get<IInventoryService>();
-        inputTrigger.OnInputEKeyPressed += OnInputAction;
+        inputController = PlayerInputController.Instance;
+        inputController.OnInputEKeyPressed += OnInputAction;
     }
 
     /// <summary>
@@ -26,15 +20,14 @@ public class SearchInteractObjects : MonoBehaviour
     void OnInputAction()
     {
         // Interact状態の場合
-        if (gameState.CurrentState == StateType.Interact)
+        if (inputController.CurrentState == StateType.Interact)
         {
             Debug.Log("<color=red>No interactable object found.</color>");
             ClearCurrentInteract();
-            interactObjectPanel.TogglePanelVisibility(null, string.Empty);
             return;
         }
         
-        if(gameState.CurrentState == StateType.Talk || gameState.CurrentState == StateType.RoomChange) return;
+        if(inputController.CurrentState == StateType.Talk || inputController.CurrentState == StateType.RoomChange) return;
 
         // Interact可能なオブジェクトを取得する
         if (closestInteract != null && closestInteract.TryInteract(out var interactData))
@@ -42,13 +35,12 @@ public class SearchInteractObjects : MonoBehaviour
             // 取得後にオブジェクトを破棄する場合は、InteractMarkの表示を消す
             if (interactData.IsShowPanel)
             {
-                interactObjectPanel.TogglePanelVisibility(interactData.Sprite, interactData.Text);
-                inventory.AddItem(interactData);
+                Inventory.Instance.AddItem(interactData);
+                WorldCanvasController.Instance.ToggleInteractMarkVisibility(false, transform.position);
                 Debug.Log($"<color=green>ShowInteractObjectPanel</color> Sprite: {interactData.Sprite}, Text: {interactData.Text}");
             }
 
             interactData.OnInteractAction?.Invoke();
-            interactObjectPanel.ToggleMarkVisibility(closestInteract, false);
             Debug.Log($"<color=green>Interact successful.</color> InteractData: {interactData}");
         }
 
@@ -70,12 +62,12 @@ public class SearchInteractObjects : MonoBehaviour
         // すでに別のInteractオブジェクトがあれば、そちらのInteractMarkを非表示にする
         if (closestInteract != null && closestInteract != interact)
         {
-            interactObjectPanel.ToggleMarkVisibility(closestInteract, false);
+            WorldCanvasController.Instance.ToggleInteractMarkVisibility(false, transform.position);
             return;
         }
 
         closestInteract = interact;
-        interactObjectPanel.ToggleMarkVisibility(closestInteract, true);
+        WorldCanvasController.Instance.ToggleInteractMarkVisibility(true, transform.position);
     }
 
     /// <summary>
@@ -93,7 +85,7 @@ public class SearchInteractObjects : MonoBehaviour
         if (interact == null) return;
         if (closestInteract != null && closestInteract == interact)
         {
-            interactObjectPanel.ToggleMarkVisibility(closestInteract, false);
+            WorldCanvasController.Instance.ToggleInteractMarkVisibility(false, transform.position);
         }
         closestInteract = null;
     }
@@ -106,7 +98,7 @@ public class SearchInteractObjects : MonoBehaviour
     {
         if (closestInteract != null)
         {
-            interactObjectPanel.ToggleMarkVisibility(closestInteract, false);
+            WorldCanvasController.Instance.ToggleInteractMarkVisibility(false, transform.position);
         }
 
         closestInteract = null;
@@ -114,6 +106,9 @@ public class SearchInteractObjects : MonoBehaviour
 
     void OnDisable()
     {
-        inputTrigger.OnInputEKeyPressed -= OnInputAction;
+        if (inputController != null)
+        {
+            inputController.OnInputEKeyPressed -= OnInputAction;
+        }
     }
 }

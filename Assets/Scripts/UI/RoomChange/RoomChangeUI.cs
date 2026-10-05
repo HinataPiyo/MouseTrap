@@ -2,36 +2,48 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public interface IRoomChangeUI
+public class RoomChangeUI : MonoBehaviour
 {
-    void ShowPanel();
-    void HidePanel();
-}
+    public static RoomChangeUI Instance { get; private set; }
 
-public class RoomChangeUI : MonoBehaviour, IRoomChangeUI
-{
     [SerializeField] VisualTreeAsset temp_Button;
     VisualElement root;
     VisualElement container;
 
     List<Button> buttons = new List<Button>();
-    ISceneChange sceneChangeManager;
-    IGameState gameState;
-    IInputTrigger inputTrigger;
+    SceneChangeManager sceneChangeManager;
+    PlayerInputController gameState;
+    PlayerInputController inputTrigger;
 
     void Awake()
     {
-        ApiProvider.Register<IRoomChangeUI>(this);
         var uiDocument = GetComponent<UIDocument>();
         root = uiDocument.rootVisualElement.Q<VisualElement>("room-change-buttons");
         container = root.Q<VisualElement>("container");
     }
 
+    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+    static void ResetInstance()
+    {
+        Instance = null;
+    }
+
+    void OnEnable()
+    {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        Instance = this;
+    }
+
     void Start()
     {
-        sceneChangeManager = ApiProvider.Get<ISceneChange>();
-        gameState = ApiProvider.Get<IGameState>();
-        inputTrigger = ApiProvider.Get<IInputTrigger>();
+        sceneChangeManager = SceneChangeManager.Instance;
+        gameState = PlayerInputController.Instance;
+        inputTrigger = PlayerInputController.Instance;
 
         inputTrigger.OnInputESCKeyDisabled += HidePanel;
         HidePanel();

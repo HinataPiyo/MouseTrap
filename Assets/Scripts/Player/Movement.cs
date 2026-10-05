@@ -14,7 +14,7 @@ namespace Player
         Rigidbody2D rb;
         MoveType currentMoveType;
 
-        IGameState gameState;
+        PlayerInputController gameState;
 
         bool isStopped = false;
 
@@ -26,7 +26,7 @@ namespace Player
 
         void Start()
         {
-            gameState = ApiProvider.Get<IGameState>();
+            gameState = PlayerInputController.Instance;
         }
 
         void Update()

@@ -2,7 +2,6 @@ using UnityEngine;
 
 public interface IInteract
 {
-    InteractMarkType InteractMarkType { get; }
     Transform GetMarkPoint();
     bool IsAvailable { get; }
     bool TryInteract(out InteractData interactData);
@@ -15,7 +14,6 @@ public class Interact : MonoBehaviour, IInteract
     bool hasAcquiredItem;       // アイテムを取得したかどうかを管理するフラグ
     public bool IsEventCompleted { get; protected set; } = false;   // イベントが完了したかどうかを管理するフラグ
     public Transform GetMarkPoint() => interactMarkPosition;
-    public InteractMarkType InteractMarkType => interactData.InteractMarkType;
     public bool IsAvailable => !hasAcquiredItem;
 
     /// <summary>

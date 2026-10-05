@@ -336,3 +336,5 @@ MonoBehaviour:
     animation: {fileID: 9100000, guid: 5f4803541e3f87347894d87ef413322e, type: 2}
   - characterName: 1
     animation: {fileID: 9100000, guid: 4790abb59a293d24884bec46f9df239a, type: 2}
+  - characterName: 2
+    animation: {fileID: 9100000, guid: 4f500714ac155cb4482f5118c7fde041, type: 2}

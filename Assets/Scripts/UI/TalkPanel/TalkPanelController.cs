@@ -3,20 +3,16 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
 
-interface ITalk
+public class TalkPanelController : MonoBehaviour
 {
-    void OnToTalk(TalkData data, float delay);
-    bool IsWriting { get; }
-}
+    public static TalkPanelController Instance { get; private set; }
 
-public class TalkPanelController : MonoBehaviour, ITalk
-{
     UIDocument uiDocument;
     [SerializeField] float writingSpeed = 0.05f;
     TalkData currentTalkData;
 
-    IGameState gameState;
-    IInputTrigger inputTrigger;
+    PlayerInputController gameState;
+    PlayerInputController inputTrigger;
 
 
     VisualElement root;
@@ -38,8 +34,6 @@ public class TalkPanelController : MonoBehaviour, ITalk
 
     void Awake()
     {
-        ApiProvider.Register<ITalk>(this);
-
         uiDocument = GetComponent<UIDocument>();
         root = uiDocument.rootVisualElement;
         characterName = root.Q<Label>("name");
@@ -51,10 +45,27 @@ public class TalkPanelController : MonoBehaviour, ITalk
         root.style.display = DisplayStyle.None;
     }
 
+    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+    static void ResetInstance()
+    {
+        Instance = null;
+    }
+
+    void OnEnable()
+    {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        Instance = this;
+    }
+
     void Start()
     {
-        gameState = ApiProvider.Get<IGameState>();
-        inputTrigger = ApiProvider.Get<IInputTrigger>();
+        gameState = PlayerInputController.Instance;
+        inputTrigger = PlayerInputController.Instance;
         inputTrigger.OnInputSpaceKeyPressed += OnClick;
     }
 

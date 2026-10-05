@@ -4,7 +4,6 @@ using UnityEngine;
 public class InteractData : ScriptableObject
 {
     [Header("UIに表示するデータ")]
-    [SerializeField] InteractMarkType interactMarkType;
     [SerializeField] Sprite sprite;
     [SerializeField] string text;
     [Tooltip("取得後にオブジェクトを破棄するかどうかのフラグ")]
@@ -16,7 +15,6 @@ public class InteractData : ScriptableObject
 
     System.Action onInteractAction;         // Interact時に行う処理を登録するためのAction
 
-    public InteractMarkType InteractMarkType => interactMarkType;
     public Sprite Sprite => sprite;
     public string Text => text;
     public bool IsDisabledAfterInteract => isDisabledAfterInteract;

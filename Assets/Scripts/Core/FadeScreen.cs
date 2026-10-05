@@ -1,18 +1,15 @@
 using UnityEngine;
 using System.Collections;
-public interface IFadeScreen
+public class FadeScreen : MonoBehaviour
 {
-    public event System.Action OnFadeInComplete;
-    public event System.Action OnFadeOutComplete;
-    public void FadeInToFadeOut(float duration = 1f);
-    public IEnumerator FadeInCoroutine(float duration = 1f);
-    public IEnumerator FadeOutCoroutine(float duration = 1f);
-}
-
-public class FadeScreen : MonoBehaviour, IFadeScreen
-{
-    static FadeScreen instance;
+    public static FadeScreen Instance { get; private set; }
     [SerializeField] CanvasGroup canvasGroup;
+
+    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+    static void ResetInstance()
+    {
+        Instance = null;
+    }
 
     public event System.Action OnFadeInComplete;
     public event System.Action OnFadeOutComplete;
@@ -20,20 +17,15 @@ public class FadeScreen : MonoBehaviour, IFadeScreen
     const float WAIT_BLACK_SCREEN_DURATION = 1f;
     WaitForSeconds waitBlackScreenDuration = new WaitForSeconds(WAIT_BLACK_SCREEN_DURATION);
 
-    void Awake()
+    void OnEnable()
     {
-        if (instance == null)
-        {
-            instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
+        if (Instance != null && Instance != this)
         {
             Destroy(gameObject);
             return;
         }
 
-        ApiProvider.Register<IFadeScreen>(this);
+        Instance = this;
     }
     void FadeIn(float duration = 1f)
     {

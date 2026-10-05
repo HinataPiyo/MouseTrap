@@ -1,0 +1,11 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI%20Toolkit/Style/Icon.uss?fileID=7433441132597879392&amp;guid=1ceed8f6430f265418059065196d9b28&amp;type=3#Icon" />
+    <ui:VisualElement name="root" style="background-color: rgba(17, 19, 24, 0.72); width: 1280px; height: 960px;">
+        <ui:VisualElement name="preview" style="background-image: url(&quot;project://database/Assets/Sprites/UI/UIE.png?fileID=1939061413697309431&amp;guid=0cd8221d7cfdbcc4082d3870ba37320b&amp;type=3#UIE_2&quot;); width: 320px; height: 320px; -unity-background-scale-mode: scale-to-fit; top: 35%; position: absolute; left: 35%;">
+            <ui:VisualElement name="icon" style="flex-grow: 1; -unity-background-scale-mode: scale-to-fit; background-image: url(&quot;project://database/Assets/Sprites/key.png?fileID=21300000&amp;guid=457a58ec275c94c419bc19738c5f3690&amp;type=3#key&quot;);" />
+        </ui:VisualElement>
+        <ui:Button name="use-button" class="base-icon" style="background-image: url(&quot;project://database/Assets/Sprites/UI/UIE.png?fileID=-1471272204693501696&amp;guid=0cd8221d7cfdbcc4082d3870ba37320b&amp;type=3#UIE_3&quot;); -unity-background-scale-mode: scale-to-fit; top: 35%; right: 26%; position: absolute; width: 170px; height: 77px;" />
+        <ui:Button name="use-button" class="base-icon" style="background-image: url(&quot;project://database/Assets/Sprites/UI/UIE.png?fileID=-687670967860909706&amp;guid=0cd8221d7cfdbcc4082d3870ba37320b&amp;type=3#UIE_4&quot;); -unity-background-scale-mode: scale-to-fit; top: 43%; right: 27%; position: absolute; width: 140px; height: 77px;" />
+        <ui:Button name="BackButton" class="base-icon" style="width: 80px; height: 80px; position: absolute; bottom: 16%; right: 49%;" />
+    </ui:VisualElement>
+</ui:UXML>

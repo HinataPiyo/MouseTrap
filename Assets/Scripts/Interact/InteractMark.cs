@@ -1,52 +1,19 @@
 using UnityEngine;
-using UnityEngine.UI;
 
 /// <summary>
 /// WorldCanvasに表示するInteractMarkのPrefabを管理するクラス
 /// </summary>
 public class InteractMark : MonoBehaviour
 {
-    [System.Serializable]
-    public class InteractMarkData
+
+    void Start()
     {
-        public InteractMarkType type;
-        public Sprite sprite;
+        SetVisibility(false);
     }
 
-    [SerializeField] InteractMarkData[] interactMarkDatas;
-    [SerializeField] Image image;
-    Transform point;
-
-    bool isVisible = false;
-
-    /// <summary>
-    /// InteractMarkTypeに応じて、InteractMarkのSpriteを変更する
-    /// </summary>
-    public void SetMark(InteractMarkType type, Transform point)
+    public void SetVisibility(bool isVisible)
     {
-        this.point = point;
-        isVisible = true;
-
-        foreach (var data in interactMarkDatas)
-        {
-            if (data.type == type)
-            {
-                image.sprite = data.sprite;
-                return;
-            }
-        }
+        gameObject.SetActive(isVisible);
     }
 
-    void Update()
-    {
-        if(isVisible)
-        {
-            transform.position = point.position;
-        }
-    }
-
-    void OnDisable()
-    {
-        isVisible = false;
-    }
 }

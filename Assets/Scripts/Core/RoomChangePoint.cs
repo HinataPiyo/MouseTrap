@@ -2,12 +2,12 @@ using UnityEngine;
 
 public class RoomChangePoint : BlockerArea
 {
-    IRoomChangeUI roomChangeUI;
+    RoomChangeUI roomChangeUI;
 
     protected override void Start()
     {
         base.Start();
-        roomChangeUI = ApiProvider.Get<IRoomChangeUI>();
+        roomChangeUI = RoomChangeUI.Instance;
     }
 
     protected override void OnCollisionEnter2D(Collision2D col)

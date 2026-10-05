@@ -1,13 +1,37 @@
 <ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <ui:Template name="Temp_RoomChangeButton" src="project://database/Assets/UI%20Toolkit/RoomChange/Temp_RoomChangeButton.uxml?fileID=9197481963319205126&amp;guid=df91914ae52401242829c078f56c50a4&amp;type=3#Temp_RoomChangeButton" />
     <Style src="project://database/Assets/UI%20Toolkit/Style/Text.uss?fileID=7433441132597879392&amp;guid=5674d4550a091bd468fc8e19db31b047&amp;type=3#Text" />
+    <Style src="project://database/Assets/UI%20Toolkit/Style/Icon.uss?fileID=7433441132597879392&amp;guid=1ceed8f6430f265418059065196d9b28&amp;type=3#Icon" />
     <ui:VisualElement name="root" style="flex-grow: 1;">
-        <ui:VisualElement name="interact-object-container" style="position: absolute; align-self: center; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.8); display: none;">
-            <ui:VisualElement name="image" style="width: 350px; height: 350px; align-self: center; top: 25%; background-image: url(&quot;project://database/Assets/Sprites/key.png?fileID=21300000&amp;guid=457a58ec275c94c419bc19738c5f3690&amp;type=3#key&quot;); -unity-background-scale-mode: scale-to-fit;" />
-            <ui:Label text="落とし物を拾いました。" name="text" class="base-text" style="bottom: 20%; position: absolute; align-self: center;" />
-            <ui:VisualElement name="click-action-image" style="background-image: url(&quot;project://database/Assets/Sprites/Arrow.png?fileID=2800000&amp;guid=6a0e9f1f91699b443a304f2796b59ca2&amp;type=3#Arrow&quot;); -unity-background-scale-mode: scale-to-fit; width: 25px; height: 25px; position: absolute; align-self: center; scale: 1 -1; bottom: 10%;" />
+        <ui:VisualElement name="ordinarily-view" style="flex-grow: 1;">
+            <ui:VisualElement name="upper-right" style="flex-grow: 1; top: 0; right: 0; position: absolute; flex-direction: row-reverse;">
+                <ui:Button name="home-button" class="base-icon" style="background-image: url(&quot;project://database/Assets/Sprites/UI/UIA.png?fileID=3690055244155436632&amp;guid=8ebd33ce83c6888419b14cc57d7a7a48&amp;type=3#UIA_6&quot;); -unity-background-scale-mode: scale-to-fit;" />
+                <ui:Button name="inventory-backpack-button" class="base-icon" style="background-image: url(&quot;project://database/Assets/Sprites/UI/UIA.png?fileID=-3218981894290647282&amp;guid=8ebd33ce83c6888419b14cc57d7a7a48&amp;type=3#UIA_5&quot;); -unity-background-scale-mode: scale-to-fit;" />
+                <ui:Button name="character-button" class="base-icon" style="background-image: url(&quot;project://database/Assets/Sprites/UI/UIA.png?fileID=-6392337855267190696&amp;guid=8ebd33ce83c6888419b14cc57d7a7a48&amp;type=3#UIA_4&quot;); -unity-background-scale-mode: scale-to-fit;" />
+            </ui:VisualElement>
+            <ui:VisualElement name="mission-view" style="position: absolute; top: 0; left: 0; width: 500px; height: 75px;">
+                <ui:Button name="mission-button" style="border-left-color: rgba(255, 255, 255, 0); border-right-color: rgba(255, 255, 255, 0); border-top-color: rgba(255, 255, 255, 0); border-bottom-color: rgba(255, 255, 255, 0); border-top-width: 0; border-right-width: 0; border-bottom-width: 0; border-left-width: 0; background-color: rgba(255, 255, 255, 0); background-image: url(&quot;project://database/Assets/Sprites/UI/UIA.png?fileID=8359669229818307921&amp;guid=8ebd33ce83c6888419b14cc57d7a7a48&amp;type=3#UIA_0&quot;); -unity-background-scale-mode: scale-to-fit; flex-grow: 1;" />
+            </ui:VisualElement>
+            <ui:VisualElement name="bottom-view" style="flex-grow: 1; position: absolute; bottom: 0; right: 0;">
+                <ui:VisualElement name="ability-view" style="flex-grow: 1; flex-direction: row; align-items: center; justify-content: center;">
+                    <ui:VisualElement name="title" class="base-icon" style="height: 30px; background-image: url(&quot;project://database/Assets/Sprites/UI/UIA.png?fileID=6759257611584769001&amp;guid=8ebd33ce83c6888419b14cc57d7a7a48&amp;type=3#UIA_10&quot;); -unity-background-scale-mode: scale-to-fit; width: 75px;" />
+                    <ui:Button name="button" class="base-icon" style="width: 40px; height: 40px; background-image: url(&quot;project://database/Assets/Sprites/UI/UIA.png?fileID=5698477812280610751&amp;guid=8ebd33ce83c6888419b14cc57d7a7a48&amp;type=3#UIA_11&quot;); -unity-background-scale-mode: scale-to-fit;" />
+                </ui:VisualElement>
+                <ui:Button name="1" class="base-icon" style="background-image: url(&quot;project://database/Assets/Sprites/UI/UIA.png?fileID=-5177549667690741937&amp;guid=8ebd33ce83c6888419b14cc57d7a7a48&amp;type=3#UIA_14&quot;); -unity-background-scale-mode: scale-to-fit;" />
+                <ui:Button name="2" class="base-icon" style="background-image: url(&quot;project://database/Assets/Sprites/UI/UIA.png?fileID=-933085780022238199&amp;guid=8ebd33ce83c6888419b14cc57d7a7a48&amp;type=3#UIA_16&quot;); -unity-background-scale-mode: scale-to-fit;" />
+                <ui:Button name="3" class="base-icon" style="background-image: url(&quot;project://database/Assets/Sprites/UI/UIA.png?fileID=-4679284675660834911&amp;guid=8ebd33ce83c6888419b14cc57d7a7a48&amp;type=3#UIA_18&quot;); -unity-background-scale-mode: scale-to-fit;" />
+                <ui:Button name="4" class="base-icon" style="background-image: url(&quot;project://database/Assets/Sprites/UI/UIA.png?fileID=4391866147064905748&amp;guid=8ebd33ce83c6888419b14cc57d7a7a48&amp;type=3#UIA_20&quot;); -unity-background-scale-mode: scale-to-fit;" />
+                <ui:Button name="5" class="base-icon" style="background-image: url(&quot;project://database/Assets/Sprites/UI/UIA.png?fileID=1243956719966203184&amp;guid=8ebd33ce83c6888419b14cc57d7a7a48&amp;type=3#UIA_1&quot;); -unity-background-scale-mode: scale-to-fit;" />
+            </ui:VisualElement>
         </ui:VisualElement>
-        <ui:VisualElement name="room-change-buttons" style="width: 300px;">
+        <ui:VisualElement name="interact-object-container" style="position: absolute; align-self: center; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.8); display: none;">
+            <ui:VisualElement name="background" style="position: absolute; background-image: url(&quot;project://database/Assets/Sprites/UI/UIA.png?fileID=82052064546649123&amp;guid=8ebd33ce83c6888419b14cc57d7a7a48&amp;type=3#UIA_25&quot;); align-self: center; top: 25%;">
+                <ui:VisualElement name="image" style="width: 400px; height: 400px; align-self: center; background-image: url(&quot;project://database/Assets/Sprites/key.png?fileID=21300000&amp;guid=457a58ec275c94c419bc19738c5f3690&amp;type=3#key&quot;); -unity-background-scale-mode: scale-to-fit; rotate: -25deg;" />
+            </ui:VisualElement>
+            <ui:Label text="落とし物を拾いました" name="text" class="base-text" style="bottom: 14%; position: absolute; align-self: center; color: rgb(255, 255, 255);" />
+            <ui:VisualElement name="click-action-image" style="background-image: url(&quot;project://database/Assets/Sprites/UI/UIA.png?fileID=-6028986393636049981&amp;guid=8ebd33ce83c6888419b14cc57d7a7a48&amp;type=3#UIA_26&quot;); -unity-background-scale-mode: scale-to-fit; width: 50px; height: 50px; position: absolute; align-self: center; bottom: 25%;" />
+        </ui:VisualElement>
+        <ui:VisualElement name="room-change-buttons" style="width: 300px; position: absolute; display: none;">
             <ui:Label text="部屋を移動する" name="title" class="base-text" style="-unity-text-align: middle-left; font-size: 23px; background-color: rgb(31, 31, 31); border-top-left-radius: 5px; border-top-right-radius: 5px; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 6px; padding-right: 6px; padding-bottom: 6px; padding-left: 6px;" />
             <ui:VisualElement name="container" style="background-color: rgb(31, 31, 31); border-top-width: 1px; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px; border-left-color: rgb(255, 255, 255); border-right-color: rgb(255, 255, 255); border-top-color: rgb(255, 255, 255); border-bottom-color: rgb(255, 255, 255); padding-top: 5px; padding-right: 5px; padding-bottom: 5px; padding-left: 5px;">
                 <ui:Instance template="Temp_RoomChangeButton" />
