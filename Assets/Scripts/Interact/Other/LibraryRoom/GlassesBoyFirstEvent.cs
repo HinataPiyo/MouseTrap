@@ -9,15 +9,15 @@ namespace Intetract.LibraryRoom
         [Header("会話の内容")]
         [SerializeField] TalkData talkData;
 
-        ITalk talk;
-        ICharacterState characterState;
-        IFadeScreen fadeScreen;
+        TalkPanelController talk;
+        CharacterControlHandler characterState;
+        FadeScreen fadeScreen;
 
         void Start()
         {
-            talk = ApiProvider.Get<ITalk>();
-            characterState = ApiProvider.Get<ICharacterState>();
-            fadeScreen = ApiProvider.Get<IFadeScreen>();
+            talk = TalkPanelController.Instance;
+            characterState = CharacterControlHandler.Instance;
+            fadeScreen = FadeScreen.Instance;
             fadeScreen.OnFadeInComplete += CharacterChange;
         }
 

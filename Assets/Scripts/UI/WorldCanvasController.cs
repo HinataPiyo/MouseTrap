@@ -2,17 +2,24 @@ using UnityEngine;
 
 public class WorldCanvasController : MonoBehaviour
 {
-    public static WorldCanvasController I { get; private set; }
+    public static WorldCanvasController Instance { get; private set; }
     [SerializeField] InteractMark interactMark;
     static readonly Vector2 InteractMarkOffsetY = new Vector2(0.025f, 0.5f);
-    void Awake()
+
+    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+    static void ResetInstance()
     {
-        if (I != null && I != this)
+        Instance = null;
+    }
+
+    void OnEnable()
+    {
+        if (Instance != null && Instance != this)
         {
             Destroy(gameObject);
             return;
         }
-        I = this;
+        Instance = this;
     }
 
     /// <summary>

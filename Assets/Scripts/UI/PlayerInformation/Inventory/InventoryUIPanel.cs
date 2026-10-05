@@ -1,27 +1,20 @@
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public interface IInventoryUIPanel
+public class InventoryUIPanel : PanelView
 {
-    void TogglePanelVisibility();
-    void ShowInventoryPanel();
-    void HideInventoryPanel();
-}
+    public static InventoryUIPanel Instance { get; private set; }
 
-public class InventoryUIPanel : PanelView, IInventoryUIPanel
-{
     UIDocument uiDoc;
     ScrollView container;
     [SerializeField] VisualTreeAsset temp_InventoryItem;
 
-    IInventoryService inventoryService;
-
     const string PANEL_NAME = "InventoryPanel";
+    public event System.Action<Inventory.ItemData> OnIconClicked;
 
 
     void Awake()
     {
-        ApiProvider.Register<IInventoryUIPanel>(this);
         uiDoc = GetComponent<UIDocument>();
         panel = uiDoc.rootVisualElement.Q<VisualElement>(PANEL_NAME);
         container = panel.Q<ScrollView>();
@@ -29,9 +22,21 @@ public class InventoryUIPanel : PanelView, IInventoryUIPanel
         container.Clear();
     }
 
-    void Start()
+    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+    static void ResetInstance()
     {
-        inventoryService = ApiProvider.Get<IInventoryService>();
+        Instance = null;
+    }
+
+    void OnEnable()
+    {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        Instance = this;
     }
 
     public void TogglePanelVisibility()
@@ -72,6 +77,7 @@ public class InventoryUIPanel : PanelView, IInventoryUIPanel
 
         itemTemplate.Q<VisualElement>("icon").style.backgroundImage = new StyleBackground(data.item.Sprite);
         itemTemplate.Q<Label>("count").text = "x" + data.count.ToString();
+        itemTemplate.Q<Button>().clicked += () => OnIconClicked?.Invoke(data);
 
         container.Add(itemTemplate);
     }
@@ -79,7 +85,7 @@ public class InventoryUIPanel : PanelView, IInventoryUIPanel
     void RefreshInventoryElements()
     {
         container.Clear();
-        foreach (var itemData in inventoryService.GetItems())
+        foreach (var itemData in Inventory.Instance.GetItems())
         {
             CreateUI(itemData);
         }

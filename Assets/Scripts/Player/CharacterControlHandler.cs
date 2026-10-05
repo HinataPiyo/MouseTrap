@@ -4,19 +4,15 @@ namespace Player
     using UnityEditor.Animations;
     using UnityEngine;
 
-    public interface ICharacterState
-    {
-        void SetCharacterControlState(Character.Name characterName, bool isControllable);
-        bool ChangeCharacterControlState(Character.Name characterName);
-    }
-    
     //! 現在キャラ追加の処理を作ったから次は、追加したキャラに切り替えて移動や特殊能力を使えるようにする
 
     /// <summary>
     /// キャラクターの操作可能状態を管理するクラス
     /// </summary>
-    public class CharacterControlHandler : MonoBehaviour, ICharacterState
+    public class CharacterControlHandler : MonoBehaviour
     {
+        public static CharacterControlHandler Instance { get; private set; }
+
         [System.Serializable]
         public class CharacterWithAnimator
         {
@@ -28,10 +24,27 @@ namespace Player
         [SerializeField] CharacterWithAnimator[] charactersWithAnimators;
         Dictionary<Character.Name, bool> characterControlStates = new Dictionary<Character.Name, bool>();
 
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+        static void ResetInstance()
+        {
+            Instance = null;
+        }
+
         void Awake()
         {
             animator = GetComponentInChildren<Animator>();
-            ApiProvider.Register<ICharacterState>(this);
+        }
+
+        void OnEnable()
+        {
+            if (Instance != null && Instance != this)
+            {
+                Destroy(gameObject);
+                return;
+            }
+
+            Instance = this;
+            characterControlStates.Clear();
             SetCharacterControlState(Character.Name.Girl, true);        // 最初は少女の操作を可能にする
         }
 

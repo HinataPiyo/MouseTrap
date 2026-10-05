@@ -3,48 +3,43 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public interface ISceneChange
+public class SceneChangeManager : MonoBehaviour
 {
-    void SceneChange(Room.Name room);
-    Room.Name GetCurrentRoom();
-    List<Room.Name> GetMoveableRooms();
-    void CanMoveRoom(Room.Name room, bool canMove);
-}
-
-public class SceneChangeManager : MonoBehaviour, ISceneChange
-{
-    static SceneChangeManager instance;
+    public static SceneChangeManager Instance { get; private set; }
     Room.Name currentRoom = Room.Name.None;
+
+    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+    static void ResetInstance()
+    {
+        Instance = null;
+    }
 
     // 移動可能な部屋を管理する
     Dictionary<Room.Name, bool> canMoveRooms = new Dictionary<Room.Name, bool>();
-    IGameState gameState;
-    IFadeScreen fadeScreen;
+    PlayerInputController gameState;
+    FadeScreen fadeScreen;
 
-    void Awake()
+    void OnEnable()
     {
-        if (instance == null)
-        {
-            instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
+        if (Instance != null && Instance != this)
         {
             Destroy(gameObject);
             return;
         }
 
-        ApiProvider.Register<ISceneChange>(this);
-        currentRoom = Room.GetCurrentRoom(SceneManager.GetActiveScene().name);
-        CanMoveRoom(Room.Name.Staffroom, true);
+        Instance = this;
+        DontDestroyOnLoad(gameObject);
 
-        CanMoveRoom(Room.Name.Library, true);       //! テスト 
+        currentRoom = Room.GetCurrentRoom(SceneManager.GetActiveScene().name);
+        canMoveRooms.Clear();
+        CanMoveRoom(Room.Name.Staffroom, true);
+        CanMoveRoom(Room.Name.Library, true);       //! テスト
     }
 
     void Start()
     {
-        gameState = ApiProvider.Get<IGameState>();
-        fadeScreen = ApiProvider.Get<IFadeScreen>();
+        gameState = PlayerInputController.Instance;
+        fadeScreen = FadeScreen.Instance;
     }
 
     /// <summary>

@@ -10,7 +10,7 @@ public class BlockerArea : MonoBehaviour
     [SerializeField] TalkData talkData;
 
     Collider2D localCol;
-    ITalk talk; 
+    TalkPanelController talk;
 
     void Awake()
     {
@@ -19,7 +19,7 @@ public class BlockerArea : MonoBehaviour
 
     protected virtual void Start()
     {
-        talk = ApiProvider.Get<ITalk>();
+        talk = TalkPanelController.Instance;
     }
 
     protected virtual void OnCollisionEnter2D(Collision2D col)

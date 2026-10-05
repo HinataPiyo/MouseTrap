@@ -14,11 +14,11 @@ namespace Intetract.StaffRoom.Boy
 
         Transform target;
         Collider2D localCol;
-        ITalk talk;
+        TalkPanelController talk;
 
         void Start()
         {
-            talk = ApiProvider.Get<ITalk>();
+            talk = TalkPanelController.Instance;
             localCol = GetComponent<Collider2D>();
 
             localCol.enabled = false;
@@ -48,7 +48,7 @@ namespace Intetract.StaffRoom.Boy
             talk.OnToTalk(talkData_ReferenceRoom, 0f);
 
             yield return new WaitUntil(() => !talk.IsWriting);
-            ApiProvider.Get<IGameState>().ChangeState(StateType.Movie);     // 演出状態に遷移する
+            PlayerInputController.Instance.ChangeState(StateType.Movie);     // 演出状態に遷移する
 
             // 会話が終了したら物音がする(演出)
             yield return new WaitForSeconds(1f); // 物音の演出のために1秒待機
@@ -58,8 +58,8 @@ namespace Intetract.StaffRoom.Boy
 
             // 資料室と図書室に行けるようになる
             IsEventCompleted = true;
-            ApiProvider.Get<ISceneChange>().CanMoveRoom(Room.Name.Library, true);
-            ApiProvider.Get<IGameState>().ChangeState(StateType.None);     // 演出が終了したら解除
+            SceneChangeManager.Instance.CanMoveRoom(Room.Name.Library, true);
+            PlayerInputController.Instance.ChangeState(StateType.None);     // 演出が終了したら解除
         }
     }
 }

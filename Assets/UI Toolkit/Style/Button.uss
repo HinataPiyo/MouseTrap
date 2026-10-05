@@ -1,0 +1,13 @@
+.base-button {
+    transition-duration: 0.1s;
+}
+
+.base-button:hover {
+    transition-duration: 0.1s;
+    scale: 1.02 1.02;
+}
+
+.base-button:active {
+    transition-duration: 0.1s;
+    scale: 0.99 0.99;
+}

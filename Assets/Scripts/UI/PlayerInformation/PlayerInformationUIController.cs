@@ -13,10 +13,7 @@ public class PlayerInformationUIController : PanelView, IPlayerInformationUICont
     UIDocument uiDoc;
     VisualElement root;
 
-    IInventoryUIPanel inventoryUIPanel;
-
-    IInputTrigger inputTrigger;
-    IGameState gameState;
+    PlayerInputController inputController;
 
     void Awake()
     {
@@ -26,11 +23,9 @@ public class PlayerInformationUIController : PanelView, IPlayerInformationUICont
 
     void Start()
     {
-        inputTrigger = ApiProvider.Get<IInputTrigger>();
-        inventoryUIPanel = ApiProvider.Get<IInventoryUIPanel>();
-        gameState = ApiProvider.Get<IGameState>();
-        inputTrigger.OnInputTabKeyPressed += TogglePlayerInformationVisibility;
-        inputTrigger.OnInputESCKeyDisabled += HidePlayerInformation;
+        inputController = PlayerInputController.Instance;
+        inputController.OnInputTabKeyPressed += TogglePlayerInformationVisibility;
+        inputController.OnInputESCKeyDisabled += HidePlayerInformation;
         HidePlayerInformation();
     }
 
@@ -39,25 +34,25 @@ public class PlayerInformationUIController : PanelView, IPlayerInformationUICont
         Debug.LogFormat("Toggling Player Information Visibility. Current display: {0}", root.style.display);
         if (root.style.display == DisplayStyle.None)
         {
-            gameState.ChangeState(StateType.PlayerInfo);
+            inputController.ChangeState(StateType.PlayerInfo);
             ShowPlayerInformation();
         }
         else
         {
             HidePlayerInformation();
-            gameState.ChangeState(StateType.None);
+            inputController.ChangeState(StateType.None);
         }
     }
 
     public void ShowPlayerInformation()
     {
-        inventoryUIPanel.ShowInventoryPanel();
+        InventoryUIPanel.Instance.ShowInventoryPanel();
         root.style.display = DisplayStyle.Flex;
     }
 
     public void HidePlayerInformation()
     {
-        inventoryUIPanel.HideInventoryPanel();
+        InventoryUIPanel.Instance.HideInventoryPanel();
         root.style.display = DisplayStyle.None;
     }
 }

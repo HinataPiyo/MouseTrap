@@ -14,15 +14,15 @@ namespace Intetract.StaffRoom.Boy
         [Header("会話終了後待機する次の位置")]
         [SerializeField] NextPosition nextPosition;
 
-        ITalk talk;
-        IFadeScreen fadeScreen;
+        TalkPanelController talk;
+        FadeScreen fadeScreen;
 
         void Start()
         {
-            talk = ApiProvider.Get<ITalk>();
+            talk = TalkPanelController.Instance;
             HideSubCharacter();
 
-            fadeScreen = ApiProvider.Get<IFadeScreen>();
+            fadeScreen = FadeScreen.Instance;
             fadeScreen.OnFadeInComplete += SetNextPosition;        // フェードイン完了時にサブキャラクターの位置を次の位置に設定する
         }
 
@@ -59,7 +59,7 @@ namespace Intetract.StaffRoom.Boy
 
             yield return new WaitUntil(() => talk.IsWriting == false);
 
-            ApiProvider.Get<IGameState>().ChangeState(StateType.Movie);     // 演出状態に遷移する
+            PlayerInputController.Instance.ChangeState(StateType.Movie);     // 演出状態に遷移する
 
             fadeScreen.FadeInToFadeOut();
         }
@@ -76,7 +76,7 @@ namespace Intetract.StaffRoom.Boy
         void SetNextPosition()
         {
             nextPosition.SetNextPosition(subCharacter);
-            ApiProvider.Get<IGameState>().ChangeState(StateType.None);     // 演出が終了したら解除
+            PlayerInputController.Instance.ChangeState(StateType.None);     // 演出が終了したら解除
         }
     }
 }

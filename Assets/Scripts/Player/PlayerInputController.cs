@@ -6,23 +6,11 @@ using UnityEngine.InputSystem;
 public enum StateType
 { None = -1, PlayerInfo, Movie, Talk, Interact, RoomChange }
 
-public interface IInputTrigger
+public class PlayerInputController : MonoBehaviour
 {
-    public event System.Action OnInputEKeyPressed;
-    public event System.Action OnInputTabKeyPressed;
-    public event System.Action OnInputSpaceKeyPressed;
-    public event System.Action OnInputESCKeyDisabled;
-}
+    public static PlayerInputController Instance { get; private set; }
 
-public interface IGameState
-{
-    public StateType CurrentState { get; }
-    public void ChangeState(StateType newState);
-}
-
-public class PlayerInputController : MonoBehaviour, IInputTrigger, IGameState
-{
-    ICharacterState characterControlHandler;
+    CharacterControlHandler characterControlHandler;
     public StateType CurrentState { get; private set; } = StateType.None;
 
     public void ChangeState(StateType newState) => CurrentState = newState;
@@ -32,17 +20,28 @@ public class PlayerInputController : MonoBehaviour, IInputTrigger, IGameState
     public event System.Action OnInputSpaceKeyPressed;
     public event System.Action OnInputESCKeyDisabled;
 
-    void Awake()
+    //* 属性の目的: SubsystemRegistration時にInstanceをリセットするためのメソッドであることを示す
+    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+    static void ResetInstance()
     {
-        ApiProvider.Register<IInputTrigger>(this);
-        ApiProvider.Register<IGameState>(this);
+        Instance = null;
+    }
 
+    void OnEnable()
+    {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        Instance = this;
         ChangeState(StateType.None);
     }
 
     void Start()
     {
-        characterControlHandler = ApiProvider.Get<ICharacterState>();
+        characterControlHandler = CharacterControlHandler.Instance;
 
         OnInputESCKeyDisabled += () => ChangeState(StateType.None);
     }
