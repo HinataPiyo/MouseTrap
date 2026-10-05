@@ -71,7 +71,6 @@ public class InventoryUIPanel : PanelView, IInventoryUIPanel
         VisualElement itemTemplate = temp_InventoryItem.CloneTree();
 
         itemTemplate.Q<VisualElement>("icon").style.backgroundImage = new StyleBackground(data.item.Sprite);
-        itemTemplate.Q<Label>("name").text = data.item.Text;
         itemTemplate.Q<Label>("count").text = "x" + data.count.ToString();
 
         container.Add(itemTemplate);

@@ -7,14 +7,12 @@ public class SearchInteractObjects : MonoBehaviour
 {
     IInteract closestInteract;
     IInputTrigger inputTrigger;
-    IInteractObjectPanel interactObjectPanel;
     IInventoryService inventory;
     IGameState gameState;
 
     void Start()
     {
         inputTrigger = ApiProvider.Get<IInputTrigger>();
-        interactObjectPanel = ApiProvider.Get<IInteractObjectPanel>();
         gameState = ApiProvider.Get<IGameState>();
         inventory = ApiProvider.Get<IInventoryService>();
         inputTrigger.OnInputEKeyPressed += OnInputAction;
@@ -30,7 +28,6 @@ public class SearchInteractObjects : MonoBehaviour
         {
             Debug.Log("<color=red>No interactable object found.</color>");
             ClearCurrentInteract();
-            interactObjectPanel.TogglePanelVisibility(null, string.Empty);
             return;
         }
         
@@ -42,13 +39,11 @@ public class SearchInteractObjects : MonoBehaviour
             // 取得後にオブジェクトを破棄する場合は、InteractMarkの表示を消す
             if (interactData.IsShowPanel)
             {
-                interactObjectPanel.TogglePanelVisibility(interactData.Sprite, interactData.Text);
                 inventory.AddItem(interactData);
                 Debug.Log($"<color=green>ShowInteractObjectPanel</color> Sprite: {interactData.Sprite}, Text: {interactData.Text}");
             }
 
             interactData.OnInteractAction?.Invoke();
-            interactObjectPanel.ToggleMarkVisibility(closestInteract, false);
             Debug.Log($"<color=green>Interact successful.</color> InteractData: {interactData}");
         }
 
@@ -70,12 +65,11 @@ public class SearchInteractObjects : MonoBehaviour
         // すでに別のInteractオブジェクトがあれば、そちらのInteractMarkを非表示にする
         if (closestInteract != null && closestInteract != interact)
         {
-            interactObjectPanel.ToggleMarkVisibility(closestInteract, false);
             return;
         }
 
         closestInteract = interact;
-        interactObjectPanel.ToggleMarkVisibility(closestInteract, true);
+        WorldCanvasController.I.ToggleInteractMarkVisibility(true, transform.position);
     }
 
     /// <summary>
@@ -93,7 +87,7 @@ public class SearchInteractObjects : MonoBehaviour
         if (interact == null) return;
         if (closestInteract != null && closestInteract == interact)
         {
-            interactObjectPanel.ToggleMarkVisibility(closestInteract, false);
+            WorldCanvasController.I.ToggleInteractMarkVisibility(false, transform.position);
         }
         closestInteract = null;
     }
@@ -106,7 +100,7 @@ public class SearchInteractObjects : MonoBehaviour
     {
         if (closestInteract != null)
         {
-            interactObjectPanel.ToggleMarkVisibility(closestInteract, false);
+            WorldCanvasController.I.ToggleInteractMarkVisibility(false, transform.position);
         }
 
         closestInteract = null;

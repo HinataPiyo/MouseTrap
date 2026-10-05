@@ -2,7 +2,7 @@
     <ui:Template name="Temp_InventoryElement" src="project://database/Assets/UI%20Toolkit/PlayerInformation/Temp_InventoryElement.uxml?fileID=9197481963319205126&amp;guid=ec6b9ffc192263f42ab6a5b5ede4f422&amp;type=3#Temp_InventoryElement" />
     <Style src="project://database/Assets/UI%20Toolkit/Style/Inventory_Scrollbar.uss?fileID=7433441132597879392&amp;guid=b96ca4749dc326e40a60a2eaf20b5fee&amp;type=3#Inventory_Scrollbar" />
     <ui:VisualElement name="root" style="padding-top: 10px; padding-right: 10px; padding-bottom: 10px; padding-left: 10px; background-image: url(&quot;project://database/Assets/Sprites/UI/UID.png?fileID=5099880613056003079&amp;guid=68ff6b684fe8b1644a48f8d6cb48a54a&amp;type=3#UID_0&quot;); -unity-background-scale-mode: scale-to-fit; width: 1020px; height: 880px;">
-        <ui:ScrollView horizontal-scroller-visibility="Hidden" vertical-scroller-visibility="Hidden" style="position: relative; bottom: -45%; width: 78%; height: 45%; align-self: center; overflow: hidden; border-bottom-left-radius: 85px; border-bottom-right-radius: 85px;">
+        <ui:ScrollView horizontal-scroller-visibility="Hidden" vertical-scroller-visibility="Hidden" style="position: relative; bottom: -45%; width: 78%; height: 45%; overflow: hidden; border-bottom-left-radius: 85px; border-bottom-right-radius: 85px; align-self: center;">
             <ui:Instance template="Temp_InventoryElement" />
             <ui:Instance template="Temp_InventoryElement" />
             <ui:Instance template="Temp_InventoryElement" />

@@ -1,4 +1,7 @@
 #unity-content-container {
     flex-wrap: wrap;
     flex-direction: row;
+    flex-grow: 1;
+    justify-content: center;
+    align-self: center;
 }
