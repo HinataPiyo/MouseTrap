@@ -47,16 +47,16 @@ public class FadeScreen : MonoBehaviour
         yield return FadeCanvasGroup(canvasGroup, canvasGroup.alpha, 0, duration);
     }
 
-    public IEnumerator FadeInToFadeOut(float duration = 1f)
-    {
-        yield return FadeInThenOut(duration);
-    }
-
-    private IEnumerator FadeInThenOut(float duration)
+    public IEnumerator FadeInToFadeOutCoroutine(float duration = 1f)
     {
         yield return FadeInCoroutine(duration);
         yield return waitBlackScreenDuration;
         yield return FadeOutCoroutine(duration);
+    }
+
+    public void FadeInToFadeOut(float duration = 1f)
+    {
+        StartCoroutine(FadeInToFadeOutCoroutine(duration));
     }
 
     private IEnumerator FadeCanvasGroup(CanvasGroup cg, float start, float end, float duration)

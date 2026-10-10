@@ -59,7 +59,7 @@ namespace Intetract.StaffRoom.Boy
 
             PlayerInputController.Instance.ChangeState(StateType.Movie);     // 演出状態に遷移する
 
-            yield return fadeScreen.FadeInToFadeOut();
+            yield return fadeScreen.FadeInToFadeOutCoroutine();  
         }
 
         void HideSubCharacter()

@@ -58,7 +58,7 @@ namespace Intetract.StaffRoom.Boy
 
             FadeScreen.Instance.OnFadeInComplete += HideCharacter;
 
-            yield return FadeScreen.Instance.FadeInToFadeOut();
+            yield return FadeScreen.Instance.FadeInToFadeOutCoroutine();
 
             // キャラクターの操作を有効にする
             Player.CharacterControlHandler.Instance.SetCharacterControlState(Character.Name.Boy, true);
