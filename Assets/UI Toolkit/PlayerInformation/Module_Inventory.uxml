@@ -3,8 +3,8 @@
     <ui:Template name="Module_IconClickedPanel" src="project://database/Assets/UI%20Toolkit/PlayerInformation/Module_IconClickedPanel.uxml?fileID=9197481963319205126&amp;guid=79ddb73f442ed164cbc0ddbc9940bc67&amp;type=3#Module_IconClickedPanel" />
     <Style src="project://database/Assets/UI%20Toolkit/Style/Inventory_Scrollbar.uss?fileID=7433441132597879392&amp;guid=b96ca4749dc326e40a60a2eaf20b5fee&amp;type=3#Inventory_Scrollbar" />
     <ui:VisualElement name="root" picking-mode="Ignore" style="align-items: center; flex-grow: 1; justify-content: center;">
-        <ui:VisualElement name="Inventory" picking-mode="Ignore" tabindex="1" style="width: 960px; height: 770px; background-image: url(&quot;project://database/Assets/Sprites/UI/UID.png?fileID=5099880613056003079&amp;guid=68ff6b684fe8b1644a48f8d6cb48a54a&amp;type=3#UID_0&quot;);">
-            <ui:ScrollView horizontal-scroller-visibility="Hidden" vertical-scroller-visibility="Hidden" style="position: relative; bottom: -44%; width: 78%; height: 45%; overflow: hidden; border-bottom-left-radius: 85px; border-bottom-right-radius: 85px; align-self: center;">
+        <ui:VisualElement name="Inventory" picking-mode="Ignore" tabindex="1" style="width: 960px; height: 770px; background-image: url(&quot;project://database/Assets/Sprites/UI/UID.png?fileID=5099880613056003079&amp;guid=68ff6b684fe8b1644a48f8d6cb48a54a&amp;type=3#UID_0&quot;); -unity-background-scale-mode: scale-to-fit;">
+            <ui:ScrollView horizontal-scroller-visibility="Hidden" vertical-scroller-visibility="Hidden" style="position: relative; bottom: -44%; width: 72%; height: 45%; overflow: hidden; border-bottom-left-radius: 85px; border-bottom-right-radius: 85px; align-self: center;">
                 <ui:Instance template="Temp_InventoryElement" />
                 <ui:Instance template="Temp_InventoryElement" />
                 <ui:Instance template="Temp_InventoryElement" />
