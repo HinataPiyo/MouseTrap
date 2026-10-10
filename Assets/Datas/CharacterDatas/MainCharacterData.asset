@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7897a3cf5545e3e4295b05fbbe54b80e, type: 3}
+  m_Name: MainCharacterData
+  m_EditorClassIdentifier: 
+  characterNameEnum: 0
+  characterName: 
+  characterIcon_Default:
+  - {fileID: 2584258683081249935, guid: cea2f7bf118845944b6eb823e1884c0c, type: 3}
+  characterIcon_Numbered:
+  - {fileID: -5177549667690741937, guid: 8ebd33ce83c6888419b14cc57d7a7a48, type: 3}
+  - {fileID: -2329873653356800019, guid: 8ebd33ce83c6888419b14cc57d7a7a48, type: 3}
+  character_Standing_Sprite: {fileID: -3602569068832979755, guid: cea2f7bf118845944b6eb823e1884c0c, type: 3}
+  animation: {fileID: 9100000, guid: 5f4803541e3f87347894d87ef413322e, type: 2}
+  specialSkillIcon: {fileID: 4444780038281957595, guid: cea2f7bf118845944b6eb823e1884c0c, type: 3}
+  specialSkillDescription: "\u8AB0\u3088\u308A\u3082\u8033\u304C\u826F\u304F\u3001\u88DC\u8074\u5668\u3092\u4ED8\u3051\u305F\u3089\u826F\u3059\u304E\u308B\u8033\u3092\u6291\u5236\u3067\u304D\u308B\u3002"

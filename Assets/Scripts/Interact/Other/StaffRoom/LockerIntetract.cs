@@ -53,15 +53,13 @@ namespace Intetract.StaffRoom.Boy
         public IEnumerator TalkToBoy()
         {
             subCharacter.SetActive(true);
-            //! ここではキャラクターの操作を有効にしない
-            // characterState.SetCharacterControlState(Character.Name.Boy, true);
             talk.OnToTalk(talkData, 1f);
 
             yield return new WaitUntil(() => talk.IsWriting == false);
 
             PlayerInputController.Instance.ChangeState(StateType.Movie);     // 演出状態に遷移する
 
-            fadeScreen.FadeInToFadeOut();
+            yield return fadeScreen.FadeInToFadeOut();
         }
 
         void HideSubCharacter()

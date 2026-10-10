@@ -12,16 +12,8 @@ namespace Player
     public class CharacterControlHandler : MonoBehaviour
     {
         public static CharacterControlHandler Instance { get; private set; }
-
-        [System.Serializable]
-        public class CharacterWithAnimator
-        {
-            public Character.Name characterName;
-            public AnimatorController animation;
-        }
-
+        [SerializeField] CharacterBaseData[] characterBaseData;
         Animator animator;
-        [SerializeField] CharacterWithAnimator[] charactersWithAnimators;
         Dictionary<Character.Name, bool> characterControlStates = new Dictionary<Character.Name, bool>();
 
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
@@ -83,11 +75,11 @@ namespace Player
         /// <returns>キャラクターに対応するAnimatorController。存在しない場合はnull。</returns>
         AnimatorController GetAnimatorControllerForCharacter(Character.Name characterName)
         {
-            foreach (var characterWithAnimator in charactersWithAnimators)
+            foreach (var character in characterBaseData)
             {
-                if (characterWithAnimator.characterName == characterName)
+                if (character.CharacterNameEnum == characterName)
                 {
-                    return characterWithAnimator.animation;
+                    return character.Animation;
                 }
             }
             return null;

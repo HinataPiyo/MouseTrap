@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbd9f38fc8b907b4aa4d0b2bee6425c1, type: 3}
+  m_Name: GlassesBoyCharacterData
+  m_EditorClassIdentifier: 
+  characterNameEnum: 2
+  characterName: 
+  characterIcon_Default:
+  - {fileID: 1162320679661291559, guid: cea2f7bf118845944b6eb823e1884c0c, type: 3}
+  characterIcon_Numbered:
+  - {fileID: -4679284675660834911, guid: 8ebd33ce83c6888419b14cc57d7a7a48, type: 3}
+  - {fileID: 4255708492693376745, guid: 8ebd33ce83c6888419b14cc57d7a7a48, type: 3}
+  character_Standing_Sprite: {fileID: -3177697440341087002, guid: cea2f7bf118845944b6eb823e1884c0c, type: 3}
+  animation: {fileID: 9100000, guid: 4f500714ac155cb4482f5118c7fde041, type: 2}
+  specialSkillIcon: {fileID: -740018466638295229, guid: cea2f7bf118845944b6eb823e1884c0c, type: 3}
+  specialSkillDescription: 
