@@ -1,6 +1,8 @@
 <ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <ui:Template name="Module_Inventory" src="project://database/Assets/UI%20Toolkit/PlayerInformation/Module_Inventory.uxml?fileID=9197481963319205126&amp;guid=32a45c6550a77e349bfc2ee2850cfa54&amp;type=3#Module_Inventory" />
-    <ui:VisualElement name="root" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0.2); display: none;">
-        <ui:Instance template="Module_Inventory" name="InventoryPanel" style="flex-grow: 1;" />
+    <ui:Template name="Module_CharacterInformation" src="project://database/Assets/UI%20Toolkit/PlayerInformation/Module_CharacterInformation.uxml?fileID=9197481963319205126&amp;guid=548850cacdfde304db1dfa81467cefd1&amp;type=3#Module_CharacterInformation" />
+    <ui:VisualElement name="root" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0.2); display: flex;">
+        <ui:Instance template="Module_Inventory" name="InventoryPanel" style="flex-grow: 1; display: none;" />
+        <ui:Instance template="Module_CharacterInformation" name="CharacterInformation" style="flex-grow: 1; display: none;" />
     </ui:VisualElement>
 </ui:UXML>

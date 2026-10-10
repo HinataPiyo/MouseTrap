@@ -4,7 +4,7 @@ using UnityEngine.InputSystem;
 
 // 基本None
 public enum StateType
-{ None = -1, PlayerInfo, Movie, Talk, Interact, RoomChange }
+{ None = -1, Inventory, CharacterInfo, Movie, Talk, Interact, RoomChange }
 
 public class PlayerInputController : MonoBehaviour
 {
@@ -19,6 +19,7 @@ public class PlayerInputController : MonoBehaviour
     public event System.Action OnInputTabKeyPressed;
     public event System.Action OnInputSpaceKeyPressed;
     public event System.Action OnInputESCKeyDisabled;
+    public event System.Action OnInputQKeyPressed;
 
     //* 属性の目的: SubsystemRegistration時にInstanceをリセットするためのメソッドであることを示す
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
@@ -78,9 +79,14 @@ public class PlayerInputController : MonoBehaviour
                     OnInputTabKeyPressed?.Invoke();
                     return;
                 }
+                if (Keyboard.current.qKey.wasPressedThisFrame)
+                {
+                    OnInputQKeyPressed?.Invoke();
+                    return;
+                }
                 break;
 
-            case StateType.PlayerInfo:
+            case StateType.Inventory:
                 if (Keyboard.current.escapeKey.wasPressedThisFrame)
                     OnInputESCKeyDisabled?.Invoke();
                 if (Keyboard.current.tabKey.wasPressedThisFrame)
@@ -89,10 +95,19 @@ public class PlayerInputController : MonoBehaviour
                     return;
                 }
                 break;
+            case StateType.CharacterInfo:
+                if (Keyboard.current.escapeKey.wasPressedThisFrame)
+                    OnInputESCKeyDisabled?.Invoke();
+                if (Keyboard.current.qKey.wasPressedThisFrame)
+                {
+                    OnInputQKeyPressed?.Invoke();
+                    return;
+                }
+                break;
         }
 
         // < -- キャラクター切り替え処理 -->
-        if (CurrentState == StateType.None || CurrentState == StateType.PlayerInfo)
+        if (CurrentState == StateType.None || CurrentState == StateType.Inventory)
         {
             if (Keyboard.current.digit1Key.wasPressedThisFrame)
             {

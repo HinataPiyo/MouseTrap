@@ -1,0 +1,24 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:Template name="Temp_CharacterIcon" src="project://database/Assets/UI%20Toolkit/PlayerInformation/Temp_CharacterIcon.uxml?fileID=9197481963319205126&amp;guid=e33b8f36e16949c42b95d117dcd31628&amp;type=3#Temp_CharacterIcon" />
+    <Style src="project://database/Assets/UI%20Toolkit/Style/Text.uss?fileID=7433441132597879392&amp;guid=5674d4550a091bd468fc8e19db31b047&amp;type=3#Text" />
+    <Style src="project://database/Assets/UI%20Toolkit/PlayerInformation/Style_CharacterInformation.uss?fileID=7433441132597879392&amp;guid=c86f7b0c5414631489ca9f7bb741658d&amp;type=3#Style_CharacterInformation" />
+    <ui:VisualElement name="root" style="flex-grow: 1; align-items: center; background-color: rgba(0, 0, 0, 0.5); justify-content: center;">
+        <ui:VisualElement name="panel" style="background-image: url(&quot;project://database/Assets/Sprites/UI/UIB.png?fileID=-5290943309596325005&amp;guid=cea2f7bf118845944b6eb823e1884c0c&amp;type=3#UIB_15&quot;); -unity-background-scale-mode: scale-to-fit; width: 960px; height: 770px;">
+            <ui:VisualElement name="select-character-view" style="flex-grow: 1; position: absolute; right: 110px; top: 120px; background-image: url(&quot;project://database/Assets/Sprites/UI/UIB.png?fileID=-2312622523296168596&amp;guid=cea2f7bf118845944b6eb823e1884c0c&amp;type=3#UIB_0&quot;); -unity-background-scale-mode: scale-to-fit; width: 330px; height: 300px; padding-top: 15px; padding-right: 15px; padding-bottom: 15px; padding-left: 15px;">
+                <ui:VisualElement name="image" style="flex-grow: 1; -unity-background-scale-mode: scale-to-fit; background-image: url(&quot;project://database/Assets/Sprites/UI/UIB.png?fileID=-3602569068832979755&amp;guid=cea2f7bf118845944b6eb823e1884c0c&amp;type=3#UIB_6&quot;);" />
+                <ui:VisualElement name="special-skill-icon" style="position: absolute; top: 15px; right: 20px; background-image: url(&quot;project://database/Assets/Sprites/UI/UIB.png?fileID=4444780038281957595&amp;guid=cea2f7bf118845944b6eb823e1884c0c&amp;type=3#UIB_1&quot;); width: 65px; height: 65px; -unity-background-scale-mode: scale-to-fit;" />
+            </ui:VisualElement>
+            <ui:VisualElement name="special-skill-description" style="position: absolute; bottom: 170px; right: 80px; background-image: url(&quot;project://database/Assets/Sprites/UI/UIB.png?fileID=-6924333889821011731&amp;guid=cea2f7bf118845944b6eb823e1884c0c&amp;type=3#UIB_10&quot;); -unity-background-scale-mode: scale-to-fit; width: 400px; height: 175px; align-items: center;">
+                <ui:Label text="ここに特技の説明が入ります。ここに特技の説明が入ります。" name="text" class="base-text" style="width: 70%; top: 31px; -unity-text-align: upper-left; font-size: 22px; white-space: normal;" />
+            </ui:VisualElement>
+            <ui:VisualElement name="character-list-container" style="position: absolute; top: 190px; left: 60px; width: 385px; height: 415px;">
+                <ui:ScrollView horizontal-scroller-visibility="Hidden" touch-scroll-type="Elastic" style="flex-grow: 1;">
+                    <ui:Instance template="Temp_CharacterIcon" />
+                    <ui:Instance template="Temp_CharacterIcon" />
+                    <ui:Instance template="Temp_CharacterIcon" />
+                    <ui:Instance template="Temp_CharacterIcon" />
+                </ui:ScrollView>
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
