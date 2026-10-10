@@ -188,7 +188,7 @@ MonoBehaviour:
   m_PanelSettings: {fileID: 11400000, guid: 4afcbcdacc2fe0341bff74eb04ded4e1, type: 2}
   m_ParentUI: {fileID: 0}
   sourceAsset: {fileID: 9197481963319205126, guid: 247cf747ce84085468a47374ea4c2555, type: 3}
-  m_SortingOrder: 0
+  m_SortingOrder: 5
   m_WorldSpaceSizeMode: 1
   m_WorldSpaceWidth: 1920
   m_WorldSpaceHeight: 1080
@@ -387,6 +387,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   temp_Button: {fileID: 9197481963319205126, guid: df91914ae52401242829c078f56c50a4, type: 3}
+  statSprites:
+  - isInteractive: 1
+    statType: 0
+    sprite: {fileID: 1466192304738836203, guid: 591b3cad56ea0894195bc6ca7e5d8c7f, type: 3}
+  - isInteractive: 0
+    statType: 0
+    sprite: {fileID: 8989186546333174464, guid: 591b3cad56ea0894195bc6ca7e5d8c7f, type: 3}
+  - isInteractive: 1
+    statType: 1
+    sprite: {fileID: 7069895513934085807, guid: 591b3cad56ea0894195bc6ca7e5d8c7f, type: 3}
+  - isInteractive: 0
+    statType: 1
+    sprite: {fileID: -20516645265494969, guid: 591b3cad56ea0894195bc6ca7e5d8c7f, type: 3}
 --- !u!1 &8475144436197757561
 GameObject:
   m_ObjectHideFlags: 0
