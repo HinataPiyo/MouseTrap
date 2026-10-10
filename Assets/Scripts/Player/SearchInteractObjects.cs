@@ -22,8 +22,10 @@ public class SearchInteractObjects : MonoBehaviour
         // Interact状態の場合
         if (inputController.CurrentState == StateType.Interact)
         {
-            Debug.Log("<color=red>No interactable object found.</color>");
+            Debug.Log("<color=red>Reset interactable object.</color>");
             ClearCurrentInteract();
+            InteractUIPanel.Instance.HideInteractPanel();
+            PlayerInputController.Instance.ChangeState(StateType.None);     // 行動制限を解除
             return;
         }
         
@@ -36,11 +38,12 @@ public class SearchInteractObjects : MonoBehaviour
             if (interactData.IsShowPanel)
             {
                 Inventory.Instance.AddItem(interactData);
-                WorldCanvasController.Instance.ToggleInteractMarkVisibility(false, transform.position);
+                InteractUIPanel.Instance.ShowInteractPanel(interactData);
                 Debug.Log($"<color=green>ShowInteractObjectPanel</color> Sprite: {interactData.Sprite}, Text: {interactData.Text}");
             }
 
             interactData.OnInteractAction?.Invoke();
+            WorldCanvasController.Instance.ToggleInteractMarkVisibility(false, transform.position);
             Debug.Log($"<color=green>Interact successful.</color> InteractData: {interactData}");
         }
 
@@ -70,11 +73,6 @@ public class SearchInteractObjects : MonoBehaviour
         WorldCanvasController.Instance.ToggleInteractMarkVisibility(true, transform.position);
     }
 
-    /// <summary>
-    /// コライダーから離れたときに呼ばれる処理
-    /// InteractMarkを非表示にする
-    /// </summary>
-    /// <param name="col"></param>
     void OnTriggerExit2D(Collider2D col)
     {
         if (col.gameObject.layer != LayerMask.NameToLayer(Layer.Interactable)) return;
