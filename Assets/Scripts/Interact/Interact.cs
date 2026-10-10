@@ -40,6 +40,8 @@ public class Interact : MonoBehaviour, IInteract
             gameObject.SetActive(false);
         }
 
+        PlayerInputController.Instance.ChangeState(StateType.Interact);
+
         return true;
     }
 }

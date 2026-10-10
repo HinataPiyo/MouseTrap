@@ -54,17 +54,30 @@ public class SceneChangeManager : MonoBehaviour
     /// 現在移動可能な部屋のリストを取得する
     /// 現在の部屋を除外した部屋リスト
     /// </summary>
-    public List<Room.Name> GetMoveableRooms()
+    public Room.Name GetNextMoveableRoom()
     {
-        List<Room.Name> moveableRooms = new List<Room.Name>();
         foreach (var kvp in canMoveRooms)
         {
-            if (kvp.Value && kvp.Key != currentRoom)
+            // 現在の位置と現在の位置から前の位置は除外する
+            if (kvp.Value && (int)kvp.Key > (int)currentRoom)
             {
-                moveableRooms.Add(kvp.Key);
+                return kvp.Key;
             }
         }
-        return moveableRooms;
+        return Room.Name.None;
+    }
+
+    public Room.Name GetBackMoveableRoom()
+    {
+        Room.Name lastRoom = Room.Name.None;
+        foreach (var kvp in canMoveRooms)
+        {
+            if (kvp.Value && (int)kvp.Key < (int)currentRoom)
+            {
+                lastRoom = kvp.Key;
+            }
+        }
+        return lastRoom;
     }
 
     public void SceneChange(Room.Name room)

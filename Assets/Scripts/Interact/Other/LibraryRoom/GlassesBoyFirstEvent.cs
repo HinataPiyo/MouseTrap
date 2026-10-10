@@ -40,7 +40,7 @@ namespace Intetract.LibraryRoom
             talk.OnToTalk(talkData, 0f);
             yield return new WaitUntil(() => !talk.IsWriting);      // 会話が終了するまで待機
 
-            fadeScreen.FadeInToFadeOut();
+            fadeScreen.FadeInToFadeOut();   
         }
 
         void CharacterChange()

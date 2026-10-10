@@ -1,16 +1,30 @@
 using System.Collections.Generic;
+using System.Net.Sockets;
 using UnityEngine;
 using UnityEngine.UIElements;
 
 public class RoomChangeUI : MonoBehaviour
 {
+    public enum StatType { None = -1, Next, Back }
+    [System.Serializable]
+    public class StatSprite
+    {
+        public bool isInteractive;
+        public StatType statType;
+        public Sprite sprite;
+    }
+
     public static RoomChangeUI Instance { get; private set; }
 
     [SerializeField] VisualTreeAsset temp_Button;
     VisualElement root;
     VisualElement container;
 
-    List<Button> buttons = new List<Button>();
+    [SerializeField] StatSprite[] statSprites;      // 配列内の各StatSpriteは、ボタンの状態に対応するスプライトとインタラクティブ状態を保持する
+
+    Button nextButton;
+    Button backButton;
+
     SceneChangeManager sceneChangeManager;
     PlayerInputController gameState;
     PlayerInputController inputTrigger;
@@ -20,6 +34,8 @@ public class RoomChangeUI : MonoBehaviour
         var uiDocument = GetComponent<UIDocument>();
         root = uiDocument.rootVisualElement.Q<VisualElement>("room-change-buttons");
         container = root.Q<VisualElement>("container");
+        nextButton = root.Q<Button>("next-button");
+        backButton = root.Q<Button>("back-button");
     }
 
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
@@ -53,11 +69,6 @@ public class RoomChangeUI : MonoBehaviour
     {
         gameState.ChangeState(StateType.RoomChange);
         root.style.display = DisplayStyle.Flex;
-        // パネルの位置を画面の中心に持ってくる
-        root.style.position = Position.Absolute;
-        root.style.left = Length.Percent(50);
-        root.style.top = Length.Percent(50);
-        root.style.translate = new StyleTranslate(new Translate(Length.Percent(-50), Length.Percent(-50)));
 
         UpdateButtons();
     }
@@ -72,30 +83,14 @@ public class RoomChangeUI : MonoBehaviour
     /// </summary>
     void UpdateButtons()
     {
-        ClearButtons();
-        var moveableRooms = sceneChangeManager.GetMoveableRooms();
-        foreach (var room in moveableRooms)
-        {
-            CreateButton(room);
-        }
-    }
+        Room.Name nextMoveableRoom = sceneChangeManager.GetNextMoveableRoom();
+        Room.Name backMoveableRoom = sceneChangeManager.GetBackMoveableRoom();
 
-    void CreateButton(Room.Name room)
-    {
-        var button = temp_Button.CloneTree();
-        container.Add(button);
+        SetButtonCallback(nextMoveableRoom, nextButton);
+        SetButtonCallback(backMoveableRoom, backButton);
 
-        var uiButton = button.Q<Button>();
-        uiButton.text = Room.RoomNameWithDisplayName[room];
-        buttons.Add(uiButton);
-
-        SetButtonCallback(room, uiButton);
-    }
-
-    void ClearButtons()
-    {
-        container.Clear();
-        buttons.Clear();
+        UpdateButtonState(nextMoveableRoom, nextButton, StatType.Next);
+        UpdateButtonState(backMoveableRoom, backButton, StatType.Back);
     }
 
     public void SetButtonCallback(Room.Name room, Button button)
@@ -104,5 +99,20 @@ public class RoomChangeUI : MonoBehaviour
         {
             sceneChangeManager.SceneChange(room);
         };
+    }
+    
+    void UpdateButtonState(Room.Name moveableRoom, Button button, StatType statType)
+    {
+        bool isInteractive = moveableRoom != Room.Name.None;
+
+        foreach (var statSprite in statSprites)
+        {
+            if (statSprite.statType != statType || statSprite.isInteractive != isInteractive) continue;
+
+            button.style.backgroundImage = new StyleBackground(statSprite.sprite);
+            button.pickingMode = isInteractive ? PickingMode.Position : PickingMode.Ignore;
+            Debug.Log($"Button: {button.name}, MoveableRoom: {moveableRoom}, StatType: {statType}");
+            break;
+        }
     }
 }

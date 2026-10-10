@@ -1,0 +1,5 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI%20Toolkit/Style/Icon.uss?fileID=7433441132597879392&amp;guid=1ceed8f6430f265418059065196d9b28&amp;type=3#Icon" />
+    <Style src="project://database/Assets/UI%20Toolkit/Style/Button.uss?fileID=7433441132597879392&amp;guid=bc8262931f90e0f45a498de32b4214bb&amp;type=3#Button" />
+    <ui:Button class="base-icon base-button" style="background-image: url(&quot;project://database/Assets/Sprites/UI/UIA.png?fileID=-5177549667690741937&amp;guid=8ebd33ce83c6888419b14cc57d7a7a48&amp;type=3#UIA_14&quot;); margin-left: 40px;" />
+</ui:UXML>

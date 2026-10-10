@@ -56,10 +56,24 @@ namespace Intetract.StaffRoom.Boy
             talk.OnToTalk(talkData_Sound, 0f);
             yield return new WaitUntil(() => !talk.IsWriting);
 
+            FadeScreen.Instance.OnFadeInComplete += HideCharacter;
+
+            yield return FadeScreen.Instance.FadeInToFadeOutCoroutine();
+
+            // キャラクターの操作を有効にする
+            Player.CharacterControlHandler.Instance.SetCharacterControlState(Character.Name.Boy, true);
+
             // 資料室と図書室に行けるようになる
             IsEventCompleted = true;
             SceneChangeManager.Instance.CanMoveRoom(Room.Name.Library, true);
             PlayerInputController.Instance.ChangeState(StateType.None);     // 演出が終了したら解除
+
+            FadeScreen.Instance.OnFadeInComplete -= HideCharacter;
+        }
+
+        void HideCharacter()
+        {
+            target.gameObject.SetActive(false);
         }
     }
 }

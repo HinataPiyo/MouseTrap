@@ -3,14 +3,13 @@ using UnityEngine.UIElements;
 
 public class InventoryUIPanel : PanelView
 {
-    public static InventoryUIPanel Instance { get; private set; }
-
     UIDocument uiDoc;
     ScrollView container;
     [SerializeField] VisualTreeAsset temp_InventoryItem;
 
     const string PANEL_NAME = "InventoryPanel";
     public event System.Action<Inventory.ItemData> OnIconClicked;
+    PlayerInputController inputController;
 
 
     void Awake()
@@ -22,21 +21,12 @@ public class InventoryUIPanel : PanelView
         container.Clear();
     }
 
-    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
-    static void ResetInstance()
+    void Start()
     {
-        Instance = null;
-    }
+        inputController = PlayerInputController.Instance;
 
-    void OnEnable()
-    {
-        if (Instance != null && Instance != this)
-        {
-            Destroy(gameObject);
-            return;
-        }
-
-        Instance = this;
+        inputController.OnInputTabKeyPressed += TogglePanelVisibility;
+        inputController.OnInputESCKeyDisabled += HideInventoryPanel;
     }
 
     public void TogglePanelVisibility()
@@ -59,12 +49,14 @@ public class InventoryUIPanel : PanelView
         RefreshInventoryElements();
         panel.style.display = DisplayStyle.Flex;
         isVisible = true;
+        PlayerInputController.Instance.ChangeState(StateType.Inventory);
     }
 
     public void HideInventoryPanel()
     {
         panel.style.display = DisplayStyle.None;
         isVisible = false;
+        PlayerInputController.Instance.ChangeState(StateType.None);
     }
 
     /// <summary>
