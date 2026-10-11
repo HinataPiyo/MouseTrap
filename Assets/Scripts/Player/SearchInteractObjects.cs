@@ -73,6 +73,24 @@ public class SearchInteractObjects : MonoBehaviour
         WorldCanvasController.Instance.ToggleInteractMarkVisibility(true, transform.position);
     }
 
+    void OnTriggerStay2D(Collider2D col)
+    {
+                if (col.gameObject.layer != LayerMask.NameToLayer(Layer.Interactable)) return;
+
+        IInteract interact = col.GetComponent<IInteract>();
+        if (interact == null || !interact.IsAvailable) return;
+
+        // すでに別のInteractオブジェクトがあれば、そちらのInteractMarkを非表示にする
+        if (closestInteract != null && closestInteract != interact)
+        {
+            WorldCanvasController.Instance.ToggleInteractMarkVisibility(false, transform.position);
+            return;
+        }
+
+        closestInteract = interact;
+        WorldCanvasController.Instance.ToggleInteractMarkVisibility(true, transform.position);
+    }
+
     void OnTriggerExit2D(Collider2D col)
     {
         if (col.gameObject.layer != LayerMask.NameToLayer(Layer.Interactable)) return;

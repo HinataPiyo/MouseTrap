@@ -3348,7 +3348,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactData: {fileID: 11400000, guid: eadbd0c16a67a2643a40061d4de48d88, type: 2}
   interactMarkPosition: {fileID: 114075652}
-  talkData_HiddenHint: {fileID: 0}
+  talkData_HiddenHint: {fileID: 11400000, guid: 3e2b989e1581b204e987cc66362ba6b0, type: 2}
 --- !u!1001 &1654772346
 PrefabInstance:
   m_ObjectHideFlags: 0

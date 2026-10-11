@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ac802a46b03e87a429a3458126233beb, type: 3}
-  m_Name: HiddenHit
+  m_Name: HiddenHint
   m_EditorClassIdentifier: 
   interactMarkType: 2
   sprite: {fileID: 0}
