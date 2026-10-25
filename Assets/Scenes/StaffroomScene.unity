@@ -1155,7 +1155,7 @@ GameObject:
   - component: {fileID: 934309334}
   - component: {fileID: 934309336}
   - component: {fileID: 934309335}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: '!! Event_First Get Memo'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1171,7 +1171,7 @@ Transform:
   m_GameObject: {fileID: 934309331}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -1.8, z: 0}
+  m_LocalPosition: {x: 0, y: -2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4603,7 +4603,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: BigDeskGroup
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2520003960052878613, guid: a9d8afb16dcb5dd45bdd9883615cb275, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -4905,7 +4906,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5679903514544085136, guid: d63411126afc659428b1f572ac77b0b4, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

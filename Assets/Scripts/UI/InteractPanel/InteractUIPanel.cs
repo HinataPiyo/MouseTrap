@@ -6,7 +6,7 @@ public class InteractUIPanel : PanelView
 {
     public static InteractUIPanel Instance { get; private set; }
     VisualElement object_view;
-    public bool IsVisible() => panel.visible;
+    public bool IsVisible() => isVisible;
 
     void Awake()
     {

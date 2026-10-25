@@ -18,14 +18,12 @@ public class FirstGetMemo : Interact
 
     protected override IEnumerator StartTalk()
     {
-        // if(interactData.IsShowPanel)
-        //     InteractUIPanel.Instance.ShowInteractPanel(interactData);
-
+        Debug.Log("<color=green>Start talk</color>");
         // ToDo パネル非表示後下の処理を行いたいのだがうまくいっていない
         yield return new WaitUntil(() => !InteractUIPanel.Instance.IsVisible());
+        Debug.Log("<color=green>Panel hidden</color>");
         yield return talk.Writing(GetTalkData(0));
 
-        if(interactData.IsDisabledAfterInteract)
-            gameObject.SetActive(false);
+        gameObject.SetActive(false);
     }
 }
