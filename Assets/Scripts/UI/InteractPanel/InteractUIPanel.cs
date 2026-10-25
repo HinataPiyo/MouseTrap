@@ -1,3 +1,4 @@
+using Player;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -5,6 +6,8 @@ public class InteractUIPanel : PanelView
 {
     public static InteractUIPanel Instance { get; private set; }
     VisualElement object_view;
+    public bool IsVisible() => panel.visible;
+
     void Awake()
     {
         UIDocument uiDocument = GetComponent<UIDocument>();
@@ -33,6 +36,7 @@ public class InteractUIPanel : PanelView
     {
         SetVisible(interactData);
         object_view.style.backgroundImage = new StyleBackground(interactData.Sprite);
+        PlayerInputController.Instance.ChangeState(StateType.Interact);
     }
 
     public void HideInteractPanel()

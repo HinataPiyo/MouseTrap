@@ -1,12 +1,14 @@
 using UnityEngine;
 
+/// <summary>
+/// 部屋移動ポイント
+/// </summary>
 public class RoomChangePoint : BlockerArea
 {
     RoomChangeUI roomChangeUI;
 
-    protected override void Start()
+    void Start()
     {
-        base.Start();
         roomChangeUI = RoomChangeUI.Instance;
     }
 
@@ -16,7 +18,7 @@ public class RoomChangePoint : BlockerArea
         {
             if(!TryBlockerAreaDisabled())
             {
-                StartTalk(0f);
+                StartCoroutine(StartTalk());
                 return;
             }
 

@@ -10,11 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ac802a46b03e87a429a3458126233beb, type: 3}
-  m_Name: HiddenHint
+  m_Name: InteractData_SpawnedBoy ToTalk
   m_EditorClassIdentifier: 
-  interactMarkType: 2
   sprite: {fileID: 0}
   text: 
   isDisabledAfterInteract: 0
   isShowPanel: 0
-  isReusable: 1
+  isReusable: 0
+  talkData:
+  - {fileID: 11400000, guid: 43875d5f46df5454cad4b41732dba220, type: 2}
+  - {fileID: 11400000, guid: f11c6667002e9974a9bf3fd1055e37de, type: 2}

@@ -84,29 +84,17 @@ public class TalkPanelController : MonoBehaviour
         inputTrigger.OnInputSpaceKeyPressed -= OnClick;
     }
 
-    /// <summary>
-    /// 会話を開始する
-    /// </summary>
-    /// <param name="data">会話データ</param>
-    /// <param name="delay">会話開始までの遅延時間</param>
-    public void OnToTalk(TalkData data, float delay = 0f)
-    {
-        if(isWriting) return;
-        
-        currentTalkData = data;
-        // キャラの操作をできなくする
-        gameState.ChangeState(StateType.Talk);
-
-        writingCoroutine = StartCoroutine(Writing(delay));
-    }
-
     void OnTalkEnd()
     {
         gameState.ChangeState(StateType.None);
     }
 
-    IEnumerator Writing(float delay = 0f)
+    public IEnumerator Writing(TalkData data, float delay = 0f)
     {
+        currentTalkData = data;
+        gameState.ChangeState(StateType.Talk);
+        isSkipping = false;
+
         yield return new WaitForSeconds(delay);
 
         root.style.display = DisplayStyle.Flex;

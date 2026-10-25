@@ -22,27 +22,21 @@ public class SearchInteractObjects : MonoBehaviour
         // Interact状態の場合
         if (inputController.CurrentState == StateType.Interact)
         {
-            Debug.Log("<color=red>Reset interactable object.</color>");
             ClearCurrentInteract();
             InteractUIPanel.Instance.HideInteractPanel();
             PlayerInputController.Instance.ChangeState(StateType.None);     // 行動制限を解除
+            Debug.Log("<color=red>Reset interactable object.</color>");
             return;
         }
         
-        if(inputController.CurrentState == StateType.Talk || inputController.CurrentState == StateType.RoomChange) return;
+        bool restrictions = inputController.CurrentState == StateType.Talk || inputController.CurrentState == StateType.RoomChange;
+        // 行動制限中は無視
+        if(restrictions) return;
 
         // Interact可能なオブジェクトを取得する
         if (closestInteract != null && closestInteract.TryInteract(out var interactData))
         {
-            // 取得後にオブジェクトを破棄する場合は、InteractMarkの表示を消す
-            if (interactData.IsShowPanel)
-            {
-                Inventory.Instance.AddItem(interactData);
-                InteractUIPanel.Instance.ShowInteractPanel(interactData);
-                Debug.Log($"<color=green>ShowInteractObjectPanel</color> Sprite: {interactData.Sprite}, Text: {interactData.Text}");
-            }
-
-            interactData.OnInteractAction?.Invoke();
+            // InteractMarkを消す処理
             WorldCanvasController.Instance.ToggleInteractMarkVisibility(false, transform.position);
             Debug.Log($"<color=green>Interact successful.</color> InteractData: {interactData}");
         }
@@ -51,10 +45,8 @@ public class SearchInteractObjects : MonoBehaviour
     }
 
     /// <summary>
-    /// コライダーに入ったときに呼ばれる処理
     /// 取得可能なInteractオブジェクトがあれば、InteractMarkを表示
     /// </summary>
-    /// <param name="col"></param>
     void OnTriggerEnter2D(Collider2D col)
     {
         if (col.gameObject.layer != LayerMask.NameToLayer(Layer.Interactable)) return;

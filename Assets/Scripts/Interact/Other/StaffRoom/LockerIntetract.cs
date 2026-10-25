@@ -5,24 +5,15 @@ namespace Intetract.StaffRoom.Boy
     
     public class LockerIntetract : Interact
     {
-        [Header("少年と話す内容")]
-        [SerializeField] TalkData talkData;
-
         [Header("表示するキャラクター")]
         [SerializeField] GameObject subCharacter;
 
         [Header("会話終了後待機する次の位置")]
         [SerializeField] NextPosition nextPosition;
 
-        TalkPanelController talk;
-        FadeScreen fadeScreen;
-
-        void Start()
+        protected override void Initialize()
         {
-            talk = TalkPanelController.Instance;
             HideSubCharacter();
-
-            fadeScreen = FadeScreen.Instance;
             fadeScreen.OnFadeInComplete += SetNextPosition;        // フェードイン完了時にサブキャラクターの位置を次の位置に設定する
         }
 
@@ -31,46 +22,47 @@ namespace Intetract.StaffRoom.Boy
             fadeScreen.OnFadeInComplete -= SetNextPosition;
         }
 
-        public override bool TryInteract(out InteractData result)
+        /// <summary>
+        /// アイテム取得処理
+        /// </summary>
+        protected override void AcquireItem()
         {
-            if (base.TryInteract(out result))
-            {
-                ShowSubCharacter();
-                IsEventCompleted = true; // イベントが完了したことを設定
-                return true;
-            }
-            return false;
+            ShowSubCharacter();
+            IsEventCompleted = true;
         }
 
         /// <summary>
         /// サブキャラクターを表示させる処理
         /// </summary>
-        public void ShowSubCharacter()
+        void ShowSubCharacter()
         {
-            StartCoroutine(TalkToBoy());
+            StartCoroutine(StartTalk());
         }
 
-        public IEnumerator TalkToBoy()
+        protected override IEnumerator StartTalk()
         {
-            subCharacter.SetActive(true);
-            talk.OnToTalk(talkData, 1f);
+            subCharacter.SetActive(true);       // 少年を表示
 
-            yield return new WaitUntil(() => talk.IsWriting == false);
+            yield return talk.Writing(GetTalkData(0), 1f);
 
+            //* プレイヤーの状態を変更する
             PlayerInputController.Instance.ChangeState(StateType.Movie);     // 演出状態に遷移する
 
-            yield return fadeScreen.FadeInToFadeOutCoroutine();  
+            yield return fadeScreen.FadeInToFadeOut();              // FadeInToOutが終わるのを待つ
         }
 
+        /// <summary>
+        /// 少年を非表示にしフェード終了後の登録済みの処理を解除する
+        /// </summary>
         void HideSubCharacter()
         {
             subCharacter.SetActive(false);
-            if (fadeScreen != null)
-            {
-                fadeScreen.OnFadeInComplete -= SetNextPosition;
-            }
+            fadeScreen.OnFadeInComplete -= SetNextPosition;
         }
 
+        /// <summary>
+        /// サブキャラの位置を次の位置に設定する
+        /// </summary>
         void SetNextPosition()
         {
             nextPosition.SetNextPosition(subCharacter);

@@ -1,25 +1,19 @@
+using System.Collections;
 using UnityEngine;
 
 
 /// <summary>
 /// 通行止めやイベントをクリアしていないと進めないエリアを管理するクラス
 /// </summary>
-public class BlockerArea : MonoBehaviour
+public class BlockerArea : Interact
 {
     [SerializeField] protected Interact[] eventObjects;
-    [SerializeField] TalkData talkData;
-
     Collider2D localCol;
-    TalkPanelController talk;
+
 
     void Awake()
     {
         localCol = GetComponent<Collider2D>();
-    }
-
-    protected virtual void Start()
-    {
-        talk = TalkPanelController.Instance;
     }
 
     protected virtual void OnCollisionEnter2D(Collision2D col)
@@ -28,16 +22,20 @@ public class BlockerArea : MonoBehaviour
 
         if (!TryBlockerAreaDisabled())
         {
-            StartTalk(0f);
+            StartCoroutine(StartTalk());
             return;
         }
 
         localCol.enabled = false;
     }
 
-    protected void StartTalk(float delay)
+    protected override void Initialize() { }
+    protected override void AcquireItem() { }
+
+    protected override IEnumerator StartTalk()
     {
-        talk.OnToTalk(talkData, delay);
+        talk.Writing(GetTalkData(0));
+        yield return null;
     }
 
     /// <summary>

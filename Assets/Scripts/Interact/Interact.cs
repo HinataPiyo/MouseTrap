@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public interface IInteract
@@ -7,14 +8,40 @@ public interface IInteract
     bool TryInteract(out InteractData interactData);
 }
 
-public class Interact : MonoBehaviour, IInteract
+public abstract class Interact : MonoBehaviour, IInteract
 {
+    [Header("アイテム情報")]
     [SerializeField] protected InteractData interactData;
+
+    [Header("マーク位置")]
     [SerializeField] Transform interactMarkPosition;
-    bool hasAcquiredItem;       // アイテムを取得したかどうかを管理するフラグ
+
+    protected TalkData GetTalkData(int index) => interactData.TalkData[index];
     public bool IsEventCompleted { get; protected set; } = false;   // イベントが完了したかどうかを管理するフラグ
+
+    bool hasAcquiredItem;       // アイテムを取得したかどうかを管理するフラグ
+    protected TalkPanelController talk;
+    protected FadeScreen fadeScreen;
+
     public Transform GetMarkPoint() => interactMarkPosition;
     public bool IsAvailable => !hasAcquiredItem;
+
+    void Start()
+    {
+        talk = TalkPanelController.Instance;
+        fadeScreen = FadeScreen.Instance;
+
+        Initialize();
+    }
+
+    // 初期化処理
+    protected abstract void Initialize();
+
+    // アイテム取得処理
+    protected abstract void AcquireItem();
+
+    // 会話開始処理
+    protected abstract IEnumerator StartTalk();
 
     /// <summary>
     /// Interact可能なオブジェクトを取得する処理
@@ -36,11 +63,18 @@ public class Interact : MonoBehaviour, IInteract
 
         // Interact後にオブジェクトを無効化するかどうかの処理
         if (interactData.IsDisabledAfterInteract)
-        {
             gameObject.SetActive(false);
+
+        //? SearchInteractObjectsの方で表示するようにしてしまっているので要検討
+        if(interactData.IsShowPanel)
+        {
+            InteractUIPanel.Instance.ShowInteractPanel(interactData);
+            Inventory.Instance.AddItem(interactData);
+            Debug.Log($"<color=green>ShowInteractObjectPanel</color> Sprite: {interactData.Sprite}, Text: {interactData.Text}");
         }
 
         PlayerInputController.Instance.ChangeState(StateType.Interact);
+        AcquireItem();
 
         return true;
     }
