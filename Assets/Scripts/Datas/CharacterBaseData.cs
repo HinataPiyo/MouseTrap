@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEditor.Animations;
 public class CharacterBaseData : ScriptableObject
 {
     [SerializeField] Character.Name characterNameEnum;
@@ -10,7 +9,7 @@ public class CharacterBaseData : ScriptableObject
     [Header("立ち絵")]
     [SerializeField] Sprite character_Standing_Sprite;
     [Header("アニメーション")]
-    [SerializeField] AnimatorController animation;
+    [SerializeField] RuntimeAnimatorController animation;
     [Header("特技")]
     [SerializeField] Sprite specialSkillIcon;
     [SerializeField] string specialSkillDescription;
@@ -20,7 +19,7 @@ public class CharacterBaseData : ScriptableObject
     public Sprite[] CharacterIcon_Default => characterIcon_Default;
     public Sprite[] CharacterIcon_Numbered => characterIcon_Numbered;
     public Sprite CharacterStandingSprite => character_Standing_Sprite;
-    public AnimatorController Animation => animation;
+    public RuntimeAnimatorController Animation => animation;
     public Sprite SpecialSkillIcon => specialSkillIcon;
     public string SpecialSkillDescription => specialSkillDescription;
 }

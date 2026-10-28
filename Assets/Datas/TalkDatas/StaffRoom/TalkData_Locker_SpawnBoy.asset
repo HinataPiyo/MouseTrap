@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3d3f61c76eb36134698696b0dd8b802c, type: 3}
-  m_Name: TalkData_Boy&Player
+  m_Name: TalkData_Locker_SpawnBoy
   m_EditorClassIdentifier: 
   entries:
   - character: {fileID: -3428360358286950702, guid: 6a00a43202827c9438de0641ac4c5c91, type: 3}

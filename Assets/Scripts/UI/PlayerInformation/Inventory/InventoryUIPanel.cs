@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class InventoryUIPanel : PanelView
+public class InventoryUIPanel : PanelView<InventoryUIPanel>
 {
     UIDocument uiDoc;
     ScrollView container;
@@ -12,7 +12,7 @@ public class InventoryUIPanel : PanelView
     PlayerInputController inputController;
 
 
-    void Awake()
+    protected override void OnSingletonAwake()
     {
         uiDoc = GetComponent<UIDocument>();
         panel = uiDoc.rootVisualElement.Q<VisualElement>(PANEL_NAME);

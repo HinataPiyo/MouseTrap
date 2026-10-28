@@ -3,10 +3,8 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
 
-public class TalkPanelController : MonoBehaviour
+public class TalkPanelController : SceneSingleton<TalkPanelController>
 {
-    public static TalkPanelController Instance { get; private set; }
-
     UIDocument uiDocument;
     [SerializeField] float writingSpeed = 0.05f;
     TalkData currentTalkData;
@@ -24,15 +22,13 @@ public class TalkPanelController : MonoBehaviour
 
     WaitForSeconds writingWait;
 
-    Coroutine writingCoroutine;
-
     bool isWriting = false;
     bool isSkipping = false;
 
     public bool IsWriting => isWriting || currentTalkData != null;
 
 
-    void Awake()
+    protected override void OnSingletonAwake()
     {
         uiDocument = GetComponent<UIDocument>();
         root = uiDocument.rootVisualElement;
@@ -43,23 +39,6 @@ public class TalkPanelController : MonoBehaviour
         writingWait = new WaitForSeconds(writingSpeed);
 
         root.style.display = DisplayStyle.None;
-    }
-
-    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
-    static void ResetInstance()
-    {
-        Instance = null;
-    }
-
-    void OnEnable()
-    {
-        if (Instance != null && Instance != this)
-        {
-            Destroy(gameObject);
-            return;
-        }
-
-        Instance = this;
     }
 
     void Start()
@@ -73,31 +52,17 @@ public class TalkPanelController : MonoBehaviour
     {
         if(currentTalkData == null) return;
 
-        if (isWriting && writingCoroutine != null)
+        if (isWriting)
         {
             isSkipping = true;
         }
     }
 
-    void OnDestroy()
+    protected override void OnSingletonDestroy()
     {
-        inputTrigger.OnInputSpaceKeyPressed -= OnClick;
-    }
-
-    /// <summary>
-    /// 会話を開始する
-    /// </summary>
-    /// <param name="data">会話データ</param>
-    /// <param name="delay">会話開始までの遅延時間</param>
-    public void OnToTalk(TalkData data, float delay = 0f)
-    {
-        if(isWriting) return;
-        
-        currentTalkData = data;
-        // キャラの操作をできなくする
-        gameState.ChangeState(StateType.Talk);
-
-        writingCoroutine = StartCoroutine(Writing(delay));
+        // Startの前に破棄された場合はnull
+        if (inputTrigger != null)
+            inputTrigger.OnInputSpaceKeyPressed -= OnClick;
     }
 
     void OnTalkEnd()
@@ -105,8 +70,12 @@ public class TalkPanelController : MonoBehaviour
         gameState.ChangeState(StateType.None);
     }
 
-    IEnumerator Writing(float delay = 0f)
+    public IEnumerator Writing(TalkData data, float delay = 0f)
     {
+        currentTalkData = data;
+        gameState.ChangeState(StateType.Talk);
+        isSkipping = false;
+
         yield return new WaitForSeconds(delay);
 
         root.style.display = DisplayStyle.Flex;
@@ -140,8 +109,6 @@ public class TalkPanelController : MonoBehaviour
             isWriting = false;
             yield return new WaitUntil(() => Keyboard.current.spaceKey.wasPressedThisFrame);
         }
-
-        writingCoroutine = null;
         currentTalkData = null;
         root.style.display = DisplayStyle.None;
 

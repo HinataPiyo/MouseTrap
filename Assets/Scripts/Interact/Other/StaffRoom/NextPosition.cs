@@ -8,57 +8,36 @@ namespace Intetract.StaffRoom.Boy
         [Header("次の位置")]
         [SerializeField] Transform nextPosition;
 
-        [Header("会話の内容")]
-        [SerializeField] TalkData talkData_ReferenceRoom;
-        [SerializeField] TalkData talkData_Sound;
-
         Transform target;
         Collider2D localCol;
-        TalkPanelController talk;
 
-        void Start()
+        // 初期化処理
+        protected override void Initialize()
         {
-            talk = TalkPanelController.Instance;
             localCol = GetComponent<Collider2D>();
 
             localCol.enabled = false;
             IsEventCompleted = true;        //! テスト
         }
 
-        public void SetNextPosition(GameObject target)
+        // 会話開始
+        protected override void AcquireItem()
         {
-            this.target = target.transform;
-            localCol.enabled = true;
-            target.transform.position = nextPosition.position;
+            StartCoroutine(StartTalk());
         }
 
-        public override bool TryInteract(out InteractData result)
-        {
-            if (base.TryInteract(out result))
-            {
-                StartCoroutine(TalkToReferenceRoomAndSound());
-                return true;
-            }
-            return false;
-        }
-
-        IEnumerator TalkToReferenceRoomAndSound()
+        protected override IEnumerator StartTalk()
         {
             // 会話を開始する処理をここに記述
-            talk.OnToTalk(talkData_ReferenceRoom, 0f);
-
-            yield return new WaitUntil(() => !talk.IsWriting);
+            yield return talk.Writing(GetTalkData(0));
             PlayerInputController.Instance.ChangeState(StateType.Movie);     // 演出状態に遷移する
 
             // 会話が終了したら物音がする(演出)
             yield return new WaitForSeconds(1f); // 物音の演出のために1秒待機
 
-            talk.OnToTalk(talkData_Sound, 0f);
-            yield return new WaitUntil(() => !talk.IsWriting);
+            yield return talk.Writing(GetTalkData(1));
 
-            FadeScreen.Instance.OnFadeInComplete += HideCharacter;
-
-            yield return FadeScreen.Instance.FadeInToFadeOutCoroutine();
+            yield return FadeScreen.Instance.FadeInToFadeOut(HideCharacter);
 
             // キャラクターの操作を有効にする
             Player.CharacterControlHandler.Instance.SetCharacterControlState(Character.Name.Boy, true);
@@ -67,13 +46,21 @@ namespace Intetract.StaffRoom.Boy
             IsEventCompleted = true;
             SceneChangeManager.Instance.CanMoveRoom(Room.Name.Library, true);
             PlayerInputController.Instance.ChangeState(StateType.None);     // 演出が終了したら解除
-
-            FadeScreen.Instance.OnFadeInComplete -= HideCharacter;
         }
 
+        // 次の位置に移動させる
+        public void SetNextPosition(GameObject target)
+        {
+            this.target = target.transform;
+            localCol.enabled = true;
+            target.transform.position = nextPosition.position;
+        }
+
+        // キャラを隠す
         void HideCharacter()
         {
-            target.gameObject.SetActive(false);
+            if (target != null)
+                target.gameObject.SetActive(false);
         }
     }
 }

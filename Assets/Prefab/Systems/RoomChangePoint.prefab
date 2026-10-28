@@ -119,6 +119,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 270e4f909f698784daaa696a77868665, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  interactData: {fileID: 11400000, guid: 5cab4115417898a47bba409dde451e89, type: 2}
+  interactMarkPosition: {fileID: 0}
   eventObjects:
   - {fileID: 0}
-  talkData: {fileID: 11400000, guid: 32219ad661fa62540bcf0e84782282a4, type: 2}

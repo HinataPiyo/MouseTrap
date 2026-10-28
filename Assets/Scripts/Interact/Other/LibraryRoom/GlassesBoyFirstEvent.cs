@@ -6,60 +6,45 @@ namespace Intetract.LibraryRoom
 
     public class GlassesBoyFirstEvent : Interact
     {
-        [Header("会話の内容")]
-        [SerializeField] TalkData talkData;
+        protected override void Initialize() { }
 
-        TalkPanelController talk;
-        CharacterControlHandler characterState;
-        FadeScreen fadeScreen;
-
-        void Start()
+        protected override void AcquireItem()
         {
-            talk = TalkPanelController.Instance;
-            characterState = CharacterControlHandler.Instance;
-            fadeScreen = FadeScreen.Instance;
-            fadeScreen.OnFadeInComplete += CharacterChange;
+            if(!IsEventCompleted)
+                StartCoroutine(StartTalk());
+            IsEventCompleted = true;
         }
 
-        public override bool TryInteract(out InteractData result)
-        {
-            if (base.TryInteract(out result))
-            {
-                if (!IsEventCompleted)
-                    StartCoroutine(StartEvent());
-
-                IsEventCompleted = true; // イベントが完了したことを設定
-                return true;
-            }
-            return false;
-        }
-
-        IEnumerator StartEvent()
+        protected override IEnumerator StartTalk()
         {
             // 会話を開始する処理をここに記述
-            talk.OnToTalk(talkData, 0f);
-            yield return new WaitUntil(() => !talk.IsWriting);      // 会話が終了するまで待機
+            yield return talk.Writing(GetTalkData(0), 0f);
 
-            fadeScreen.FadeInToFadeOut();   
+            // 暗転した時点でキャラクターを切り替える
+            yield return fadeScreen.FadeInToFadeOut(CharacterChange);
         }
 
         void CharacterChange()
         {
             // キャラクタを操作できるようにする
-            characterState.SetCharacterControlState(Character.Name.Glasses_Boy, true);
+            CharacterControlHandler.Instance.
+                SetCharacterControlState(Character.Name.Glasses_Boy, true);
 
             // プレイヤーの位置をキャラクターの位置に合わせる
             GameObject player = GameObject.FindWithTag(Layer.Player);
             player.transform.position = transform.position;
 
             // キャラクターの操作状態を変更する
-            characterState.ChangeCharacterControlState(Character.Name.Glasses_Boy);
-            gameObject.SetActive(false);
+            CharacterControlHandler.Instance.
+                ChangeCharacterControlState(Character.Name.Glasses_Boy);
 
-            if(fadeScreen != null)
-            {
-                fadeScreen.OnFadeInComplete -= CharacterChange;
-            }
+            Invisible();
+        }
+
+        void Invisible()
+        {
+            GetComponent<Collider2D>().enabled = false;
+            GetComponentInChildren<SpriteRenderer>().enabled = false;
         }
     }
 }

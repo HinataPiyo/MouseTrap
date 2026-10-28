@@ -10,9 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ac802a46b03e87a429a3458126233beb, type: 3}
-  m_Name: Locker_SpawnBoy
+  m_Name: InteractData_BlockerArea
   m_EditorClassIdentifier: 
-  interactMarkType: 2
   sprite: {fileID: 0}
   text: 
   isDisabledAfterInteract: 0
+  isShowPanel: 0
+  isReusable: 0
+  talkData:
+  - {fileID: 11400000, guid: 4cd02fe606ad12845af2ef1da0237ec9, type: 2}

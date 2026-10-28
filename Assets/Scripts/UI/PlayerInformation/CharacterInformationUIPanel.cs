@@ -1,11 +1,11 @@
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class CharacterInformationUIPanel : PanelView
+public class CharacterInformationUIPanel : PanelView<CharacterInformationUIPanel>
 {
     UIDocument uiDoc;
 
-    void Awake()
+    protected override void OnSingletonAwake()
     {
         uiDoc = GetComponent<UIDocument>();
         panel = uiDoc.rootVisualElement.Q<VisualElement>("CharacterInformation");

@@ -8,8 +8,10 @@
                 <ui:Button name="inventory-backpack-button" class="base-icon" style="background-image: url(&quot;project://database/Assets/Sprites/UI/UIA.png?fileID=-3218981894290647282&amp;guid=8ebd33ce83c6888419b14cc57d7a7a48&amp;type=3#UIA_5&quot;); -unity-background-scale-mode: scale-to-fit;" />
                 <ui:Button name="character-button" class="base-icon" style="background-image: url(&quot;project://database/Assets/Sprites/UI/UIA.png?fileID=-6392337855267190696&amp;guid=8ebd33ce83c6888419b14cc57d7a7a48&amp;type=3#UIA_4&quot;); -unity-background-scale-mode: scale-to-fit;" />
             </ui:VisualElement>
-            <ui:VisualElement name="mission-view" style="position: absolute; top: 0; left: 0; width: 500px; height: 75px;">
-                <ui:Button name="mission-button" style="border-left-color: rgba(255, 255, 255, 0); border-right-color: rgba(255, 255, 255, 0); border-top-color: rgba(255, 255, 255, 0); border-bottom-color: rgba(255, 255, 255, 0); border-top-width: 0; border-right-width: 0; border-bottom-width: 0; border-left-width: 0; background-color: rgba(255, 255, 255, 0); background-image: url(&quot;project://database/Assets/Sprites/UI/UIA.png?fileID=8359669229818307921&amp;guid=8ebd33ce83c6888419b14cc57d7a7a48&amp;type=3#UIA_0&quot;); -unity-background-scale-mode: scale-to-fit; flex-grow: 1;" />
+            <ui:VisualElement name="mission-view" style="position: absolute; top: 0; left: 0; width: 613px; height: 75px;">
+                <ui:Button name="mission-button" style="border-left-color: rgba(255, 255, 255, 0); border-right-color: rgba(255, 255, 255, 0); border-top-color: rgba(255, 255, 255, 0); border-bottom-color: rgba(255, 255, 255, 0); border-top-width: 0; border-right-width: 0; border-bottom-width: 0; border-left-width: 0; background-color: rgba(255, 255, 255, 0); background-image: url(&quot;project://database/Assets/Sprites/UI/UIA.png?fileID=8359669229818307921&amp;guid=8ebd33ce83c6888419b14cc57d7a7a48&amp;type=3#UIA_0&quot;); -unity-background-scale-mode: scale-and-crop; flex-grow: 1; justify-content: center;">
+                    <ui:Label text="ミッション内容を表示" name="mission-text" class="base-text" style="font-size: 26px; padding-right: 22px; -unity-font-style: bold;" />
+                </ui:Button>
             </ui:VisualElement>
             <ui:VisualElement name="bottom-view" style="flex-grow: 1; position: absolute; bottom: 0; right: 0;">
                 <ui:VisualElement name="ability-view" style="flex-grow: 1; flex-direction: row; align-items: center; justify-content: center;">

@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5221425013680491101}
   - component: {fileID: 1688451372620070877}
-  - component: {fileID: 5679903514544085136}
+  - component: {fileID: 2954309226185604306}
   m_Layer: 7
   m_Name: KeyBox
   m_TagString: Untagged
@@ -81,7 +81,7 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.2754631, y: 0.3329664}
   m_EdgeRadius: 0
---- !u!114 &5679903514544085136
+--- !u!114 &2954309226185604306
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -90,11 +90,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 97884606574817174}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2e099b432002ffa4c9299a972eae7812, type: 3}
+  m_Script: {fileID: 11500000, guid: 4955d0e6931da8b47a180fc509619245, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactData: {fileID: 11400000, guid: 60a8eb468306fcc4ea6657fe4fc21620, type: 2}
-  interactMarkPosition: {fileID: 144801997056262042}
+  interactData: {fileID: 0}
+  interactMarkPosition: {fileID: 0}
 --- !u!1 &2370977796196954581
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class PanelView : MonoBehaviour
+public abstract class PanelView<TSelf> : SceneSingleton<TSelf> where TSelf : PanelView<TSelf>
 {
     protected VisualElement panel;
     protected bool isVisible = false;
