@@ -2,34 +2,16 @@ using Player;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class InteractUIPanel : PanelView
+public class InteractUIPanel : PanelView<InteractUIPanel>
 {
-    public static InteractUIPanel Instance { get; private set; }
     VisualElement object_view;
     public bool IsVisible() => isVisible;
 
-    void Awake()
+    protected override void OnSingletonAwake()
     {
         UIDocument uiDocument = GetComponent<UIDocument>();
         panel = uiDocument.rootVisualElement.Q<VisualElement>("interact-object-container");
         object_view = panel.Q<VisualElement>("image");
-    }
-
-    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
-    static void ResetInstance()
-    {
-        Instance = null;
-    }
-
-    void OnEnable()
-    {
-        if (Instance != null && Instance != this)
-        {
-            Destroy(gameObject);
-            return;
-        }
-
-        Instance = this;
     }
 
     public void ShowInteractPanel(InteractData interactData)

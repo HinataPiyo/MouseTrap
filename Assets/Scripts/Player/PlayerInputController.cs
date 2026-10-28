@@ -6,10 +6,8 @@ using UnityEngine.InputSystem;
 public enum StateType
 { None = -1, Inventory, CharacterInfo, Movie, Talk, Interact, RoomChange }
 
-public class PlayerInputController : MonoBehaviour
+public class PlayerInputController : SceneSingleton<PlayerInputController>
 {
-    public static PlayerInputController Instance { get; private set; }
-
     CharacterControlHandler characterControlHandler;
     public StateType CurrentState { get; private set; } = StateType.None;
 
@@ -21,22 +19,8 @@ public class PlayerInputController : MonoBehaviour
     public event System.Action OnInputESCKeyDisabled;
     public event System.Action OnInputQKeyPressed;
 
-    //* 属性の目的: SubsystemRegistration時にInstanceをリセットするためのメソッドであることを示す
-    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
-    static void ResetInstance()
+    protected override void OnSingletonAwake()
     {
-        Instance = null;
-    }
-
-    void OnEnable()
-    {
-        if (Instance != null && Instance != this)
-        {
-            Destroy(gameObject);
-            return;
-        }
-
-        Instance = this;
         ChangeState(StateType.None);
     }
 

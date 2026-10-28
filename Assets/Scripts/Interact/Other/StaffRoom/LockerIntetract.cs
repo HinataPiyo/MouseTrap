@@ -14,12 +14,6 @@ namespace Intetract.StaffRoom.Boy
         protected override void Initialize()
         {
             HideSubCharacter();
-            fadeScreen.OnFadeInComplete += SetNextPosition;        // フェードイン完了時にサブキャラクターの位置を次の位置に設定する
-        }
-
-        void OnDestroy()
-        {
-            fadeScreen.OnFadeInComplete -= SetNextPosition;
         }
 
         /// <summary>
@@ -48,16 +42,16 @@ namespace Intetract.StaffRoom.Boy
             //* プレイヤーの状態を変更する
             PlayerInputController.Instance.ChangeState(StateType.Movie);     // 演出状態に遷移する
 
-            yield return fadeScreen.FadeInToFadeOut();              // FadeInToOutが終わるのを待つ
+            // 暗転した時点でサブキャラクターの位置を次の位置に設定する
+            yield return fadeScreen.FadeInToFadeOut(SetNextPosition);
         }
 
         /// <summary>
-        /// 少年を非表示にしフェード終了後の登録済みの処理を解除する
+        /// 少年を非表示にする
         /// </summary>
         void HideSubCharacter()
         {
             subCharacter.SetActive(false);
-            fadeScreen.OnFadeInComplete -= SetNextPosition;
         }
 
         /// <summary>

@@ -2,38 +2,16 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class Inventory : MonoBehaviour
+public class Inventory : SceneSingleton<Inventory>
 {
-    public static Inventory Instance { get; private set; }
-    List<ItemData> items = new List<ItemData>();
-
-    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
-    static void ResetInstance()
-    {
-        if (Instance != null)
-        {
-            Instance.items.Clear();
-        }
-
-        Instance = null;
-    }
+    // 所持品はシーンをまたいで保持するため、GameSessionに置く
+    List<ItemData> items => GameSession.InventoryItems;
 
     [System.Serializable]
     public class ItemData
     {
         public InteractData item;
         public int count;
-    }
-
-    void OnEnable()
-    {
-        if (Instance != null && Instance != this)
-        {
-            Destroy(gameObject);
-            return;
-        }
-
-        Instance = this;
     }
     
     public void AddItem(InteractData message)

@@ -216,7 +216,7 @@ GameObject:
   - component: {fileID: 3701714436599818973}
   - component: {fileID: 1398291443077358049}
   - component: {fileID: 24135429284569318}
-  - component: {fileID: 2520003960052878613}
+  - component: {fileID: 8973377296679783624}
   m_Layer: 7
   m_Name: Picture
   m_TagString: Untagged
@@ -341,7 +341,7 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.24303818, y: 0.1889981}
   m_EdgeRadius: 0
---- !u!114 &2520003960052878613
+--- !u!114 &8973377296679783624
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -350,7 +350,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5618067024733956197}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2e099b432002ffa4c9299a972eae7812, type: 3}
+  m_Script: {fileID: 11500000, guid: c71b9036db40e03419174ea1a74df137, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   interactData: {fileID: 11400000, guid: c1f29b83cc2c13a49bfe13056783a72c, type: 2}

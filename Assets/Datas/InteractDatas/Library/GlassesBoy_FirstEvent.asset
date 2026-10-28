@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac802a46b03e87a429a3458126233beb, type: 3}
   m_Name: GlassesBoy_FirstEvent
   m_EditorClassIdentifier: 
-  interactMarkType: 2
   sprite: {fileID: 0}
   text: 
   isDisabledAfterInteract: 0
   isShowPanel: 0
   isReusable: 0
+  talkData:
+  - {fileID: 11400000, guid: 098db441e56c7ba449a0e7640809ed49, type: 2}

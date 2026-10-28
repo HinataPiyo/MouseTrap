@@ -1,15 +1,8 @@
 using UnityEngine;
 
-public class MissionManager : MonoBehaviour
+public class MissionManager : SceneSingleton<MissionManager>
 {
-    public static MissionManager Instance { get; private set; }
-
     [SerializeField] MissionUIHandler missionUIHandler;
-
-    void Awake()
-    {
-        if(Instance == null) Instance = this;
-    }
 
     /// <summary>
     /// missionのデータを設定する

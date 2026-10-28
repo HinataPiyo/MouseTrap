@@ -26,12 +26,40 @@ public abstract class Interact : MonoBehaviour, IInteract
     public Transform GetMarkPoint() => interactMarkPosition;
     public bool IsAvailable => !hasAcquiredItem;
 
+    string stateKey;
+
     void Start()
     {
         talk = TalkPanelController.Instance;
         fadeScreen = FadeScreen.Instance;
+        stateKey = InteractStateStore.CreateKey(gameObject);
 
         Initialize();
+        RestoreState();
+    }
+
+    // シーン破棄時に状態を保存する
+    protected virtual void OnDestroy()
+    {
+        if (stateKey == null) return;
+
+        InteractStateStore.Save(stateKey, new InteractStateStore.State
+        {
+            HasAcquiredItem = hasAcquiredItem,
+            IsEventCompleted = IsEventCompleted,
+            IsDeactivated = !gameObject.activeSelf
+        });
+    }
+
+    void RestoreState()
+    {
+        if (!InteractStateStore.TryGet(stateKey, out var state)) return;
+
+        hasAcquiredItem = state.HasAcquiredItem;
+        IsEventCompleted |= state.IsEventCompleted;
+
+        if (state.IsDeactivated)
+            gameObject.SetActive(false);
     }
 
     // 初期化処理

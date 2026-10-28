@@ -1,80 +1,81 @@
-using UnityEngine;
+using System;
 using System.Collections;
-public class FadeScreen : MonoBehaviour
+using UnityEngine;
+
+/// <summary>
+/// 画面のフェードを行う。
+/// 暗転中に行いたい処理は、イベント購読ではなく <see cref="FadeInToFadeOut"/> の引数で渡す。
+/// </summary>
+public class FadeScreen : SceneSingleton<FadeScreen>
 {
-    public static FadeScreen Instance { get; private set; }
     [SerializeField] CanvasGroup canvasGroup;
 
-    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
-    static void ResetInstance()
-    {
-        Instance = null;
-    }
-
-    public event System.Action OnFadeInComplete;
-    public event System.Action OnFadeOutComplete;
-
     const float WAIT_BLACK_SCREEN_DURATION = 1f;
-    WaitForSeconds waitBlackScreenDuration = new WaitForSeconds(WAIT_BLACK_SCREEN_DURATION);
+    readonly WaitForSeconds waitBlackScreenDuration = new WaitForSeconds(WAIT_BLACK_SCREEN_DURATION);
 
-    void OnEnable()
+    protected override void OnSingletonAwake()
     {
-        if (Instance != null && Instance != this)
+        // 部屋移動直後は暗転した状態から始める
+        if (GameSession.FadeOutPending)
         {
-            Destroy(gameObject);
-            return;
+            canvasGroup.alpha = 1f;
+            canvasGroup.blocksRaycasts = true;
         }
-
-        Instance = this;
-    }
-    void FadeIn(float duration = 1f)
-    {
-        StartCoroutine(FadeInCoroutine(duration));
     }
 
-    void FadeOut(float duration = 1f)
+    void Start()
     {
-        StartCoroutine(FadeOutCoroutine(duration));
+        if (!GameSession.FadeOutPending) return;
+
+        GameSession.FadeOutPending = false;
+        StartCoroutine(FadeOutOnSceneStart());
+    }
+
+    IEnumerator FadeOutOnSceneStart()
+    {
+        PlayerInputController input = PlayerInputController.Instance;
+        input.ChangeState(StateType.Movie);
+
+        yield return FadeOutCoroutine();
+
+        if (input.CurrentState == StateType.Movie)
+            input.ChangeState(StateType.None);
     }
 
     public IEnumerator FadeInCoroutine(float duration = 1f)
     {
-        yield return FadeCanvasGroup(canvasGroup, canvasGroup.alpha, 1, duration);
+        yield return FadeCanvasGroup(canvasGroup.alpha, 1f, duration);
     }
 
     public IEnumerator FadeOutCoroutine(float duration = 1f)
     {
-        yield return FadeCanvasGroup(canvasGroup, canvasGroup.alpha, 0, duration);
+        yield return FadeCanvasGroup(canvasGroup.alpha, 0f, duration);
     }
 
-    public IEnumerator FadeInToFadeOut(float duration = 1f)
+    /// <summary>
+    /// 暗転して、完全に暗くなった時点で onBlackScreen を呼び、待機後にフェードアウトする
+    /// </summary>
+    /// <param name="onBlackScreen">画面が真っ暗になった瞬間に一度だけ呼ばれる処理</param>
+    public IEnumerator FadeInToFadeOut(Action onBlackScreen = null, float duration = 1f)
     {
         yield return FadeInCoroutine(duration);
+        onBlackScreen?.Invoke();
         yield return waitBlackScreenDuration;
         yield return FadeOutCoroutine(duration);
     }
-    
-    private IEnumerator FadeCanvasGroup(CanvasGroup cg, float start, float end, float duration)
+
+    IEnumerator FadeCanvasGroup(float start, float end, float duration)
     {
-        cg.blocksRaycasts = true;
+        canvasGroup.blocksRaycasts = true;
         float elapsed = 0f;
         while (elapsed < duration)
         {
             elapsed += Time.deltaTime;
-            cg.alpha = Mathf.Lerp(start, end, elapsed / duration);
+            canvasGroup.alpha = Mathf.Lerp(start, end, elapsed / duration);
             yield return null;
         }
 
-        cg.alpha = end;
-
-        if (end == 1)
-        {
-            OnFadeInComplete?.Invoke();
-        }
-        else if (end == 0)
-        {
-            OnFadeOutComplete?.Invoke();
-        }
-        cg.blocksRaycasts = false;
+        canvasGroup.alpha = end;
+        canvasGroup.blocksRaycasts = end > 0f;
     }
 }

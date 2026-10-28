@@ -3,7 +3,7 @@ using System.Net.Sockets;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class RoomChangeUI : MonoBehaviour
+public class RoomChangeUI : SceneSingleton<RoomChangeUI>
 {
     public enum StatType { None = -1, Next, Back }
     [System.Serializable]
@@ -14,8 +14,6 @@ public class RoomChangeUI : MonoBehaviour
         public Sprite sprite;
     }
 
-    public static RoomChangeUI Instance { get; private set; }
-
     [SerializeField] VisualTreeAsset temp_Button;
     VisualElement root;
     VisualElement container;
@@ -24,12 +22,14 @@ public class RoomChangeUI : MonoBehaviour
 
     Button nextButton;
     Button backButton;
+    Room.Name nextRoom = Room.Name.None;
+    Room.Name backRoom = Room.Name.None;
 
     SceneChangeManager sceneChangeManager;
     PlayerInputController gameState;
     PlayerInputController inputTrigger;
 
-    void Awake()
+    protected override void OnSingletonAwake()
     {
         var uiDocument = GetComponent<UIDocument>();
         root = uiDocument.rootVisualElement.Q<VisualElement>("room-change-buttons");
@@ -38,28 +38,15 @@ public class RoomChangeUI : MonoBehaviour
         backButton = root.Q<Button>("back-button");
     }
 
-    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
-    static void ResetInstance()
-    {
-        Instance = null;
-    }
-
-    void OnEnable()
-    {
-        if (Instance != null && Instance != this)
-        {
-            Destroy(gameObject);
-            return;
-        }
-
-        Instance = this;
-    }
-
     void Start()
     {
         sceneChangeManager = SceneChangeManager.Instance;
         gameState = PlayerInputController.Instance;
         inputTrigger = PlayerInputController.Instance;
+
+        // クリック処理は一度だけ登録し、移動先は表示のたびに更新する
+        nextButton.clicked += () => sceneChangeManager.SceneChange(nextRoom);
+        backButton.clicked += () => sceneChangeManager.SceneChange(backRoom);
 
         inputTrigger.OnInputESCKeyDisabled += HidePanel;
         HidePanel();
@@ -83,22 +70,11 @@ public class RoomChangeUI : MonoBehaviour
     /// </summary>
     void UpdateButtons()
     {
-        Room.Name nextMoveableRoom = sceneChangeManager.GetNextMoveableRoom();
-        Room.Name backMoveableRoom = sceneChangeManager.GetBackMoveableRoom();
+        nextRoom = sceneChangeManager.GetNextMoveableRoom();
+        backRoom = sceneChangeManager.GetBackMoveableRoom();
 
-        SetButtonCallback(nextMoveableRoom, nextButton);
-        SetButtonCallback(backMoveableRoom, backButton);
-
-        UpdateButtonState(nextMoveableRoom, nextButton, StatType.Next);
-        UpdateButtonState(backMoveableRoom, backButton, StatType.Back);
-    }
-
-    public void SetButtonCallback(Room.Name room, Button button)
-    {
-        button.clicked += () =>
-        {
-            sceneChangeManager.SceneChange(room);
-        };
+        UpdateButtonState(nextRoom, nextButton, StatType.Next);
+        UpdateButtonState(backRoom, backButton, StatType.Back);
     }
     
     void UpdateButtonState(Room.Name moveableRoom, Button button, StatType statType)

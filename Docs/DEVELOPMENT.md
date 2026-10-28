@@ -27,6 +27,16 @@ Unity Hubで指定バージョンのUnityを使ってリポジトリを開きま
 
 ## 主要システム
 
+### アーキテクチャ（シングルトン・状態保持・フェード）
+
+各シーンは、RoomControl・Player・Fade Canvasなどの管理オブジェクトを自前で持ちます。`DontDestroyOnLoad`は使いません。
+
+- **シーン単位の管理クラス**は`SceneSingleton<T>`（[SceneSingleton.cs](../Assets/Scripts/Core/SceneSingleton.cs)）を継承します。`Instance`は`Awake`で登録され、同一シーン内の重複は破棄されます。継承先で`Awake`/`OnDestroy`を定義するとUnityの仕様で基底の処理が呼ばれなくなるため、代わりに`OnSingletonAwake()`/`OnSingletonDestroy()`をoverrideします。他クラスが`Instance`を参照するのは`Start`以降にしてください。
+- **シーンをまたぐ状態**は`GameSession`（[GameSession.cs](../Assets/Scripts/Core/GameSession.cs)）に置きます。解放キャラ・現在のキャラ・解放済みの部屋・インベントリ・フェードアウト待ちフラグを保持し、起動時に`Reset()`で初期化されます。セーブ機能を作る場合の対象もここです。Interactオブジェクトごとの完了状態は`InteractStateStore`が保持します。
+- **フェード後の処理**はグローバルイベントではなく、`FadeScreen.FadeInToFadeOut(Action onBlackScreen, float duration)`の引数で渡します。完全に暗転した時点で一度だけ呼ばれるため、購読・解除は不要です。
+- **シーン遷移**は`SceneChangeManager.SceneChange`が行います。多重実行は防止されており、遷移先のフェードアウトは`GameSession.FadeOutPending`をもとに次のシーンの`FadeScreen`が実行します。
+- ボタンの`clicked`などのイベントは、表示のたびではなく一度だけ登録します（`RoomChangeUI`を参照）。
+
 ### 入力と移動
 
 `PlayerInputController`がゲーム状態に応じてキー入力イベントを発行し、UIやイベント側が購読します。`Movement`はWASDを読み取り、会話・インタラクト・部屋移動・演出中は移動を止めます。キー割り当てを変える場合は、入力を直接読む箇所も含めて確認してください。
@@ -45,11 +55,11 @@ Unity Hubで指定バージョンのUnityを使ってリポジトリを開きま
 
 ### キャラクター
 
-キャラクター名や部屋名の定義は`CoreConstants.cs`、キャラクターごとの表示・アニメーション情報は`CharacterBaseData`と`Assets/Datas/CharacterDatas/`のアセットで管理します。操作可能状態は`CharacterControlHandler`が保持します。新しいキャラクターを追加する場合は、定義、データアセット、アニメーション、プレイヤー入力、解放イベント、UI表示を一緒に確認してください。
+キャラクター名や部屋名の定義は`CoreConstants.cs`、キャラクターごとの表示・アニメーション情報は`CharacterBaseData`と`Assets/Datas/CharacterDatas/`のアセットで管理します。操作可能状態と現在のキャラクターは`GameSession`が保持し、`CharacterControlHandler`が切り替えと見た目の反映を行います。新しいキャラクターを追加する場合は、定義、データアセット、アニメーション、プレイヤー入力、解放イベント、UI表示を一緒に確認してください。
 
 ### 部屋移動と通行止め
 
-`RoomChangePoint`と`BlockerArea`は、関連イベントの完了状態を調べて通行可否を決めます。`SceneChangeManager`が部屋の移動可否とシーン遷移を管理し、`CoreConstants.cs`の部屋名・シーン名対応を参照します。起動時に図書室を移動可能にする設定にはテスト用の注記があるため、正式な進行条件に合わせて確認してください。
+`RoomChangePoint`と`BlockerArea`は、関連イベントの完了状態を調べて通行可否を決めます。`SceneChangeManager`が部屋の移動可否（`GameSession.UnlockedRooms`）とシーン遷移を管理し、`CoreConstants.cs`の部屋名・シーン名対応を参照します。`GameSession.Reset`で図書室を移動可能にする設定にはテスト用の注記があるため、正式な進行条件に合わせて確認してください。
 
 ### ミッション
 

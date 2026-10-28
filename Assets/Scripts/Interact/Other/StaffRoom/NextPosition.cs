@@ -1,7 +1,6 @@
 namespace Intetract.StaffRoom.Boy
 {
     using System.Collections;
-    using UnityEditor.MPE;
     using UnityEngine;
     
     public class NextPosition : Interact
@@ -38,8 +37,7 @@ namespace Intetract.StaffRoom.Boy
 
             yield return talk.Writing(GetTalkData(1));
 
-            FadeScreen.Instance.OnFadeInComplete += HideCharacter;
-            yield return FadeScreen.Instance.FadeInToFadeOut();
+            yield return FadeScreen.Instance.FadeInToFadeOut(HideCharacter);
 
             // キャラクターの操作を有効にする
             Player.CharacterControlHandler.Instance.SetCharacterControlState(Character.Name.Boy, true);
@@ -48,8 +46,6 @@ namespace Intetract.StaffRoom.Boy
             IsEventCompleted = true;
             SceneChangeManager.Instance.CanMoveRoom(Room.Name.Library, true);
             PlayerInputController.Instance.ChangeState(StateType.None);     // 演出が終了したら解除
-
-            FadeScreen.Instance.OnFadeInComplete -= HideCharacter;
         }
 
         // 次の位置に移動させる
@@ -63,7 +59,8 @@ namespace Intetract.StaffRoom.Boy
         // キャラを隠す
         void HideCharacter()
         {
-            target.gameObject.SetActive(false);
+            if (target != null)
+                target.gameObject.SetActive(false);
         }
     }
 }

@@ -4866,6 +4866,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: KeyBox
       objectReference: {fileID: 0}
+    - target: {fileID: 2954309226185604306, guid: d63411126afc659428b1f572ac77b0b4, type: 3}
+      propertyPath: interactData
+      value: 
+      objectReference: {fileID: 11400000, guid: 60a8eb468306fcc4ea6657fe4fc21620, type: 2}
+    - target: {fileID: 2954309226185604306, guid: d63411126afc659428b1f572ac77b0b4, type: 3}
+      propertyPath: interactMarkPosition
+      value: 
+      objectReference: {fileID: 3463655518284340621}
     - target: {fileID: 5221425013680491101, guid: d63411126afc659428b1f572ac77b0b4, type: 3}
       propertyPath: m_LocalPosition.x
       value: 3.193
@@ -4912,6 +4920,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d63411126afc659428b1f572ac77b0b4, type: 3}
+--- !u!4 &3463655518284340621 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 144801997056262042, guid: d63411126afc659428b1f572ac77b0b4, type: 3}
+  m_PrefabInstance: {fileID: 3463655518284340620}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4347827863565879328
 PrefabInstance:
   m_ObjectHideFlags: 0

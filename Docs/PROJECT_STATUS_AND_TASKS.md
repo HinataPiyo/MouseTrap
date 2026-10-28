@@ -88,7 +88,7 @@ Scripts、Build Settings、3つのSceneファイル、関連Prefab、UI Toolkit�
 | 作品の正式な物語、必要なイベント順、最終目的・クリア条件 | リポジトリDocsとデータだけでは完成仕様を確定できない。 |
 | `stage03`を製品ルートに含めるか | [stage03.unity](../Assets/Scenes/stage03.unity)は存在するがBuild Settings未登録で、[CoreConstants.cs](../Assets/Scripts/Core/CoreConstants.cs)にも部屋対応がない。 |
 | 不良少年・ツインテール少女を実際にプレイ可能にするか | enumと入力分岐はあるが、Playerのデータ参照と解放イベントがない。意図した機能か確認が必要。 |
-| 遷移後のSingleton・Inventory・現在位置の保持 | SceneChangeManagerはPrefab階層の子として配置されながら`DontDestroyOnLoad(gameObject)`を呼ぶ。Unityでは永続化対象はルートGameObjectである必要があるため、Scene遷移時の破棄・再生成・状態喪失・フェード停止をEditorで確認する必要がある。 |
+| 遷移後のSingleton・Inventory・現在位置の保持 | `SceneSingleton`と`GameSession`による設計へ置き換え済み（[DEVELOPMENT.md](./DEVELOPMENT.md)参照）。ビルドは通るが、複数回の部屋移動でのFade・状態保持・二重ロードが起きないことのEditor確認は未実施。 |
 | Editor以外のPlayerビルド成功 | [CharacterControlHandler.cs](../Assets/Scripts/Player/CharacterControlHandler.cs)と[CharacterBaseData.cs](../Assets/Scripts/Datas/CharacterBaseData.cs)が`UnityEditor.Animations.AnimatorController`を実行時スクリプトから参照する。PlayerビルドでEditor専用API参照が障害になる可能性が高いが、この調査ではビルド未実施。 |
 | 画面レイアウト、Collider/Layer設定、会話イベントの実際の動作 | Scene/Prefabの参照は確認したが、Editor上でロード・実行していない。 |
 

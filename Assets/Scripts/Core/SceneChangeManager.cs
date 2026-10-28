@@ -1,45 +1,19 @@
+using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class SceneChangeManager : MonoBehaviour
+/// <summary>
+/// 部屋移動を行う。移動可否の状態は <see cref="GameSession"/> が持つ。
+/// </summary>
+public class SceneChangeManager : SceneSingleton<SceneChangeManager>
 {
-    public static SceneChangeManager Instance { get; private set; }
     Room.Name currentRoom = Room.Name.None;
+    bool isChanging;
 
-    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
-    static void ResetInstance()
+    protected override void OnSingletonAwake()
     {
-        Instance = null;
-    }
-
-    // 移動可能な部屋を管理する
-    Dictionary<Room.Name, bool> canMoveRooms = new Dictionary<Room.Name, bool>();
-    PlayerInputController gameState;
-    FadeScreen fadeScreen;
-
-    void OnEnable()
-    {
-        if (Instance != null && Instance != this)
-        {
-            Destroy(gameObject);
-            return;
-        }
-
-        Instance = this;
-        DontDestroyOnLoad(gameObject);
-
-        currentRoom = Room.GetCurrentRoom(SceneManager.GetActiveScene().name);
-        canMoveRooms.Clear();
-        CanMoveRoom(Room.Name.Staffroom, true);
-        CanMoveRoom(Room.Name.Library, true);       //! テスト
-    }
-
-    void Start()
-    {
-        gameState = PlayerInputController.Instance;
-        fadeScreen = FadeScreen.Instance;
+        currentRoom = Room.GetCurrentRoom(gameObject.scene.name);
     }
 
     /// <summary>
@@ -47,54 +21,61 @@ public class SceneChangeManager : MonoBehaviour
     /// </summary>
     public void CanMoveRoom(Room.Name room, bool canMove)
     {
-        canMoveRooms[room] = canMove;
+        if (room == Room.Name.None) return;
+
+        if (canMove)
+            GameSession.UnlockedRooms.Add(room);
+        else
+            GameSession.UnlockedRooms.Remove(room);
     }
 
     /// <summary>
-    /// 現在移動可能な部屋のリストを取得する
-    /// 現在の部屋を除外した部屋リスト
+    /// 現在の部屋より後ろで、移動可能な最も近い部屋を取得する
     /// </summary>
     public Room.Name GetNextMoveableRoom()
     {
-        foreach (var kvp in canMoveRooms)
+        foreach (Room.Name room in Enum.GetValues(typeof(Room.Name)))
         {
-            // 現在の位置と現在の位置から前の位置は除外する
-            if (kvp.Value && (int)kvp.Key > (int)currentRoom)
-            {
-                return kvp.Key;
-            }
+            if (room > currentRoom && GameSession.UnlockedRooms.Contains(room))
+                return room;
         }
         return Room.Name.None;
     }
 
+    /// <summary>
+    /// 現在の部屋より前で、移動可能な最も近い部屋を取得する
+    /// </summary>
     public Room.Name GetBackMoveableRoom()
     {
         Room.Name lastRoom = Room.Name.None;
-        foreach (var kvp in canMoveRooms)
+        foreach (Room.Name room in Enum.GetValues(typeof(Room.Name)))
         {
-            if (kvp.Value && (int)kvp.Key < (int)currentRoom)
-            {
-                lastRoom = kvp.Key;
-            }
+            if (room != Room.Name.None && room < currentRoom && GameSession.UnlockedRooms.Contains(room))
+                lastRoom = room;
         }
         return lastRoom;
     }
 
     public void SceneChange(Room.Name room)
     {
+        // 連続クリックや多重呼び出しで、シーン読み込みが重ならないようにする
+        if (isChanging) return;
+        if (!GameSession.UnlockedRooms.Contains(room)) return;
+        if (!Room.RoomNameWithSceneName.ContainsKey(room)) return;
+
         StartCoroutine(SceneChangeCoroutine(room));
     }
 
-
     IEnumerator SceneChangeCoroutine(Room.Name room)
     {
-        yield return fadeScreen.FadeInCoroutine();
-        currentRoom = room;
+        isChanging = true;
+        PlayerInputController.Instance.ChangeState(StateType.Movie);
 
+        yield return FadeScreen.Instance.FadeInCoroutine();
+
+        // 読み込み後のシーンで、暗転から明けるフェードアウトを再生させる
+        GameSession.FadeOutPending = true;
         SceneManager.LoadScene(Room.RoomNameWithSceneName[room]);
-        gameState.ChangeState(StateType.None);
-
-        yield return fadeScreen.FadeOutCoroutine();
     }
 
     public Room.Name GetCurrentRoom()
