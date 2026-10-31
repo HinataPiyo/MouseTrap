@@ -36,9 +36,12 @@ MouseTrapは、学校の部屋を探索し、人物や物品との会話・イ�
 | --- | --- |
 | `StaffroomScene` | Build Settingsに登録済み。職員室のイベントや移動ポイントが実装されています。 |
 | `LibraryScene` | Build Settingsに登録済み。図書室のイベントが実装されています。 |
-| `stage03` | `Assets/Scenes`に存在しますが、現在のBuild Settingsには登録されていません。 |
+| `ClassroomScene` | `stage03`から名前が変更されています。`Assets/Scenes`にありますが、Build Settings未登録で、部屋移動先にも設定されていません。 |
+| `PrivateroomScene` | `Assets/Scenes`に追加されていますが、Build Settings未登録で、部屋移動先にも設定されていません。 |
+| `Dean'sOfficeScene` | `Assets/Scenes`に追加されていますが、Build Settings未登録で、部屋移動先にも設定されていません。 |
+| `SecletroomScene` | `Assets/Scenes`に追加されていますが、Build Settings未登録で、部屋移動先にも設定されていません。 |
 
-Build Settingsに登録されたシーンは`ProjectSettings/EditorBuildSettings.asset`で確認できます。部屋とシーン名の対応は`Assets/Scripts/Core/CoreConstants.cs`で管理されています。
+Build Settingsに登録されたシーンは`ProjectSettings/EditorBuildSettings.asset`で確認できます。部屋とシーン名の対応は`Assets/Scripts/Core/CoreConstants.cs`で管理され、現状は職員室・図書室のみです。追加シーンと室内オブジェクトの配置は進んでいますが、ゲームから移動できる状態や完成したイベントルートであることを示すものではありません。
 
 ## 実装状況と確認事項
 
@@ -52,13 +55,21 @@ Build Settingsに登録されたシーンは`ProjectSettings/EditorBuildSettings
 - フェードを伴う部屋移動
 - イベントによる少年・眼鏡少年の操作解放
 
+### 2026-10-28の作業
+
+- `GameSession`と`InteractStateStore`を導入し、解放キャラクター、現在のキャラクター、解放部屋、所持アイテム、フェード状態、インタラクト対象の完了状態をシーン遷移をまたいで保持する構成に整理しました。
+- `SceneSingleton<T>`を導入し、シーン内のManager/UIの重複を抑止しつつ、シーンをまたぐゲーム状態はシーン依存のオブジェクトではなく`GameSession`に分離しました。
+- フェード中の処理をコールバックで渡す方式に整理し、キャラクター切り替えと部屋移動画面のボタン処理も更新しました。
+- `stage03`を`ClassroomScene`へ改名し、PrivateRoom、院長室、秘密の部屋に相当するシーンと室内オブジェクトを追加しました。
+- 追加した4シーンはBuild Settingsおよび部屋移動の対応表にはまだ登録されていません。Unity Editorでの起動・通しプレイ・Playerビルドも未確認です。
+
 ### 提出前に確認・完成させる項目
 
 - **完成ルート:** 全イベント、ゲーム開始からクリアまでの進行、クリア条件・終了演出が一続きで遊べるかは、コードから確認できません。
 - **キャラクター解放:** 1～5の入力は用意されていますが、コード上の解放イベントは少女、少年、眼鏡少年に限られます。不良少年とツインテールの少女の操作解放やデータ設定を確認してください。
 - **部屋解放:** `SceneChangeManager`は職員室・図書室を起動時に移動可能としており、コードにテスト用設定の注記があります。イベント進行に沿った解放条件になっているか確認してください。
 - **ミッション:** データ、表示、設定・完了処理はありますが、ゲーム進行との一貫した連携や達成条件は別途確認が必要です。
-- **Build Settings:** `stage03`をゲームに含める場合は、シーン登録と部屋移動の対応を確認してください。
+- **追加シーン:** `ClassroomScene`、`PrivateroomScene`、`Dean'sOfficeScene`、`SecletroomScene`を製品ルートに含めるか決め、含める場合はBuild Settings、`Room`の列挙値・対応表、解放条件、部屋移動UIを合わせて設定してください。
 - **実プレイ確認:** 各シーンの参照設定、衝突判定、UI、イベント連鎖はUnity Editor上で通しプレイして確認してください。
 
 上記はソースとBuild Settingsの確認で見つかった検証項目であり、Unity Editor上で発生を再現した不具合一覧ではありません。

@@ -1,8 +1,21 @@
 # MouseTrap 現状調査・完成までの課題整理
 
-調査日: 2026-10-18
+初回調査日: 2026-10-18
 
 Unityバージョン: 6000.0.51f1
+
+## 2026-10-28 作業追記
+
+以下は本日のコミットと現在のBuild Settings・部屋対応を確認した追記です。後続の節にある初回調査結果は2026-10-18時点の記録であり、現在の実装状況と異なる項目はこの追記を優先してください。
+
+### 本日の変更
+
+- `SceneSingleton<T>`を導入し、シーン単位のManager/UI登録と重複抑止を共通化しました。シーンをまたぐ状態は`GameSession`へ分離し、解放キャラクター、選択中キャラクター、解放部屋、所持アイテム、フェード状態を保持・初期化します。
+- `InteractStateStore`を導入し、インタラクト対象のアイテム取得・イベント完了・無効化状態をシーン遷移後も保持する仕組みを追加しました。
+- フェード中の処理方法、キャラクター状態管理、入力・UI連携、部屋移動画面のボタン登録を整理しました。従来の「キャラクター選択のたびに解放状態が反転する」「部屋移動画面を開くたびにクリック購読が増える」という指摘は現行コードでは解消されています。
+- `stage03`を`ClassroomScene`に改名し、`PrivateroomScene`、`Dean'sOfficeScene`、`SecletroomScene`を追加しました。PrivateRoomや院長室・秘密の部屋に相当するシーン内のオブジェクトと関連Sprite/Prefabも追加されています。
+- Build Settingsと`CoreConstants.cs`の部屋対応は引き続き`StaffroomScene`・`LibraryScene`のみです。追加シーンは登録・部屋移動未対応のため、プレイ可能な進行ルートとしては未確認です。
+- Unity Editorでのシーン起動・通しプレイ・Playerビルドは本日の作業記録から確認できず、未検証として扱います。
 
 ## タスク管理の絶対条件
 
@@ -18,7 +31,7 @@ Unityバージョン: 6000.0.51f1
 
 ## 調査範囲と制約
 
-Scripts、Build Settings、3つのSceneファイル、関連Prefab、UI Toolkitレイアウト、キャラクター・会話・インタラクト用データ、既存Docsを静的に調査した。Unity Editorでの起動、Playerビルド、実機操作、全ルートの通しプレイは実施していない。そのため、アセット参照の実行時解決、衝突判定、画面表示、実際の遷移結果は未確認である。
+初回調査（2026-10-18）はScripts、Build Settings、当時の3つのSceneファイル、関連Prefab、UI Toolkitレイアウト、キャラクター・会話・インタラクト用データ、既存Docsを静的に調査した。Scene構成は2026-10-28に更新されている（本書冒頭の追記を参照）。Unity Editorでの起動、Playerビルド、実機操作、全ルートの通しプレイは未実施であり、アセット参照の実行時解決、衝突判定、画面表示、実際の遷移結果は未確認である。
 
 この調査ではコードとゲームアセットを変更していない。READMEと本調査文書は、調査結果を記録しタスク管理ルールへ案内するためのDocsである。既存の作業ツリー変更は調査対象外として保持した。
 
@@ -64,11 +77,11 @@ Scripts、Build Settings、3つのSceneファイル、関連Prefab、UI Toolkit�
 | ゲーム全体の進行 | 職員室の少年イベントと図書室の眼鏡少年イベントまではコードと会話データがある。最終目的、最終イベント、クリア・終了処理は見つからず、全体ルートは完成と確認できない。 |
 | 部屋移動とイベントゲート | [CoreConstants.cs](../Assets/Scripts/Core/CoreConstants.cs)には職員室・図書室の対応があり、[SceneChangeManager.cs](../Assets/Scripts/Core/SceneChangeManager.cs)にフェード遷移がある。しかし移動許可がテスト設定で初期化され、Sceneのゲート条件も初期完了状態により迂回可能。 |
 | 部屋固有イベント | StaffroomSceneにロッカー、ヒント、次の位置が配置され、LibrarySceneに眼鏡少年イベントが参照設定されている。完了条件の設定時期と実際の通行条件にテスト状態が混在する。 |
-| キャラクター切替 | 入力は1～5を扱うが、[Player.prefab](../Assets/Prefab/Player.prefab)の`characterBaseData`には少女・少年・眼鏡少年の3データが設定される。4・5のデータ／解放処理は確認できない。[CharacterControlHandler.cs](../Assets/Scripts/Player/CharacterControlHandler.cs)は選択時に解放フラグを反転する一方、値ではなく辞書キーの有無で切替可否を判定しており、選択状態と解放状態の管理が一致していない。 |
+| キャラクター切替 | [CharacterControlHandler.cs](../Assets/Scripts/Player/CharacterControlHandler.cs)は解放状態・現在のキャラクターを`GameSession`で管理し、解放済みかを確認してから切り替える。選択時に解放フラグが反転する問題は解消済み。一方、[Player.prefab](../Assets/Prefab/Player.prefab)に設定されたデータは少女・少年・眼鏡少年の3人分で、4・5のデータ／解放処理は確認できない。 |
 | インベントリ | [Inventory.cs](../Assets/Scripts/Inventory/Inventory.cs)に追加・削除・所持確認があり、[InventoryUIPanel.cs](../Assets/Scripts/UI/PlayerInformation/Inventory/InventoryUIPanel.cs)に一覧表示がある。削除・所持確認をゲーム進行から利用する呼び出しは見つからず、アイテムを使う／謎解きに使う処理も確認できない。 |
 | キャラクター情報UI | `Q`で表示・非表示にする枠組みは[CharacterInformationUIPanel.cs](../Assets/Scripts/UI/PlayerInformation/CharacterInformationUIPanel.cs)にある。キャラクターデータを取得して情報欄へ反映する処理は確認できない。 |
 | ミッション | [MissionData.cs](../Assets/Scripts/Mission/MissionData.cs)、[MissionManager.cs](../Assets/Scripts/Mission/MissionManager.cs)、[MissionUIHandler.cs](../Assets/Scripts/Mission/UI/MissionUIHandler.cs)とPrefab上のManagerはある。一方、ゲームアセット内にMissionDataアセットは見つからず、`SetMission`/`CompleteMission`の呼び出しも見つからない。表示枠はプレースホルダーのまま。 |
-| 部屋移動画面 | [RoomChangeUI.cs](../Assets/Scripts/UI/RoomChange/RoomChangeUI.cs)に前後の移動ボタン、使用可否表示、遷移呼び出しがある。`ShowPanel`のたびにクリックコールバックを追加し、解除しない。複数回開いた際の多重遷移リスクがある。 |
+| 部屋移動画面 | [RoomChangeUI.cs](../Assets/Scripts/UI/RoomChange/RoomChangeUI.cs)に前後の移動ボタン、使用可否表示、遷移呼び出しがある。クリックコールバックは`Start`で一度だけ登録され、移動先は表示ごとに更新されるため、以前の多重登録リスクは解消済み。 |
 | UIボタン操作 | キーボードイベントと部屋移動・インベントリ内の一部コールバックはある。Main_Game上部のボタンやキャラクター番号ボタン、アイテム詳細の使用ボタンに対するコード上の登録は確認できない。飾りか操作対象かは仕様確認が必要。 |
 | 入力中の移動停止 | [Movement.cs](../Assets/Scripts/Player/Movement.cs)は会話・インタラクト・部屋移動・演出状態では停止するが、`Inventory`と`CharacterInfo`は停止条件に含まれない。UIを開いたまま移動できる可能性がある。 |
 
@@ -86,11 +99,11 @@ Scripts、Build Settings、3つのSceneファイル、関連Prefab、UI Toolkit�
 | 項目 | 確認が必要な理由 |
 | --- | --- |
 | 作品の正式な物語、必要なイベント順、最終目的・クリア条件 | リポジトリDocsとデータだけでは完成仕様を確定できない。 |
-| `stage03`を製品ルートに含めるか | [stage03.unity](../Assets/Scenes/stage03.unity)は存在するがBuild Settings未登録で、[CoreConstants.cs](../Assets/Scripts/Core/CoreConstants.cs)にも部屋対応がない。 |
+| 追加シーンを製品ルートに含めるか | `ClassroomScene`、`PrivateroomScene`、`Dean'sOfficeScene`、`SecletroomScene`は存在するがBuild Settings未登録で、[CoreConstants.cs](../Assets/Scripts/Core/CoreConstants.cs)にも部屋対応がない。 |
 | 不良少年・ツインテール少女を実際にプレイ可能にするか | enumと入力分岐はあるが、Playerのデータ参照と解放イベントがない。意図した機能か確認が必要。 |
-| 遷移後のSingleton・Inventory・現在位置の保持 | `SceneSingleton`と`GameSession`による設計へ置き換え済み（[DEVELOPMENT.md](./DEVELOPMENT.md)参照）。ビルドは通るが、複数回の部屋移動でのFade・状態保持・二重ロードが起きないことのEditor確認は未実施。 |
+| 遷移後のSingleton・Inventory・現在位置の保持 | [SceneSingleton.cs](../Assets/Scripts/Core/SceneSingleton.cs)と[GameSession.cs](../Assets/Scripts/Core/GameSession.cs)による状態保持構成に更新済み（[DEVELOPMENT.md](./DEVELOPMENT.md)参照）。複数回の部屋移動でFade・状態保持・重複登録が正しく動くかはEditor確認未実施。 |
 | Editor以外のPlayerビルド成功 | [CharacterControlHandler.cs](../Assets/Scripts/Player/CharacterControlHandler.cs)と[CharacterBaseData.cs](../Assets/Scripts/Datas/CharacterBaseData.cs)が`UnityEditor.Animations.AnimatorController`を実行時スクリプトから参照する。PlayerビルドでEditor専用API参照が障害になる可能性が高いが、この調査ではビルド未実施。 |
-| 画面レイアウト、Collider/Layer設定、会話イベントの実際の動作 | Scene/Prefabの参照は確認したが、Editor上でロード・実行していない。 |
+| 画面レイアウト、Collider/Layer設定、会話イベントの実際の動作 | Scene/Prefabの参照は確認したが、Editor上でロード・実行していない。追加Sceneも同様に未確認。 |
 
 ## 3. 完成を妨げる問題
 
@@ -98,22 +111,19 @@ Scripts、Build Settings、3つのSceneファイル、関連Prefab、UI Toolkit�
 
 ### 最優先
 
-1. **クリア可能な最終ルートが確認できない。** Sceneとイベントは職員室・図書室に限られ、明示的なクリア状態・エンディングが見つからない。最終仕様が不明なため、まず受け入れ条件を決める必要がある。
+1. **クリア可能な最終ルートが確認できない。** 現在、部屋移動に対応するSceneとイベントは職員室・図書室に限られ、追加Sceneは未登録である。明示的なクリア状態・エンディングも見つからない。最終仕様が不明なため、まず受け入れ条件を決める必要がある。
 2. **イベントによる部屋解放が現状の設定で迂回される。** `SceneChangeManager`が図書室を起動時から許可し、`NextPosition.Start`がイベント完了を最初からtrueにする。該当コードにテスト用の注記がある。意図する進行順に戻すなら、実装タスクで解除条件をそろえる。
 3. **Playerビルドが通らない可能性。** Runtime Scriptsから`UnityEditor.Animations`型を参照している。Playerビルド未実施のため、ビルドログで確認するまでは確定エラーとして扱わない。
-4. **シーン遷移時のManager永続化が不適切な階層に見える。** `SceneChangeManager`はRoomControl Prefabの子に含まれるが、自身のGameObjectへ`DontDestroyOnLoad`を呼ぶ。遷移時にManagerのCoroutine、移動許可、Inventory等がどうなるかはEditor実行で確認が必要。
 
 ### 高優先
 
-5. **イベント完了フラグの初期値・設定時期が進行を飛ばす。** `NextPosition`は起動時に完了、`LockerIntetract`はイベント開始時、`GlassesBoyFirstEvent`も会話完了前に完了を設定する。ゲート条件と合わせて、各イベントが「いつ完了したとみなされるべきか」を仕様に合わせる必要がある。
-6. **キャラクター選択状態と解放状態が混在する。** `ChangeCharacterControlState`は選択のたびに辞書のboolを反転させ、そのboolを切替可否判定には使わない。キーの存在が解放扱いになっているため、選択・解放・現在キャラクターの状態が正しく表現されない。
-7. **Scene遷移UIのクリック処理が積み重なる。** [RoomChangeUI.cs](../Assets/Scripts/UI/RoomChange/RoomChangeUI.cs)はパネルを表示するたびにボタンの`clicked`購読を追加する。繰り返し利用したときに同じクリックから遷移Coroutineが複数開始する可能性がある。
+4. **イベント完了フラグの初期値・設定時期が進行を飛ばす。** `NextPosition`は起動時に完了、`LockerIntetract`はイベント開始時、`GlassesBoyFirstEvent`も会話完了前に完了を設定する。ゲート条件と合わせて、各イベントが「いつ完了したとみなされるべきか」を仕様に合わせる必要がある。
 
 ### 中優先／仕様確認後に着手
 
-8. **会話中以外のUIを開いたときも移動が止まる保証がない。** Inventory/CharacterInfoは`Movement`の停止判定に含まれない。
-9. **ミッション・アイテム使用・キャラクター情報のデータ連動が未確認。** それらを完成条件に含める場合、現状のUI枠とデータだけではゲーム進行を成立させる接続が不足する。
-10. **同時に複数のインタラクト対象に入ったときの選択が不安定になりうる。** [SearchInteractObjects.cs](../Assets/Scripts/Player/SearchInteractObjects.cs)は対象を1つだけ保持し、距離比較で最寄りを選ぶ処理がない。実シーンで問題が出るかはEditor確認が必要。
+5. **会話中以外のUIを開いたときも移動が止まる保証がない。** Inventory/CharacterInfoは`Movement`の停止判定に含まれない。
+6. **ミッション・アイテム使用・キャラクター情報のデータ連動が未確認。** それらを完成条件に含める場合、現状のUI枠とデータだけではゲーム進行を成立させる接続が不足する。
+7. **同時に複数のインタラクト対象に入ったときの選択が不安定になりうる。** [SearchInteractObjects.cs](../Assets/Scripts/Player/SearchInteractObjects.cs)は対象を1つだけ保持し、距離比較で最寄りを選ぶ処理がない。実シーンで問題が出るかはEditor確認が必要。
 
 ## 4. 完成までに必要なタスク（実装順）
 
@@ -121,15 +131,15 @@ Scripts、Build Settings、3つのSceneファイル、関連Prefab、UI Toolkit�
 
 | 順 | タスク | 依存関係・完了条件 |
 | --- | --- | --- |
-| 1 | **ゲームの完成範囲と開始からクリアまでの進行を確定する。** | 先行条件。最終目的、各イベント順、必要な部屋（`stage03`を含むか）、解放するキャラクター、ミッション／アイテム使用の必要性、クリア後状態を合意し、受け入れ可能なルートを文書化する。 |
+| 1 | **ゲームの完成範囲と開始からクリアまでの進行を確定する。** | 先行条件。最終目的、各イベント順、必要な部屋（`ClassroomScene`や他の追加Sceneを含むか）、解放するキャラクター、ミッション／アイテム使用の必要性、クリア後状態を合意し、受け入れ可能なルートを文書化する。 |
 | 2 | **Unity Editor再生とPlayerビルドでベースラインを採取する。** | 1と独立して実施可能。Consoleエラー、Player build結果、シーン起動と遷移時の状態保持を記録し、確定エラーと懸念を切り分ける。 |
 | 3 | **テスト用の部屋解放・イベント完了状態を、確定した進行条件へ置き換える。** | 1に依存。初期状態では必要な部屋・ゲートが閉じ、所定イベント完了後だけ開き、遷移後も許可状態が保たれる。 |
 | 4 | **イベント状態遷移と完了タイミングを確定仕様に合わせる。** | 1・3に依存。各イベントが二重起動せず、会話・演出の完了後に正しい条件が一度だけ成立し、未達時にはゲートを通過できない。 |
 | 5 | **PlayerビルドのEditor専用API依存を解消する。** | 2でPlayerビルド障害を確認した場合に実施。Runtimeで使用可能な型・アセット参照へ切り替え、Editorおよび対象Playerビルドが成功する。 |
-| 6 | **部屋移動とプレイ状態の引継ぎを完成させる。** | 2・3に依存。Managerの生存期間、Fade、移動先、移動許可、Inventory等について仕様上必要な状態が遷移をまたいで維持され、複数回移動しても破綻しない。 |
-| 7 | **キャラクター解放・選択・表示を完成させる。** | 1に依存。必要な全キャラクターについてデータと解放条件が揃い、未解放キャラを選べず、解放済みキャラへ切替・再選択できる。情報UIも仕様に含む場合は正しいデータを表示する。 |
+| 6 | **部屋移動とプレイ状態の引継ぎを検証する。** | 2・3に依存。導入済みの`SceneSingleton<T>`・`GameSession`・`InteractStateStore`をEditorで確認し、Fade、移動先、移動許可、Inventory、Interact状態が仕様どおり維持され、複数回移動しても破綻しない。 |
+| 7 | **キャラクター解放条件・全対象データを確認する。** | 1に依存。必要な全キャラクターについてデータと解放条件が揃い、未解放キャラを選べず、解放済みキャラへ切替・再選択できる。情報UIも仕様に含む場合は正しいデータを表示する。 |
 | 8 | **確定した最終ルート・各部屋イベント・必要なミッション／アイテム進行を実装する。** | 1・3～7に依存。開始からクリアまでの全イベントが前提条件を満たしたプレイでつながり、終了条件に到達する。ミッションとアイテム機能は要件に含まれる場合に限り接続する。 |
-| 9 | **入力・UI・遷移の残る進行阻害を修正する。** | 対象機能の仕様確定後。UI状態での移動可否、重複クリック購読、対象選択など、受け入れテストで確認された問題を解消する。 |
+| 9 | **入力・UI・遷移の残る進行阻害を修正する。** | 対象機能の仕様確定後。UI状態での移動可否、対象選択など、受け入れテストで確認された問題を解消する。 |
 | 10 | **全ルートをEditorで通し検証し、提出用Playerを作る。** | 3～9完了後。初期状態、イベント未達／達成、各部屋往復、クリア状態を実行し、Consoleに例外がなく、対象プラットフォームでビルド・起動できる。 |
 
 ## 5. 後回しにできる作業
@@ -142,7 +152,7 @@ Scripts、Build Settings、3つのSceneファイル、関連Prefab、UI Toolkit�
 - 特技の新機能、追加キャラクターや追加部屋など、確定した提出範囲に含まれない追加要素。
 - 画面演出・アニメーションの追加品質改善。
 
-ただし、Editor専用API参照のPlayerビルド影響、RoomChangeUIの多重遷移など、見た目や保守性に見える項目でも提出ビルドやゲーム進行を阻害する場合は後回しにしない。
+ただし、Editor専用API参照のPlayerビルド影響など、見た目や保守性に見える項目でも提出ビルドやゲーム進行を阻害する場合は後回しにしない。
 
 ## 6. 次に実装するべきタスク
 
@@ -174,7 +184,7 @@ Scripts、Build Settings、3つのSceneファイル、関連Prefab、UI Toolkit�
 3. 解放後に図書室へ移動し、職員室へ戻って再移動する。解放状態、UI、プレイヤー操作が維持されることを確認する。
 4. Consoleに例外・Missing Referenceがなく、Playerビルドで遷移が動作することを確認する。
 
-**先行して必要なこと:** ゲーム完成仕様として、このイベント後に図書室を開くのが正しいか、`stage03`や別の部屋が完成ルートに必要かを確認する。仕様が未確定の間は、このタスクをコード変更へ進めない。
+**先行して必要なこと:** ゲーム完成仕様として、このイベント後に図書室を開くのが正しいか、`ClassroomScene`や他の追加Sceneが完成ルートに必要かを確認する。仕様が未確定の間は、このタスクをコード変更へ進めない。
 
 ## 未実施の検証
 

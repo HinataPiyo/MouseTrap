@@ -3,9 +3,9 @@ using UnityEngine;
 
 public interface IInteract
 {
-    Transform GetMarkPoint();
     bool IsAvailable { get; }
     bool TryInteract(out InteractData interactData);
+    bool TryCompleteRequired();
 }
 
 public abstract class Interact : MonoBehaviour, IInteract
@@ -13,8 +13,8 @@ public abstract class Interact : MonoBehaviour, IInteract
     [Header("アイテム情報")]
     [SerializeField] protected InteractData interactData;
 
-    [Header("マーク位置")]
-    [SerializeField] Transform interactMarkPosition;
+    [Header("他のイベントがクリアされているか")]
+    [SerializeField] Interact[] requiredEvents;
 
     protected TalkData GetTalkData(int index) => interactData.TalkData[index];
     public bool IsEventCompleted { get; protected set; } = false;   // イベントが完了したかどうかを管理するフラグ
@@ -23,7 +23,6 @@ public abstract class Interact : MonoBehaviour, IInteract
     protected TalkPanelController talk;
     protected FadeScreen fadeScreen;
 
-    public Transform GetMarkPoint() => interactMarkPosition;
     public bool IsAvailable => !hasAcquiredItem;
 
     string stateKey;
@@ -51,6 +50,9 @@ public abstract class Interact : MonoBehaviour, IInteract
         });
     }
 
+    /// <summary>
+    /// 状態を復元する
+    /// </summary>
     void RestoreState()
     {
         if (!InteractStateStore.TryGet(stateKey, out var state)) return;
@@ -84,7 +86,7 @@ public abstract class Interact : MonoBehaviour, IInteract
         if (hasAcquiredItem) return false;
 
         // アイテムが再利用可能でない場合は取得済みフラグを立てる
-        if(!interactData.IsReusable)
+        if (!interactData.IsReusable)
             hasAcquiredItem = true;
 
         Debug.Log($"Interact acquired: {interactData.name}");
@@ -94,7 +96,7 @@ public abstract class Interact : MonoBehaviour, IInteract
             gameObject.SetActive(false);
 
         //? SearchInteractObjectsの方で表示するようにしてしまっているので要検討
-        if(interactData.IsShowPanel)
+        if (interactData.IsShowPanel)
         {
             InteractUIPanel.Instance.ShowInteractPanel(interactData);
             Inventory.Instance.AddItem(interactData);
@@ -104,6 +106,16 @@ public abstract class Interact : MonoBehaviour, IInteract
         PlayerInputController.Instance.ChangeState(StateType.Interact);
         AcquireItem();
 
+        return true;
+    }
+
+    public bool TryCompleteRequired()
+    {
+        if (requiredEvents == null) return true;
+
+        foreach (var e in requiredEvents)
+            if (!e.IsEventCompleted)
+                return false;
         return true;
     }
 }

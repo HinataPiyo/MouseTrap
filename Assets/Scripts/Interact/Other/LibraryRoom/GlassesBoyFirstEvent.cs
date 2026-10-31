@@ -12,7 +12,6 @@ namespace Intetract.LibraryRoom
         {
             if(!IsEventCompleted)
                 StartCoroutine(StartTalk());
-            IsEventCompleted = true;
         }
 
         protected override IEnumerator StartTalk()
@@ -22,6 +21,7 @@ namespace Intetract.LibraryRoom
 
             // 暗転した時点でキャラクターを切り替える
             yield return fadeScreen.FadeInToFadeOut(CharacterChange);
+            IsEventCompleted = true;
         }
 
         void CharacterChange()

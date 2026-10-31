@@ -562,6 +562,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7877290739713683059, guid: 1561efc0548390e4b98c5432e01ada78, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -2.94
+      objectReference: {fileID: 0}
+    - target: {fileID: 7877290739713683059, guid: 1561efc0548390e4b98c5432e01ada78, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.35
+      objectReference: {fileID: 0}
     - target: {fileID: 8665157656549559050, guid: 1561efc0548390e4b98c5432e01ada78, type: 3}
       propertyPath: m_LocalPosition.x
       value: -2.94
@@ -4358,7 +4366,8 @@ GameObject:
   - component: {fileID: 1305755128}
   - component: {fileID: 1305755127}
   - component: {fileID: 1305755126}
-  m_Layer: 0
+  - component: {fileID: 1305755129}
+  m_Layer: 7
   m_Name: ManyBocks
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4529,6 +4538,27 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: -0.17075059, y: 0.18135831}
   m_Radius: 0.10234979
+--- !u!114 &1305755129
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1305755123}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5cbaf85b49417e4bbf4255e6eeaeb8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactData: {fileID: 11400000, guid: b5b3de1e0c33ee94597c775e5b69f88e, type: 2}
+  requiredEvents:
+  - {fileID: 1404731406}
+  books:
+  - {fileID: 896092666}
+  - {fileID: 2073394927}
+  - {fileID: 2005678767}
+  - {fileID: 1755882492}
+  - {fileID: 1159815789}
 --- !u!4 &1329369941 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1428009938058065975, guid: 6f8267293223b0348915bd2f72117354, type: 3}
@@ -4950,8 +4980,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactData: {fileID: 11400000, guid: 5736e228a5338d546ac5ff55a3d8e403, type: 2}
-  interactMarkPosition: {fileID: 846354192}
-  talkData: {fileID: 11400000, guid: 098db441e56c7ba449a0e7640809ed49, type: 2}
+  requiredEvents: []
 --- !u!4 &1404731407 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5865932111906930018, guid: 4c27d6187d16ecb44b39dd531602bb0f, type: 3}
