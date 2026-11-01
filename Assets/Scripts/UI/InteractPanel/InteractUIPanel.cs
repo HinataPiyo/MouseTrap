@@ -1,5 +1,3 @@
-using Player;
-using UnityEngine;
 using UnityEngine.UIElements;
 
 public class InteractUIPanel : PanelView<InteractUIPanel>

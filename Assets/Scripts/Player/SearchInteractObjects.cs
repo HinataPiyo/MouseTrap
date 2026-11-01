@@ -76,17 +76,24 @@ public class SearchInteractObjects : MonoBehaviour
 
     void UpdateClosestInteract(IInteract interact)
     {
+        bool candidateIsReady = interact.TryCompleteRequired();
+        if(!candidateIsReady)
+        {
+            WorldCanvasController.Instance.ToggleInteractMarkVisibility(false, transform.position);
+            return;
+        }
+
         if (closestInteract != null && closestInteract != interact)
         {
             // 現在の対象が優先されるか確認
             bool currentIsReady = closestInteract.IsAvailable && closestInteract.TryCompleteRequired();
-            // 候補が優先されるか確認
-            bool candidateIsReady = interact.TryCompleteRequired();
 
             // 条件を満たす対象を、条件未達成の対象より優先する
-            if (currentIsReady || !candidateIsReady) return;
-
-            WorldCanvasController.Instance.ToggleInteractMarkVisibility(false, transform.position);
+            if (currentIsReady)
+            {
+                WorldCanvasController.Instance.ToggleInteractMarkVisibility(false, transform.position);
+                return;
+            }
         }
 
         closestInteract = interact;

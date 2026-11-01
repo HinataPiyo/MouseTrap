@@ -450,7 +450,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactData: {fileID: 11400000, guid: f8854ae14fc5d134ca96c2bf0435fee8, type: 2}
-  interactMarkPosition: {fileID: 1680728560}
+  requiredEvents: []
   nextPosition: {fileID: 596632794}
 --- !u!58 &596632796
 CircleCollider2D:
@@ -1158,7 +1158,7 @@ GameObject:
   m_Layer: 0
   m_Name: '!! Event_First Get Memo'
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -1227,7 +1227,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactData: {fileID: 11400000, guid: 53bc576c82b3c2b4a88df13a00b14fb6, type: 2}
-  interactMarkPosition: {fileID: 1799333255}
+  requiredEvents: []
 --- !u!212 &934309336
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3485,7 +3485,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactData: {fileID: 11400000, guid: eadbd0c16a67a2643a40061d4de48d88, type: 2}
-  interactMarkPosition: {fileID: 114075652}
+  requiredEvents: []
 --- !u!1001 &1654772346
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3534,6 +3534,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6940462953243725062, guid: 4c27d6187d16ecb44b39dd531602bb0f, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 4790abb59a293d24884bec46f9df239a, type: 2}
     - target: {fileID: 7463868737238612366, guid: 4c27d6187d16ecb44b39dd531602bb0f, type: 3}
       propertyPath: m_Name
       value: SubCharacter
@@ -3815,6 +3819,37 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.10305452, y: 1.8793576}
   m_EdgeRadius: 0
+--- !u!1 &1788713455
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1788713456}
+  m_Layer: 0
+  m_Name: --- Event ---
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1788713456
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1788713455}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1799333254
 GameObject:
   m_ObjectHideFlags: 0
@@ -4120,7 +4155,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactData: {fileID: 11400000, guid: b7311488b2df8e54ba5172c86bab774f, type: 2}
-  interactMarkPosition: {fileID: 2024798840}
+  requiredEvents:
+  - {fileID: 934309335}
   subCharacter: {fileID: 1654772348}
   nextPosition: {fileID: 596632795}
 --- !u!1 &2008184300
@@ -4442,7 +4478,15 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5365735304222745125, guid: e8618218a552e1140ba7becb977f5b6d, type: 3}
+      propertyPath: requiredEvents.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5365735304222745125, guid: e8618218a552e1140ba7becb977f5b6d, type: 3}
       propertyPath: 'eventObjects.Array.data[0]'
+      value: 
+      objectReference: {fileID: 596632795}
+    - target: {fileID: 5365735304222745125, guid: e8618218a552e1140ba7becb977f5b6d, type: 3}
+      propertyPath: 'requiredEvents.Array.data[0]'
       value: 
       objectReference: {fileID: 596632795}
     - target: {fileID: 5886841537424787248, guid: e8618218a552e1140ba7becb977f5b6d, type: 3}
@@ -5168,6 +5212,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 419540217567589974, guid: 255dc457ada2e724295eead24fa93897, type: 3}
+      propertyPath: m_Intensity
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 933310595113329165, guid: 255dc457ada2e724295eead24fa93897, type: 3}
       propertyPath: mainCamera
       value: 
@@ -5537,7 +5585,8 @@ SceneRoots:
   - {fileID: 2051504271}
   - {fileID: 397021018}
   - {fileID: 624250578}
+  - {fileID: 1788713456}
   - {fileID: 1955400008}
+  - {fileID: 934309333}
   - {fileID: 1315441725}
   - {fileID: 2100722405}
-  - {fileID: 934309333}

@@ -23,7 +23,6 @@ public class FirstConectingBook : Interact
         yield return fadeScreen.FadeOutCoroutine();
         yield return talk.Writing(GetTalkData(0));
 
-
         IsEventCompleted = true;
         yield return null;
     }
@@ -39,10 +38,5 @@ public class FirstConectingBook : Interact
         Collider2D[] col = GetComponents<Collider2D>();
         foreach(var c in col)
             c.enabled = false;
-    }
-
-    void Update()
-    {
-        
     }
 }
