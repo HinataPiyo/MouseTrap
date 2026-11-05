@@ -35,11 +35,17 @@ public class PlayerInputController : SceneSingleton<PlayerInputController>
     {
         Debug.Log(CurrentState);
 
+        if (CurrentState != StateType.None
+            && CurrentState != StateType.Movie
+            && Keyboard.current.escapeKey.wasPressedThisFrame)
+        {
+            OnInputESCKeyDisabled?.Invoke();
+            return;
+        }
+
         switch (CurrentState)
         {
             case StateType.RoomChange:
-                if (Keyboard.current.escapeKey.wasPressedThisFrame)
-                    OnInputESCKeyDisabled?.Invoke();
                 return;
 
             case StateType.Talk:
@@ -71,8 +77,6 @@ public class PlayerInputController : SceneSingleton<PlayerInputController>
                 break;
 
             case StateType.Inventory:
-                if (Keyboard.current.escapeKey.wasPressedThisFrame)
-                    OnInputESCKeyDisabled?.Invoke();
                 if (Keyboard.current.tabKey.wasPressedThisFrame)
                 {
                     OnInputTabKeyPressed?.Invoke();
@@ -80,8 +84,6 @@ public class PlayerInputController : SceneSingleton<PlayerInputController>
                 }
                 break;
             case StateType.CharacterInfo:
-                if (Keyboard.current.escapeKey.wasPressedThisFrame)
-                    OnInputESCKeyDisabled?.Invoke();
                 if (Keyboard.current.qKey.wasPressedThisFrame)
                 {
                     OnInputQKeyPressed?.Invoke();

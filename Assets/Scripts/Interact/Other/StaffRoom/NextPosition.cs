@@ -40,6 +40,7 @@ namespace Intetract.StaffRoom.Boy
 
             yield return talk.Writing(GetTalkData(1));
 
+            PlayerInputController.Instance.ChangeState(StateType.Movie);
             yield return FadeScreen.Instance.FadeInToFadeOut(HideCharacter);
 
             // キャラクターの操作を有効にする

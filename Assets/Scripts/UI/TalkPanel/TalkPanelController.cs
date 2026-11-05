@@ -25,6 +25,7 @@ public class TalkPanelController : SceneSingleton<TalkPanelController>
     bool isSkipping = false;
     bool isWaitingForAdvance = false;
     bool isAdvanceRequested = false;
+    int talkSessionId;
 
     public bool IsWriting => isWriting || currentTalkData != null;
 
@@ -47,6 +48,7 @@ public class TalkPanelController : SceneSingleton<TalkPanelController>
         gameState = PlayerInputController.Instance;
         inputTrigger = PlayerInputController.Instance;
         inputTrigger.OnInputSpaceKeyPressed += OnClick;
+        inputTrigger.OnInputESCKeyDisabled += CloseTalkPanel;
     }
 
     void OnClick()
@@ -67,7 +69,22 @@ public class TalkPanelController : SceneSingleton<TalkPanelController>
     {
         // Startの前に破棄された場合はnull
         if (inputTrigger != null)
+        {
             inputTrigger.OnInputSpaceKeyPressed -= OnClick;
+            inputTrigger.OnInputESCKeyDisabled -= CloseTalkPanel;
+        }
+    }
+
+    void CloseTalkPanel()
+    {
+        talkSessionId++;
+        currentTalkData = null;
+        isWriting = false;
+        isSkipping = false;
+        isWaitingForAdvance = false;
+        isAdvanceRequested = false;
+        root.style.display = DisplayStyle.None;
+        gameState.ChangeState(StateType.None);
     }
 
     void OnTalkEnd()
@@ -77,6 +94,7 @@ public class TalkPanelController : SceneSingleton<TalkPanelController>
 
     public IEnumerator Writing(TalkData data, float delay = 0f)
     {
+        int sessionId = ++talkSessionId;
         currentTalkData = data;
         gameState.ChangeState(StateType.Talk);
         isSkipping = false;
@@ -84,12 +102,13 @@ public class TalkPanelController : SceneSingleton<TalkPanelController>
         isAdvanceRequested = false;
 
         yield return new WaitForSeconds(delay);
+        if (sessionId != talkSessionId) yield break;
 
         root.style.display = DisplayStyle.Flex;
 
-        for (int i = 0; i < currentTalkData.entries.Length; i++)
+        for (int i = 0; i < data.entries.Length; i++)
         {
-            var entry = currentTalkData.entries[i];
+            var entry = data.entries[i];
             isWriting = true;
 
             characterImage.style.backgroundImage = new StyleBackground(entry.character);
@@ -109,13 +128,15 @@ public class TalkPanelController : SceneSingleton<TalkPanelController>
                 }
 
                 yield return writingWait;
+                if (sessionId != talkSessionId) yield break;
             }
 
             body.text = entry.body;
             arrow.style.display = DisplayStyle.Flex;
             isWriting = false;
             isWaitingForAdvance = true;
-            yield return new WaitUntil(() => isAdvanceRequested);
+            yield return new WaitUntil(() => sessionId != talkSessionId || isAdvanceRequested);
+            if (sessionId != talkSessionId) yield break;
             isWaitingForAdvance = false;
             isAdvanceRequested = false;
         }

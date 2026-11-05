@@ -9,6 +9,7 @@ public class InventoryUIPanel : PanelView<InventoryUIPanel>
 
     const string PANEL_NAME = "InventoryPanel";
     public event System.Action<Inventory.ItemData> OnIconClicked;
+    public event System.Action OnPanelClosed;
     PlayerInputController inputController;
 
 
@@ -56,6 +57,7 @@ public class InventoryUIPanel : PanelView<InventoryUIPanel>
     {
         panel.style.display = DisplayStyle.None;
         isVisible = false;
+        OnPanelClosed?.Invoke();
         PlayerInputController.Instance.ChangeState(StateType.None);
     }
 
