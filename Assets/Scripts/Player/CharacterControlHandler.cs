@@ -13,6 +13,7 @@ namespace Player
         Animator animator;
 
         public Character.Name CurrentCharacter => GameSession.CurrentCharacter;
+        public CharacterBaseData[] CharacterDatas => characterBaseData;
         public event Action<Character.Name> OnCharacterUnlocked;
         public event Action<Character.Name> OnCharacterChanged;
 

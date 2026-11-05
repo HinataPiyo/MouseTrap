@@ -2,6 +2,12 @@ using UnityEngine;
 using UnityEngine.UIElements;
 using Player;
 
+public class CharacterIcon
+{
+    public Button button;
+    public CharacterBaseData character;
+}
+
 /// <summary>
 /// キャラクターアイコンの表示を管理するクラス
 /// </summary>
@@ -12,11 +18,7 @@ public class CharacterActivateUIHandler : SceneSingleton<CharacterActivateUIHand
     // 解放・切り替えの正本であるプレイヤーロジックを参照する
     CharacterControlHandler characterControlHandler;
 
-    public class CharacterIcon
-    {
-        public Button button;
-        public CharacterBaseData character;
-    }
+
 
     static readonly string SelectAnimationTag = "select-icon";
     Button currentButton;
@@ -51,7 +53,7 @@ public class CharacterActivateUIHandler : SceneSingleton<CharacterActivateUIHand
 
         Button[] buttons = buttonContainer.Query<Button>().ToList().ToArray();
         icons = new CharacterIcon[buttons.Length];
-        for(int i = 0; i < buttons.Length; i++)
+        for (int i = 0; i < buttons.Length; i++)
         {
             // 未解放キャラクターも表示し、クリック可否は既存ロジックの解放判定に委ねる
             icons[i] = new CharacterIcon { button = buttons[i] };
@@ -83,7 +85,7 @@ public class CharacterActivateUIHandler : SceneSingleton<CharacterActivateUIHand
         // 不正なキャラクターデータはアイコン表示に反映しない
         if (character == null) return;
 
-        for(int i = 0; i < icons.Length; i++)
+        for (int i = 0; i < icons.Length; i++)
         {
             if (icons[i].character == character)
             {
@@ -92,7 +94,7 @@ public class CharacterActivateUIHandler : SceneSingleton<CharacterActivateUIHand
                 return;
             }
 
-            if(icons[i].button.style.display == DisplayStyle.None)
+            if (icons[i].button.style.display == DisplayStyle.None)
             {
                 icons[i].button.style.display = DisplayStyle.Flex;
                 icons[i].character = character;
@@ -122,11 +124,11 @@ public class CharacterActivateUIHandler : SceneSingleton<CharacterActivateUIHand
         // 切り替え先のデータが見つからない場合は現在の選択表示を維持する
         if (character == null) return;
 
-        for(int i = 0; i < icons.Length; i++)
+        for (int i = 0; i < icons.Length; i++)
         {
-            if(icons[i].character == character)
+            if (icons[i].character == character)
             {
-                if(currentButton != null)
+                if (currentButton != null)
                     currentButton.RemoveFromClassList(SelectAnimationTag);
 
                 currentButton = icons[i].button;

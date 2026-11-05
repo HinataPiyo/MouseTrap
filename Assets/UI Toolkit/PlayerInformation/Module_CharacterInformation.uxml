@@ -17,6 +17,7 @@
                     <ui:Instance template="Temp_CharacterIcon" />
                     <ui:Instance template="Temp_CharacterIcon" />
                     <ui:Instance template="Temp_CharacterIcon" />
+                    <ui:Instance template="Temp_CharacterIcon" />
                 </ui:ScrollView>
             </ui:VisualElement>
         </ui:VisualElement>
