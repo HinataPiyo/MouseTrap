@@ -19,8 +19,17 @@ public class IconClickedUIPanel : MonoBehaviour
         HidePanel();
 
         // インベントリのアイコンがクリックされたときにパネルを表示するように設定
-        inventoryUIPanel.OnIconClicked += (item) => ShowPanel(item);
+        inventoryUIPanel.OnIconClicked += ShowPanel;
+        inventoryUIPanel.OnPanelClosed += HidePanel;
         panel.RegisterCallback<PointerDownEvent>(evt => HidePanel());
+    }
+
+    void OnDestroy()
+    {
+        if (inventoryUIPanel == null) return;
+
+        inventoryUIPanel.OnIconClicked -= ShowPanel;
+        inventoryUIPanel.OnPanelClosed -= HidePanel;
     }
 
     public void ShowPanel(Inventory.ItemData item)

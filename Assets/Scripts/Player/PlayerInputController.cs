@@ -35,25 +35,31 @@ public class PlayerInputController : SceneSingleton<PlayerInputController>
     {
         Debug.Log(CurrentState);
 
+        if (CurrentState != StateType.None
+            && CurrentState != StateType.Movie
+            && Keyboard.current.escapeKey.wasPressedThisFrame)
+        {
+            OnInputESCKeyDisabled?.Invoke();
+            return;
+        }
+
         switch (CurrentState)
         {
             case StateType.RoomChange:
-                if (Keyboard.current.escapeKey.wasPressedThisFrame)
-                    OnInputESCKeyDisabled?.Invoke();
                 return;
 
             case StateType.Talk:
-                if (Keyboard.current.spaceKey.wasPressedThisFrame)
+                if (IsActionKeyPressed())
                     OnInputSpaceKeyPressed?.Invoke();
                 return;
 
             case StateType.Interact:
-                if (Keyboard.current.eKey.wasPressedThisFrame)
+                if (IsActionKeyPressed())
                     OnInputEKeyPressed?.Invoke();
                 return;
 
             case StateType.None:
-                if (Keyboard.current.eKey.wasPressedThisFrame)
+                if (IsActionKeyPressed())
                 {
                     OnInputEKeyPressed?.Invoke();
                     return;
@@ -71,8 +77,6 @@ public class PlayerInputController : SceneSingleton<PlayerInputController>
                 break;
 
             case StateType.Inventory:
-                if (Keyboard.current.escapeKey.wasPressedThisFrame)
-                    OnInputESCKeyDisabled?.Invoke();
                 if (Keyboard.current.tabKey.wasPressedThisFrame)
                 {
                     OnInputTabKeyPressed?.Invoke();
@@ -80,8 +84,6 @@ public class PlayerInputController : SceneSingleton<PlayerInputController>
                 }
                 break;
             case StateType.CharacterInfo:
-                if (Keyboard.current.escapeKey.wasPressedThisFrame)
-                    OnInputESCKeyDisabled?.Invoke();
                 if (Keyboard.current.qKey.wasPressedThisFrame)
                 {
                     OnInputQKeyPressed?.Invoke();
@@ -114,6 +116,12 @@ public class PlayerInputController : SceneSingleton<PlayerInputController>
                 characterControlHandler.ChangeCharacterControlState(Character.Name.Girl_TwinTail);
             }
         }
+    }
+
+    static bool IsActionKeyPressed()
+    {
+        return Keyboard.current.eKey.wasPressedThisFrame
+            || Keyboard.current.spaceKey.wasPressedThisFrame;
     }
 
 }

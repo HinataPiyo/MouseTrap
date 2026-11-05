@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af530954020e4c142a9b178f845d0693, type: 3}
+  m_Name: DelinquentBoyData
+  m_EditorClassIdentifier: 
+  characterNameEnum: 2
+  characterName: "\u4E0D\u826F\u7537\u5B50"
+  characterIcon_Default:
+  - {fileID: -1050035081195098760, guid: cea2f7bf118845944b6eb823e1884c0c, type: 3}
+  characterIcon_Numbered:
+  - {fileID: 4391866147064905748, guid: 8ebd33ce83c6888419b14cc57d7a7a48, type: 3}
+  - {fileID: 3991917801837011194, guid: 8ebd33ce83c6888419b14cc57d7a7a48, type: 3}
+  character_Standing_Sprite: {fileID: -6680672515261728774, guid: cea2f7bf118845944b6eb823e1884c0c, type: 3}
+  animation: {fileID: 9100000, guid: be3b180bb9eb8fd4daa15cf5c2c4209b, type: 2}
+  specialSkillIcon: {fileID: 7094190288242544694, guid: cea2f7bf118845944b6eb823e1884c0c, type: 3}
+  specialSkillDescription: 

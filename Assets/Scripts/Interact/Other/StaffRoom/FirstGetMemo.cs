@@ -13,17 +13,26 @@ public class FirstGetMemo : Interact
             }
         }
     }
-    protected override void Initialize() { }
-    protected override void AcquireItem() { }
+    protected override void Initialize()
+    {
+        MissionManager.Instance.SetMission(MissionNames.FirstGetMemo);
+    }
+
+    protected override void AcquireItem()
+    {
+        MissionManager.Instance.CompleteMissionAndSetNext(
+            MissionNames.FirstGetMemo,
+            MissionNames.CheckLocker);
+    }
 
     protected override IEnumerator StartTalk()
     {
         Debug.Log("<color=green>Start talk</color>");
-        // ToDo パネル非表示後下の処理を行いたいのだがうまくいっていない
         yield return new WaitUntil(() => !InteractUIPanel.Instance.IsVisible());
         Debug.Log("<color=green>Panel hidden</color>");
         yield return talk.Writing(GetTalkData(0));
 
+        IsEventCompleted = true;
         gameObject.SetActive(false);
     }
 }

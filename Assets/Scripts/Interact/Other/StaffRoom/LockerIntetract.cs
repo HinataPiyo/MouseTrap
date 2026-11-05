@@ -2,7 +2,7 @@ namespace Intetract.StaffRoom.Boy
 {
     using System.Collections;
     using UnityEngine;
-    
+
     public class LockerIntetract : Interact
     {
         [Header("表示するキャラクター")]
@@ -30,6 +30,9 @@ namespace Intetract.StaffRoom.Boy
         /// </summary>
         void ShowSubCharacter()
         {
+            MissionManager.Instance.CompleteMissionAndSetNext(
+                MissionNames.CheckLocker,
+                MissionNames.FindKey);
             StartCoroutine(StartTalk());
         }
 

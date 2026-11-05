@@ -16,7 +16,7 @@ public class RoomChangePoint : BlockerArea
     {
         if(col.gameObject.CompareTag("Player"))
         {
-            if(!TryBlockerAreaDisabled())
+            if(!TryCompleteRequired())
             {
                 StartCoroutine(StartTalk());
                 return;

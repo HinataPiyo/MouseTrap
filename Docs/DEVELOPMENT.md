@@ -18,7 +18,7 @@ Unity Hubで指定バージョンのUnityを使ってリポジトリを開きま
 | `Assets/Scripts/Interact/` | インタラクト共通処理と部屋固有イベント |
 | `Assets/Scripts/Talk/` | 会話データ |
 | `Assets/Scripts/Inventory/` | アイテム所持状態 |
-| `Assets/Scripts/Mission/` | ミッションデータ、管理、表示 |
+| `Assets/Scripts/Mission/` | ミッション名定数、登録・完了管理、表示 |
 | `Assets/Scripts/Core/` | シーン遷移、フェード、部屋名などの共通定義 |
 | `Assets/Scripts/UI/` | UI Toolkitを中心とした画面表示 |
 | `Assets/Datas/` | 会話・インタラクト・キャラクターのScriptableObjectアセット |
@@ -47,7 +47,7 @@ Unity Hubで指定バージョンのUnityを使ってリポジトリを開きま
 
 ### 会話
 
-`TalkData`は会話行（立ち絵、キャラクター名、本文）の配列を持つScriptableObjectです。会話データは`Assets/Datas/TalkDatas/`にあり、`TalkPanelController`が表示とSpaceキーによる進行を管理します。
+`TalkData`は会話行（立ち絵、キャラクター名、本文）の配列を持つScriptableObjectです。会話データは`Assets/Datas/TalkDatas/`にあり、`TalkPanelController`が表示とE／Spaceキーによる進行を管理します。文字表示中の入力で全文を表示し、全文表示後の入力で次の行に進みます。
 
 ### インベントリ
 
@@ -63,7 +63,7 @@ Unity Hubで指定バージョンのUnityを使ってリポジトリを開きま
 
 ### ミッション
 
-`MissionData`にタイトルと完了状態があり、`MissionManager`がUIへのタイトル設定と完了状態の更新を行います。ミッションを実際の進行条件として使う場合は、イベントからの設定・完了呼び出しと、完了時のプレイヤー向けフィードバックも確認してください。
+ミッション名は`MissionManager.cs`内の`MissionNames`の定数で定義し、`MissionManager.SetMission`で登録・表示、`CompleteMission`で完了状態にします。完了後に次のミッションへ進める場合は`CompleteMissionAndSetNext`を使い、完了表示後3秒で次へ進みます。先行して完了したミッションは完了状態と次ミッションの対応を記録するだけで、現在の未完了ミッションを置き換えません。現在のミッション完了後は、完了済みの後続ミッションを飛ばして最初の未完了ミッションを表示します。登録・完了状態と遷移順は`GameSession`がシーン遷移をまたいで保持し、アプリ起動時にリセットします。現在は図書室で本を散らすと「図書室に散らばった本を集める」が登録され、すべての本を回収すると完了表示になります。新しいミッションを追加する場合は、`MissionNames`の定数と定義済み一覧を更新し、開始・完了イベントから同じ定数を渡してください。
 
 ## シーン・アセットの変更時
 

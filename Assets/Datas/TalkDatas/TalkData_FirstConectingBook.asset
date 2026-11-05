@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d3f61c76eb36134698696b0dd8b802c, type: 3}
+  m_Name: TalkData_FirstConectingBook
+  m_EditorClassIdentifier: 
+  entries:
+  - character: {fileID: -1384877757011659454, guid: da8ac5aff29f9f8488bbeeb5be843ed2, type: 3}
+    characterName: 2
+    body: "\u672C\u304C\u3069\u3053\u304B\u3078\u884C\u3063\u3066\u3057\u307E\u3044\u307E\u3057\u305F\u3001\u3001\u3001"
+  - character: {fileID: 1757948214527153888, guid: 42cd0ee173985674cba10570bcd57bb4, type: 3}
+    characterName: 2
+    body: "\u672C\u68DA\u306E\u5074\u9762\u306B\u672C\u306E\u30B8\u30E3\u30F3\u30EB\u304C\u308F\u304B\u308B\u7D19\u304C\u8CBC\u3063\u3066\u3042\u3063\u305F\u306F\u305A"

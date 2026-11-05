@@ -6,13 +6,13 @@ namespace Intetract.LibraryRoom
 
     public class GlassesBoyFirstEvent : Interact
     {
+        [SerializeField] ScatteredBooksHandler scatteredBooks;
         protected override void Initialize() { }
 
         protected override void AcquireItem()
         {
             if(!IsEventCompleted)
                 StartCoroutine(StartTalk());
-            IsEventCompleted = true;
         }
 
         protected override IEnumerator StartTalk()
@@ -22,6 +22,8 @@ namespace Intetract.LibraryRoom
 
             // 暗転した時点でキャラクターを切り替える
             yield return fadeScreen.FadeInToFadeOut(CharacterChange);
+            
+            IsEventCompleted = true;
         }
 
         void CharacterChange()
@@ -39,6 +41,8 @@ namespace Intetract.LibraryRoom
                 ChangeCharacterControlState(Character.Name.Glasses_Boy);
 
             Invisible();
+
+            scatteredBooks.ActivateBooks();     // 本を散らす
         }
 
         void Invisible()

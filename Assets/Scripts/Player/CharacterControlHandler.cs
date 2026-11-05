@@ -1,6 +1,7 @@
 namespace Player
 {
     using System;
+    using System.Collections.Generic;
     using UnityEngine;
 
     /// <summary>
@@ -12,6 +13,7 @@ namespace Player
         Animator animator;
 
         public Character.Name CurrentCharacter => GameSession.CurrentCharacter;
+        public CharacterBaseData[] CharacterDatas => characterBaseData;
         public event Action<Character.Name> OnCharacterUnlocked;
         public event Action<Character.Name> OnCharacterChanged;
 
@@ -49,6 +51,21 @@ namespace Player
         }
 
         public bool IsUnlocked(Character.Name characterName) => GameSession.UnlockedCharacters.Contains(characterName);
+
+        /// <summary>
+        /// UI初期化時に、解放状態にかかわらず全キャラクターをデータ配列順で取得する。
+        /// </summary>
+        public IEnumerable<CharacterBaseData> GetAllCharacterData()
+        {
+            // 未解放キャラクターも表示できるよう、解放状態で絞り込まず全データを返す
+            if (characterBaseData == null) yield break;
+
+            foreach (CharacterBaseData character in characterBaseData)
+            {
+                if (character != null)
+                    yield return character;
+            }
+        }
 
         /// <summary>
         /// 操作するキャラクターを切り替える処理
@@ -92,6 +109,9 @@ namespace Player
         /// <returns>キャラクターのデータ。存在しない場合はnull。</returns>
         public CharacterBaseData GetCharacterData(Character.Name characterName)
         {
+            // 未設定の配列でもUI同期処理から例外を発生させない
+            if (characterBaseData == null) return null;
+
             foreach (var character in characterBaseData)
             {
                 if (character != null && character.CharacterNameEnum == characterName)

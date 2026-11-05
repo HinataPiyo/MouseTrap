@@ -28,10 +28,17 @@ public class SearchInteractObjects : MonoBehaviour
             Debug.Log("<color=red>Reset interactable object.</color>");
             return;
         }
-        
+
         bool restrictions = inputController.CurrentState == StateType.Talk || inputController.CurrentState == StateType.RoomChange;
         // 行動制限中は無視
-        if(restrictions) return;
+        if (restrictions) return;
+
+        // 必須イベントが未完了の場合は、Interactを実行しない
+        if (closestInteract != null && !closestInteract.TryCompleteRequired())
+        {
+            Debug.Log("Required event not completed");
+            return;
+        }
 
         // Interact可能なオブジェクトを取得する
         if (closestInteract != null && closestInteract.TryInteract(out var interactData))
@@ -54,29 +61,39 @@ public class SearchInteractObjects : MonoBehaviour
         IInteract interact = col.GetComponent<IInteract>();
         if (interact == null || !interact.IsAvailable) return;
 
-        // すでに別のInteractオブジェクトがあれば、そちらのInteractMarkを非表示にする
-        if (closestInteract != null && closestInteract != interact)
+        UpdateClosestInteract(interact);
+    }
+
+    void OnTriggerStay2D(Collider2D col)
+    {
+        if (col.gameObject.layer != LayerMask.NameToLayer(Layer.Interactable)) return;
+
+        IInteract interact = col.GetComponent<IInteract>();
+        if (interact == null || !interact.IsAvailable) return;
+
+        UpdateClosestInteract(interact);
+    }
+
+    void UpdateClosestInteract(IInteract interact)
+    {
+        bool candidateIsReady = interact.TryCompleteRequired();
+        if(!candidateIsReady)
         {
             WorldCanvasController.Instance.ToggleInteractMarkVisibility(false, transform.position);
             return;
         }
 
-        closestInteract = interact;
-        WorldCanvasController.Instance.ToggleInteractMarkVisibility(true, transform.position);
-    }
-
-    void OnTriggerStay2D(Collider2D col)
-    {
-                if (col.gameObject.layer != LayerMask.NameToLayer(Layer.Interactable)) return;
-
-        IInteract interact = col.GetComponent<IInteract>();
-        if (interact == null || !interact.IsAvailable) return;
-
-        // すでに別のInteractオブジェクトがあれば、そちらのInteractMarkを非表示にする
         if (closestInteract != null && closestInteract != interact)
         {
-            WorldCanvasController.Instance.ToggleInteractMarkVisibility(false, transform.position);
-            return;
+            // 現在の対象が優先されるか確認
+            bool currentIsReady = closestInteract.IsAvailable && closestInteract.TryCompleteRequired();
+
+            // 条件を満たす対象を、条件未達成の対象より優先する
+            if (currentIsReady)
+            {
+                WorldCanvasController.Instance.ToggleInteractMarkVisibility(false, transform.position);
+                return;
+            }
         }
 
         closestInteract = interact;
@@ -94,8 +111,8 @@ public class SearchInteractObjects : MonoBehaviour
         if (closestInteract != null && closestInteract == interact)
         {
             WorldCanvasController.Instance.ToggleInteractMarkVisibility(false, transform.position);
+            closestInteract = null;
         }
-        closestInteract = null;
     }
 
     /// <summary>

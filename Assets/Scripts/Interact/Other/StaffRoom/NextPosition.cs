@@ -23,6 +23,9 @@ namespace Intetract.StaffRoom.Boy
         // 会話開始
         protected override void AcquireItem()
         {
+            MissionManager.Instance.CompleteMissionAndSetNext(
+                MissionNames.TalkToBoy,
+                MissionNames.ChangeRoom);
             StartCoroutine(StartTalk());
         }
 
@@ -37,6 +40,7 @@ namespace Intetract.StaffRoom.Boy
 
             yield return talk.Writing(GetTalkData(1));
 
+            PlayerInputController.Instance.ChangeState(StateType.Movie);
             yield return FadeScreen.Instance.FadeInToFadeOut(HideCharacter);
 
             // キャラクターの操作を有効にする

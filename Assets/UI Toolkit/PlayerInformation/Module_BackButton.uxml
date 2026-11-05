@@ -1,0 +1,4 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI%20Toolkit/PlayerInformation/Style_BackButton.uss?fileID=7433441132597879392&amp;guid=e9f95edd9d9b56147ad8bc87d9b9c059&amp;type=3#Style_BackButton" />
+    <ui:Button name="BackButton" class="button" />
+</ui:UXML>

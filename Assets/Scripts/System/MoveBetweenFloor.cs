@@ -15,6 +15,8 @@ public class MoveBetweenFloor : MonoBehaviour
     [SerializeField] Light2D subFloorLight;
     [SerializeField] Camera mainCamera;
 
+    [SerializeField] float default_intensity = 0.3f;
+
     SpriteRenderer playerSprite;
     int isMoveDistance;
 
@@ -55,7 +57,7 @@ public class MoveBetweenFloor : MonoBehaviour
                 mainCamera.cullingMask = ~0;
 
                 // プレイヤーが右側にいる場合はメインフロアのライトを点灯
-                mainFloorLight.intensity = Mathf.Lerp(0.5f, 1f, blend);
+                mainFloorLight.intensity = Mathf.Lerp(0.5f, default_intensity, blend);
                 subFloorLight.intensity = Mathf.Lerp(0.5f, 0f, blend);
             }
             else
@@ -65,7 +67,7 @@ public class MoveBetweenFloor : MonoBehaviour
                 mainCamera.cullingMask = ~LayerMask.GetMask("CullingMainFloorObject");
                 // プレイヤーが左側にいる場合はサブフロアのライトを点灯
                 mainFloorLight.intensity = Mathf.Lerp(0.5f, 0f, blend);
-                subFloorLight.intensity = Mathf.Lerp(0.5f, 1f, blend);
+                subFloorLight.intensity = Mathf.Lerp(0.5f, default_intensity, blend);
             }
         }
     }
@@ -79,7 +81,7 @@ public class MoveBetweenFloor : MonoBehaviour
             {
                 mainFloorLight.enabled = true;
                 subFloorLight.enabled = false;
-                mainFloorLight.intensity = 1f;
+                mainFloorLight.intensity = default_intensity;
                 subFloorLight.intensity = 0f;
             }
             else        // プレイヤーが左側にいる場合はサブフロアのライトを点灯
@@ -87,7 +89,7 @@ public class MoveBetweenFloor : MonoBehaviour
                 mainFloorLight.enabled = false;
                 subFloorLight.enabled = true;
                 mainFloorLight.intensity = 0f;
-                subFloorLight.intensity = 1f;
+                subFloorLight.intensity = default_intensity;
             }
         }
     }

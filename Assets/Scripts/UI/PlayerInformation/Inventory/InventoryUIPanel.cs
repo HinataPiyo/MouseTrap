@@ -5,10 +5,12 @@ public class InventoryUIPanel : PanelView<InventoryUIPanel>
 {
     UIDocument uiDoc;
     ScrollView container;
+    Button backButton;
     [SerializeField] VisualTreeAsset temp_InventoryItem;
 
     const string PANEL_NAME = "InventoryPanel";
     public event System.Action<Inventory.ItemData> OnIconClicked;
+    public event System.Action OnPanelClosed;
     PlayerInputController inputController;
 
 
@@ -17,8 +19,16 @@ public class InventoryUIPanel : PanelView<InventoryUIPanel>
         uiDoc = GetComponent<UIDocument>();
         panel = uiDoc.rootVisualElement.Q<VisualElement>(PANEL_NAME);
         container = panel.Q<ScrollView>();
+        backButton = panel.Q<Button>("BackButton");
+        if (backButton == null)
+        {
+            Debug.LogError("The BackButton was not found in the inventory panel.", this);
+            enabled = false;
+            return;
+        }
 
         container.Clear();
+        backButton.clicked += HideInventoryPanel;
     }
 
     void Start()
@@ -27,6 +37,18 @@ public class InventoryUIPanel : PanelView<InventoryUIPanel>
 
         inputController.OnInputTabKeyPressed += TogglePanelVisibility;
         inputController.OnInputESCKeyDisabled += HideInventoryPanel;
+    }
+
+    protected override void OnSingletonDestroy()
+    {
+        if (backButton != null)
+            backButton.clicked -= HideInventoryPanel;
+
+        if (inputController != null)
+        {
+            inputController.OnInputTabKeyPressed -= TogglePanelVisibility;
+            inputController.OnInputESCKeyDisabled -= HideInventoryPanel;
+        }
     }
 
     public void TogglePanelVisibility()
@@ -56,6 +78,7 @@ public class InventoryUIPanel : PanelView<InventoryUIPanel>
     {
         panel.style.display = DisplayStyle.None;
         isVisible = false;
+        OnPanelClosed?.Invoke();
         PlayerInputController.Instance.ChangeState(StateType.None);
     }
 

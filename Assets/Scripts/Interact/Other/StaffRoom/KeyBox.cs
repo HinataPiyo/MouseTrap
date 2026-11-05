@@ -11,6 +11,9 @@ namespace Interaction.StaffRoom
 
         protected override void AcquireItem()
         {
+            MissionManager.Instance.CompleteMissionAndSetNext(
+                MissionNames.FindKey,
+                MissionNames.TalkToBoy);
         }
 
         protected override IEnumerator StartTalk()
