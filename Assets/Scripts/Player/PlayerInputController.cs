@@ -43,17 +43,17 @@ public class PlayerInputController : SceneSingleton<PlayerInputController>
                 return;
 
             case StateType.Talk:
-                if (Keyboard.current.spaceKey.wasPressedThisFrame)
+                if (IsActionKeyPressed())
                     OnInputSpaceKeyPressed?.Invoke();
                 return;
 
             case StateType.Interact:
-                if (Keyboard.current.eKey.wasPressedThisFrame)
+                if (IsActionKeyPressed())
                     OnInputEKeyPressed?.Invoke();
                 return;
 
             case StateType.None:
-                if (Keyboard.current.eKey.wasPressedThisFrame)
+                if (IsActionKeyPressed())
                 {
                     OnInputEKeyPressed?.Invoke();
                     return;
@@ -114,6 +114,12 @@ public class PlayerInputController : SceneSingleton<PlayerInputController>
                 characterControlHandler.ChangeCharacterControlState(Character.Name.Girl_TwinTail);
             }
         }
+    }
+
+    static bool IsActionKeyPressed()
+    {
+        return Keyboard.current.eKey.wasPressedThisFrame
+            || Keyboard.current.spaceKey.wasPressedThisFrame;
     }
 
 }

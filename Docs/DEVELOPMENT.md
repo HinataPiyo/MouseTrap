@@ -47,7 +47,7 @@ Unity Hubで指定バージョンのUnityを使ってリポジトリを開きま
 
 ### 会話
 
-`TalkData`は会話行（立ち絵、キャラクター名、本文）の配列を持つScriptableObjectです。会話データは`Assets/Datas/TalkDatas/`にあり、`TalkPanelController`が表示とSpaceキーによる進行を管理します。
+`TalkData`は会話行（立ち絵、キャラクター名、本文）の配列を持つScriptableObjectです。会話データは`Assets/Datas/TalkDatas/`にあり、`TalkPanelController`が表示とE／Spaceキーによる進行を管理します。文字表示中の入力で全文を表示し、全文表示後の入力で次の行に進みます。
 
 ### インベントリ
 

@@ -1,6 +1,5 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
 
 public class TalkPanelController : SceneSingleton<TalkPanelController>
@@ -24,6 +23,8 @@ public class TalkPanelController : SceneSingleton<TalkPanelController>
 
     bool isWriting = false;
     bool isSkipping = false;
+    bool isWaitingForAdvance = false;
+    bool isAdvanceRequested = false;
 
     public bool IsWriting => isWriting || currentTalkData != null;
 
@@ -55,7 +56,11 @@ public class TalkPanelController : SceneSingleton<TalkPanelController>
         if (isWriting)
         {
             isSkipping = true;
+            return;
         }
+
+        if (isWaitingForAdvance)
+            isAdvanceRequested = true;
     }
 
     protected override void OnSingletonDestroy()
@@ -75,6 +80,8 @@ public class TalkPanelController : SceneSingleton<TalkPanelController>
         currentTalkData = data;
         gameState.ChangeState(StateType.Talk);
         isSkipping = false;
+        isWaitingForAdvance = false;
+        isAdvanceRequested = false;
 
         yield return new WaitForSeconds(delay);
 
@@ -107,7 +114,10 @@ public class TalkPanelController : SceneSingleton<TalkPanelController>
             body.text = entry.body;
             arrow.style.display = DisplayStyle.Flex;
             isWriting = false;
-            yield return new WaitUntil(() => Keyboard.current.spaceKey.wasPressedThisFrame);
+            isWaitingForAdvance = true;
+            yield return new WaitUntil(() => isAdvanceRequested);
+            isWaitingForAdvance = false;
+            isAdvanceRequested = false;
         }
         currentTalkData = null;
         root.style.display = DisplayStyle.None;
