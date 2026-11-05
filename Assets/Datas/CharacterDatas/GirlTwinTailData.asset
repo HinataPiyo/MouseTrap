@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6dab34ea343688d41a68c9427eabd456, type: 3}
+  m_Name: GirlTwinTailData
+  m_EditorClassIdentifier: 
+  characterNameEnum: 4
+  characterName: "\u30C4\u30A4\u30F3\u30C6\u30FC\u30EB\u5973\u5B50"
+  characterIcon_Default:
+  - {fileID: -3663831674496775684, guid: cea2f7bf118845944b6eb823e1884c0c, type: 3}
+  characterIcon_Numbered:
+  - {fileID: 1243956719966203184, guid: 8ebd33ce83c6888419b14cc57d7a7a48, type: 3}
+  - {fileID: 3616403228904552112, guid: 8ebd33ce83c6888419b14cc57d7a7a48, type: 3}
+  character_Standing_Sprite: {fileID: -3388638574136167375, guid: cea2f7bf118845944b6eb823e1884c0c, type: 3}
+  animation: {fileID: 9100000, guid: 3b24d43f6b96fb04fb617bc0c6df7ed8, type: 2}
+  specialSkillIcon: {fileID: -5834046106654951984, guid: cea2f7bf118845944b6eb823e1884c0c, type: 3}
+  specialSkillDescription: 
