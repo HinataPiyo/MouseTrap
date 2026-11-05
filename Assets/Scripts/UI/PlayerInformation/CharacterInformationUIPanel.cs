@@ -5,6 +5,7 @@ using Player;
 public class CharacterInformationUIPanel : PanelView<CharacterInformationUIPanel>
 {
     UIDocument uiDoc;
+    Button backButton;
     VisualElement selectCharacterImage;
     VisualElement specialSkillIcon;
     Label specialSkillDescription;
@@ -32,6 +33,15 @@ public class CharacterInformationUIPanel : PanelView<CharacterInformationUIPanel
             return;
         }
 
+        backButton = panel.Q<Button>("BackButton");
+        if (backButton == null)
+        {
+            Debug.LogError("The BackButton was not found in the character information panel.", this);
+            enabled = false;
+            return;
+        }
+
+        backButton.clicked += HideCharacterInformationPanel;
         SetVisible(false);
     }
 
@@ -117,6 +127,9 @@ public class CharacterInformationUIPanel : PanelView<CharacterInformationUIPanel
     protected override void OnSingletonDestroy()
     {
         // シーン破棄時にイベント購読を解除し、破棄済みUIへの通知を防ぐ
+        if (backButton != null)
+            backButton.clicked -= HideCharacterInformationPanel;
+
         if (characterControlHandler != null)
         {
             characterControlHandler.OnCharacterUnlocked -= OnCharacterUnlocked;
@@ -205,7 +218,7 @@ public class CharacterInformationUIPanel : PanelView<CharacterInformationUIPanel
         inputController.ChangeState(StateType.None);
     }
 
-    void ShowCharacterInformationPanel()
+    public void ShowCharacterInformationPanel()
     {
         // 表示時に最新のロジック状態を再反映してから入力状態を変更する
         OnCharacterChanged(characterControlHandler.CurrentCharacter);
