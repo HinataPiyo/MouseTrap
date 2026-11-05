@@ -29,7 +29,7 @@
             <ui:VisualElement name="background" style="position: absolute; background-image: url(&quot;project://database/Assets/Sprites/UI/UIA.png?fileID=82052064546649123&amp;guid=8ebd33ce83c6888419b14cc57d7a7a48&amp;type=3#UIA_25&quot;); align-self: center; top: 25%;">
                 <ui:VisualElement name="image" style="width: 400px; height: 400px; align-self: center; background-image: url(&quot;project://database/Assets/Sprites/key.png?fileID=21300000&amp;guid=457a58ec275c94c419bc19738c5f3690&amp;type=3#key&quot;); -unity-background-scale-mode: scale-to-fit; rotate: -25deg;" />
             </ui:VisualElement>
-            <ui:Label text="落とし物を拾いました" name="text" class="base-text" style="bottom: 14%; position: absolute; align-self: center; color: rgb(255, 255, 255);" />
+            <ui:Label text="落とし物を拾いました" name="item-name" class="base-text" style="bottom: 14%; position: absolute; align-self: center; color: rgb(255, 255, 255);" />
             <ui:VisualElement name="click-action-image" style="background-image: url(&quot;project://database/Assets/Sprites/UI/UIA.png?fileID=-6028986393636049981&amp;guid=8ebd33ce83c6888419b14cc57d7a7a48&amp;type=3#UIA_26&quot;); -unity-background-scale-mode: scale-to-fit; width: 50px; height: 50px; position: absolute; align-self: center; bottom: 25%;" />
         </ui:VisualElement>
     </ui:VisualElement>
