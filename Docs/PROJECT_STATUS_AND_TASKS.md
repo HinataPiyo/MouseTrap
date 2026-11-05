@@ -80,7 +80,7 @@ Unityバージョン: 6000.0.51f1
 | キャラクター切替 | [CharacterControlHandler.cs](../Assets/Scripts/Player/CharacterControlHandler.cs)は解放状態・現在のキャラクターを`GameSession`で管理し、解放済みかを確認してから切り替える。選択時に解放フラグが反転する問題は解消済み。一方、[Player.prefab](../Assets/Prefab/Player.prefab)に設定されたデータは少女・少年・眼鏡少年の3人分で、4・5のデータ／解放処理は確認できない。 |
 | インベントリ | [Inventory.cs](../Assets/Scripts/Inventory/Inventory.cs)に追加・削除・所持確認があり、[InventoryUIPanel.cs](../Assets/Scripts/UI/PlayerInformation/Inventory/InventoryUIPanel.cs)に一覧表示がある。削除・所持確認をゲーム進行から利用する呼び出しは見つからず、アイテムを使う／謎解きに使う処理も確認できない。 |
 | キャラクター情報UI | `Q`で表示・非表示にする枠組みは[CharacterInformationUIPanel.cs](../Assets/Scripts/UI/PlayerInformation/CharacterInformationUIPanel.cs)にある。キャラクターデータを取得して情報欄へ反映する処理は確認できない。 |
-| ミッション | [MissionData.cs](../Assets/Scripts/Mission/MissionData.cs)、[MissionManager.cs](../Assets/Scripts/Mission/MissionManager.cs)、[MissionUIHandler.cs](../Assets/Scripts/Mission/UI/MissionUIHandler.cs)とPrefab上のManagerはある。一方、ゲームアセット内にMissionDataアセットは見つからず、`SetMission`/`CompleteMission`の呼び出しも見つからない。表示枠はプレースホルダーのまま。 |
+| ミッション | [MissionManager.cs](../Assets/Scripts/Mission/MissionManager.cs)内の`MissionNames`の定数名を登録・完了管理し、状態は`GameSession`がシーン遷移をまたいで保持する。[ScatteredBooksHandler.cs](../Assets/Scripts/Interact/Other/LibraryRoom/ScatteredBooksHandler.cs)では図書室の本の収集開始時に登録し、全冊回収時に完了する。表示枠に完了状態を表示する。 |
 | 部屋移動画面 | [RoomChangeUI.cs](../Assets/Scripts/UI/RoomChange/RoomChangeUI.cs)に前後の移動ボタン、使用可否表示、遷移呼び出しがある。クリックコールバックは`Start`で一度だけ登録され、移動先は表示ごとに更新されるため、以前の多重登録リスクは解消済み。 |
 | UIボタン操作 | キーボードイベントと部屋移動・インベントリ内の一部コールバックはある。Main_Game上部のボタンやキャラクター番号ボタン、アイテム詳細の使用ボタンに対するコード上の登録は確認できない。飾りか操作対象かは仕様確認が必要。 |
 | 入力中の移動停止 | [Movement.cs](../Assets/Scripts/Player/Movement.cs)は会話・インタラクト・部屋移動・演出状態では停止するが、`Inventory`と`CharacterInfo`は停止条件に含まれない。UIを開いたまま移動できる可能性がある。 |
@@ -122,7 +122,7 @@ Unityバージョン: 6000.0.51f1
 ### 中優先／仕様確認後に着手
 
 5. **会話中以外のUIを開いたときも移動が止まる保証がない。** Inventory/CharacterInfoは`Movement`の停止判定に含まれない。
-6. **ミッション・アイテム使用・キャラクター情報のデータ連動が未確認。** それらを完成条件に含める場合、現状のUI枠とデータだけではゲーム進行を成立させる接続が不足する。
+6. **ミッション・アイテム使用・キャラクター情報のデータ連動が未完成。** 図書室の本収集ミッションは連携済みだが、ほかのミッションや進行条件との連携、アイテム使用、キャラクター情報の反映は確認できない。完成条件に含める場合は追加の接続が必要。
 7. **同時に複数のインタラクト対象に入ったときの選択が不安定になりうる。** [SearchInteractObjects.cs](../Assets/Scripts/Player/SearchInteractObjects.cs)は対象を1つだけ保持し、距離比較で最寄りを選ぶ処理がない。実シーンで問題が出るかはEditor確認が必要。
 
 ## 4. 完成までに必要なタスク（実装順）

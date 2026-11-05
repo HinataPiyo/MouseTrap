@@ -17,7 +17,6 @@ public class InteractUIPanel : PanelView<InteractUIPanel>
     public void ShowInteractPanel(InteractData interactData)
     {
         SetVisible(interactData);
-        if(!interactData.IsShowPanel) return;
 
         object_view.style.backgroundImage = new StyleBackground(interactData.Sprite);
         itemName_view.text = interactData.Text;

@@ -30,6 +30,7 @@ public class ScatteredBooksHandler : Interact
         {
             ActivateLastBook();
             IsEventCompleted = true;
+            MissionManager.Instance.CompleteMission(MissionNames.CollectScatteredBooks);
         }
     }
 
@@ -40,6 +41,8 @@ public class ScatteredBooksHandler : Interact
     {
         foreach (var book in books)
             book.SetActive(true);
+
+        MissionManager.Instance.SetMission(MissionNames.CollectScatteredBooks);
     }
 
     /// <summary>

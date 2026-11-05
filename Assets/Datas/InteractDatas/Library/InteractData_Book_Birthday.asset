@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ac802a46b03e87a429a3458126233beb, type: 3}
-  m_Name: InteractData_Book_01
+  m_Name: InteractData_Book_Birthday
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 3bb8bd26d9858d640888756272e36fe8, type: 3}
-  text: "\u672CA"
+  text: "\u8A95\u751F\u65E5"
   isDisabledAfterInteract: 0
   isShowPanel: 1
   isReusable: 0

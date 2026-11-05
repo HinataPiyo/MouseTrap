@@ -20,6 +20,18 @@ public static class GameSession
     /// <summary>所持アイテム</summary>
     public static List<Inventory.ItemData> InventoryItems { get; } = new List<Inventory.ItemData>();
 
+    /// <summary>登録済みミッション</summary>
+    public static HashSet<string> RegisteredMissions { get; } = new HashSet<string>();
+
+    /// <summary>完了済みミッション</summary>
+    public static HashSet<string> CompletedMissions { get; } = new HashSet<string>();
+
+    /// <summary>各ミッションの次に進むミッション</summary>
+    public static Dictionary<string, string> MissionNextTitles { get; } = new Dictionary<string, string>();
+
+    /// <summary>現在表示しているミッション</summary>
+    public static string CurrentMissionTitle { get; set; }
+
     /// <summary>部屋移動直後の最初のシーンで、フェードアウトを再生するかどうか</summary>
     public static bool FadeOutPending { get; set; }
 
@@ -34,6 +46,10 @@ public static class GameSession
         UnlockedRooms.Add(Room.Name.Library);       //! テスト
 
         InventoryItems.Clear();
+        RegisteredMissions.Clear();
+        CompletedMissions.Clear();
+        MissionNextTitles.Clear();
+        CurrentMissionTitle = null;
         InteractStateStore.Clear();
         FadeOutPending = false;
     }

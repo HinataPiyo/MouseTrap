@@ -23,6 +23,9 @@ namespace Intetract.StaffRoom.Boy
         // 会話開始
         protected override void AcquireItem()
         {
+            MissionManager.Instance.CompleteMissionAndSetNext(
+                MissionNames.TalkToBoy,
+                MissionNames.ChangeRoom);
             StartCoroutine(StartTalk());
         }
 

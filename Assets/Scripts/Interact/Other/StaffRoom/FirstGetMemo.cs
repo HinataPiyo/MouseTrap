@@ -1,5 +1,4 @@
 using System.Collections;
-using NUnit.Framework;
 using UnityEngine;
 
 public class FirstGetMemo : Interact
@@ -14,8 +13,17 @@ public class FirstGetMemo : Interact
             }
         }
     }
-    protected override void Initialize() { }
-    protected override void AcquireItem() { }
+    protected override void Initialize()
+    {
+        MissionManager.Instance.SetMission(MissionNames.FirstGetMemo);
+    }
+
+    protected override void AcquireItem()
+    {
+        MissionManager.Instance.CompleteMissionAndSetNext(
+            MissionNames.FirstGetMemo,
+            MissionNames.CheckLocker);
+    }
 
     protected override IEnumerator StartTalk()
     {

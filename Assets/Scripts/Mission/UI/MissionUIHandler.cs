@@ -1,4 +1,3 @@
-using TMPro;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -11,8 +10,8 @@ public class MissionUIHandler : MonoBehaviour
         missionText = GetComponent<UIDocument>().rootVisualElement.Q<Label>("mission-text");
     }
 
-    public void SetMissionText(string text)
+    public void SetMissionText(string text, bool isCompleted = false)
     {
-        missionText.text = text;
+        missionText.text = isCompleted ? $"{text} ✔" : text;
     }
 }
