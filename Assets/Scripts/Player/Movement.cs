@@ -15,6 +15,7 @@ namespace Player
         MoveType currentMoveType;
 
         PlayerInputController gameState;
+        CharacterControlHandler characterControlHandler;
 
         bool isStopped = false;
 
@@ -27,6 +28,26 @@ namespace Player
         void Start()
         {
             gameState = PlayerInputController.Instance;
+            characterControlHandler = CharacterControlHandler.Instance;
+            if (characterControlHandler == null)
+            {
+                Debug.LogError("CharacterControlHandler is not available.", this);
+                enabled = false;
+                return;
+            }
+
+            characterControlHandler.OnCharacterChanged += OnCharacterChanged;
+        }
+
+        void OnDestroy()
+        {
+            if (characterControlHandler != null)
+                characterControlHandler.OnCharacterChanged -= OnCharacterChanged;
+        }
+
+        void OnCharacterChanged(Character.Name characterName)
+        {
+            ainm.SetInteger("MoveType", (int)currentMoveType);
         }
 
         void Update()

@@ -13,6 +13,9 @@ public abstract class Interact : MonoBehaviour, IInteract
     [Header("アイテム情報")]
     [SerializeField] protected InteractData interactData;
 
+    [Header("取得後アイテムを非表示にする(自身のObject以外に隠す必要のあるもの)")]
+    [SerializeField] GameObject[] hideAfterAcquire;
+
     [Header("他のイベントがクリアされているか")]
     [SerializeField] Interact[] requiredEvents;
 
@@ -93,7 +96,12 @@ public abstract class Interact : MonoBehaviour, IInteract
 
         // Interact後にオブジェクトを無効化するかどうかの処理
         if (interactData.IsDisabledAfterInteract)
+        {
+            // 他のオブジェクトも非表示
+            foreach(var o in hideAfterAcquire)
+                o.SetActive(false);
             gameObject.SetActive(false);
+        }
 
         //? SearchInteractObjectsの方で表示するようにしてしまっているので要検討
         if (interactData.IsShowPanel)
