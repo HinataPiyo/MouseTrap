@@ -4,6 +4,7 @@ using UnityEngine;
 
 /// <summary>
 /// 眼鏡少年が最初の本をゲットしたのち散らばる本を管理する
+/// 最後の一冊は最初に拾った本を配置、または足りないことに気づいたときに現れる
 /// </summary>
 public class ScatteredBooksHandler : Interact
 {
@@ -14,6 +15,10 @@ public class ScatteredBooksHandler : Interact
     protected override void AcquireItem() { }
     protected override IEnumerator StartTalk() { yield return null; }
 
+    /// <summary>
+    /// 本を取ったときに呼ぶ
+    /// 本を全部取ったか確認
+    /// </summary>
     public void DeactivateBooks(GameObject book)
     {
         books.Remove(book);
@@ -28,7 +33,6 @@ public class ScatteredBooksHandler : Interact
     {
         if (books.Count == 0)
         {
-            ActivateLastBook();
             IsEventCompleted = true;
             MissionManager.Instance.CompleteMission(MissionNames.CollectScatteredBooks);
         }
