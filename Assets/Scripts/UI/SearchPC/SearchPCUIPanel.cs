@@ -5,7 +5,7 @@ using UnityEngine.UIElements;
 /// <summary>
 /// 検索用PC用のパネルを表示する
 /// </summary>
-public class SearchPCUIPanel : PanelView<SearchPCUIPanel>
+public partial class SearchPCUIPanel : PanelView<SearchPCUIPanel>
 {
     UIDocument uiDoc;
 
@@ -44,10 +44,12 @@ public class SearchPCUIPanel : PanelView<SearchPCUIPanel>
             if(index == 10) index = 0;
             
             buttons[i].text = index.ToString();
-            RegisterButtons(buttons[i], index);
+            RegisterPasswordButtons(buttons[i], index);
         }
         clearButton.clicked += ClearInput;
         excuteButton.clicked += Excute;
+
+        SearchPanelInit();
 
         Hide();
     }
@@ -67,6 +69,14 @@ public class SearchPCUIPanel : PanelView<SearchPCUIPanel>
     {
         uiDoc.rootVisualElement.style.display = DisplayStyle.Flex;
 
+        // パスワード完了なら検索パネルへ
+        if(isPasswordComplete) BackToGenrePanel();
+        else
+        {
+            searchPanel.style.display = DisplayStyle.None;
+            passwordField.style.display = DisplayStyle.Flex;
+        }
+
         ClearInput();
     }
 
@@ -79,7 +89,7 @@ public class SearchPCUIPanel : PanelView<SearchPCUIPanel>
     /// ボタンを登録する
     /// </summary>
     /// <param name="num">ボタンの番号</param>
-    void RegisterButtons(Button btn,int num)
+    void RegisterPasswordButtons(Button btn,int num)
     {
         btn.clicked += () =>
         {
@@ -117,6 +127,7 @@ public class SearchPCUIPanel : PanelView<SearchPCUIPanel>
         {
             isPasswordComplete = true;
             passwordField.style.display = DisplayStyle.None;
+            BackToGenrePanel();
         }
         else errorLabel.style.display = DisplayStyle.Flex;
     }
