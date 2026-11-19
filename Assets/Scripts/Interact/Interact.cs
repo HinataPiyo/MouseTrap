@@ -19,6 +19,9 @@ public abstract class Interact : MonoBehaviour, IInteract
     [Header("他のイベントがクリアされているか")]
     [SerializeField] Interact[] requiredEvents;
 
+    [Header("全完了テスト用")]
+    [SerializeField] bool isAllCompleteTest;
+
     protected TalkData GetTalkData(int index) => interactData.TalkData[index];
     public bool IsEventCompleted { get; protected set; } = false;   // イベントが完了したかどうかを管理するフラグ
 
@@ -119,6 +122,7 @@ public abstract class Interact : MonoBehaviour, IInteract
 
     public bool TryCompleteRequired()
     {
+        if (isAllCompleteTest) return true;
         if (requiredEvents == null) return true;
 
         foreach (var e in requiredEvents)
