@@ -1,0 +1,31 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI%20Toolkit/SearchPC/Style/Number_Buttons.uss?fileID=7433441132597879392&amp;guid=90d7fa8875849984ab859538ec870eaa&amp;type=3#Number_Buttons" />
+    <ui:VisualElement name="root" style="flex-grow: 1;">
+        <ui:VisualElement name="panel" style="width: 50%; height: 45%; top: 25%; left: 25%; background-color: rgb(166, 166, 166); border-top-left-radius: 22px; border-top-right-radius: 22px; border-bottom-right-radius: 22px; border-bottom-left-radius: 22px; overflow: hidden;">
+            <ui:VisualElement name="deco" style="height: 30px; background-color: rgb(101, 101, 101);" />
+            <ui:VisualElement name="password-panel" style="flex-grow: 1; flex-direction: row;">
+                <ui:VisualElement name="number-display" style="flex-grow: 1; align-items: center;">
+                    <ui:Label text="パスワードを入力してください" name="Title" style="align-items: center; -unity-text-align: upper-center; top: 25%; font-size: 18px; -unity-font-definition: url(&quot;project://database/Library/unity%20default%20resources?fileID=10102&amp;guid=0000000000000000e000000000000000&amp;type=0#LegacyRuntime&quot;);" />
+                    <ui:Label text="1234" name="input-value" style="top: 25%; -unity-text-align: middle-center; font-size: 32px; border-left-color: rgb(77, 77, 77); border-right-color: rgb(77, 77, 77); border-top-color: rgb(77, 77, 77); border-bottom-color: rgb(77, 77, 77); border-top-width: 3px; border-right-width: 3px; border-bottom-width: 3px; border-left-width: 3px; border-top-left-radius: 9px; border-top-right-radius: 9px; border-bottom-right-radius: 9px; border-bottom-left-radius: 9px; width: 68%; height: 53px;" />
+                    <ui:Label text="パスワードが間違えています" name="error" style="align-items: center; -unity-text-align: upper-center; top: 25%; font-size: 15px; -unity-font-definition: url(&quot;project://database/Library/unity%20default%20resources?fileID=10102&amp;guid=0000000000000000e000000000000000&amp;type=0#LegacyRuntime&quot;); color: rgb(236, 0, 0);" />
+                    <ui:VisualElement name="buttons" style="flex-direction: row; height: 15%; width: 75%; justify-content: space-between; bottom: 16%; position: absolute;">
+                        <ui:Button text="確定" name="excute" style="font-size: 28px; border-left-color: rgb(51, 51, 51); border-right-color: rgb(51, 51, 51); border-top-color: rgb(51, 51, 51); border-bottom-color: rgb(51, 51, 51); background-color: rgb(180, 180, 180); flex-grow: 1;" />
+                        <ui:Button text="削除" name="clear" style="background-color: rgb(197, 152, 152); font-size: 28px; border-left-color: rgb(70, 70, 70); border-right-color: rgb(70, 70, 70); border-top-color: rgb(70, 70, 70); border-bottom-color: rgb(70, 70, 70);" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:VisualElement name="number-buttons" style="align-self: center; align-items: center; flex-wrap: wrap; width: 45%; flex-direction: row; justify-content: center; margin-right: 18px; margin-left: 18px;">
+                    <ui:Button text="1" class="button" />
+                    <ui:Button text="1" class="button" />
+                    <ui:Button text="1" class="button" />
+                    <ui:Button text="1" class="button" />
+                    <ui:Button text="1" class="button" />
+                    <ui:Button text="1" class="button" />
+                    <ui:Button text="1" class="button" />
+                    <ui:Button text="1" class="button" />
+                    <ui:Button text="1" class="button" />
+                    <ui:Button text="1" class="button" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

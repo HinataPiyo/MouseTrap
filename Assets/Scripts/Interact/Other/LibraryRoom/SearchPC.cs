@@ -6,9 +6,13 @@ using UnityEngine;
 /// 解除されたら散らばった本の配置を確認できる画面になる
 /// これから散らばった本を配置しに行く（散らばった本を4冊回収していたら配置可能の状態にする）
 /// </summary>
-public class CounterPC : Interact
+public class SearchPC : Interact
 {
     protected override void Initialize() { }
-    protected override void AcquireItem() { }
+    protected override void AcquireItem()
+    {
+        SearchPCUIPanel.Instance.Show();
+    }
+
     protected override IEnumerator StartTalk() { yield return null; }
 }
