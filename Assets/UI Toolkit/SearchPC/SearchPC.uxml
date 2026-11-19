@@ -1,9 +1,10 @@
 <ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/UI%20Toolkit/SearchPC/Style/Number_Buttons.uss?fileID=7433441132597879392&amp;guid=90d7fa8875849984ab859538ec870eaa&amp;type=3#Number_Buttons" />
+    <Style src="project://database/Assets/UI%20Toolkit/SearchPC/Style/Search_Buttons.uss?fileID=7433441132597879392&amp;guid=de0a5ff9876710b47afa471a192a1fab&amp;type=3#Search_Buttons" />
     <ui:VisualElement name="root" style="flex-grow: 1;">
         <ui:VisualElement name="panel" style="width: 50%; height: 45%; top: 25%; left: 25%; background-color: rgb(166, 166, 166); border-top-left-radius: 22px; border-top-right-radius: 22px; border-bottom-right-radius: 22px; border-bottom-left-radius: 22px; overflow: hidden;">
             <ui:VisualElement name="deco" style="height: 30px; background-color: rgb(101, 101, 101);" />
-            <ui:VisualElement name="password-panel" style="flex-grow: 1; flex-direction: row;">
+            <ui:VisualElement name="password-panel" style="flex-grow: 1; flex-direction: row; display: none;">
                 <ui:VisualElement name="number-display" style="flex-grow: 1; align-items: center;">
                     <ui:Label text="パスワードを入力してください" name="Title" style="align-items: center; -unity-text-align: upper-center; top: 25%; font-size: 18px; -unity-font-definition: url(&quot;project://database/Library/unity%20default%20resources?fileID=10102&amp;guid=0000000000000000e000000000000000&amp;type=0#LegacyRuntime&quot;);" />
                     <ui:Label text="1234" name="input-value" style="top: 25%; -unity-text-align: middle-center; font-size: 32px; border-left-color: rgb(77, 77, 77); border-right-color: rgb(77, 77, 77); border-top-color: rgb(77, 77, 77); border-bottom-color: rgb(77, 77, 77); border-top-width: 3px; border-right-width: 3px; border-bottom-width: 3px; border-left-width: 3px; border-top-left-radius: 9px; border-top-right-radius: 9px; border-bottom-right-radius: 9px; border-bottom-left-radius: 9px; width: 68%; height: 53px;" />
@@ -24,6 +25,31 @@
                     <ui:Button text="1" class="button" />
                     <ui:Button text="1" class="button" />
                     <ui:Button text="1" class="button" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:VisualElement name="search-panel" style="flex-grow: 1;">
+                <ui:VisualElement name="genre-panel" style="flex-grow: 1; display: none;">
+                    <ui:Label text="本のジャンルを選択してください" name="Title" style="-unity-text-align: middle-center; font-size: 32px;" />
+                    <ui:VisualElement name="search-buttons" style="flex-grow: 1; padding-top: 5px; padding-right: 5px; padding-bottom: 5px; padding-left: 5px;">
+                        <ui:Button text="生物" class="search-button" />
+                        <ui:Button text="生物" class="search-button" />
+                        <ui:Button text="生物" class="search-button" />
+                        <ui:Button text="生物" class="search-button" />
+                        <ui:Button text="生物" class="search-button" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:VisualElement name="on-search-panels" style="flex-grow: 1; display: flex;">
+                    <ui:VisualElement name="upper-container" style="flex-direction: row; height: 50px; justify-content: space-between;">
+                        <ui:Label text="生物" name="Title" style="-unity-text-align: middle-left; font-size: 29px;" />
+                        <ui:Button text="戻る" name="back" style="width: 115px; background-color: rgb(197, 146, 146); font-size: 22px;" />
+                    </ui:VisualElement>
+                    <ui:VisualElement name="panel-container" style="flex-grow: 1; border-top-width: 1px; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px; border-left-color: rgb(123, 123, 123); border-right-color: rgb(123, 123, 123); border-top-color: rgb(123, 123, 123); border-bottom-color: rgb(123, 123, 123); border-top-left-radius: 2px; border-top-right-radius: 2px; border-bottom-right-radius: 2px; border-bottom-left-radius: 2px;">
+                        <ui:VisualElement name="on-search" style="flex-grow: 1;" />
+                        <ui:VisualElement name="on-search" style="flex-grow: 1;" />
+                        <ui:VisualElement name="on-search" style="flex-grow: 1;" />
+                        <ui:VisualElement name="on-search" style="flex-grow: 1;" />
+                        <ui:VisualElement name="on-search" style="flex-grow: 1;" />
+                    </ui:VisualElement>
                 </ui:VisualElement>
             </ui:VisualElement>
         </ui:VisualElement>
