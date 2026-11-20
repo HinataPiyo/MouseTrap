@@ -2,6 +2,9 @@ using System.Collections;
 using Player;
 using UnityEngine;
 
+/// <summary>
+/// 椅子をジャンプするためのInteractクラス
+/// </summary>
 public class JumpChair : Interact
 {
     [SerializeField] Transform nextPosition;
