@@ -9,12 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ac802a46b03e87a429a3458126233beb, type: 3}
-  m_Name: "InteractData_Book_\u3044\u3064\u304B\u307E\u305F"
+  m_Script: {fileID: 11500000, guid: 34dd9d101572a804fbe8c6f8067f0acc, type: 3}
+  m_Name: "InteractBookData_\u4E8C\u5339\u306E\u7AF6\u4E89"
   m_EditorClassIdentifier: 
-  sprite: {fileID: 21300000, guid: 3bb8bd26d9858d640888756272e36fe8, type: 3}
-  text: "\u672C \u300C\u3044\u3064\u304B\u307E\u305F\u300D"
+  sprite: {fileID: -1262506496940087126, guid: 740b2f0e03ce966428a9a27f94f3373b, type: 3}
+  text: "\u4E8C\u5339\u306E\u7AF6\u4E89"
   isDisabledAfterInteract: 0
   isShowPanel: 1
   isReusable: 0
   talkData: []
+  bookId: 2
+  ui: {fileID: -1262506496940087126, guid: 740b2f0e03ce966428a9a27f94f3373b, type: 3}

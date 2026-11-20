@@ -52,6 +52,17 @@ public class Inventory : SceneSingleton<Inventory>
     }
 
     /// <summary>
+    /// 指定の本を取得する
+    /// </summary>
+    public InteractBookData[] GetBook()
+    {
+        // 処理: itemsの中から全てのLibraryBookを取得
+        return items.FindAll(x => x.item is InteractBookData).ConvertAll(x => (InteractBookData)x.item).ToArray();
+    }
+
+    public InteractBookData GetBook(int index) => GetBook()[index];
+
+    /// <summary>
     /// アイテムがインベントリに存在するかどうかを確認する
     /// </summary>
     public bool HasItem(InteractData item)
