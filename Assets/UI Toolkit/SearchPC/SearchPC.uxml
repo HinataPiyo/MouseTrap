@@ -2,53 +2,52 @@
     <Style src="project://database/Assets/UI%20Toolkit/SearchPC/Style/Number_Buttons.uss?fileID=7433441132597879392&amp;guid=90d7fa8875849984ab859538ec870eaa&amp;type=3#Number_Buttons" />
     <Style src="project://database/Assets/UI%20Toolkit/SearchPC/Style/Search_Buttons.uss?fileID=7433441132597879392&amp;guid=de0a5ff9876710b47afa471a192a1fab&amp;type=3#Search_Buttons" />
     <ui:VisualElement name="root" style="flex-grow: 1;">
-        <ui:VisualElement name="panel" style="width: 50%; height: 45%; top: 25%; left: 25%; background-color: rgb(166, 166, 166); border-top-left-radius: 22px; border-top-right-radius: 22px; border-bottom-right-radius: 22px; border-bottom-left-radius: 22px; overflow: hidden;">
-            <ui:VisualElement name="deco" style="height: 30px; background-color: rgb(101, 101, 101);" />
+        <ui:VisualElement name="panel" style="width: 65%; height: 850px; top: 7%; left: 16%; border-top-left-radius: 22px; border-top-right-radius: 22px; border-bottom-right-radius: 22px; border-bottom-left-radius: 22px; overflow: hidden; background-image: url(&quot;project://database/Assets/Sprites/UI/UIH.png?fileID=-4041958443797231598&amp;guid=d932acad40f0b2f418ba2847da4cd5dc&amp;type=3#UIH_0&quot;);">
             <ui:VisualElement name="password-panel" style="flex-grow: 1; flex-direction: row; display: none;">
-                <ui:VisualElement name="number-display" style="flex-grow: 1; align-items: center;">
-                    <ui:Label text="パスワードを入力してください" name="Title" style="align-items: center; -unity-text-align: upper-center; top: 25%; font-size: 18px; -unity-font-definition: url(&quot;project://database/Library/unity%20default%20resources?fileID=10102&amp;guid=0000000000000000e000000000000000&amp;type=0#LegacyRuntime&quot;);" />
-                    <ui:Label text="1234" name="input-value" style="top: 25%; -unity-text-align: middle-center; font-size: 32px; border-left-color: rgb(77, 77, 77); border-right-color: rgb(77, 77, 77); border-top-color: rgb(77, 77, 77); border-bottom-color: rgb(77, 77, 77); border-top-width: 3px; border-right-width: 3px; border-bottom-width: 3px; border-left-width: 3px; border-top-left-radius: 9px; border-top-right-radius: 9px; border-bottom-right-radius: 9px; border-bottom-left-radius: 9px; width: 68%; height: 53px;" />
-                    <ui:Label text="パスワードが間違えています" name="error" style="align-items: center; -unity-text-align: upper-center; top: 25%; font-size: 15px; -unity-font-definition: url(&quot;project://database/Library/unity%20default%20resources?fileID=10102&amp;guid=0000000000000000e000000000000000&amp;type=0#LegacyRuntime&quot;); color: rgb(236, 0, 0);" />
-                    <ui:VisualElement name="buttons" style="flex-direction: row; height: 15%; width: 75%; justify-content: space-between; bottom: 16%; position: absolute;">
-                        <ui:Button text="確定" name="excute" style="font-size: 28px; border-left-color: rgb(51, 51, 51); border-right-color: rgb(51, 51, 51); border-top-color: rgb(51, 51, 51); border-bottom-color: rgb(51, 51, 51); background-color: rgb(180, 180, 180); flex-grow: 1;" />
-                        <ui:Button text="削除" name="clear" style="background-color: rgb(197, 152, 152); font-size: 28px; border-left-color: rgb(70, 70, 70); border-right-color: rgb(70, 70, 70); border-top-color: rgb(70, 70, 70); border-bottom-color: rgb(70, 70, 70);" />
+                <ui:VisualElement name="number-display" style="align-items: center; width: 717px; height: 550px; top: 23px; left: 85px;">
+                    <ui:VisualElement name="Title" style="background-image: url(&quot;project://database/Assets/Sprites/UI/UIG.png?fileID=-65193333611296019&amp;guid=740b2f0e03ce966428a9a27f94f3373b&amp;type=3#UIG_27&quot;); width: 261px; height: 70px; top: 55px;" />
+                    <ui:Label text="1234" name="input-value" style="top: 67px; -unity-text-align: middle-center; font-size: 32px; border-left-color: rgb(103, 93, 87); border-right-color: rgb(103, 93, 87); border-top-color: rgb(103, 93, 87); border-bottom-color: rgb(103, 93, 87); border-top-width: 3px; border-right-width: 3px; border-bottom-width: 3px; border-left-width: 3px; border-top-left-radius: 39px; border-top-right-radius: 39px; border-bottom-right-radius: 39px; border-bottom-left-radius: 39px; width: 68%; height: 53px; background-color: rgb(255, 255, 255);" />
+                    <ui:Label text="パスワードが間違えています" name="error" style="align-items: center; -unity-text-align: upper-center; top: 191px; font-size: 15px; -unity-font-definition: url(&quot;project://database/Library/unity%20default%20resources?fileID=10102&amp;guid=0000000000000000e000000000000000&amp;type=0#LegacyRuntime&quot;); color: rgb(236, 0, 0); display: flex; position: absolute;" />
+                    <ui:VisualElement name="number-buttons" style="align-self: center; align-items: center; flex-wrap: wrap; width: 280px; flex-direction: row; justify-content: center; margin-right: 18px; margin-left: 18px; height: 239px; bottom: -102px;">
+                        <ui:Button text="1" class="button" style="background-image: url(&quot;project://database/Assets/Sprites/UI/UIG.png?fileID=3919695621489784291&amp;guid=740b2f0e03ce966428a9a27f94f3373b&amp;type=3#UIG_0&quot;);" />
+                        <ui:Button text="1" class="button" style="background-image: url(&quot;project://database/Assets/Sprites/UI/UIG.png?fileID=-2907727407498961299&amp;guid=740b2f0e03ce966428a9a27f94f3373b&amp;type=3#UIG_1&quot;);" />
+                        <ui:Button text="1" class="button" style="background-image: url(&quot;project://database/Assets/Sprites/UI/UIG.png?fileID=4443546482409148523&amp;guid=740b2f0e03ce966428a9a27f94f3373b&amp;type=3#UIG_2&quot;);" />
+                        <ui:Button text="1" class="button" style="background-image: url(&quot;project://database/Assets/Sprites/UI/UIG.png?fileID=-3436627996419239791&amp;guid=740b2f0e03ce966428a9a27f94f3373b&amp;type=3#UIG_23&quot;);" />
+                        <ui:Button text="1" class="button" style="background-image: url(&quot;project://database/Assets/Sprites/UI/UIG.png?fileID=6816804362913835615&amp;guid=740b2f0e03ce966428a9a27f94f3373b&amp;type=3#UIG_24&quot;);" />
+                        <ui:Button text="1" class="button" style="background-image: url(&quot;project://database/Assets/Sprites/UI/UIG.png?fileID=2117067595366526170&amp;guid=740b2f0e03ce966428a9a27f94f3373b&amp;type=3#UIG_25&quot;);" />
+                        <ui:Button text="1" class="button" style="background-image: url(&quot;project://database/Assets/Sprites/UI/UIG.png?fileID=-6770736776965411183&amp;guid=740b2f0e03ce966428a9a27f94f3373b&amp;type=3#UIG_32&quot;);" />
+                        <ui:Button text="1" class="button" style="background-image: url(&quot;project://database/Assets/Sprites/UI/UIG.png?fileID=1914955257480303782&amp;guid=740b2f0e03ce966428a9a27f94f3373b&amp;type=3#UIG_33&quot;);" />
+                        <ui:Button text="1" class="button" style="background-image: url(&quot;project://database/Assets/Sprites/UI/UIG.png?fileID=-2612496971213744180&amp;guid=740b2f0e03ce966428a9a27f94f3373b&amp;type=3#UIG_34&quot;);" />
+                        <ui:Button text="1" class="button" style="background-image: url(&quot;project://database/Assets/Sprites/UI/UIG.png?fileID=4393354582706081294&amp;guid=740b2f0e03ce966428a9a27f94f3373b&amp;type=3#UIG_26&quot;); right: -55px; top: 75px; position: absolute;" />
                     </ui:VisualElement>
-                </ui:VisualElement>
-                <ui:VisualElement name="number-buttons" style="align-self: center; align-items: center; flex-wrap: wrap; width: 45%; flex-direction: row; justify-content: center; margin-right: 18px; margin-left: 18px;">
-                    <ui:Button text="1" class="button" />
-                    <ui:Button text="1" class="button" />
-                    <ui:Button text="1" class="button" />
-                    <ui:Button text="1" class="button" />
-                    <ui:Button text="1" class="button" />
-                    <ui:Button text="1" class="button" />
-                    <ui:Button text="1" class="button" />
-                    <ui:Button text="1" class="button" />
-                    <ui:Button text="1" class="button" />
-                    <ui:Button text="1" class="button" />
+                    <ui:VisualElement name="buttons" style="flex-direction: row; height: 13%; width: 75%; justify-content: center; bottom: 26px; position: absolute;">
+                        <ui:Button name="excute" style="background-image: url(&quot;project://database/Assets/Sprites/UI/UIG.png?fileID=8361279016417849707&amp;guid=740b2f0e03ce966428a9a27f94f3373b&amp;type=3#UIG_21&quot;); -unity-background-scale-mode: scale-to-fit; background-color: rgba(188, 188, 188, 0); border-left-color: rgba(149, 149, 149, 0); border-right-color: rgba(149, 149, 149, 0); border-top-color: rgba(149, 149, 149, 0); border-bottom-color: rgba(149, 149, 149, 0); width: 115px;" />
+                        <ui:Button name="clear" style="background-color: rgba(255, 255, 255, 0); border-left-color: rgba(149, 149, 149, 0); border-right-color: rgba(149, 149, 149, 0); border-top-color: rgba(149, 149, 149, 0); border-bottom-color: rgba(149, 149, 149, 0); background-image: url(&quot;project://database/Assets/Sprites/UI/UIG.png?fileID=1101427005392048256&amp;guid=740b2f0e03ce966428a9a27f94f3373b&amp;type=3#UIG_22&quot;); -unity-background-scale-mode: scale-to-fit; width: 115px;" />
+                    </ui:VisualElement>
                 </ui:VisualElement>
             </ui:VisualElement>
-            <ui:VisualElement name="search-panel" style="flex-grow: 1;">
-                <ui:VisualElement name="genre-panel" style="flex-grow: 1; display: none;">
-                    <ui:Label text="本のジャンルを選択してください" name="Title" style="-unity-text-align: middle-center; font-size: 32px;" />
-                    <ui:VisualElement name="search-buttons" style="flex-grow: 1; padding-top: 5px; padding-right: 5px; padding-bottom: 5px; padding-left: 5px;">
-                        <ui:Button text="生物" class="search-button" />
-                        <ui:Button text="生物" class="search-button" />
-                        <ui:Button text="生物" class="search-button" />
-                        <ui:Button text="生物" class="search-button" />
-                        <ui:Button text="生物" class="search-button" />
+            <ui:VisualElement name="search-panel" style="display: flex; height: 489px; width: 618px; top: 56px; left: 127px;">
+                <ui:VisualElement name="genre-panel" style="display: flex; top: 68px;">
+                    <ui:Label text="検索" name="Title" style="-unity-text-align: middle-center; font-size: 48px; -unity-font-definition: url(&quot;project://database/Library/unity%20default%20resources?fileID=10102&amp;guid=0000000000000000e000000000000000&amp;type=0#LegacyRuntime&quot;); color: rgb(101, 28, 28); -unity-font-style: bold;" />
+                    <ui:VisualElement style="background-image: url(&quot;project://database/Assets/Sprites/UI/UIG.png?fileID=9136141047857025388&amp;guid=740b2f0e03ce966428a9a27f94f3373b&amp;type=3#UIG_3&quot;); -unity-background-scale-mode: scale-to-fit; height: 70px;" />
+                    <ui:VisualElement name="search-buttons" style="padding-top: 5px; padding-right: 5px; padding-bottom: 5px; padding-left: 5px; flex-direction: row; height: 172px; flex-wrap: wrap; width: 372px; align-content: flex-start; justify-content: center; align-self: center;">
+                        <ui:Button class="search-button" style="background-image: url(&quot;project://database/Assets/Sprites/UI/UIG.png?fileID=3738118322691698975&amp;guid=740b2f0e03ce966428a9a27f94f3373b&amp;type=3#UIG_43&quot;); -unity-background-scale-mode: scale-to-fit;" />
+                        <ui:Button class="search-button" style="background-image: url(&quot;project://database/Assets/Sprites/UI/UIG.png?fileID=9124356031571742743&amp;guid=740b2f0e03ce966428a9a27f94f3373b&amp;type=3#UIG_44&quot;);" />
+                        <ui:Button class="search-button" style="background-image: url(&quot;project://database/Assets/Sprites/UI/UIG.png?fileID=6599865057633370196&amp;guid=740b2f0e03ce966428a9a27f94f3373b&amp;type=3#UIG_45&quot;);" />
+                        <ui:Button class="search-button" style="background-image: url(&quot;project://database/Assets/Sprites/UI/UIG.png?fileID=8828920798058909589&amp;guid=740b2f0e03ce966428a9a27f94f3373b&amp;type=3#UIG_46&quot;);" />
+                        <ui:Button class="search-button" style="background-image: url(&quot;project://database/Assets/Sprites/UI/UIG.png?fileID=3811093238410783762&amp;guid=740b2f0e03ce966428a9a27f94f3373b&amp;type=3#UIG_47&quot;);" />
                     </ui:VisualElement>
                 </ui:VisualElement>
-                <ui:VisualElement name="on-search-panels" style="flex-grow: 1; display: flex;">
-                    <ui:VisualElement name="upper-container" style="flex-direction: row; height: 50px; justify-content: space-between;">
-                        <ui:Label text="生物" name="Title" style="-unity-text-align: middle-left; font-size: 29px;" />
-                        <ui:Button text="戻る" name="back" style="width: 115px; background-color: rgb(197, 146, 146); font-size: 22px;" />
+                <ui:VisualElement name="on-search-panels" style="display: flex; position: absolute; top: 127px; left: 37px;">
+                    <ui:VisualElement name="upper-container" style="flex-direction: row-reverse; height: 80px; justify-content: space-between;">
+                        <ui:Button name="back" style="width: 80px; background-color: rgba(255, 255, 255, 0); font-size: 22px; border-left-color: rgba(149, 149, 149, 0); border-right-color: rgba(149, 149, 149, 0); border-top-color: rgba(149, 149, 149, 0); border-bottom-color: rgba(149, 149, 149, 0); border-top-width: 0; border-right-width: 0; border-bottom-width: 0; border-left-width: 0; background-image: url(&quot;project://database/Assets/Sprites/UI/UIG.png?fileID=-1505989254756670399&amp;guid=740b2f0e03ce966428a9a27f94f3373b&amp;type=3#UIG_41&quot;); -unity-background-scale-mode: scale-to-fit;" />
                     </ui:VisualElement>
-                    <ui:VisualElement name="panel-container" style="flex-grow: 1; border-top-width: 1px; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px; border-left-color: rgb(123, 123, 123); border-right-color: rgb(123, 123, 123); border-top-color: rgb(123, 123, 123); border-bottom-color: rgb(123, 123, 123); border-top-left-radius: 2px; border-top-right-radius: 2px; border-bottom-right-radius: 2px; border-bottom-left-radius: 2px;">
-                        <ui:VisualElement name="on-search" style="flex-grow: 1;" />
-                        <ui:VisualElement name="on-search" style="flex-grow: 1;" />
-                        <ui:VisualElement name="on-search" style="flex-grow: 1;" />
-                        <ui:VisualElement name="on-search" style="flex-grow: 1;" />
-                        <ui:VisualElement name="on-search" style="flex-grow: 1;" />
+                    <ui:VisualElement name="panel-container" style="flex-direction: row; background-image: url(&quot;project://database/Assets/Sprites/UI/UIG.png?fileID=2507790016378684897&amp;guid=740b2f0e03ce966428a9a27f94f3373b&amp;type=3#UIG_51&quot;); -unity-background-scale-mode: scale-to-fit; height: 218px; align-items: center; justify-content: center; width: 543px; align-self: center; padding-top: 32px; border-left-color: rgba(0, 0, 0, 0); border-right-color: rgba(0, 0, 0, 0); border-top-color: rgba(0, 0, 0, 0); border-bottom-color: rgba(0, 0, 0, 0);">
+                        <ui:VisualElement name="on-search" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/Sprites/UI/UIG.png?fileID=3162924246279502827&amp;guid=740b2f0e03ce966428a9a27f94f3373b&amp;type=3#UIG_36&quot;);" />
+                        <ui:VisualElement name="on-search" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/Sprites/UI/UIG.png?fileID=-7329396559591263019&amp;guid=740b2f0e03ce966428a9a27f94f3373b&amp;type=3#UIG_37&quot;);" />
+                        <ui:VisualElement name="on-search" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/Sprites/UI/UIG.png?fileID=-1581826380545473263&amp;guid=740b2f0e03ce966428a9a27f94f3373b&amp;type=3#UIG_38&quot;);" />
+                        <ui:VisualElement name="on-search" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/Sprites/UI/UIG.png?fileID=-3599239024548470158&amp;guid=740b2f0e03ce966428a9a27f94f3373b&amp;type=3#UIG_39&quot;);" />
+                        <ui:VisualElement name="on-search" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/Sprites/UI/UIG.png?fileID=-6592860534067317980&amp;guid=740b2f0e03ce966428a9a27f94f3373b&amp;type=3#UIG_40&quot;);" />
                     </ui:VisualElement>
                 </ui:VisualElement>
             </ui:VisualElement>

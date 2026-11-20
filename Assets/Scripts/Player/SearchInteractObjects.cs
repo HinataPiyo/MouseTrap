@@ -23,8 +23,7 @@ public class SearchInteractObjects : MonoBehaviour
         if (inputController.CurrentState == StateType.Interact)
         {
             ClearCurrentInteract();
-            InteractUIPanel.Instance.HideInteractPanel();
-            PlayerInputController.Instance.ChangeState(StateType.None);     // 行動制限を解除
+            inputController.CancelCurrentOperation();
             Debug.Log("<color=red>Reset interactable object.</color>");
             return;
         }
