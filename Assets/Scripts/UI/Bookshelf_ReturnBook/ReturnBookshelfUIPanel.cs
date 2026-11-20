@@ -26,6 +26,8 @@ public class ReturnBookshelfUIPanel : PanelView<ReturnBookshelfUIPanel>
 
     public bool IsSessionOpen(int sessionId) => isVisible && OpenSessionId == sessionId;
 
+    bool isSuccess;
+
     protected override void OnSingletonAwake()
     {
         uiDoc = GetComponent<UIDocument>();
@@ -61,20 +63,24 @@ public class ReturnBookshelfUIPanel : PanelView<ReturnBookshelfUIPanel>
                 selectedBook = null;
                 selectButton = null;
 
+                // 全て埋まったか確認
                 if (!System.Array.TrueForAll(returnedBooks, book => book != null)) return;
 
-                if (!CheckSuccess())
+                // 成功判定
+                isSuccess = CheckSuccess();
+                if (!isSuccess)
                 {
                     Reset();
                     return;
                 }
 
+                // インベントリから削除
                 foreach (InteractBookData book in returnedBooks)
                     Inventory.Instance.RemoveItem(book);
 
+                // 成功時の処理
                 OnBooksReturned?.Invoke();
-                Hide();
-                playerInput.CancelCurrentOperation();
+                IsInteractable(false);
             };
         }
 
@@ -99,7 +105,7 @@ public class ReturnBookshelfUIPanel : PanelView<ReturnBookshelfUIPanel>
         isVisible = true;
         uiDoc.rootVisualElement.style.display = DisplayStyle.Flex;
 
-        Reset();
+        if(!isSuccess) Reset();
 
         // 本を4冊所持していたら(会話を進行させる)
         return CheckHasFourBooks();
@@ -108,8 +114,11 @@ public class ReturnBookshelfUIPanel : PanelView<ReturnBookshelfUIPanel>
     public void Hide()
     {
         isVisible = false;
-        Reset();
-        IsInteractable(true);
+        if(!isSuccess)
+        {
+            Reset();
+            IsInteractable(true);
+        }
         uiDoc.rootVisualElement.style.display = DisplayStyle.None;
     }
 
@@ -139,6 +148,9 @@ public class ReturnBookshelfUIPanel : PanelView<ReturnBookshelfUIPanel>
         }
     }
 
+    /// <summary>
+    /// 本が正しい順番で返却されているか確認する
+    /// </summary>
     bool CheckSuccess()
     {
         if (returnedBooks.Length != bookOrder.Length)

@@ -8,7 +8,7 @@ public static class Layer
 
 public static class Character
 {
-    public enum Name { None = -1, Girl, Boy, Glasses_Boy, Delinquent_Boy, Girl_TwinTail }
+    public enum Name { None = -1, Girl, Boy, Glasses_Boy, Delinquent_Boy, Girl_TwinTail, FireSprit }
 
     public static string GetName(Name name)
     {
@@ -26,18 +26,20 @@ public static class Character
 
 public static class Room
 {
-    public enum Name { None = -1, Staffroom, Library }
+    public enum Name { None = -1, Staffroom, Library, Classroom }
 
     public static Dictionary<Name, string> RoomNameWithSceneName = new Dictionary<Name, string>
     {
         { Name.Staffroom, "StaffroomScene" },
-        { Name.Library, "LibraryScene" }
+        { Name.Library, "LibraryScene" },
+        { Name.Classroom, "ClassroomScene" }
     };
 
     public static Dictionary<Name, string> RoomNameWithDisplayName = new Dictionary<Name, string>
     {
         { Name.Staffroom, "しょくいんしつ" },
-        { Name.Library, "としょしつ" }
+        { Name.Library, "としょしつ" },
+        { Name.Classroom, "きょうしつ" }
     };
 
     /// <summary>

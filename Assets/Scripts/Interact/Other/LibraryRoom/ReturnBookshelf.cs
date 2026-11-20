@@ -22,7 +22,6 @@ public class ReturnBookshelf : Interact
     void CompleteEvent()
     {
         IsEventCompleted = true;
-        gameObject.SetActive(false);
     }
 
     // アイテム取得処理
