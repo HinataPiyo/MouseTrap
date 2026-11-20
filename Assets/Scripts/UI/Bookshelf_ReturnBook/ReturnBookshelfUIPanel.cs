@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
 
 
@@ -18,6 +19,10 @@ public class ReturnBookshelfUIPanel : PanelView<ReturnBookshelfUIPanel>
 
     InteractBookData selectedBook;
     Button selectButton;
+    PlayerInputController playerInput;
+    public int OpenSessionId { get; private set; }
+
+    public bool IsSessionOpen(int sessionId) => isVisible && OpenSessionId == sessionId;
 
     protected override void OnSingletonAwake()
     {
@@ -58,13 +63,22 @@ public class ReturnBookshelfUIPanel : PanelView<ReturnBookshelfUIPanel>
         Hide();
     }
 
-    protected override void OnSingletonDestroy()
+    void Start()
     {
-
+        playerInput = PlayerInputController.Instance;
+        playerInput.OnInputESCKeyDisabled += Hide;
     }
 
-    public void Show()
+    protected override void OnSingletonDestroy()
     {
+        if(playerInput != null)
+            playerInput.OnInputESCKeyDisabled -=  Hide;
+    }
+
+    public bool Show()
+    {
+        OpenSessionId++;
+        isVisible = true;
         uiDoc.rootVisualElement.style.display = DisplayStyle.Flex;
 
         InteractBookData[] books = Inventory.Instance.GetBook();
@@ -83,11 +97,16 @@ public class ReturnBookshelfUIPanel : PanelView<ReturnBookshelfUIPanel>
         }
 
         Reset();
+
+        // 本を4冊所持していたら(会話を進行させる)
+        return CheckHasFourBooks();
     }
 
     public void Hide()
     {
+        isVisible = false;
         Reset();
+        IsInteractable(true);
         uiDoc.rootVisualElement.style.display = DisplayStyle.None;
     }
 
@@ -95,11 +114,35 @@ public class ReturnBookshelfUIPanel : PanelView<ReturnBookshelfUIPanel>
     {
         returnedBooks.Clear();
         selectedBook = null;
+        selectButton = null;
 
         for (int i = 0; i < returnNumberButtons.Count; i++)
         {
             returnNumberButtons[i].style.backgroundImage = new StyleBackground(returnPositionUI);
             returnNumberButtons[i].text = (i + 1).ToString();
         }
+    }
+
+    /// <summary>
+    /// 4冊持ってるか確認する
+    /// </summary>
+    /// <returns></returns>
+    bool CheckHasFourBooks()
+    {
+        InteractBookData[] books = Inventory.Instance.GetBook();
+        return books.Length >= 4;
+    }
+
+    /// <summary>
+    /// ボタンの操作可否を設定する
+    /// </summary>
+    /// <param name="interactable"></param>
+    public void IsInteractable(bool interactable)
+    {
+        foreach(var btn in returnNumberButtons)
+            btn.pickingMode = interactable ? PickingMode.Position : PickingMode.Ignore;
+
+        foreach(var btn in selecterBookButtons)
+            btn.pickingMode = interactable ? PickingMode.Position : PickingMode.Ignore;
     }
 }

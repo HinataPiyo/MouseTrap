@@ -17,4 +17,5 @@ MonoBehaviour:
   isDisabledAfterInteract: 0
   isShowPanel: 0
   isReusable: 1
-  talkData: []
+  talkData:
+  - {fileID: 11400000, guid: 110224fd66e51614f933f17c5720a383, type: 2}

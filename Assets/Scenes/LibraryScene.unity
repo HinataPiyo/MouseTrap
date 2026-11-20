@@ -2049,6 +2049,7 @@ MonoBehaviour:
   requiredEvents:
   - {fileID: 1043296795}
   isAllCompleteTest: 0
+  scatteredBooks: {fileID: 1043296795}
 --- !u!1001 &745502870
 PrefabInstance:
   m_ObjectHideFlags: 0
