@@ -1,0 +1,25 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI%20Toolkit/ReturnTable/Style/ReturnTable_Button.uss?fileID=7433441132597879392&amp;guid=cd72d23bdac08414ca388d39c883a135&amp;type=3#ReturnTable_Button" />
+    <ui:VisualElement name="root" style="flex-grow: 1; justify-content: center; align-items: center;">
+        <ui:VisualElement name="panel" style="width: 860px; height: 542px; background-image: url(&quot;project://database/Assets/Sprites/UI/UIK.png?fileID=-8326938702947526034&amp;guid=e861940621d455840af077ff5e740b7a&amp;type=3#UIK_26&quot;); -unity-background-scale-mode: scale-to-fit; -unity-slice-scale: 0.7px;">
+            <ui:VisualElement style="flex-grow: 1; padding-top: 46px; padding-right: 37px; padding-bottom: 86px; padding-left: 37px;">
+                <ui:Label text="配置する形を選択して" name="Title" style="-unity-text-align: middle-center; font-size: 42px; -unity-font-definition: url(&quot;project://database/Library/unity%20default%20resources?fileID=10102&amp;guid=0000000000000000e000000000000000&amp;type=0#LegacyRuntime&quot;); color: rgb(66, 16, 16);" />
+                <ui:VisualElement name="shape-select" style="flex-direction: row; flex-grow: 1; align-items: center; align-self: center;">
+                    <ui:Button class="button" />
+                    <ui:Button class="button" style="background-image: url(&quot;project://database/Assets/Sprites/UI/UIK.png?fileID=1571142991158662384&amp;guid=e861940621d455840af077ff5e740b7a&amp;type=3#UIK_18&quot;);" />
+                    <ui:Button class="button" style="background-image: url(&quot;project://database/Assets/Sprites/UI/UIK.png?fileID=3751868564542457960&amp;guid=e861940621d455840af077ff5e740b7a&amp;type=3#UIK_19&quot;);" />
+                </ui:VisualElement>
+                <ui:VisualElement name="color-select" style="flex-direction: row; flex-grow: 1; align-items: center; align-self: center;">
+                    <ui:Button class="button" style="background-image: url(&quot;project://database/Assets/Sprites/UI/UIK.png?fileID=1571142991158662384&amp;guid=e861940621d455840af077ff5e740b7a&amp;type=3#UIK_18&quot;);" />
+                    <ui:Button class="button" style="background-image: url(&quot;project://database/Assets/Sprites/UI/UIK.png?fileID=-1696701360303617635&amp;guid=e861940621d455840af077ff5e740b7a&amp;type=3#UIK_15&quot;);" />
+                    <ui:Button class="button" style="background-image: url(&quot;project://database/Assets/Sprites/UI/UIK.png?fileID=7289983524519882517&amp;guid=e861940621d455840af077ff5e740b7a&amp;type=3#UIK_21&quot;);" />
+                </ui:VisualElement>
+                <ui:VisualElement name="column-select" style="flex-direction: row; flex-grow: 1; align-items: center; align-self: center;">
+                    <ui:Button class="button" style="background-image: url(&quot;project://database/Assets/Sprites/UI/UIK.png?fileID=-9021230293971242490&amp;guid=e861940621d455840af077ff5e740b7a&amp;type=3#UIK_11&quot;);" />
+                    <ui:Button class="button" style="background-image: url(&quot;project://database/Assets/Sprites/UI/UIK.png?fileID=4256029399548568066&amp;guid=e861940621d455840af077ff5e740b7a&amp;type=3#UIK_12&quot;);" />
+                    <ui:Button class="button" style="background-image: url(&quot;project://database/Assets/Sprites/UI/UIK.png?fileID=5165282667151685719&amp;guid=e861940621d455840af077ff5e740b7a&amp;type=3#UIK_13&quot;);" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af530954020e4c142a9b178f845d0693, type: 3}
   m_Name: DelinquentBoyData
   m_EditorClassIdentifier: 
-  characterNameEnum: 2
+  characterNameEnum: 3
   characterName: "\u4E0D\u826F\u7537\u5B50"
   characterIcon_Default:
   - {fileID: -1050035081195098760, guid: cea2f7bf118845944b6eb823e1884c0c, type: 3}

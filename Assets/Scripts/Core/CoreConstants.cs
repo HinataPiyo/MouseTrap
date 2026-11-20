@@ -26,20 +26,23 @@ public static class Character
 
 public static class Room
 {
-    public enum Name { None = -1, Staffroom, Library, Classroom }
+    public static float DefaultCameraSize = 1.25f;
+    public enum Name { None = -1, Staffroom, Library, Classroom, Privateroom }
 
     public static Dictionary<Name, string> RoomNameWithSceneName = new Dictionary<Name, string>
     {
         { Name.Staffroom, "StaffroomScene" },
         { Name.Library, "LibraryScene" },
-        { Name.Classroom, "ClassroomScene" }
+        { Name.Classroom, "ClassroomScene" },
+        { Name.Privateroom, "PrivateroomScene" }
     };
 
     public static Dictionary<Name, string> RoomNameWithDisplayName = new Dictionary<Name, string>
     {
         { Name.Staffroom, "しょくいんしつ" },
         { Name.Library, "としょしつ" },
-        { Name.Classroom, "きょうしつ" }
+        { Name.Classroom, "きょうしつ" },
+        { Name.Privateroom, "こしつ" }
     };
 
     /// <summary>
