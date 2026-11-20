@@ -38,19 +38,17 @@ public class ReturnBookshelfUIPanel : PanelView<ReturnBookshelfUIPanel>
             };
         }
 
-        //TODO 本棚のボタンを選択しても本棚に戻せない
-        //TODO 取得時の本の表示が出ていない
-        //TODO 一番最初の本を取得する時コルーチン関連のエラーが出る
-        // 本棚のボタン
+        // 本棚の空きボタン
         for (int i = 0; i < returnNumberButtons.Count; i++)
         {
-            int index = i;
+            int index = i;      // クロージャ対策
             returnNumberButtons[i].clicked += () =>
             {
-                if(selectedBook || selectButton == null) return;
+                if(selectedBook == null || selectButton == null) return;
 
                 selectButton.style.display = DisplayStyle.None;
-                returnNumberButtons[i].style.backgroundImage = new StyleBackground(selectedBook.UI);
+                returnNumberButtons[index].style.backgroundImage = new StyleBackground(selectedBook.UI);
+                returnNumberButtons[index].text = "";
                 returnedBooks.Add(selectedBook);
                 selectedBook = null;
                 selectButton = null;
