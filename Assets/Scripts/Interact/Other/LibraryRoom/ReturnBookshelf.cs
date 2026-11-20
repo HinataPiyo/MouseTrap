@@ -3,16 +3,33 @@ using UnityEngine;
 
 public class ReturnBookshelf : Interact
 {
-    [SerializeField] ScatteredBooksHandler scatteredBooks;
+    [SerializeField] LastBook lastBook;
+    ReturnBookshelfUIPanel panel;
+
     protected override void Initialize()
     {
+        panel = ReturnBookshelfUIPanel.Instance;
+        panel.OnBooksReturned += CompleteEvent;
+    }
+
+    protected override void OnDestroy()
+    {
+        if (panel != null)
+            panel.OnBooksReturned -= CompleteEvent;
+        base.OnDestroy();
+    }
+
+    void CompleteEvent()
+    {
+        IsEventCompleted = true;
+        gameObject.SetActive(false);
     }
 
     // アイテム取得処理
     protected override void AcquireItem()
     {
         bool hasFour = ReturnBookshelfUIPanel.Instance.Show();
-        if(hasFour) StartCoroutine(StartTalk());
+        if(hasFour && !lastBook.IsEventCompleted) StartCoroutine(StartTalk());
     }
 
     // 会話開始処理
@@ -26,7 +43,7 @@ public class ReturnBookshelf : Interact
 
         // 4冊所持していた時の会話（5冊目が足りない）
         yield return talk.Writing(GetTalkData(0));
-        scatteredBooks.ActivateLastBook();      // 5冊目を表示する
+        lastBook.ActivateLastBook();      // 5冊目を表示する
         if (!panel.IsSessionOpen(sessionId)) yield break;
 
         panel.IsInteractable(true);

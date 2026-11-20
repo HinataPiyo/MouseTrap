@@ -18,5 +18,5 @@ MonoBehaviour:
   isShowPanel: 1
   isReusable: 0
   talkData: []
-  bookId: 2
+  bookId: 1
   ui: {fileID: -1262506496940087126, guid: 740b2f0e03ce966428a9a27f94f3373b, type: 3}

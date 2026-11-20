@@ -15,11 +15,13 @@ public class ReturnBookshelfUIPanel : PanelView<ReturnBookshelfUIPanel>
     List<Button> returnNumberButtons = new List<Button>();
     List<Button> selecterBookButtons = new List<Button>();
 
-    List<InteractBookData> returnedBooks = new List<InteractBookData>();
+    static readonly LibraryBookId[] bookOrder = (LibraryBookId[])System.Enum.GetValues(typeof(LibraryBookId));
+    InteractBookData[] returnedBooks;
 
     InteractBookData selectedBook;
     Button selectButton;
     PlayerInputController playerInput;
+    public event System.Action OnBooksReturned;
     public int OpenSessionId { get; private set; }
 
     public bool IsSessionOpen(int sessionId) => isVisible && OpenSessionId == sessionId;
@@ -29,6 +31,7 @@ public class ReturnBookshelfUIPanel : PanelView<ReturnBookshelfUIPanel>
         uiDoc = GetComponent<UIDocument>();
         returnNumberButtons = uiDoc.rootVisualElement.Q("return-number-buttons").Query<Button>().ToList();
         selecterBookButtons = uiDoc.rootVisualElement.Q("book-selecter-buttons").Query<Button>().ToList();
+        returnedBooks = new InteractBookData[returnNumberButtons.Count];
 
         // 下端の本選択ボタンにクリックイベントを設定
         for (int i = 0; i < selecterBookButtons.Count; i++)
@@ -49,14 +52,29 @@ public class ReturnBookshelfUIPanel : PanelView<ReturnBookshelfUIPanel>
             int index = i;      // クロージャ対策
             returnNumberButtons[i].clicked += () =>
             {
-                if(selectedBook == null || selectButton == null) return;
+                if(selectedBook == null || selectButton == null || returnedBooks[index] != null) return;
 
                 selectButton.style.display = DisplayStyle.None;
                 returnNumberButtons[index].style.backgroundImage = new StyleBackground(selectedBook.UI);
                 returnNumberButtons[index].text = "";
-                returnedBooks.Add(selectedBook);
+                returnedBooks[index] = selectedBook;
                 selectedBook = null;
                 selectButton = null;
+
+                if (!System.Array.TrueForAll(returnedBooks, book => book != null)) return;
+
+                if (!CheckSuccess())
+                {
+                    Reset();
+                    return;
+                }
+
+                foreach (InteractBookData book in returnedBooks)
+                    Inventory.Instance.RemoveItem(book);
+
+                OnBooksReturned?.Invoke();
+                Hide();
+                playerInput.CancelCurrentOperation();
             };
         }
 
@@ -81,21 +99,6 @@ public class ReturnBookshelfUIPanel : PanelView<ReturnBookshelfUIPanel>
         isVisible = true;
         uiDoc.rootVisualElement.style.display = DisplayStyle.Flex;
 
-        InteractBookData[] books = Inventory.Instance.GetBook();
-
-        // 下端の所持してる本を表示
-        for (int i = 0; i < selecterBookButtons.Count; i++)
-        {
-            if (i >= books.Length)
-            {
-                selecterBookButtons[i].style.display = DisplayStyle.None;
-                continue;
-            }
-
-            selecterBookButtons[i].style.display = DisplayStyle.Flex;
-            selecterBookButtons[i].style.backgroundImage = new StyleBackground(books[i].UI);
-        }
-
         Reset();
 
         // 本を4冊所持していたら(会話を進行させる)
@@ -112,7 +115,7 @@ public class ReturnBookshelfUIPanel : PanelView<ReturnBookshelfUIPanel>
 
     void Reset()
     {
-        returnedBooks.Clear();
+        System.Array.Clear(returnedBooks, 0, returnedBooks.Length);
         selectedBook = null;
         selectButton = null;
 
@@ -121,6 +124,35 @@ public class ReturnBookshelfUIPanel : PanelView<ReturnBookshelfUIPanel>
             returnNumberButtons[i].style.backgroundImage = new StyleBackground(returnPositionUI);
             returnNumberButtons[i].text = (i + 1).ToString();
         }
+
+        InteractBookData[] books = Inventory.Instance != null ? Inventory.Instance.GetBook() : System.Array.Empty<InteractBookData>();
+        for (int i = 0; i < selecterBookButtons.Count; i++)
+        {
+            if (i >= books.Length)
+            {
+                selecterBookButtons[i].style.display = DisplayStyle.None;
+                continue;
+            }
+
+            selecterBookButtons[i].style.display = DisplayStyle.Flex;
+            selecterBookButtons[i].style.backgroundImage = new StyleBackground(books[i].UI);
+        }
+    }
+
+    bool CheckSuccess()
+    {
+        if (returnedBooks.Length != bookOrder.Length)
+        {
+            Debug.LogError("The number of bookshelf slots must match the number of library books.", this);
+            return false;
+        }
+
+        for (int i = 0; i < returnedBooks.Length; i++)
+        {
+            if (returnedBooks[i] == null || returnedBooks[i].BookId != bookOrder[i]) return false;
+        }
+
+        return true;
     }
 
     /// <summary>
