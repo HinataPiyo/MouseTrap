@@ -91,6 +91,15 @@ public abstract class Interact : MonoBehaviour, IInteract
         // すでにアイテムを取得している場合はInteract不可
         if (hasAcquiredItem) return false;
 
+        PlayerInputController inputController = PlayerInputController.Instance;
+        if (inputController.CurrentState == StateType.Movie)
+        {
+            Debug.LogWarning("Cannot interact during a movie.", this);
+            return false;
+        }
+
+        inputController.CancelCurrentOperation();
+
         // アイテムが再利用可能でない場合は取得済みフラグを立てる
         if (!interactData.IsReusable)
             hasAcquiredItem = true;
@@ -114,7 +123,7 @@ public abstract class Interact : MonoBehaviour, IInteract
             Debug.Log($"<color=green>ShowInteractObjectPanel</color> Sprite: {interactData.Sprite}, Text: {interactData.Text}");
         }
 
-        PlayerInputController.Instance.ChangeState(StateType.Interact);
+        inputController.ChangeState(StateType.Interact);
         AcquireItem();
 
         return true;

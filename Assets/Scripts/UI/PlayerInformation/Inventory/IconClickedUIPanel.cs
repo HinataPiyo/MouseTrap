@@ -8,7 +8,10 @@ public class IconClickedUIPanel : MonoBehaviour
     VisualElement panel;
     InventoryUIPanel inventoryUIPanel;
 
+    Button useButton;
+
     VisualElement icon;
+    InteractData selectedData;
 
     void Awake()
     {
@@ -16,12 +19,22 @@ public class IconClickedUIPanel : MonoBehaviour
         uiDoc = GetComponent<UIDocument>();
         panel = uiDoc.rootVisualElement.Q<VisualElement>("IconClickedPanel");
         icon = panel.Q<VisualElement>("icon");
+        useButton = panel.Q<Button>("use-button");
         HidePanel();
 
         // インベントリのアイコンがクリックされたときにパネルを表示するように設定
         inventoryUIPanel.OnIconClicked += ShowPanel;
         inventoryUIPanel.OnPanelClosed += HidePanel;
         panel.RegisterCallback<PointerDownEvent>(evt => HidePanel());
+
+        useButton.clicked += () =>
+        {
+            // 選択したものが破れたメモなら
+            if(selectedData is InteractTornNotesData)
+            {
+                TornNotesUIPanel.Instance.Show();
+            }
+        };
     }
 
     void OnDestroy()
@@ -36,6 +49,7 @@ public class IconClickedUIPanel : MonoBehaviour
     {
         panel.style.display = DisplayStyle.Flex;
         icon.style.backgroundImage = new StyleBackground(item.item.Sprite);
+        selectedData = item.item;
         Debug.Log($"IconClickedUIPanel showing item: {item.item.name}");
     }
 
@@ -43,6 +57,8 @@ public class IconClickedUIPanel : MonoBehaviour
     {
         panel.style.display = DisplayStyle.None;
         icon.style.backgroundImage = null;
+        selectedData = null;
+        if(TornNotesUIPanel.Instance != null) TornNotesUIPanel.Instance.Hide();
     }
 
 }

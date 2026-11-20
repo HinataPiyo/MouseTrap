@@ -9,7 +9,6 @@ using UnityEngine;
 public class ScatteredBooksHandler : Interact
 {
     [SerializeField] List<GameObject> books = new List<GameObject>();
-    [SerializeField] GameObject lastBook;
 
     protected override void Initialize() { }
     protected override void AcquireItem() { }
@@ -47,13 +46,5 @@ public class ScatteredBooksHandler : Interact
             book.SetActive(true);
 
         MissionManager.Instance.SetMission(MissionNames.CollectScatteredBooks);
-    }
-
-    /// <summary>
-    /// 最後の本を表示する
-    /// </summary>
-    public void ActivateLastBook()
-    {
-        lastBook.SetActive(true);
     }
 }

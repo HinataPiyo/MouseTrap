@@ -19,6 +19,14 @@ public class PlayerInputController : SceneSingleton<PlayerInputController>
     public event System.Action OnInputESCKeyDisabled;
     public event System.Action OnInputQKeyPressed;
 
+    public void CancelCurrentOperation()
+    {
+        if (CurrentState == StateType.None || CurrentState == StateType.Movie) return;
+
+        OnInputESCKeyDisabled?.Invoke();
+        ChangeState(StateType.None);
+    }
+
     protected override void OnSingletonAwake()
     {
         ChangeState(StateType.None);
@@ -39,7 +47,7 @@ public class PlayerInputController : SceneSingleton<PlayerInputController>
             && CurrentState != StateType.Movie
             && Keyboard.current.escapeKey.wasPressedThisFrame)
         {
-            OnInputESCKeyDisabled?.Invoke();
+            CancelCurrentOperation();
             return;
         }
 
@@ -77,6 +85,12 @@ public class PlayerInputController : SceneSingleton<PlayerInputController>
                 break;
 
             case StateType.Inventory:
+                if (Keyboard.current.eKey.wasPressedThisFrame)
+                {
+                    CancelCurrentOperation();
+                    OnInputEKeyPressed?.Invoke();
+                    return;
+                }
                 if (Keyboard.current.tabKey.wasPressedThisFrame)
                 {
                     OnInputTabKeyPressed?.Invoke();
@@ -84,6 +98,12 @@ public class PlayerInputController : SceneSingleton<PlayerInputController>
                 }
                 break;
             case StateType.CharacterInfo:
+                if (Keyboard.current.eKey.wasPressedThisFrame)
+                {
+                    CancelCurrentOperation();
+                    OnInputEKeyPressed?.Invoke();
+                    return;
+                }
                 if (Keyboard.current.qKey.wasPressedThisFrame)
                 {
                     OnInputQKeyPressed?.Invoke();

@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ac802a46b03e87a429a3458126233beb, type: 3}
-  m_Name: "InteractData_Book_\u4E09\u4EBA\u306E\u65C5\u7ACB\u3061"
+  m_Name: InteractData_TornNotes 3
   m_EditorClassIdentifier: 
-  sprite: {fileID: 21300000, guid: 3bb8bd26d9858d640888756272e36fe8, type: 3}
-  text: "\u672C \u300C\u4E09\u4EBA\u306E\u65C5\u7ACB\u3061\u300D"
+  sprite: {fileID: -6859825939647066120, guid: 740b2f0e03ce966428a9a27f94f3373b, type: 3}
+  text: "\u7834\u308C\u305F\u30E1\u30E2\u7D19"
   isDisabledAfterInteract: 0
-  isShowPanel: 1
+  isShowPanel: 0
   isReusable: 0
   talkData: []

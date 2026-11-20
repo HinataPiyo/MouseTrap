@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ac802a46b03e87a429a3458126233beb, type: 3}
-  m_Name: "InteractData_Book_\u4E8C\u5339\u306E\u7AF6\u4E89"
+  m_Name: InteractData_Match
   m_EditorClassIdentifier: 
-  sprite: {fileID: 21300000, guid: 3bb8bd26d9858d640888756272e36fe8, type: 3}
-  text: "\u672C \u300C\u4E8C\u5339\u306E\u7AF6\u4E89\u300D"
-  isDisabledAfterInteract: 0
+  sprite: {fileID: 21300000, guid: 0c367302e79aa844481d866d3d6d7213, type: 3}
+  text: "\u30DE\u30C3\u30C1"
+  isDisabledAfterInteract: 1
   isShowPanel: 1
   isReusable: 0
   talkData: []

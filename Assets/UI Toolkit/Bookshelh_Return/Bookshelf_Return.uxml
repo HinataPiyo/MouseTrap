@@ -1,0 +1,21 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI%20Toolkit/Bookshelh_Return/Style/ReturnNumber_Button.uss?fileID=7433441132597879392&amp;guid=089facd5326e6e64896d817cd91a7f58&amp;type=3#ReturnNumber_Button" />
+    <ui:VisualElement name="root" style="flex-grow: 1; align-self: center; justify-content: center;">
+        <ui:VisualElement name="panel" style="background-image: url(&quot;project://database/Assets/Sprites/UI/UII.png?fileID=-4494874857533679385&amp;guid=744c1db29407afe4fa35f70f71decfa9&amp;type=3#UII_0&quot;); -unity-background-scale-mode: scale-to-fit; width: 1013px; height: 849px;">
+            <ui:VisualElement name="return-number-buttons" style="flex-direction: row; align-self: center; align-items: center; justify-content: space-between; top: 274px;">
+                <ui:Button text="1" class="return_number_button" />
+                <ui:Button text="1" class="return_number_button" />
+                <ui:Button text="1" class="return_number_button" />
+                <ui:Button text="1" class="return_number_button" />
+                <ui:Button text="1" class="return_number_button" />
+            </ui:VisualElement>
+            <ui:VisualElement name="book-selecter-buttons" style="bottom: -156px; position: absolute; width: 100%; height: 350px; flex-direction: row; justify-content: space-around;">
+                <ui:Button class="book_selecter_button" />
+                <ui:Button class="book_selecter_button" />
+                <ui:Button class="book_selecter_button" />
+                <ui:Button class="book_selecter_button" />
+                <ui:Button class="book_selecter_button" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

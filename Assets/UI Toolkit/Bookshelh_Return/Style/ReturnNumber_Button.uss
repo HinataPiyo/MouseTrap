@@ -1,0 +1,190 @@
+.return_number_button {
+    background-image: url("project://database/Assets/Sprites/UI/UIG.png?fileID=-7988591320785447965&guid=740b2f0e03ce966428a9a27f94f3373b&type=3#UIG_55");
+    background-color: rgba(0, 0, 0, 0);
+    -unity-background-scale-mode: scale-to-fit;
+    border-left-color: rgba(255, 255, 255, 0);
+    border-right-color: rgba(255, 255, 255, 0);
+    border-top-color: rgba(255, 255, 255, 0);
+    border-bottom-color: rgba(255, 255, 255, 0);
+    border-top-width: 0;
+    border-right-width: 0;
+    border-bottom-width: 0;
+    border-left-width: 0;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+    font-size: 76px;
+    -unity-text-align: middle-center;
+    -unity-font-definition: resource('FlatSkin/Font/Roboto-Medium');
+    color: rgb(238, 215, 113);
+    width: 123px;
+    height: 269px;
+    margin-top: 13px;
+    margin-right: 13px;
+    margin-bottom: 13px;
+    margin-left: 13px;
+    transition-duration: 0.1s;
+}
+
+.return_number_button:hover {
+    background-image: url("project://database/Assets/Sprites/UI/UIG.png?fileID=-7988591320785447965&guid=740b2f0e03ce966428a9a27f94f3373b&type=3#UIG_55");
+    background-color: rgba(0, 0, 0, 0);
+    -unity-background-scale-mode: scale-to-fit;
+    border-left-color: rgba(255, 255, 255, 0);
+    border-right-color: rgba(255, 255, 255, 0);
+    border-top-color: rgba(255, 255, 255, 0);
+    border-bottom-color: rgba(255, 255, 255, 0);
+    border-top-width: 0;
+    border-right-width: 0;
+    border-bottom-width: 0;
+    border-left-width: 0;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+    font-size: 76px;
+    -unity-text-align: middle-center;
+    -unity-font-definition: resource('FlatSkin/Font/Roboto-Medium');
+    color: rgb(238, 215, 113);
+    width: 123px;
+    height: 269px;
+    margin-top: 13px;
+    margin-right: 13px;
+    margin-bottom: 13px;
+    margin-left: 13px;
+    transition-duration: 0.1s;
+    scale: 1.1 1.1;
+}
+
+.return_number_button:active {
+    background-image: url("project://database/Assets/Sprites/UI/UIG.png?fileID=-7988591320785447965&guid=740b2f0e03ce966428a9a27f94f3373b&type=3#UIG_55");
+    background-color: rgba(0, 0, 0, 0);
+    -unity-background-scale-mode: scale-to-fit;
+    border-left-color: rgba(255, 255, 255, 0);
+    border-right-color: rgba(255, 255, 255, 0);
+    border-top-color: rgba(255, 255, 255, 0);
+    border-bottom-color: rgba(255, 255, 255, 0);
+    border-top-width: 0;
+    border-right-width: 0;
+    border-bottom-width: 0;
+    border-left-width: 0;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+    font-size: 76px;
+    -unity-text-align: middle-center;
+    -unity-font-definition: resource('FlatSkin/Font/Roboto-Medium');
+    color: rgb(238, 215, 113);
+    width: 123px;
+    height: 269px;
+    margin-top: 13px;
+    margin-right: 13px;
+    margin-bottom: 13px;
+    margin-left: 13px;
+    transition-duration: 0.1s;
+    scale: 0.99 0.99;
+}
+
+.book_selecter_button {
+    border-left-color: rgba(255, 255, 255, 0);
+    border-right-color: rgba(255, 255, 255, 0);
+    border-top-color: rgba(255, 255, 255, 0);
+    border-bottom-color: rgba(255, 255, 255, 0);
+    border-top-width: 0;
+    border-right-width: 0;
+    border-bottom-width: 0;
+    border-left-width: 0;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+    background-color: rgba(255, 255, 255, 0);
+    background-image: url("project://database/Assets/Sprites/UI/UIG.png?fileID=-8128898952994788083&guid=740b2f0e03ce966428a9a27f94f3373b&type=3#UIG_64");
+    -unity-background-scale-mode: scale-to-fit;
+    width: 120px;
+    height: 300px;
+    rotate: 30deg;
+    transition-duration: 0.1s;
+    scale: 0.9 0.9;
+}
+
+.book_selecter_button:hover {
+    border-left-color: rgba(255, 255, 255, 0);
+    border-right-color: rgba(255, 255, 255, 0);
+    border-top-color: rgba(255, 255, 255, 0);
+    border-bottom-color: rgba(255, 255, 255, 0);
+    border-top-width: 0;
+    border-right-width: 0;
+    border-bottom-width: 0;
+    border-left-width: 0;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+    background-color: rgba(255, 255, 255, 0);
+    background-image: url("project://database/Assets/Sprites/UI/UIG.png?fileID=-8128898952994788083&guid=740b2f0e03ce966428a9a27f94f3373b&type=3#UIG_64");
+    -unity-background-scale-mode: scale-to-fit;
+    width: 120px;
+    height: 300px;
+    rotate: 0;
+    transition-duration: 0.1s;
+    translate: 0 -100px;
+    transition-timing-function: ease;
+    scale: 1.1 1.1;
+}
+
+.book_selecter_button:active {
+    border-left-color: rgba(255, 255, 255, 0);
+    border-right-color: rgba(255, 255, 255, 0);
+    border-top-color: rgba(255, 255, 255, 0);
+    border-bottom-color: rgba(255, 255, 255, 0);
+    border-top-width: 0;
+    border-right-width: 0;
+    border-bottom-width: 0;
+    border-left-width: 0;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+    background-color: rgba(255, 255, 255, 0);
+    background-image: url("project://database/Assets/Sprites/UI/UIG.png?fileID=-8128898952994788083&guid=740b2f0e03ce966428a9a27f94f3373b&type=3#UIG_64");
+    -unity-background-scale-mode: scale-to-fit;
+    width: 120px;
+    height: 300px;
+    rotate: 0;
+    transition-duration: 0.1s;
+    translate: 0 -100px;
+    transition-timing-function: ease;
+    scale: 0.99 0.99;
+}
+
+.return_number_button.torn-notes {
+    background-image: url("project://database/Assets/Sprites/UI/UIJ.png?fileID=-2923669285791097797&guid=65891e3a1483e634095a26816a2cfc5a&type=3#UIJ_10");
+    background-color: rgba(0, 0, 0, 0);
+    -unity-background-scale-mode: stretch-to-fill;
+    border-left-color: rgba(255, 255, 255, 0);
+    border-right-color: rgba(255, 255, 255, 0);
+    border-top-color: rgba(255, 255, 255, 0);
+    border-bottom-color: rgba(255, 255, 255, 0);
+    border-top-width: 0;
+    border-right-width: 0;
+    border-bottom-width: 0;
+    border-left-width: 0;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+    font-size: 76px;
+    -unity-text-align: middle-center;
+    -unity-font-definition: resource('FlatSkin/Font/Roboto-Medium');
+    color: rgb(55, 55, 55);
+    width: 130px;
+    height: 80%;
+    margin-top: 13px;
+    margin-right: 13px;
+    margin-bottom: 13px;
+    margin-left: 13px;
+    transition-duration: 0.1s;
+}

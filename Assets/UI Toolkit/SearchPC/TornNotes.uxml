@@ -1,0 +1,21 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI%20Toolkit/Bookshelh_Return/Style/ReturnNumber_Button.uss?fileID=7433441132597879392&amp;guid=089facd5326e6e64896d817cd91a7f58&amp;type=3" />
+    <ui:VisualElement name="root" style="flex-grow: 1; justify-content: center; align-items: center; background-color: rgba(0, 0, 0, 0.47);">
+        <ui:VisualElement name="panel" style="background-image: url(&quot;project://database/Assets/Sprites/UI/UIJ.png?fileID=2013760957414918863&amp;guid=65891e3a1483e634095a26816a2cfc5a&amp;type=3#UIJ_0&quot;); width: 900px; height: 740px;">
+            <ui:VisualElement name="container" style="top: 115px; height: 600px; justify-content: space-between;">
+                <ui:Label text="並べて元に戻そう" name="Title" style="font-size: 48px; color: rgb(88, 21, 21); -unity-font-style: bold; -unity-font-definition: url(&quot;project://database/Assets/Fonts/WaonJoyo-R.otf?fileID=12800000&amp;guid=c5322e1a6d9c4154a9dc67844b979638&amp;type=3#WaonJoyo-R&quot;); -unity-text-align: middle-center;" />
+                <ui:VisualElement name="torn-return-button-panel" style="flex-direction: row; justify-content: center; align-items: center; background-image: url(&quot;project://database/Assets/Sprites/UI/UIJ.png?fileID=-114888180251090862&amp;guid=65891e3a1483e634095a26816a2cfc5a&amp;type=3#UIJ_9&quot;); align-self: center; width: 720px; height: 362px;">
+                    <ui:Button icon-image="project://database/Assets/Sprites/UI/UIJ.png?fileID=-1829264005517544204&amp;guid=65891e3a1483e634095a26816a2cfc5a&amp;type=3#UIJ_15" class="torn-notes return_number_button" style="width: 135px;" />
+                    <ui:Button text="1" class="return_number_button torn-notes" style="width: 135px;" />
+                    <ui:Button text="1" class="return_number_button torn-notes" style="width: 135px;" />
+                </ui:VisualElement>
+                <ui:VisualElement name="torn-selecter-buttons" style="height: 275px; width: 677px; background-image: url(&quot;project://database/Assets/Sprites/UI/UIJ.png?fileID=8222766148610569981&amp;guid=65891e3a1483e634095a26816a2cfc5a&amp;type=3#UIJ_13&quot;); -unity-background-scale-mode: stretch-to-fill; -unity-slice-scale: 0.5px; flex-direction: row; justify-content: space-around; margin-top: 0; align-self: center; align-items: center; top: 37px;">
+                    <ui:Button class="book_selecter_button" style="background-image: url(&quot;project://database/Assets/Sprites/UI/UIG.png?fileID=-5280651088467014341&amp;guid=740b2f0e03ce966428a9a27f94f3373b&amp;type=3#UIG_48&quot;);" />
+                    <ui:Button class="book_selecter_button" style="background-image: url(&quot;project://database/Assets/Sprites/UI/UIG.png?fileID=740859867210785336&amp;guid=740b2f0e03ce966428a9a27f94f3373b&amp;type=3#UIG_49&quot;);" />
+                    <ui:Button class="book_selecter_button" style="background-image: url(&quot;project://database/Assets/Sprites/UI/UIG.png?fileID=-6859825939647066120&amp;guid=740b2f0e03ce966428a9a27f94f3373b&amp;type=3#UIG_50&quot;);" />
+                </ui:VisualElement>
+                <ui:Button name="back" style="background-image: url(&quot;project://database/Assets/Sprites/UI/UIJ.png?fileID=6527200654618306220&amp;guid=65891e3a1483e634095a26816a2cfc5a&amp;type=3#UIJ_1&quot;); -unity-background-scale-mode: scale-to-fit; width: 80px; height: 80px; align-self: center; background-color: rgba(255, 255, 255, 0); border-left-color: rgba(255, 255, 255, 0); border-right-color: rgba(255, 255, 255, 0); border-top-color: rgba(255, 255, 255, 0); border-bottom-color: rgba(255, 255, 255, 0); border-top-width: 0; border-right-width: 0; border-bottom-width: 0; border-left-width: 0; bottom: -100px;" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

@@ -1,9 +1,39 @@
 .search-button {
-    font-size: 30px;
-    -unity-font-definition: url("project://database/Library/unity%20default%20resources?fileID=10102&guid=0000000000000000e000000000000000&type=0#LegacyRuntime");
-    -unity-text-align: middle-center;
     margin-top: 0;
     margin-right: 5px;
     margin-bottom: 5px;
     margin-left: 5px;
+    border-left-color: rgba(0, 0, 0, 0);
+    border-right-color: rgba(0, 0, 0, 0);
+    border-top-color: rgba(0, 0, 0, 0);
+    border-bottom-color: rgba(0, 0, 0, 0);
+    border-top-width: 0;
+    border-right-width: 0;
+    border-bottom-width: 0;
+    border-left-width: 0;
+    background-color: rgba(255, 255, 255, 0);
+    width: 145px;
+    height: 150px;
+    background-image: url("project://database/Assets/Sprites/UI/UIG.png?fileID=3738118322691698975&guid=740b2f0e03ce966428a9a27f94f3373b&type=3#UIG_43");
+    -unity-background-scale-mode: scale-to-fit;
+}
+
+#on-search {
+    margin-top: 0;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    margin-left: 5px;
+    border-left-color: rgba(0, 0, 0, 0);
+    border-right-color: rgba(0, 0, 0, 0);
+    border-top-color: rgba(0, 0, 0, 0);
+    border-bottom-color: rgba(0, 0, 0, 0);
+    border-top-width: 0;
+    border-right-width: 0;
+    border-bottom-width: 0;
+    border-left-width: 0;
+    background-color: rgba(255, 255, 255, 0);
+    width: 128px;
+    background-image: url("project://database/Assets/Sprites/UI/UIG.png?fileID=3738118322691698975&guid=740b2f0e03ce966428a9a27f94f3373b&type=3#UIG_43");
+    -unity-background-scale-mode: scale-to-fit;
+    height: 165px;
 }
