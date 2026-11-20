@@ -405,7 +405,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da6c3356ae1c871408d42f82c8e8b94e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactData: {fileID: 11400000, guid: bb736af1a12295541b515aaf1f94b150, type: 2}
+  interactData: {fileID: 11400000, guid: 545674621699a9443a4dc9b8a99825f7, type: 2}
   hideAfterAcquire:
   - {fileID: 1834608994}
   requiredEvents:

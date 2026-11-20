@@ -62,6 +62,13 @@ public class Inventory : SceneSingleton<Inventory>
 
     public InteractBookData GetBook(int index) => GetBook()[index];
 
+    public InteractTornNotesData GetTornNotes() => items.Find(x => x.item is InteractTornNotesData)?.item as InteractTornNotesData;
+
+    public void DeleteTornNotes()
+    {
+        items.RemoveAll(x => x.item is InteractTornNotesData);
+    }
+
     /// <summary>
     /// アイテムがインベントリに存在するかどうかを確認する
     /// </summary>

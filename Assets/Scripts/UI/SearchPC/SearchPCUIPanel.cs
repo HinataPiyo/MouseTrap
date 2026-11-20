@@ -20,8 +20,8 @@ public partial class SearchPCUIPanel : PanelView<SearchPCUIPanel>
     Button[] numberButtons = new Button[10];
     List<int> inputNumber = new List<int>();
 
-    const int MaxInput = 4;
-    static readonly int Pasword = 1234;
+    const int MaxInput = 3;
+    static readonly int Pasword = 105;
 
     PlayerInputController inputController;
 
