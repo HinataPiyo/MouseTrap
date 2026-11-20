@@ -79,6 +79,8 @@ public abstract class Interact : MonoBehaviour, IInteract
     // 会話開始処理
     protected abstract IEnumerator StartTalk();
 
+    protected virtual bool CanInteract() { return true; }
+
     /// <summary>
     /// Interact可能なオブジェクトを取得する処理
     /// </summary>
@@ -87,6 +89,8 @@ public abstract class Interact : MonoBehaviour, IInteract
     public virtual bool TryInteract(out InteractData result)
     {
         result = interactData;
+        
+        if(!CanInteract()) return false;
 
         // すでにアイテムを取得している場合はInteract不可
         if (hasAcquiredItem) return false;
