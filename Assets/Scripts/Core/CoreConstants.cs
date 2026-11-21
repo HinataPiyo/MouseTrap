@@ -11,6 +11,14 @@ public static class Character
     public enum Name { None = -1, Girl, Boy, Glasses_Boy, Delinquent_Boy, Girl_TwinTail, FireSprit }
     // 猫→犬→ウサギ→ネズミ→熊
     public enum Doll { None = -1, Cat, Dog, Rabbit, Mouse, Bear }
+    public enum PortraitOrder
+    {
+        Teacher,          // 先生
+        GlassesBoy,       // 眼鏡の少年
+        BandageBoy,       // 絆創膏の子
+        DollGirl,         // 人形好きの女の子
+        ReturnedBoy       // 卒業後に戻ってきた子
+}
 
     public static string GetName(Name name)
     {
@@ -30,7 +38,7 @@ public static class Character
 public static class Room
 {
     public static float DefaultCameraSize = 1.25f;
-    public enum Name { None = -1, Staffroom, Library, Classroom, Privateroom, DeansOfficeScene}
+    public enum Name { None = -1, Staffroom, Library, Classroom, Privateroom, DeansOfficeScene, EndingScene }
 
     public static Dictionary<Name, string> RoomNameWithSceneName = new Dictionary<Name, string>
     {
@@ -38,7 +46,8 @@ public static class Room
         { Name.Library, "LibraryScene" },
         { Name.Classroom, "ClassroomScene" },
         { Name.Privateroom, "PrivateroomScene"},
-        { Name.DeansOfficeScene, "Dean'sOfficeScene"}
+        { Name.DeansOfficeScene, "Dean'sOfficeScene"},
+        { Name.EndingScene, "EndingScene"}
     };
 
     public static Dictionary<Name, string> RoomNameWithDisplayName = new Dictionary<Name, string>
@@ -47,7 +56,8 @@ public static class Room
         { Name.Library, "としょしつ" },
         { Name.Classroom, "きょうしつ" },
         { Name.Privateroom, "こしつ" },
-        { Name.DeansOfficeScene, "いんちょうしつ" }
+        { Name.DeansOfficeScene, "いんちょうしつ" },
+        { Name.EndingScene, "おわり" }
     };
 
     /// <summary>

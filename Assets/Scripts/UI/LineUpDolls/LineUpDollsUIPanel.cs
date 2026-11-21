@@ -35,6 +35,7 @@ public class LineUpDollsUIPanel : PanelView<LineUpDollsUIPanel>
         returnDollButtons = panel.Q("return-doll-buttons").Query<Button>().ToList();
         selectDollButtons = panel.Q("selecter-doll-buttons").Query<Button>().ToList();
 
+        // 正解配置が有効か確認
         hasValidAnswer = successDolls != null &&
                          successDolls.Length == currentDolls.Length &&
                          returnDollButtons.Count == currentDolls.Length;
@@ -43,6 +44,7 @@ public class LineUpDollsUIPanel : PanelView<LineUpDollsUIPanel>
             for(int i = 0; i < successDolls.Length; i++)
                 if(successDolls[i] == null) hasValidAnswer = false;
         }
+
         if(!hasValidAnswer)
             Debug.LogError("人形の正解配置と棚の数を確認してください。", this);
 
@@ -54,8 +56,26 @@ public class LineUpDollsUIPanel : PanelView<LineUpDollsUIPanel>
             int index = i;
             returnDollButtons[i].clicked += () =>
             {
-                if(!hasValidAnswer || IsSuccess || selectedDoll == null || currentDolls[index] != null)
+                if(!hasValidAnswer || IsSuccess)
                     return;
+
+                // 既に人形が置かれている場合は戻す
+                if(currentDolls[index] != null)
+                {
+                    InteractDollData[] dolls = Inventory.Instance.GetDolls();
+                    int returnedDollIndex = System.Array.IndexOf(dolls, currentDolls[index]);
+                    if(returnedDollIndex < 0 || returnedDollIndex >= selectDollButtons.Count)
+                    {
+                        Debug.LogError("Could not find the placed doll in the inventory.", this);
+                        return;
+                    }
+
+                    selectDollButtons[returnedDollIndex].style.display = DisplayStyle.Flex;
+                    returnDollButtons[index].style.backgroundImage = Background.FromSprite(returnPositionUI);
+                    currentDolls[index] = null;
+                }
+
+                if(selectedDoll == null || selecterButton == null) return;
 
                 currentDolls[index] = selectedDoll;
                 returnDollButtons[index].style.backgroundImage = Background.FromSprite(selectedDoll.ObjectSprite);

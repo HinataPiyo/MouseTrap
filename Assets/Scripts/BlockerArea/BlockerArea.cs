@@ -33,7 +33,6 @@ public class BlockerArea : Interact
 
     protected override IEnumerator StartTalk()
     {
-        talk.Writing(GetTalkData(0));
-        yield return null;
+        yield return talk.Writing(GetTalkData(0));
     }
 }

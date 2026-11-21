@@ -1,0 +1,66 @@
+.return-button {
+    width: 140px;
+    height: 200px;
+    background-image: url("project://database/Assets/Sprites/UI/UIO.png?fileID=8820658487683871908&guid=6400d998b920e4345a46e39bf6ef8099&type=3#UIO_25");
+    background-color: rgba(255, 255, 255, 0);
+    border-left-color: rgba(255, 255, 255, 0);
+    border-right-color: rgba(255, 255, 255, 0);
+    border-top-color: rgba(255, 255, 255, 0);
+    border-bottom-color: rgba(255, 255, 255, 0);
+    border-top-width: 0;
+    border-right-width: 0;
+    border-bottom-width: 0;
+    border-left-width: 0;
+    transition-duration: 0.1s;
+}
+
+.return-button:hover {
+    width: 140px;
+    height: 200px;
+    background-image: url("project://database/Assets/Sprites/UI/UIO.png?fileID=8820658487683871908&guid=6400d998b920e4345a46e39bf6ef8099&type=3#UIO_25");
+    background-color: rgba(255, 255, 255, 0);
+    border-left-color: rgba(255, 255, 255, 0);
+    border-right-color: rgba(255, 255, 255, 0);
+    border-top-color: rgba(255, 255, 255, 0);
+    border-bottom-color: rgba(255, 255, 255, 0);
+    border-top-width: 0;
+    border-right-width: 0;
+    border-bottom-width: 0;
+    border-left-width: 0;
+    transition-duration: 0.1s;
+    scale: 1.1 1.1;
+}
+
+.return-button:active {
+    width: 140px;
+    height: 200px;
+    background-image: url("project://database/Assets/Sprites/UI/UIO.png?fileID=8820658487683871908&guid=6400d998b920e4345a46e39bf6ef8099&type=3#UIO_25");
+    background-color: rgba(255, 255, 255, 0);
+    border-left-color: rgba(255, 255, 255, 0);
+    border-right-color: rgba(255, 255, 255, 0);
+    border-top-color: rgba(255, 255, 255, 0);
+    border-bottom-color: rgba(255, 255, 255, 0);
+    border-top-width: 0;
+    border-right-width: 0;
+    border-bottom-width: 0;
+    border-left-width: 0;
+    transition-duration: 0.1s;
+    scale: 1.1 1.1;
+}
+
+.return-button.selecter {
+    width: 140px;
+    height: 170px;
+    background-image: url("project://database/Assets/Sprites/UI/UIO.png?fileID=2951640334040302168&guid=6400d998b920e4345a46e39bf6ef8099&type=3#UIO_90");
+    background-color: rgba(255, 255, 255, 0);
+    border-left-color: rgba(255, 255, 255, 0);
+    border-right-color: rgba(255, 255, 255, 0);
+    border-top-color: rgba(255, 255, 255, 0);
+    border-bottom-color: rgba(255, 255, 255, 0);
+    border-top-width: 0;
+    border-right-width: 0;
+    border-bottom-width: 0;
+    border-left-width: 0;
+    transition-duration: 0.1s;
+    -unity-background-scale-mode: scale-to-fit;
+}

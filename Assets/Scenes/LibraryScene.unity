@@ -410,7 +410,7 @@ MonoBehaviour:
   - {fileID: 1834608994}
   requiredEvents:
   - {fileID: 1043296795}
-  isAllCompleteTest: 0
+  isAllCompleteTest: 1
 --- !u!1001 &83398917
 PrefabInstance:
   m_ObjectHideFlags: 0
