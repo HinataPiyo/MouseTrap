@@ -15,6 +15,7 @@ namespace Player
         public Character.Name CurrentCharacter => GameSession.CurrentCharacter;
         public CharacterBaseData[] CharacterDatas => characterBaseData;
         public event Action<Character.Name> OnCharacterUnlocked;
+        public event Action<Character.Name> OnCharacterLocked;
         public event Action<Character.Name> OnCharacterChanged;
 
         protected override void OnSingletonAwake()
@@ -42,7 +43,8 @@ namespace Player
 
             if (!isControllable)
             {
-                GameSession.UnlockedCharacters.Remove(characterName);
+                if (GameSession.UnlockedCharacters.Remove(characterName))
+                    OnCharacterLocked?.Invoke(characterName);
                 return;
             }
 
@@ -53,16 +55,15 @@ namespace Player
         public bool IsUnlocked(Character.Name characterName) => GameSession.UnlockedCharacters.Contains(characterName);
 
         /// <summary>
-        /// UI初期化時に、解放状態にかかわらず全キャラクターをデータ配列順で取得する。
+        /// UI初期化時に、解放済みキャラクターをデータ配列順で取得する。
         /// </summary>
-        public IEnumerable<CharacterBaseData> GetAllCharacterData()
+        public IEnumerable<CharacterBaseData> GetUnlockedCharacterData()
         {
-            // 未解放キャラクターも表示できるよう、解放状態で絞り込まず全データを返す
             if (characterBaseData == null) yield break;
 
             foreach (CharacterBaseData character in characterBaseData)
             {
-                if (character != null)
+                if (character != null && IsUnlocked(character.CharacterNameEnum))
                     yield return character;
             }
         }

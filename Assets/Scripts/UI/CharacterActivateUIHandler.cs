@@ -55,7 +55,7 @@ public class CharacterActivateUIHandler : SceneSingleton<CharacterActivateUIHand
         icons = new CharacterIcon[buttons.Length];
         for (int i = 0; i < buttons.Length; i++)
         {
-            // 未解放キャラクターも表示し、クリック可否は既存ロジックの解放判定に委ねる
+            // 解放済みキャラクターだけを割り当て、その他の枠は非表示のままにする
             icons[i] = new CharacterIcon { button = buttons[i] };
             icons[i].button.style.display = DisplayStyle.None;
             CharacterIcon icon = icons[i];
@@ -63,10 +63,10 @@ public class CharacterActivateUIHandler : SceneSingleton<CharacterActivateUIHand
         }
 
         characterControlHandler.OnCharacterUnlocked += OnCharacterUnlocked;
+        characterControlHandler.OnCharacterLocked += OnCharacterLocked;
         characterControlHandler.OnCharacterChanged += OnCharacterChanged;
 
-        // 未解放キャラクターも1番の番号付きアイコンで表示し、解放状態だけ操作可否に反映する
-        foreach (CharacterBaseData character in characterControlHandler.GetAllCharacterData())
+        foreach (CharacterBaseData character in characterControlHandler.GetUnlockedCharacterData())
             ActivateIcon(character);
         ChangeCurrentCharacter(characterControlHandler.GetCharacterData(characterControlHandler.CurrentCharacter));
     }
@@ -77,6 +77,7 @@ public class CharacterActivateUIHandler : SceneSingleton<CharacterActivateUIHand
         if (characterControlHandler == null) return;
 
         characterControlHandler.OnCharacterUnlocked -= OnCharacterUnlocked;
+        characterControlHandler.OnCharacterLocked -= OnCharacterLocked;
         characterControlHandler.OnCharacterChanged -= OnCharacterChanged;
     }
 
@@ -89,7 +90,7 @@ public class CharacterActivateUIHandler : SceneSingleton<CharacterActivateUIHand
         {
             if (icons[i].character == character)
             {
-                // 解放状態に応じて通常アイコンを更新し、ボタンの有効状態は変更しない
+                // 既に割り当て済みの解放済みキャラクターのアイコンを更新する
                 UpdateIcon(icons[i]);
                 return;
             }
@@ -98,7 +99,7 @@ public class CharacterActivateUIHandler : SceneSingleton<CharacterActivateUIHand
             {
                 icons[i].button.style.display = DisplayStyle.Flex;
                 icons[i].character = character;
-                // データ配列順の枠を常時表示し、未解放/解放済みで0番・1番の通常アイコンを選ぶ
+                // 解放されたキャラクターに空き枠を割り当てる
                 UpdateIcon(icons[i]);
                 break;
             }
@@ -107,8 +108,8 @@ public class CharacterActivateUIHandler : SceneSingleton<CharacterActivateUIHand
 
     void UpdateIcon(CharacterIcon icon)
     {
-        // 番号付きアイコンの0番は解放済み、1番は未解放表示に使う。SetEnabledは変更しない
-        int iconIndex = characterControlHandler.IsUnlocked(icon.character.CharacterNameEnum) ? 0 : 1;
+        // 番号付きアイコンの0番を解放済みキャラクターに表示する
+        const int iconIndex = 0;
         Sprite[] numberedIcons = icon.character.CharacterIcon_Numbered;
         if (numberedIcons == null || numberedIcons.Length <= iconIndex || numberedIcons[iconIndex] == null)
         {
@@ -142,6 +143,28 @@ public class CharacterActivateUIHandler : SceneSingleton<CharacterActivateUIHand
     void OnCharacterUnlocked(Character.Name characterName)
     {
         ActivateIcon(characterControlHandler.GetCharacterData(characterName));
+    }
+
+    /// <summary>
+    /// キャラクターがロックされたときの処理
+    /// </summary>
+    void OnCharacterLocked(Character.Name characterName)
+    {
+        foreach (CharacterIcon icon in icons)
+        {
+            if (icon.character == null || icon.character.CharacterNameEnum != characterName)
+                continue;
+
+            if (currentButton == icon.button)
+            {
+                currentButton.RemoveFromClassList(SelectAnimationTag);
+                currentButton = null;
+            }
+
+            icon.button.style.display = DisplayStyle.None;
+            icon.character = null;
+            break;
+        }
     }
 
     // キーボード操作などUI外からの切り替えも選択表示へ反映する
