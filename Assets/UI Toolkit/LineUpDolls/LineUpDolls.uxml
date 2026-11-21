@@ -12,14 +12,14 @@
                 </ui:VisualElement>
             </ui:VisualElement>
             <ui:VisualElement name="selecter-doll-panel" style="position: absolute; background-image: url(&quot;project://database/Assets/Sprites/UI/UIL.png?fileID=-928607760695302174&amp;guid=85573064f04eb74459f09ddc5da84bd5&amp;type=3#UIL_5&quot;); width: 100%; height: 340px; -unity-background-scale-mode: scale-to-fit; bottom: -75px;">
-                <ui:Button name="back" style="background-image: url(&quot;project://database/Assets/Sprites/UI/UIL.png?fileID=-7476205807114343015&amp;guid=85573064f04eb74459f09ddc5da84bd5&amp;type=3#UIL_7&quot;); -unity-background-scale-mode: scale-to-fit; background-color: rgba(255, 255, 255, 0); border-left-color: rgba(255, 255, 255, 0); border-right-color: rgba(255, 255, 255, 0); border-top-color: rgba(255, 255, 255, 0); border-bottom-color: rgba(255, 255, 255, 0); border-top-width: 0; border-right-width: 0; border-bottom-width: 0; border-left-width: 0; width: 80px; height: 80px; position: absolute; align-self: center; bottom: -40px;" />
-                <ui:VisualElement name="selecter-doll-buttons" style="flex-grow: 1; flex-direction: row; justify-content: space-around; padding-left: 35px; padding-right: 35px;">
+                <ui:VisualElement name="selecter-doll-buttons" picking-mode="Ignore" style="flex-grow: 1; flex-direction: row; justify-content: space-around; padding-left: 35px; padding-right: 35px;">
                     <ui:Button class="selecter return-button" />
                     <ui:Button class="selecter return-button" />
                     <ui:Button class="selecter return-button" />
                     <ui:Button class="selecter return-button" />
                     <ui:Button class="selecter return-button" />
                 </ui:VisualElement>
+                <ui:Button name="back" class="return-button" style="background-image: url(&quot;project://database/Assets/Sprites/UI/UIL.png?fileID=-7476205807114343015&amp;guid=85573064f04eb74459f09ddc5da84bd5&amp;type=3#UIL_7&quot;); -unity-background-scale-mode: scale-to-fit; background-color: rgba(255, 255, 255, 0); border-left-color: rgba(255, 255, 255, 0); border-right-color: rgba(255, 255, 255, 0); border-top-color: rgba(255, 255, 255, 0); border-bottom-color: rgba(255, 255, 255, 0); border-top-width: 0; border-right-width: 0; border-bottom-width: 0; border-left-width: 0; width: 80px; height: 80px; position: absolute; align-self: center; bottom: -40px;" />
             </ui:VisualElement>
         </ui:VisualElement>
     </ui:VisualElement>
