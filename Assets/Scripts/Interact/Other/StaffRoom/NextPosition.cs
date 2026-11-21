@@ -17,7 +17,6 @@ namespace Intetract.StaffRoom.Boy
             localCol = GetComponent<Collider2D>();
 
             localCol.enabled = false;
-            IsEventCompleted = true;        //! テスト
         }
 
         // 会話開始
