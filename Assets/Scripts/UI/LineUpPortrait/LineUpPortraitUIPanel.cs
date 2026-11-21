@@ -13,7 +13,8 @@ public class LineUpPortraitUIPanel : PanelView<LineUpPortraitUIPanel>
     List<Button> selectButtons = new List<Button>();
 
     PlayerInputController inputController;
-    Character.PortraitOrder[] portraitOrders = new Character.PortraitOrder[5];
+    Character.PortraitOrder[] portraitOrders;
+    bool[] hasPortraits;
     static readonly Character.PortraitOrder[] successPortrait = new Character.PortraitOrder[]
     {
         Character.PortraitOrder.Teacher,
@@ -37,23 +38,54 @@ public class LineUpPortraitUIPanel : PanelView<LineUpPortraitUIPanel>
         panel = GetComponent<UIDocument>().rootVisualElement;
         returnButtons = panel.Q("return-portrait-buttons").Query<Button>().ToList();
         selectButtons = panel.Q("selecter-portrait-buttons").Query<Button>().ToList();
+        portraitOrders = new Character.PortraitOrder[returnButtons.Count];
+        hasPortraits = new bool[returnButtons.Count];
         backButton = panel.Q<Button>("back");
 
         selecterPortaitPanel = panel.Q("selecter-portrait-panel");
 
         // 肖像画を設置する箇所を選択する
-        for(int i = 0; i < returnButtons.Count; i++)
+        for (int i = 0; i < returnButtons.Count; i++)
         {
             int index = i;
             returnButtons[i].clicked += () =>
             {
+
+                // 既に肖像画が置かれている場合は戻す
+                if (hasPortraits[index])
+                {
+                    int selectorIndex = -1;
+                    if (portaitInfos != null)
+                    {
+                        for (int j = 0; j < portaitInfos.Length; j++)
+                        {
+                            if (portaitInfos[j] != null && portaitInfos[j].order == portraitOrders[index])
+                            {
+                                selectorIndex = j;
+                                break;
+                            }
+                        }
+                    }
+
+                    if (selectorIndex < 0 || selectorIndex >= selectButtons.Count)
+                    {
+                        Debug.LogError("Could not find the placed portrait in the selector.", this);
+                        return;
+                    }
+
+                    selectButtons[selectorIndex].style.display = DisplayStyle.Flex;
+                    returnButtons[index].style.backgroundImage = Background.FromSprite(returnPositionUI);
+                    portraitOrders[index] = default(Character.PortraitOrder);
+                    hasPortraits[index] = false;
+                }
+
                 selectReturnIndex = index;
                 SelecterPanelShow();
             };
         }
 
         // 配置する肖像画を選ぶボタンに設定する
-        for(int i = 0; i < selectButtons.Count; i++)
+        for (int i = 0; i < selectButtons.Count; i++)
         {
             int index = i;
             selectButtons[i].clicked += () =>
@@ -80,7 +112,7 @@ public class LineUpPortraitUIPanel : PanelView<LineUpPortraitUIPanel>
 
     protected override void OnSingletonDestroy()
     {
-        if(inputController != null)
+        if (inputController != null)
             inputController.OnInputESCKeyDisabled -= Hide;
     }
 
@@ -106,7 +138,7 @@ public class LineUpPortraitUIPanel : PanelView<LineUpPortraitUIPanel>
     }
 
     /// <summary>
-    /// 空の場所に肖像画を置く
+    /// 肖像画を配置する
     /// </summary>
     void SetPortrait(PortaitInfo info)
     {
@@ -114,23 +146,24 @@ public class LineUpPortraitUIPanel : PanelView<LineUpPortraitUIPanel>
         selectReturnButton.style.backgroundImage = Background.FromSprite(info.image);
         // 設置した肖像画を記録する
         portraitOrders[selectReturnIndex] = info.order;
-        selectReturnButton.pickingMode = PickingMode.Ignore;        // クリック無効にする
+        hasPortraits[selectReturnIndex] = true;
     }
 
     void Reset()
     {
-        for(int i = 0; i < returnButtons.Count; i++)
+        for (int i = 0; i < returnButtons.Count; i++)
         {
             returnButtons[i].style.backgroundImage = Background.FromSprite(returnPositionUI);
             returnButtons[i].pickingMode = PickingMode.Position;
+            hasPortraits[i] = false;
         }
 
-        for(int i = 0; i < selectButtons.Count; i++)
+        for (int i = 0; i < selectButtons.Count; i++)
         {
             selectButtons[i].style.display = DisplayStyle.Flex;
         }
 
-        portraitOrders = new Character.PortraitOrder[5];
+        System.Array.Clear(portraitOrders, 0, portraitOrders.Length);
         SelecterPanelHide();
     }
 }

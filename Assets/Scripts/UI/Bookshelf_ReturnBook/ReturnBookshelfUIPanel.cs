@@ -54,7 +54,25 @@ public class ReturnBookshelfUIPanel : PanelView<ReturnBookshelfUIPanel>
             int index = i;      // クロージャ対策
             returnNumberButtons[i].clicked += () =>
             {
-                if(selectedBook == null || selectButton == null || returnedBooks[index] != null) return;
+                // 既に本が置かれている場合は戻す
+                if(returnedBooks[index] != null)
+                {
+                    InteractBookData[] books = Inventory.Instance.GetBook();
+                    int returnedBookIndex = System.Array.IndexOf(books, returnedBooks[index]);
+                    if(returnedBookIndex < 0 || returnedBookIndex >= selecterBookButtons.Count)
+                    {
+                        Debug.LogError("Could not find the placed book in the inventory.", this);
+                        return;
+                    }
+
+                    selecterBookButtons[returnedBookIndex].style.display = DisplayStyle.Flex;
+
+                    returnNumberButtons[index].style.backgroundImage = new StyleBackground(returnPositionUI);
+                    returnNumberButtons[index].text = (index + 1).ToString();
+                    returnedBooks[index] = null;
+                }
+
+                if(selectedBook == null || selectButton == null) return;
 
                 selectButton.style.display = DisplayStyle.None;
                 returnNumberButtons[index].style.backgroundImage = new StyleBackground(selectedBook.UI);
