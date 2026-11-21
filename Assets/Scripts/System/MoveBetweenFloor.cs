@@ -13,6 +13,8 @@ public class MoveBetweenFloor : MonoBehaviour
 {
     [SerializeField] Light2D mainFloorLight;
     [SerializeField] Light2D subFloorLight;
+    [SerializeField] Light2D mainPlayerLight;
+    [SerializeField] Light2D subPlayerLight;
     [SerializeField] Camera mainCamera;
 
     [SerializeField] float default_intensity = 0.3f;
@@ -24,6 +26,8 @@ public class MoveBetweenFloor : MonoBehaviour
     {
         mainFloorLight.enabled = true;
         subFloorLight.enabled = false;
+        mainPlayerLight.enabled = true;
+        subPlayerLight.enabled = false;
     }
 
     void OnTriggerEnter2D(Collider2D col)
@@ -50,7 +54,7 @@ public class MoveBetweenFloor : MonoBehaviour
             float maxDistance = 0.3f; // ライトの強さが0になる距離
             float blend = Mathf.Clamp01(distanceToMainFloor / maxDistance);
 
-            if (isMoveDistance == 1)
+            if (isMoveDistance == 1)        // 右側にいる場合
             {
                 playerSprite.sortingLayerName = "Default";
                 // 全て対象にする
@@ -59,8 +63,10 @@ public class MoveBetweenFloor : MonoBehaviour
                 // プレイヤーが右側にいる場合はメインフロアのライトを点灯
                 mainFloorLight.intensity = Mathf.Lerp(0.5f, default_intensity, blend);
                 subFloorLight.intensity = Mathf.Lerp(0.5f, 0f, blend);
+                mainPlayerLight.enabled = true;
+                subPlayerLight.enabled = false;
             }
-            else
+            else        // 左側にいる場合
             {
                 playerSprite.sortingLayerName = "SubObject";
                 // CullingMaskを除外する
@@ -68,6 +74,8 @@ public class MoveBetweenFloor : MonoBehaviour
                 // プレイヤーが左側にいる場合はサブフロアのライトを点灯
                 mainFloorLight.intensity = Mathf.Lerp(0.5f, 0f, blend);
                 subFloorLight.intensity = Mathf.Lerp(0.5f, default_intensity, blend);
+                subPlayerLight.enabled = true;
+                mainPlayerLight.enabled = false;
             }
         }
     }

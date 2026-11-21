@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class SafePassword : Interact
 {
-    [SerializeField] InteractMemoData memo;
+    [SerializeField] InteractData key;
     protected override void Initialize()
     {
     }
@@ -25,8 +25,8 @@ public class SafePassword : Interact
 
     protected override IEnumerator StartTalk()
     {
-        InteractUIPanel.Instance.ShowInteractPanel(memo);
-        Inventory.Instance.AddItem(memo);
+        InteractUIPanel.Instance.ShowInteractPanel(key);
+        Inventory.Instance.AddItem(key);
 
         yield return null;
     }

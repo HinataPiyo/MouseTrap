@@ -38,7 +38,7 @@ public static class Character
 public static class Room
 {
     public static float DefaultCameraSize = 1.25f;
-    public enum Name { None = -1, Staffroom, Library, Classroom, Privateroom, DeansOfficeScene}
+    public enum Name { None = -1, Staffroom, Library, Classroom, Privateroom, DeansOfficeScene, EndingScene }
 
     public static Dictionary<Name, string> RoomNameWithSceneName = new Dictionary<Name, string>
     {
@@ -46,7 +46,8 @@ public static class Room
         { Name.Library, "LibraryScene" },
         { Name.Classroom, "ClassroomScene" },
         { Name.Privateroom, "PrivateroomScene"},
-        { Name.DeansOfficeScene, "Dean'sOfficeScene"}
+        { Name.DeansOfficeScene, "Dean'sOfficeScene"},
+        { Name.EndingScene, "EndingScene"}
     };
 
     public static Dictionary<Name, string> RoomNameWithDisplayName = new Dictionary<Name, string>
@@ -55,7 +56,8 @@ public static class Room
         { Name.Library, "としょしつ" },
         { Name.Classroom, "きょうしつ" },
         { Name.Privateroom, "こしつ" },
-        { Name.DeansOfficeScene, "いんちょうしつ" }
+        { Name.DeansOfficeScene, "いんちょうしつ" },
+        { Name.EndingScene, "おわり" }
     };
 
     /// <summary>
