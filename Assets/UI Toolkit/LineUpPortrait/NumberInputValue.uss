@@ -1,0 +1,25 @@
+.button {
+    background-image: url("project://database/Assets/Sprites/UI/UIG.png?fileID=3919695621489784291&guid=740b2f0e03ce966428a9a27f94f3373b&type=3#UIG_0");
+    -unity-background-scale-mode: scale-to-fit;
+    width: 80px;
+    height: 80px;
+    transition-duration: 0.1s;
+}
+
+.button:hover {
+    background-image: url("project://database/Assets/Sprites/UI/UIG.png?fileID=3919695621489784291&guid=740b2f0e03ce966428a9a27f94f3373b&type=3#UIG_0");
+    -unity-background-scale-mode: scale-to-fit;
+    width: 80px;
+    height: 80px;
+    transition-duration: 0.1s;
+    scale: 1.1 1.1;
+}
+
+.button:active {
+    background-image: url("project://database/Assets/Sprites/UI/UIG.png?fileID=3919695621489784291&guid=740b2f0e03ce966428a9a27f94f3373b&type=3#UIG_0");
+    -unity-background-scale-mode: scale-to-fit;
+    width: 80px;
+    height: 80px;
+    transition-duration: 0.1s;
+    scale: 0.99 0.99;
+}

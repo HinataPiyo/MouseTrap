@@ -70,6 +70,10 @@ public class Inventory : SceneSingleton<Inventory>
     public InteractDollData GetDoll(int index) => GetDolls()[index];
     public void RemoveAllDoll() => items.RemoveAll(x => x.item is InteractDollData);
 
+    public InteractMemoData[] GetMemos() => items.FindAll(x => x.item is InteractMemoData).ConvertAll(x => (InteractMemoData)x.item).ToArray();
+    public InteractMemoData GetMemo(int index) => GetMemos()[index];
+    public void RemoveAllMemo() => items.RemoveAll(x => x.item is InteractMemoData);
+
     /// <summary>
     /// アイテムがインベントリに存在するかどうかを確認する
     /// </summary>

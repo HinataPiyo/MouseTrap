@@ -11,6 +11,14 @@ public static class Character
     public enum Name { None = -1, Girl, Boy, Glasses_Boy, Delinquent_Boy, Girl_TwinTail, FireSprit }
     // 猫→犬→ウサギ→ネズミ→熊
     public enum Doll { None = -1, Cat, Dog, Rabbit, Mouse, Bear }
+    public enum PortraitOrder
+    {
+        Teacher,          // 先生
+        GlassesBoy,       // 眼鏡の少年
+        BandageBoy,       // 絆創膏の子
+        DollGirl,         // 人形好きの女の子
+        ReturnedBoy       // 卒業後に戻ってきた子
+}
 
     public static string GetName(Name name)
     {

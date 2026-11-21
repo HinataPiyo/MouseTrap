@@ -1,0 +1,37 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI%20Toolkit/LineUpPortrait/LineUpPortrait_Button.uss?fileID=7433441132597879392&amp;guid=651d1b6e490163841adf60cbce562532&amp;type=3#LineUpPortrait_Button" />
+    <ui:VisualElement name="root" style="flex-grow: 1; justify-content: center; align-items: center;">
+        <ui:VisualElement name="panel" style="width: 800px; height: 720px;">
+            <ui:VisualElement name="portrait-contaier" style="height: 430px; background-image: url(&quot;project://database/Assets/Sprites/UI/UIM.png?fileID=2373244006975409128&amp;guid=cebcbc8bddf22f84b95b003eed5c15c3&amp;type=3#UIM_0&quot;); -unity-background-scale-mode: scale-to-fit; padding-top: 98px;">
+                <ui:VisualElement name="Title" style="background-image: url(&quot;project://database/Assets/Sprites/UI/UIM.png?fileID=-6822148590530816119&amp;guid=cebcbc8bddf22f84b95b003eed5c15c3&amp;type=3#UIM_3&quot;); -unity-background-scale-mode: scale-to-fit; height: 40px; margin-top: 25px;" />
+                <ui:VisualElement name="return-portrait-buttons" style="flex-grow: 1; flex-direction: row; align-items: center; padding-left: 28px; padding-right: 28px; justify-content: space-around;">
+                    <ui:Button class="return-button" />
+                    <ui:Button class="return-button" />
+                    <ui:Button class="return-button" />
+                    <ui:Button class="return-button" />
+                    <ui:Button class="return-button" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:VisualElement name="memo-container" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/Sprites/UI/UIM.png?fileID=-8783073288762339520&amp;guid=cebcbc8bddf22f84b95b003eed5c15c3&amp;type=3#UIM_2&quot;); -unity-background-scale-mode: scale-to-fit; padding-top: 40px; padding-right: 40px; padding-bottom: 40px; padding-left: 40px;">
+                <ui:VisualElement style="background-image: url(&quot;project://database/Assets/Sprites/UI/UIM.png?fileID=-578830627665082091&amp;guid=cebcbc8bddf22f84b95b003eed5c15c3&amp;type=3#UIM_17&quot;); -unity-background-scale-mode: scale-to-fit; height: 27px; align-self: flex-start; width: 142px;" />
+                <ui:VisualElement name="container" style="flex-grow: 1; justify-content: space-evenly;">
+                    <ui:VisualElement style="background-image: url(&quot;project://database/Assets/Sprites/UI/UIM.png?fileID=9011988004680949887&amp;guid=cebcbc8bddf22f84b95b003eed5c15c3&amp;type=3#UIM_4&quot;); -unity-background-scale-mode: scale-to-fit; height: 30px;" />
+                    <ui:VisualElement style="background-image: url(&quot;project://database/Assets/Sprites/UI/UIM.png?fileID=9028917171962972018&amp;guid=cebcbc8bddf22f84b95b003eed5c15c3&amp;type=3#UIM_46&quot;); -unity-background-scale-mode: scale-to-fit; height: 30px;" />
+                    <ui:VisualElement style="background-image: url(&quot;project://database/Assets/Sprites/UI/UIM.png?fileID=-4598640628337216762&amp;guid=cebcbc8bddf22f84b95b003eed5c15c3&amp;type=3#UIM_66&quot;); -unity-background-scale-mode: scale-to-fit; height: 30px;" />
+                    <ui:VisualElement style="background-image: url(&quot;project://database/Assets/Sprites/UI/UIM.png?fileID=-4237770931299638817&amp;guid=cebcbc8bddf22f84b95b003eed5c15c3&amp;type=3#UIM_5&quot;); -unity-background-scale-mode: scale-to-fit; height: 30px;" />
+                    <ui:VisualElement style="background-image: url(&quot;project://database/Assets/Sprites/UI/UIM.png?fileID=-159923925179190013&amp;guid=cebcbc8bddf22f84b95b003eed5c15c3&amp;type=3#UIM_6&quot;); -unity-background-scale-mode: scale-to-fit; height: 30px;" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:VisualElement name="selecter-portrait-panel" style="position: absolute; width: 760px; height: 220px; align-self: center; background-image: url(&quot;project://database/Assets/Sprites/UI/UIM.png?fileID=6808475303135045922&amp;guid=cebcbc8bddf22f84b95b003eed5c15c3&amp;type=3#UIM_1&quot;); -unity-background-scale-mode: scale-to-fit; top: 353px;">
+                <ui:VisualElement name="selecter-portrait-buttons" style="flex-grow: 1; flex-direction: row; padding-top: 20px; padding-right: 20px; padding-bottom: 20px; padding-left: 20px; justify-content: space-around;">
+                    <ui:Button name="Button" class="return-button selecter" />
+                    <ui:Button name="Button" class="return-button selecter" />
+                    <ui:Button name="Button" class="return-button selecter" />
+                    <ui:Button name="Button" class="return-button selecter" />
+                    <ui:Button name="Button" class="return-button selecter" />
+                </ui:VisualElement>
+                <ui:Button name="back" class="selecter return-button" style="background-image: url(&quot;project://database/Assets/Sprites/UI/UIL.png?fileID=-7476205807114343015&amp;guid=85573064f04eb74459f09ddc5da84bd5&amp;type=3#UIL_7&quot;); -unity-background-scale-mode: scale-to-fit; background-color: rgba(255, 255, 255, 0); align-self: center; width: 60px; height: 60px; bottom: -30px;" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
