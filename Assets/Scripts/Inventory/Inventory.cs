@@ -64,10 +64,11 @@ public class Inventory : SceneSingleton<Inventory>
 
     public InteractTornNotesData GetTornNotes() => items.Find(x => x.item is InteractTornNotesData)?.item as InteractTornNotesData;
 
-    public void DeleteTornNotes()
-    {
-        items.RemoveAll(x => x.item is InteractTornNotesData);
-    }
+    public void DeleteTornNotes() => items.RemoveAll(x => x.item is InteractTornNotesData);
+
+    public InteractDollData[] GetDolls() => items.FindAll(x => x.item is InteractDollData).ConvertAll(x => (InteractDollData)x.item).ToArray();
+    public InteractDollData GetDoll(int index) => GetDolls()[index];
+    public void RemoveAllDoll() => items.RemoveAll(x => x.item is InteractDollData);
 
     /// <summary>
     /// アイテムがインベントリに存在するかどうかを確認する

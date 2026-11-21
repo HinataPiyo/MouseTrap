@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac802a46b03e87a429a3458126233beb, type: 3}
+  m_Name: InteractData_LineUpHandler
+  m_EditorClassIdentifier: 
+  sprite: {fileID: 0}
+  text: 
+  isDisabledAfterInteract: 0
+  isShowPanel: 0
+  isReusable: 1
+  talkData:
+  - {fileID: 11400000, guid: f842e84006c1e014c93e51694ebb5bec, type: 2}
+  - {fileID: 11400000, guid: 6451132eaad975a4a9a2a7b2ef2cf970, type: 2}
