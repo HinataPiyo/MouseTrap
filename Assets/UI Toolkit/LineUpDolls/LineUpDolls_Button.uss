@@ -1,0 +1,69 @@
+.return-button {
+    background-image: url("project://database/Assets/Sprites/UI/UIN.png?fileID=5801851222975172748&guid=e05490f0e9018e04fa8ecf678863e88c&type=3#UIN_1");
+    -unity-background-scale-mode: stretch-to-fill;
+    -unity-slice-scale: 0.4px;
+    background-color: rgba(255, 255, 255, 0);
+    border-left-color: rgba(255, 255, 255, 0);
+    border-right-color: rgba(255, 255, 255, 0);
+    border-top-color: rgba(255, 255, 255, 0);
+    border-bottom-color: rgba(255, 255, 255, 0);
+    border-top-width: 0;
+    border-right-width: 0;
+    border-bottom-width: 0;
+    border-left-width: 0;
+    width: 140px;
+    transition-duration: 0.1s;
+}
+
+.return-button:hover {
+    background-image: url("project://database/Assets/Sprites/UI/UIN.png?fileID=5801851222975172748&guid=e05490f0e9018e04fa8ecf678863e88c&type=3#UIN_1");
+    -unity-background-scale-mode: stretch-to-fill;
+    -unity-slice-scale: 0.4px;
+    background-color: rgba(255, 255, 255, 0);
+    border-left-color: rgba(255, 255, 255, 0);
+    border-right-color: rgba(255, 255, 255, 0);
+    border-top-color: rgba(255, 255, 255, 0);
+    border-bottom-color: rgba(255, 255, 255, 0);
+    border-top-width: 0;
+    border-right-width: 0;
+    border-bottom-width: 0;
+    border-left-width: 0;
+    width: 140px;
+    transition-duration: 0.1s;
+    scale: 1.1 1.1;
+}
+
+.return-button:active {
+    background-image: url("project://database/Assets/Sprites/UI/UIN.png?fileID=5801851222975172748&guid=e05490f0e9018e04fa8ecf678863e88c&type=3#UIN_1");
+    -unity-background-scale-mode: stretch-to-fill;
+    -unity-slice-scale: 0.4px;
+    background-color: rgba(255, 255, 255, 0);
+    border-left-color: rgba(255, 255, 255, 0);
+    border-right-color: rgba(255, 255, 255, 0);
+    border-top-color: rgba(255, 255, 255, 0);
+    border-bottom-color: rgba(255, 255, 255, 0);
+    border-top-width: 0;
+    border-right-width: 0;
+    border-bottom-width: 0;
+    border-left-width: 0;
+    width: 140px;
+    transition-duration: 0.1s;
+    scale: 0.99 0.99;
+}
+
+.return-button.selecter {
+    background-image: url("project://database/Assets/Sprites/UI/UIL.png?fileID=-4755708210412290219&guid=85573064f04eb74459f09ddc5da84bd5&type=3#UIL_0");
+    -unity-background-scale-mode: scale-to-fit;
+    -unity-slice-scale: 0.4px;
+    background-color: rgba(255, 255, 255, 0);
+    border-left-color: rgba(255, 255, 255, 0);
+    border-right-color: rgba(255, 255, 255, 0);
+    border-top-color: rgba(255, 255, 255, 0);
+    border-bottom-color: rgba(255, 255, 255, 0);
+    border-top-width: 0;
+    border-right-width: 0;
+    border-bottom-width: 0;
+    border-left-width: 0;
+    width: 150px;
+    transition-duration: 0.1s;
+}

@@ -1,0 +1,26 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI%20Toolkit/LineUpDolls/LineUpDolls_Button.uss?fileID=7433441132597879392&amp;guid=1ec1972e725831f4f9baf0cd8ebe8200&amp;type=3#LineUpDolls_Button" />
+    <ui:VisualElement name="root" style="flex-grow: 1; justify-content: center; align-items: center;">
+        <ui:VisualElement name="panel" style="width: 1000px; height: 700px; background-image: url(&quot;project://database/Assets/Sprites/UI/UIN.png?fileID=-7701699888641698243&amp;guid=e05490f0e9018e04fa8ecf678863e88c&amp;type=3#UIN_0&quot;); -unity-background-scale-mode: scale-to-fit; flex-direction: column-reverse; padding-bottom: 20px;">
+            <ui:VisualElement name="shelf" style="height: 480px; background-image: url(&quot;project://database/Assets/Sprites/UI/UIN.png?fileID=6844918668144510466&amp;guid=e05490f0e9018e04fa8ecf678863e88c&amp;type=3#UIN_6&quot;); -unity-background-scale-mode: scale-to-fit; -unity-slice-scale: 0.4px;">
+                <ui:VisualElement name="return-doll-buttons" style="flex-direction: row; height: 245px; padding-top: 20px; padding-right: 80px; padding-bottom: 20px; padding-left: 80px; justify-content: space-around;">
+                    <ui:Button class="return-button" />
+                    <ui:Button class="return-button" />
+                    <ui:Button class="return-button" />
+                    <ui:Button class="return-button" />
+                    <ui:Button class="return-button" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:VisualElement name="selecter-doll-panel" style="position: absolute; background-image: url(&quot;project://database/Assets/Sprites/UI/UIL.png?fileID=-928607760695302174&amp;guid=85573064f04eb74459f09ddc5da84bd5&amp;type=3#UIL_5&quot;); width: 100%; height: 340px; -unity-background-scale-mode: scale-to-fit; bottom: -75px;">
+                <ui:Button name="back" style="background-image: url(&quot;project://database/Assets/Sprites/UI/UIL.png?fileID=-7476205807114343015&amp;guid=85573064f04eb74459f09ddc5da84bd5&amp;type=3#UIL_7&quot;); -unity-background-scale-mode: scale-to-fit; background-color: rgba(255, 255, 255, 0); border-left-color: rgba(255, 255, 255, 0); border-right-color: rgba(255, 255, 255, 0); border-top-color: rgba(255, 255, 255, 0); border-bottom-color: rgba(255, 255, 255, 0); border-top-width: 0; border-right-width: 0; border-bottom-width: 0; border-left-width: 0; width: 80px; height: 80px; position: absolute; align-self: center; bottom: -40px;" />
+                <ui:VisualElement name="selecter-doll-buttons" style="flex-grow: 1; flex-direction: row; justify-content: space-around; padding-left: 35px; padding-right: 35px;">
+                    <ui:Button class="selecter return-button" />
+                    <ui:Button class="selecter return-button" />
+                    <ui:Button class="selecter return-button" />
+                    <ui:Button class="selecter return-button" />
+                    <ui:Button class="selecter return-button" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
