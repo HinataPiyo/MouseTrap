@@ -68,6 +68,7 @@ public class Inventory : SceneSingleton<Inventory>
 
     public InteractDollData[] GetDolls() => items.FindAll(x => x.item is InteractDollData).ConvertAll(x => (InteractDollData)x.item).ToArray();
     public InteractDollData GetDoll(int index) => GetDolls()[index];
+    public void RemoveAllDoll() => items.RemoveAll(x => x.item is InteractDollData);
 
     /// <summary>
     /// アイテムがインベントリに存在するかどうかを確認する

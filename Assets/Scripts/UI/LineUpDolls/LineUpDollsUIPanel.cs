@@ -5,6 +5,7 @@ using UnityEngine.UIElements;
 public class LineUpDollsUIPanel : PanelView<LineUpDollsUIPanel>
 {
     [SerializeField] Sprite returnPositionUI;
+    [SerializeField] LineUpDollHandler handler;
     UIDocument uiDoc;
     VisualElement selecterPanel;
 
@@ -72,6 +73,14 @@ public class LineUpDollsUIPanel : PanelView<LineUpDollsUIPanel>
                 {
                     Reset();
                     UpdateHasDollData();
+                }
+                else
+                {
+                    // 所持中の人形をインベントリから消す
+                    Inventory.Instance.RemoveAllDoll();
+
+                    // 人形並び替え完了後の処理
+                    handler.CompletedEvent();
                 }
             };
         }
