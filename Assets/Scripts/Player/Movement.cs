@@ -8,7 +8,7 @@ namespace Player
 
         [SerializeField] float moveSpeed = 2f;
         [SerializeField] Animator ainm;
-        enum MoveType { None = -1, Idle, Left, Right, Up, Down }
+        public enum MoveType { None = -1, Idle, Left, Right, Up, Down }
 
         Vector2 moveDir;
         Rigidbody2D rb;
@@ -45,6 +45,20 @@ namespace Player
                 characterControlHandler.OnCharacterChanged -= OnCharacterChanged;
         }
 
+        // PlableDirector用にアニメーション切り替え
+        public void SetMoveType(MoveType type)
+        {
+            currentMoveType = type;
+            ainm.SetInteger("MoveType", (int)currentMoveType);
+            SetPosition();
+        }
+
+        // AnimatorやPlaybleDirectorで移動した後に位置を更新するため
+        public void SetPosition()
+        {
+            rb.position = transform.position;
+        }
+
         void OnCharacterChanged(Character.Name characterName)
         {
             ainm.SetInteger("MoveType", (int)currentMoveType);
@@ -52,6 +66,8 @@ namespace Player
 
         void Update()
         {
+            if (DirectorManager.Instance.CurrentState != DirectorManager.State.None) return;
+
             float x = 0f;
             float y = 0f;
 
@@ -67,6 +83,12 @@ namespace Player
 
         void LateUpdate()
         {
+            if (DirectorManager.Instance.CurrentState != DirectorManager.State.None)
+            {
+                rb.linearVelocity = Vector2.zero;
+                return;
+            }
+
             if (!isStopped)
             {
                 rb.linearVelocity = moveDir * moveSpeed;

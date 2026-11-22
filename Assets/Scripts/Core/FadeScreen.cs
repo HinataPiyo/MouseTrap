@@ -78,4 +78,16 @@ public class FadeScreen : SceneSingleton<FadeScreen>
         canvasGroup.alpha = end;
         canvasGroup.blocksRaycasts = end > 0f;
     }
+
+    public void StartFadeIn()
+    {
+        canvasGroup.alpha = 0f;
+        StartCoroutine(FadeInCoroutine());
+    }
+    public void StartFadeOut()
+    {
+        canvasGroup.alpha = 1f;
+        StartCoroutine(FadeOutCoroutine());
+    }
+    public void StartFadeInToFadeOut() => StartCoroutine(FadeInToFadeOut());
 }
