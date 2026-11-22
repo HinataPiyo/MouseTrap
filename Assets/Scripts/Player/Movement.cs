@@ -16,6 +16,7 @@ namespace Player
 
         PlayerInputController gameState;
         CharacterControlHandler characterControlHandler;
+        DirectorWaypointMovement directorMovement;
 
         bool isStopped = false;
 
@@ -23,6 +24,10 @@ namespace Player
         void Awake()
         {
             rb = GetComponent<Rigidbody2D>();
+            // Timeline移動自体は共通コンポーネントに任せ、方向アニメーションだけ連携する。
+            directorMovement = GetComponent<DirectorWaypointMovement>();
+            if (directorMovement != null)
+                directorMovement.Moved += OnDirectorMoved;
         }
 
         void Start()
@@ -43,20 +48,16 @@ namespace Player
         {
             if (characterControlHandler != null)
                 characterControlHandler.OnCharacterChanged -= OnCharacterChanged;
+            if (directorMovement != null)
+                directorMovement.Moved -= OnDirectorMoved;
         }
 
-        // PlableDirector用にアニメーション切り替え
-        public void SetMoveType(MoveType type)
+        void OnDirectorMoved(Vector2 displacement)
         {
-            currentMoveType = type;
-            ainm.SetInteger("MoveType", (int)currentMoveType);
-            SetPosition();
-        }
-
-        // AnimatorやPlaybleDirectorで移動した後に位置を更新するため
-        public void SetPosition()
-        {
-            rb.position = transform.position;
+            // 移動量が一時的にゼロでも、再生中の区間の方向を維持する。
+            if (isActiveAndEnabled && DirectorManager.Instance != null
+                && DirectorManager.Instance.CurrentState != DirectorManager.State.None)
+                UpdateMoveType(directorMovement.MovementDirection.normalized);
         }
 
         void OnCharacterChanged(Character.Name characterName)
@@ -66,7 +67,14 @@ namespace Player
 
         void Update()
         {
-            if (DirectorManager.Instance.CurrentState != DirectorManager.State.None) return;
+            DirectorManager.State directorState = DirectorManager.Instance.CurrentState;
+            if (directorState != DirectorManager.State.None)
+            {
+                // Waypoint制御がない演出中は移動アニメーションを停止する。
+                if (directorMovement == null || !directorMovement.IsActive)
+                    UpdateMoveType(Vector2.zero);
+                return;
+            }
 
             float x = 0f;
             float y = 0f;
@@ -101,7 +109,6 @@ namespace Player
 
         public void DirectionToAnimation(Vector2 dir)
         {
-            MoveType previousMoveType;
             if (gameState.CurrentState == StateType.Talk || gameState.CurrentState == StateType.Interact
             || gameState.CurrentState == StateType.RoomChange || gameState.CurrentState == StateType.Movie)
             {
@@ -115,6 +122,12 @@ namespace Player
                 isStopped = false;
             }
 
+            UpdateMoveType(dir);
+        }
+
+        void UpdateMoveType(Vector2 dir)
+        {
+            MoveType previousMoveType;
             if (dir.sqrMagnitude < 0.0001f)
             {
                 previousMoveType = MoveType.Idle;

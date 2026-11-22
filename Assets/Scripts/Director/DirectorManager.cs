@@ -15,6 +15,11 @@ public class DirectorManager : SceneSingleton<DirectorManager>
     {
     }
 
+    void Start()
+    {
+        SetPlay();
+    }
+
     public void SetState(State state)
     {
         CurrentState = state;

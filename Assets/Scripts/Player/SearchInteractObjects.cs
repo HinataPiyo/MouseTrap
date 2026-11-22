@@ -70,7 +70,7 @@ public class SearchInteractObjects : MonoBehaviour
         if (closestInteract != null && closestInteract.TryInteract(out var interactData))
         {
             // InteractMarkを消す処理
-            WorldCanvasController.Instance.ToggleInteractMarkVisibility(false, transform.position);
+            WorldCanvasController.Instance.ToggleInteractMarkVisibility(false, transform);
             Debug.Log($"<color=green>Interact successful.</color> InteractData: {interactData}");
         }
 
@@ -97,7 +97,7 @@ public class SearchInteractObjects : MonoBehaviour
         closestInteract = candidate;
         StateType state = inputController.CurrentState;
         bool canInteract = state == StateType.None || state == StateType.Inventory || state == StateType.CharacterInfo;
-        WorldCanvasController.Instance.ToggleInteractMarkVisibility(canInteract && candidate != null, transform.position);
+        WorldCanvasController.Instance.ToggleInteractMarkVisibility(canInteract && candidate != null, transform);
     }
 
     /// <summary>
@@ -108,7 +108,7 @@ public class SearchInteractObjects : MonoBehaviour
     {
         if (closestInteract != null)
         {
-            WorldCanvasController.Instance.ToggleInteractMarkVisibility(false, transform.position);
+            WorldCanvasController.Instance.ToggleInteractMarkVisibility(false, transform);
         }
 
         closestInteract = null;
@@ -122,6 +122,6 @@ public class SearchInteractObjects : MonoBehaviour
         }
         closestInteract = null;
         if (WorldCanvasController.Instance != null)
-            WorldCanvasController.Instance.ToggleInteractMarkVisibility(false, transform.position);
+            WorldCanvasController.Instance.ToggleInteractMarkVisibility(false, transform);
     }
 }

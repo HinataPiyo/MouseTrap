@@ -25,7 +25,7 @@
         </ui:VisualElement>
         <ui:VisualElement name="interact-object-container" style="position: absolute; align-self: center; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.8); display: none;">
             <ui:VisualElement name="background" style="position: absolute; background-image: url(&quot;project://database/Assets/Sprites/UI/UIA.png?fileID=82052064546649123&amp;guid=8ebd33ce83c6888419b14cc57d7a7a48&amp;type=3#UIA_25&quot;); align-self: center; top: 25%; width: 400px; height: 400px; justify-content: center;">
-                <ui:VisualElement name="image" style="align-self: center; background-image: url(&quot;project://database/Assets/Sprites/UI/UIG.png?fileID=8005918012478678480&amp;guid=740b2f0e03ce966428a9a27f94f3373b&amp;type=3#UIG_68&quot;); -unity-background-scale-mode: scale-to-fit; width: 85%; height: 80%;" />
+                <ui:VisualElement name="image" style="align-self: center; background-image: url(&quot;project://database/Assets/Sprites/StageObject/Document-Star.png?fileID=21300000&amp;guid=64cfe201d6fac4b4b9ca19cb37576710&amp;type=3#Document-Star&quot;); -unity-background-scale-mode: scale-to-fit; width: 85%; height: 80%;" />
             </ui:VisualElement>
             <ui:Label text="落とし物を拾いました" name="item-name" class="base-text" style="bottom: 14%; position: absolute; align-self: center; color: rgb(255, 255, 255);" />
             <ui:VisualElement name="click-action-image" style="background-image: url(&quot;project://database/Assets/Sprites/UI/UIA.png?fileID=-6028986393636049981&amp;guid=8ebd33ce83c6888419b14cc57d7a7a48&amp;type=3#UIA_26&quot;); -unity-background-scale-mode: scale-to-fit; width: 50px; height: 50px; position: absolute; align-self: center; bottom: 25%;" />
