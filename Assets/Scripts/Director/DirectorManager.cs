@@ -12,10 +12,12 @@ public class DirectorManager : SceneSingleton<DirectorManager>
     {
         director = GetComponentInChildren<PlayableDirector>();
         stateKey = InteractStateStore.CreateKey(gameObject);
+        director.stopped += OnDirectorStopped;
     }
 
     protected override void OnSingletonDestroy()
     {
+        director.stopped -= OnDirectorStopped;
     }
 
     void Start()
@@ -23,14 +25,28 @@ public class DirectorManager : SceneSingleton<DirectorManager>
         SetPlay();
     }
 
+    void Update()
+    {
+        if (CurrentState == State.Play && director.time >= director.duration)
+            ResetState();
+    }
+
+    void OnDirectorStopped(PlayableDirector stoppedDirector)
+    {
+        if (GameUIHandler.Instance != null)
+            ResetState();
+        else
+            CurrentState = State.None;
+    }
+
     public void SetState(State state)
     {
         CurrentState = state;
+        GameUIHandler.Instance.SetDirectorActive(state != State.None);
     }
 
     public void ResetState()
     {
-        GameUIHandler.Instance.Show();
         SetState(State.None);
     }
 
@@ -42,7 +58,6 @@ public class DirectorManager : SceneSingleton<DirectorManager>
             if (!GameSession.PlayedDirectors.Add((stateKey, director.playableAsset))) return;
             activeAsset = director.playableAsset;
         }
-        GameUIHandler.Instance.Hide();
         SetState(State.Play);
         director.Play();
     }

@@ -52,7 +52,9 @@ namespace Intetract.StaffRoom.Boy
             yield return talk.Writing(GetTalkData(0), 1f);
 
             // 暗転した時点でサブキャラクターの位置を次の位置に設定する
-            yield return fadeScreen.FadeInToFadeOut(SetNextPosition);
+            yield return fadeScreen.FadeInCoroutine();
+            SetNextPosition();
+            yield return fadeScreen.FadeOutCoroutine();
         }
 
         /// <summary>
