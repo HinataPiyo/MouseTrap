@@ -30,3 +30,15 @@
     scale: 1.1 1.1;
     translate: -10px 0;
 }
+
+.key-icon {
+    background-image: url("project://database/Assets/Sprites/UI/KeyImage.png?fileID=1540573850082597206&guid=0e7217106006ceb42b41811e2c540917&type=3#KeyImage_0");
+    -unity-background-scale-mode: scale-to-fit;
+    margin-top: 1px;
+    margin-right: 1px;
+    margin-bottom: 1px;
+    margin-left: 1px;
+    min-height: 50px;
+    max-height: 150px;
+    min-width: 50px;
+}

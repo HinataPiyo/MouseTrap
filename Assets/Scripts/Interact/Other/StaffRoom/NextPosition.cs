@@ -32,23 +32,9 @@ namespace Intetract.StaffRoom.Boy
         {
             // 会話を開始する処理をここに記述
             yield return talk.Writing(GetTalkData(0));
-            PlayerInputController.Instance.ChangeState(StateType.Movie);     // 演出状態に遷移する
-
-            // 会話が終了したら物音がする(演出)
-            yield return new WaitForSeconds(1f); // 物音の演出のために1秒待機
-
-            yield return talk.Writing(GetTalkData(1));
-
-            PlayerInputController.Instance.ChangeState(StateType.Movie);
-            yield return FadeScreen.Instance.FadeInToFadeOut(HideCharacter);
-
-            // キャラクターの操作を有効にする
-            Player.CharacterControlHandler.Instance.SetCharacterControlState(Character.Name.Boy, true);
 
             // 資料室と図書室に行けるようになる
             IsEventCompleted = true;
-            SceneChangeManager.Instance.CanMoveRoom(Room.Name.Library, true);
-            PlayerInputController.Instance.ChangeState(StateType.None);     // 演出が終了したら解除
         }
 
         // 次の位置に移動させる
@@ -60,7 +46,7 @@ namespace Intetract.StaffRoom.Boy
         }
 
         // キャラを隠す
-        void HideCharacter()
+        public void HideCharacter()
         {
             if (target != null)
                 target.gameObject.SetActive(false);

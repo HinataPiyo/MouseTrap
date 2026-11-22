@@ -225,6 +225,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 115002d5b3abddc4597681e77e35ad05, type: 2}
     - {fileID: 11400000, guid: 59d2ff13e09f7794f9bb0dbd8bc24bf7, type: 2}
     - {fileID: 11400000, guid: 4db27454a879e4b419d79791e6617300, type: 2}
+    - {fileID: 11400000, guid: 580484cea9bde274b851a0e4ee671d45, type: 2}
     m_Events:
     - m_PersistentCalls:
         m_Calls:
@@ -280,6 +281,8 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls: []
 --- !u!114 &240129346
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -309,6 +312,7 @@ MonoBehaviour:
     m_Signals:
     - {fileID: 11400000, guid: 9ceb0ebac18d1f74caa90047faf7aa38, type: 2}
     - {fileID: 11400000, guid: 88f82e6d646a47a4ebf02dd36c5e38e8, type: 2}
+    - {fileID: 11400000, guid: 580484cea9bde274b851a0e4ee671d45, type: 2}
     m_Events:
     - m_PersistentCalls:
         m_Calls:
@@ -348,6 +352,44 @@ MonoBehaviour:
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: Staffroom_01_2
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 240129344}
+          m_TargetAssemblyTypeName: DirectorManager, Assembly-CSharp
+          m_MethodName: SetPause
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 240129346}
+          m_TargetAssemblyTypeName: TalkSignalController, Assembly-CSharp
+          m_MethodName: ShowTalk
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: Staffroom_02_1
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 773426373}
+          m_TargetAssemblyTypeName: GetKeyAndGetPicture, Assembly-CSharp
+          m_MethodName: CanGoToLibraryScene
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
         - m_Target: {fileID: 240129344}
@@ -1274,6 +1316,56 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 5046465949655335139, guid: 931465edc5a8dc4428ed807ead5de4b0, type: 3}
   m_PrefabInstance: {fileID: 7716481920445177211}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &773426371
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 773426372}
+  - component: {fileID: 773426373}
+  m_Layer: 0
+  m_Name: '!! Event_GetKey & GetPicture'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &773426372
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 773426371}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &773426373
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 773426371}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3cfd8b9676c5b244a94d355478aba6de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactData: {fileID: 0}
+  hideAfterAcquire: []
+  requiredEvents: []
+  isAllCompleteTest: 0
+  asset: {fileID: 11400000, guid: 824e7f1065e3d2946aebb84912b580bc, type: 2}
+  nextPos: {fileID: 596632795}
 --- !u!1001 &797180628
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2426,6 +2518,8 @@ PlayableDirector:
     value: {fileID: 1692011850}
   - key: {fileID: -3031260510125509939, guid: b2ff76a70868e2d41ba81648c2b55496, type: 2}
     value: {fileID: 414847727}
+  - key: {fileID: 5887817332328138191, guid: 824e7f1065e3d2946aebb84912b580bc, type: 2}
+    value: {fileID: 240129345}
   m_ExposedReferences:
     m_References:
     - 0df6275a035936544818dea50953d5ad: {fileID: 414847721}
@@ -4778,7 +4872,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactData: {fileID: 11400000, guid: b7311488b2df8e54ba5172c86bab774f, type: 2}
-  hideAfterAcquire: []
+  hideAfterAcquire:
+  - {fileID: 596632793}
   requiredEvents:
   - {fileID: 934309335}
   isAllCompleteTest: 0
@@ -5278,6 +5373,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8973377296679783624, guid: a9d8afb16dcb5dd45bdd9883615cb275, type: 3}
+      propertyPath: getKeyAndGetPicture
+      value: 
+      objectReference: {fileID: 773426373}
+    - target: {fileID: 8973377296679783624, guid: a9d8afb16dcb5dd45bdd9883615cb275, type: 3}
       propertyPath: requiredEvents.Array.size
       value: 1
       objectReference: {fileID: 0}
@@ -5552,6 +5651,10 @@ PrefabInstance:
       propertyPath: interactData
       value: 
       objectReference: {fileID: 11400000, guid: f06780aa4f76e774395fbd8709793307, type: 2}
+    - target: {fileID: 2954309226185604306, guid: d63411126afc659428b1f572ac77b0b4, type: 3}
+      propertyPath: getKeyAndGetPicture
+      value: 
+      objectReference: {fileID: 773426373}
     - target: {fileID: 2954309226185604306, guid: d63411126afc659428b1f572ac77b0b4, type: 3}
       propertyPath: interactMarkPosition
       value: 
@@ -6286,3 +6389,4 @@ SceneRoots:
   - {fileID: 934309333}
   - {fileID: 1315441725}
   - {fileID: 2100722405}
+  - {fileID: 773426372}

@@ -5,6 +5,7 @@ namespace Interaction.StaffRoom
 
     public class Picture : Interact
     {
+        [SerializeField] GetKeyAndGetPicture getKeyAndGetPicture;
         protected override void Initialize()
         {
         }
@@ -18,6 +19,7 @@ namespace Interaction.StaffRoom
             yield return new WaitUntil(() => !InteractUIPanel.Instance.IsVisible());
             yield return talk.Writing(GetTalkData(0));
             IsEventCompleted = true;
+            getKeyAndGetPicture.GetPicture();
         }
     }
 }

@@ -15,3 +15,4 @@ MonoBehaviour:
   talks:
   - {fileID: 11400000, guid: af4d42910de609a47968684884c61ff2, type: 2}
   - {fileID: 11400000, guid: 5a985552f86d0994293867b643a7a307, type: 2}
+  - {fileID: 11400000, guid: fcddf6ac0f73a1d48ab607ef293d2d80, type: 2}
