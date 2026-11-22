@@ -2,17 +2,13 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class TalkPanelController : SceneSingleton<TalkPanelController>
+public class TalkPanelController : PanelView<TalkPanelController>
 {
-    UIDocument uiDocument;
     [SerializeField] float writingSpeed = 0.05f;
     TalkData currentTalkData;
 
     PlayerInputController gameState;
     PlayerInputController inputTrigger;
-
-
-    VisualElement root;
 
     Label characterName;
     Label body;
@@ -32,15 +28,14 @@ public class TalkPanelController : SceneSingleton<TalkPanelController>
 
     protected override void OnSingletonAwake()
     {
-        uiDocument = GetComponent<UIDocument>();
-        root = uiDocument.rootVisualElement;
-        characterName = root.Q<Label>("name");
-        body = root.Q<Label>("body");
-        characterImage = root.Q<VisualElement>("left-character");
-        arrow = root.Q<VisualElement>("arrow");
+        panel = GetComponent<UIDocument>().rootVisualElement.Q("root");
+        characterName = panel.Q<Label>("name");
+        body = panel.Q<Label>("body");
+        characterImage = panel.Q<VisualElement>("left-character");
+        arrow = panel.Q<VisualElement>("arrow");
         writingWait = new WaitForSeconds(writingSpeed);
 
-        root.style.display = DisplayStyle.None;
+        SetVisible(false);
     }
 
     void Start()
@@ -83,7 +78,7 @@ public class TalkPanelController : SceneSingleton<TalkPanelController>
         isSkipping = false;
         isWaitingForAdvance = false;
         isAdvanceRequested = false;
-        root.style.display = DisplayStyle.None;
+        SetVisible(false);
         gameState.ChangeState(StateType.None);
     }
 
@@ -92,7 +87,19 @@ public class TalkPanelController : SceneSingleton<TalkPanelController>
         gameState.ChangeState(StateType.None);
     }
 
-    public IEnumerator Writing(TalkData data, float delay = 0f)
+    public void BackgroundHide()
+    {
+        Color color = new Color(0,0,0,0f);
+        panel.style.backgroundColor = color;
+    }
+
+    public void BackgroundShow()
+    {
+        Color color = new Color(0,0,0,0.5f);
+        panel.style.backgroundColor = color;
+    }
+
+    public IEnumerator Writing(TalkData data, float delay = 0f, bool background = true)
     {
         int sessionId = ++talkSessionId;
         currentTalkData = data;
@@ -104,14 +111,17 @@ public class TalkPanelController : SceneSingleton<TalkPanelController>
         yield return new WaitForSeconds(delay);
         if (sessionId != talkSessionId) yield break;
 
-        root.style.display = DisplayStyle.Flex;
+        SetVisible(true);
+        if(background) BackgroundShow();
+        else BackgroundHide();
 
         for (int i = 0; i < data.entries.Length; i++)
         {
             var entry = data.entries[i];
+            yield return new WaitForSeconds(entry.delay);
             isWriting = true;
 
-            characterImage.style.backgroundImage = new StyleBackground(entry.character);
+            characterImage.style.backgroundImage = entry.character != null ? new StyleBackground(entry.character) : null;
             characterName.text = Character.GetName(entry.characterName);
             arrow.style.display = DisplayStyle.None;
             body.text = "";
@@ -141,7 +151,7 @@ public class TalkPanelController : SceneSingleton<TalkPanelController>
             isAdvanceRequested = false;
         }
         currentTalkData = null;
-        root.style.display = DisplayStyle.None;
+        SetVisible(false);
 
         OnTalkEnd();        // 会話終了時の処理を呼び出す
     }

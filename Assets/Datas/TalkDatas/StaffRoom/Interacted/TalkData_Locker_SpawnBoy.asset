@@ -1,0 +1,76 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d3f61c76eb36134698696b0dd8b802c, type: 3}
+  m_Name: TalkData_Locker_SpawnBoy
+  m_EditorClassIdentifier: 
+  tag: 
+  entries:
+  - character: {fileID: -3428360358286950702, guid: 6a00a43202827c9438de0641ac4c5c91, type: 3}
+    characterName: 1
+    body: "\u308F\u3063\uFF01\uFF1F\u304A\u3070\u3051\uFF01\uFF1F"
+    delay: 0
+  - character: {fileID: -1036020893582889634, guid: 6a00a43202827c9438de0641ac4c5c91, type: 3}
+    characterName: 1
+    body: "\u3088\u304B\u3063\u305F\u304A\u306D\u3048\u3061\u3083\u3093\u3060\u3001\u3001\u3001"
+    delay: 0
+  - character: {fileID: -3428360358286950702, guid: 6a00a43202827c9438de0641ac4c5c91, type: 3}
+    characterName: 1
+    body: "\u3082\u3046\u898B\u3064\u304B\u3063\u3061\u3083\u3063\u305F\u3001\u4E0A\u624B\u306B\u96A0\u308C\u305F\u3068\u601D\u3063\u305F\u306E\u306B"
+    delay: 0
+  - character: {fileID: 4723107735738678597, guid: 76757b61b369a1747a0492da2c587d60, type: 3}
+    characterName: 0
+    body: "\u30ED\u30C3\u30AB\u30FC\u304B\u3089\u305F\u304F\u3055\u3093\u97F3\u304C\u805E\u3053\u3048\u3066\u305F\u3088"
+    delay: 0
+  - character: {fileID: -1339504838687995571, guid: 256bea245eb080f40826e33cd38c2cfe, type: 3}
+    characterName: 1
+    body: "\u3048\u3063\u3001\u305D\u3093\u306A\u306B\u97F3\u51FA\u3057\u3066\u306A\u3044\u3051\u3069\u306A\u3002"
+    delay: 0
+  - character: {fileID: -1339504838687995571, guid: 256bea245eb080f40826e33cd38c2cfe, type: 3}
+    characterName: 1
+    body: "\u304A\u306D\u3048\u3061\u3083\u3093\u306E\u300C\u3068\u304F\u304E\u300D\u3059\u3054\u3044\u306A\uFF5E"
+    delay: 0
+  - character: {fileID: 4723107735738678597, guid: 76757b61b369a1747a0492da2c587d60, type: 3}
+    characterName: 0
+    body: "\u305D\u3088\u308A\uFF01\uFF01\uFF01\u304A\u3070\u3051\u3063\u3066\u3069\u3046\u3044\u3046\u3053\u3068\uFF01\uFF01"
+    delay: 0
+  - character: {fileID: -3428360358286950702, guid: 6a00a43202827c9438de0641ac4c5c91, type: 3}
+    characterName: 1
+    body: "\u3060\u3063\u3066\u3053\u3053\u8584\u6697\u3044\u3058\u3083\u3093\u3001\u304A\u5316\u3051\u304C\u51FA\u3066\u304D\u305D\u3046\u3060\u304B\u3089\u4E00\u4EBA\u306F\u6016\u304F\u3066"
+    delay: 0
+  - character: {fileID: -3428360358286950702, guid: 6a00a43202827c9438de0641ac4c5c91, type: 3}
+    characterName: 1
+    body: "\u30ED\u30C3\u30AB\u30FC\u306E\u4E2D\u3082\u771F\u3063\u6697\u3060\u3063\u305F\u304B\u3089\u898B\u3064\u3051\u3066\u304F\u308C\u3066\u3042\u308A\u304C\u3068!"
+    delay: 0
+  - character: {fileID: 4723107735738678597, guid: 76757b61b369a1747a0492da2c587d60, type: 3}
+    characterName: 0
+    body: "\u4E00\u4EBA\u306F\u6016\u3044\u3063\u3066\u3053\u3068\u306F\u3082\u3046\u3053\u3053\u306B\u306F\u8AB0\u3082\u96A0\u308C\u3066\u306A\u3044\u3093\u3060\u306D\uFF1F"
+    delay: 0
+  - character: {fileID: -3428360358286950702, guid: 6a00a43202827c9438de0641ac4c5c91, type: 3}
+    characterName: 1
+    body: "\u3042\u3063\uFF01\u3084\u3061\u3083\u3063\u305F\u3001\u3001\u3001"
+    delay: 0
+  - character: {fileID: 1536528730702479134, guid: 6a00a43202827c9438de0641ac4c5c91, type: 3}
+    characterName: 1
+    body: "\u305D\u3046\u3060\u3088\u3001\u3053\u3053\u306B\u306F\u50D5\u4EE5\u5916\u304B\u304F\u308C\u3066\u306A\u3044\u3088"
+    delay: 0
+  - character: {fileID: 8880376914677662993, guid: 6a00a43202827c9438de0641ac4c5c91, type: 3}
+    characterName: 1
+    body: "\u307B\u304B\u306E\u4EBA\u306F\u5225\u306E\u90E8\u5C4B\u306B\u3044\u308B\u3088\u3002"
+    delay: 0
+  - character: {fileID: 8880376914677662993, guid: 6a00a43202827c9438de0641ac4c5c91, type: 3}
+    characterName: 1
+    body: "\u307E\u3055\u304B\u3053\u3053\u3067\u5F85\u3063\u3066\u3066\u3063\u3066\u8A00\u308F\u306A\u3044\u3088\u306D\uFF1F\u3064\u3044\u3066\u3044\u304F\u304B\u3089\u306D\uFF01"
+    delay: 0
+  - character: {fileID: 4723107735738678597, guid: 76757b61b369a1747a0492da2c587d60, type: 3}
+    characterName: 0
+    body: "\u3044\u3044\u3088\u3001\u65E9\u304F\u898B\u3064\u304B\u3063\u305F\u5206\u4E00\u7DD2\u306B\u63A2\u305D\u3046\uFF01"
+    delay: 0

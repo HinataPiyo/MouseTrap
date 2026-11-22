@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "InteractData", menuName = "Data/InteractData")]
+[CreateAssetMenu(fileName = "InteractData", menuName = "MouseTrap/Base/InteractData")]
 public class InteractData : ScriptableObject
 {
     [Header("UIに表示するデータ")]

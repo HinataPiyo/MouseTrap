@@ -10,7 +10,7 @@ namespace Player
     public class CharacterControlHandler : SceneSingleton<CharacterControlHandler>
     {
         [SerializeField] CharacterBaseData[] characterBaseData;
-        Animator animator;
+        [SerializeField] Animator animator;
 
         public Character.Name CurrentCharacter => GameSession.CurrentCharacter;
         public CharacterBaseData[] CharacterDatas => characterBaseData;
@@ -20,7 +20,6 @@ namespace Player
 
         protected override void OnSingletonAwake()
         {
-            animator = GetComponentInChildren<Animator>();
 
             // 新しいシーンのPlayerにも、現在のキャラクターの見た目を引き継ぐ
             if (GameSession.CurrentCharacter == Character.Name.None)

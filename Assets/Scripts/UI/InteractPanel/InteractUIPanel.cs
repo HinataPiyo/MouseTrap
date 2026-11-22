@@ -9,10 +9,11 @@ public class InteractUIPanel : PanelView<InteractUIPanel>
 
     protected override void OnSingletonAwake()
     {
-        UIDocument uiDocument = GetComponent<UIDocument>();
-        panel = uiDocument.rootVisualElement.Q<VisualElement>("interact-object-container");
+        panel = GetComponent<UIDocument>().rootVisualElement;
         object_view = panel.Q<VisualElement>("image");
         itemName_view = panel.Q<Label>("item-name");
+
+        HideInteractPanel();
     }
 
     void Start()

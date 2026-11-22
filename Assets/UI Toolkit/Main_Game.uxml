@@ -1,6 +1,6 @@
 <ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <Style src="project://database/Assets/UI%20Toolkit/Style/Text.uss?fileID=7433441132597879392&amp;guid=5674d4550a091bd468fc8e19db31b047&amp;type=3" />
-    <Style src="project://database/Assets/UI%20Toolkit/Style/Icon.uss?fileID=7433441132597879392&amp;guid=1ceed8f6430f265418059065196d9b28&amp;type=3" />
+    <Style src="project://database/Assets/UI%20Toolkit/Style/Text.uss?fileID=7433441132597879392&amp;guid=5674d4550a091bd468fc8e19db31b047&amp;type=3#Text" />
+    <Style src="project://database/Assets/UI%20Toolkit/Style/Icon.uss?fileID=7433441132597879392&amp;guid=1ceed8f6430f265418059065196d9b28&amp;type=3#Icon" />
     <ui:VisualElement name="root" style="flex-grow: 1;">
         <ui:VisualElement name="ordinarily-view" style="flex-grow: 1;">
             <ui:VisualElement name="upper-right" style="flex-grow: 1; top: 0; right: 0; position: absolute; flex-direction: row-reverse;">
@@ -25,13 +25,13 @@
         </ui:VisualElement>
         <ui:VisualElement name="interact-object-container" style="position: absolute; align-self: center; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.8); display: none;">
             <ui:VisualElement name="background" style="position: absolute; background-image: url(&quot;project://database/Assets/Sprites/UI/UIA.png?fileID=82052064546649123&amp;guid=8ebd33ce83c6888419b14cc57d7a7a48&amp;type=3#UIA_25&quot;); align-self: center; top: 25%; width: 400px; height: 400px; justify-content: center;">
-                <ui:VisualElement name="image" style="align-self: center; background-image: url(&quot;project://database/Assets/Sprites/UI/UIG.png?fileID=8005918012478678480&amp;guid=740b2f0e03ce966428a9a27f94f3373b&amp;type=3#UIG_68&quot;); -unity-background-scale-mode: scale-to-fit; width: 85%; height: 80%;" />
+                <ui:VisualElement name="image" style="align-self: center; background-image: url(&quot;project://database/Assets/Sprites/StageObject/Document-Star.png?fileID=21300000&amp;guid=64cfe201d6fac4b4b9ca19cb37576710&amp;type=3#Document-Star&quot;); -unity-background-scale-mode: scale-to-fit; width: 85%; height: 80%;" />
             </ui:VisualElement>
             <ui:Label text="落とし物を拾いました" name="item-name" class="base-text" style="bottom: 14%; position: absolute; align-self: center; color: rgb(255, 255, 255);" />
             <ui:VisualElement name="click-action-image" style="background-image: url(&quot;project://database/Assets/Sprites/UI/UIA.png?fileID=-6028986393636049981&amp;guid=8ebd33ce83c6888419b14cc57d7a7a48&amp;type=3#UIA_26&quot;); -unity-background-scale-mode: scale-to-fit; width: 50px; height: 50px; position: absolute; align-self: center; bottom: 25%;" />
         </ui:VisualElement>
     </ui:VisualElement>
-    <ui:VisualElement name="room-change-buttons" style="width: 100%; position: absolute; display: flex; height: 100%; align-items: center; justify-content: center; top: -1px; left: 0;">
+    <ui:VisualElement name="room-change-buttons" style="width: 100%; position: absolute; display: none; height: 100%; align-items: center; justify-content: center; top: -1px; left: 0;">
         <ui:VisualElement name="container" style="flex-direction: row; align-items: center; align-self: center; width: 35%; justify-content: space-between; bottom: -170px;">
             <ui:Button name="back-button" class="base-icon" style="background-image: url(&quot;project://database/Assets/Sprites/UI/UIC.png?fileID=7069895513934085807&amp;guid=591b3cad56ea0894195bc6ca7e5d8c7f&amp;type=3#UIC_10&quot;); -unity-background-scale-mode: scale-to-fit; height: 250px; width: 160px;" />
             <ui:Button name="next-button" class="base-icon" style="background-image: url(&quot;project://database/Assets/Sprites/UI/UIC.png?fileID=1466192304738836203&amp;guid=591b3cad56ea0894195bc6ca7e5d8c7f&amp;type=3#UIC_8&quot;); -unity-background-scale-mode: scale-to-fit; height: 250px; width: 160px;" />
