@@ -29,6 +29,9 @@ public abstract class Interact : MonoBehaviour, IInteract
     protected TalkPanelController talk;
     protected FadeScreen fadeScreen;
 
+    // 状態保存用のキー(InteractStateStore用)
+    protected virtual bool ShouldRestoreDeactivatedState => true;
+
     public bool IsAvailable => !hasAcquiredItem;
 
     string stateKey;
@@ -66,7 +69,7 @@ public abstract class Interact : MonoBehaviour, IInteract
         hasAcquiredItem = state.HasAcquiredItem;
         IsEventCompleted |= state.IsEventCompleted;
 
-        if (state.IsDeactivated)
+        if (state.IsDeactivated && ShouldRestoreDeactivatedState)
             gameObject.SetActive(false);
     }
 

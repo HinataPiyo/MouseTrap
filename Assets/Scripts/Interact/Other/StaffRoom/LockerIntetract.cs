@@ -5,6 +5,8 @@ namespace Intetract.StaffRoom.Boy
 
     public class LockerIntetract : Interact
     {
+        protected override bool ShouldRestoreDeactivatedState => false;
+
         [Header("表示するキャラクター")]
         [SerializeField] GameObject subCharacter;
 
