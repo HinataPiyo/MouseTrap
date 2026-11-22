@@ -38,6 +38,9 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: BlackCollider
+    uniqueID: 4181501921
+    locked: 0
   - name: SubFloor
     uniqueID: 3256618987
     locked: 0

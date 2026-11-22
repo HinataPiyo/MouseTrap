@@ -43,7 +43,6 @@ public static class GameSession
 
         UnlockedRooms.Clear();
         UnlockedRooms.Add(Room.Name.Staffroom);
-        UnlockedRooms.Add(Room.Name.Library);       //! テスト
 
         InventoryItems.Clear();
         RegisteredMissions.Clear();

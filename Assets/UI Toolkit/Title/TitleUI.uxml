@@ -1,0 +1,10 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI%20Toolkit/Title/Title_Button.uss?fileID=7433441132597879392&amp;guid=bb6f099768844254da3d8beb85d2cff2&amp;type=3#Title_Button" />
+    <ui:VisualElement name="root" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/Sprites/UI/Title_Background.png?fileID=21300000&amp;guid=fb0a9263bb6babf488c05609446093d9&amp;type=3#Title_Background&quot;); -unity-background-scale-mode: scale-to-fit; align-items: center; justify-content: center;">
+        <ui:VisualElement name="logo" style="background-image: url(&quot;project://database/Assets/Sprites/UI/Title_Logo.png?fileID=21300000&amp;guid=b557b523ec4b99447b5c2383b7997e36&amp;type=3#Title_Logo&quot;); width: 70%; height: 80%; -unity-background-scale-mode: scale-to-fit;" />
+        <ui:VisualElement name="buttons" style="position: absolute; bottom: 14%; width: 65%; height: 15%; flex-direction: row;">
+            <ui:Button name="start-button" class="button" />
+            <ui:Button enabled="false" picking-mode="Ignore" class="button" style="background-image: url(&quot;project://database/Assets/Sprites/UI/Title_Buttons.png?fileID=5197968755468352838&amp;guid=194efb26e3111594188a4b006ca834c4&amp;type=3#Title_Buttons_1&quot;);" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
