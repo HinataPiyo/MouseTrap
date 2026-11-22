@@ -43,4 +43,11 @@ public class DirectorManager : SceneSingleton<DirectorManager>
         SetState(State.Pause);
         director.Pause();
     }
+
+    public void SetAsset(PlayableAsset asset)
+    {
+        director.playableAsset = asset;
+        SetPlay();
+    }
+
 }

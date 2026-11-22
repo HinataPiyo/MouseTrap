@@ -1,0 +1,50 @@
+.button {
+    background-image: url("project://database/Assets/Sprites/UI/Title_Buttons.png?fileID=7915892012739961968&guid=194efb26e3111594188a4b006ca834c4&type=3#Title_Buttons_0");
+    -unity-background-scale-mode: scale-to-fit;
+    background-color: rgba(255, 255, 255, 0);
+    border-left-color: rgba(255, 255, 255, 0);
+    border-right-color: rgba(255, 255, 255, 0);
+    border-top-color: rgba(255, 255, 255, 0);
+    border-bottom-color: rgba(255, 255, 255, 0);
+    border-top-width: 0;
+    border-right-width: 0;
+    border-bottom-width: 0;
+    border-left-width: 0;
+    flex-grow: 1;
+    transition-duration: 0.1s;
+}
+
+.button:hover {
+    background-image: url("project://database/Assets/Sprites/UI/Title_Buttons.png?fileID=7915892012739961968&guid=194efb26e3111594188a4b006ca834c4&type=3#Title_Buttons_0");
+    -unity-background-scale-mode: scale-to-fit;
+    background-color: rgba(255, 255, 255, 0);
+    border-left-color: rgba(255, 255, 255, 0);
+    border-right-color: rgba(255, 255, 255, 0);
+    border-top-color: rgba(255, 255, 255, 0);
+    border-bottom-color: rgba(255, 255, 255, 0);
+    border-top-width: 0;
+    border-right-width: 0;
+    border-bottom-width: 0;
+    border-left-width: 0;
+    flex-grow: 1;
+    transition-duration: 0.1s;
+    scale: 1.1 1.1;
+    rotate: 3grad;
+}
+
+.button:active {
+    background-image: url("project://database/Assets/Sprites/UI/Title_Buttons.png?fileID=7915892012739961968&guid=194efb26e3111594188a4b006ca834c4&type=3#Title_Buttons_0");
+    -unity-background-scale-mode: scale-to-fit;
+    background-color: rgba(255, 255, 255, 0);
+    border-left-color: rgba(255, 255, 255, 0);
+    border-right-color: rgba(255, 255, 255, 0);
+    border-top-color: rgba(255, 255, 255, 0);
+    border-bottom-color: rgba(255, 255, 255, 0);
+    border-top-width: 0;
+    border-right-width: 0;
+    border-bottom-width: 0;
+    border-left-width: 0;
+    flex-grow: 1;
+    transition-duration: 0.1s;
+    scale: 0.99 0.99;
+}

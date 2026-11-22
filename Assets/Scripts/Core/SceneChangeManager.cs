@@ -69,7 +69,8 @@ public class SceneChangeManager : SceneSingleton<SceneChangeManager>
     IEnumerator SceneChangeCoroutine(Room.Name room)
     {
         isChanging = true;
-        PlayerInputController.Instance.ChangeState(StateType.Movie);
+        if(PlayerInputController.Instance != null)
+            PlayerInputController.Instance.ChangeState(StateType.Movie);
 
         yield return FadeScreen.Instance.FadeInCoroutine();
 
