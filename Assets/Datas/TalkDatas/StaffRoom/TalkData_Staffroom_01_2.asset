@@ -16,5 +16,5 @@ MonoBehaviour:
   entries:
   - character: {fileID: 3234629978573100161, guid: 76757b61b369a1747a0492da2c587d60, type: 3}
     characterName: 0
-    body: "\u3042\u305D\u3053\u304B\u3089\u4F55\u304B\u7269\u97F3\u304C\u3059\u308B...\u3002\u8ABF\u3079\u3066\u307F\u3088\u3046\u3002"
+    body: "\u30ED\u30C3\u30AB\u30FC\u304B\u3089\u4F55\u304B\u7269\u97F3\u304C\u3059\u308B...\u3002\u8AB0\u304B\u3044\u308B\u306E\u304B\u306A?"
     delay: 0

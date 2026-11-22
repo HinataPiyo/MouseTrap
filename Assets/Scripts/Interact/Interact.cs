@@ -115,8 +115,13 @@ public abstract class Interact : MonoBehaviour, IInteract
         {
             // 他のオブジェクトも非表示
             foreach(var o in hideAfterAcquire)
-                o.SetActive(false);
-            gameObject.SetActive(false);
+            {
+                o.GetComponent<SpriteRenderer>().enabled = false;
+                o.GetComponent<Collider2D>().enabled = false;
+            }
+            
+            GetComponent<SpriteRenderer>().enabled = false;
+            GetComponent<Collider2D>().enabled = false;
         }
 
         //? SearchInteractObjectsの方で表示するようにしてしまっているので要検討

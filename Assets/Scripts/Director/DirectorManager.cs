@@ -25,10 +25,15 @@ public class DirectorManager : SceneSingleton<DirectorManager>
         CurrentState = state;
     }
 
-    public void ResetState() => SetState(State.None);
+    public void ResetState()
+    {
+        GameUIHandler.Instance.Show();
+        SetState(State.None);
+    }
 
     public void SetPlay()
     {
+        GameUIHandler.Instance.Hide();
         SetState(State.Play);
         director.Play();
     }

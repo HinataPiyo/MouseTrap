@@ -1,7 +1,8 @@
 namespace Interaction.StaffRoom
 {
     using System.Collections;
-    
+    using UnityEngine;
+
     public class Picture : Interact
     {
         protected override void Initialize()
@@ -9,10 +10,14 @@ namespace Interaction.StaffRoom
         }
         protected override void AcquireItem()
         {
+            if(!IsEventCompleted)
+                StartCoroutine(StartTalk());
         }
         protected override IEnumerator StartTalk()
         {
-            yield return null;
+            yield return new WaitUntil(() => !InteractUIPanel.Instance.IsVisible());
+            yield return talk.Writing(GetTalkData(0));
+            IsEventCompleted = true;
         }
     }
 }

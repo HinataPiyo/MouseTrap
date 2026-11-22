@@ -27,12 +27,11 @@ public class FirstGetMemo : Interact
 
     protected override IEnumerator StartTalk()
     {
-        Debug.Log("<color=green>Start talk</color>");
         yield return new WaitUntil(() => !InteractUIPanel.Instance.IsVisible());
-        Debug.Log("<color=green>Panel hidden</color>");
         yield return talk.Writing(GetTalkData(0));
 
         IsEventCompleted = true;
         gameObject.SetActive(false);
+        DirectorManager.Instance.SetPlay();
     }
 }
