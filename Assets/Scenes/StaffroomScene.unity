@@ -866,250 +866,6 @@ TilemapCollider2D:
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0
   m_UseDelaunayMesh: 0
---- !u!1 &240129342
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 240129343}
-  - component: {fileID: 240129344}
-  - component: {fileID: 240129346}
-  - component: {fileID: 240129345}
-  - component: {fileID: 240129347}
-  m_Layer: 0
-  m_Name: --- Director ---
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &240129343
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 240129342}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1444179537}
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &240129344
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 240129342}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9c65c820a3528a247ba2ba34debab97b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &240129345
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 240129342}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e52de21a22b6dd44c9cc19f810c65059, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Events:
-    m_Signals:
-    - {fileID: 11400000, guid: 115002d5b3abddc4597681e77e35ad05, type: 2}
-    - {fileID: 11400000, guid: 59d2ff13e09f7794f9bb0dbd8bc24bf7, type: 2}
-    - {fileID: 11400000, guid: 4db27454a879e4b419d79791e6617300, type: 2}
-    - {fileID: 11400000, guid: 580484cea9bde274b851a0e4ee671d45, type: 2}
-    m_Events:
-    - m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 240129344}
-          m_TargetAssemblyTypeName: DirectorManager, Assembly-CSharp
-          m_MethodName: SetPlay
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-        - m_Target: {fileID: 271681856}
-          m_TargetAssemblyTypeName: FadeScreen, Assembly-CSharp
-          m_MethodName: StartFadeOut
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-    - m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 240129344}
-          m_TargetAssemblyTypeName: DirectorManager, Assembly-CSharp
-          m_MethodName: ResetState
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-    - m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 240129344}
-          m_TargetAssemblyTypeName: DirectorManager, Assembly-CSharp
-          m_MethodName: SetPause
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-    - m_PersistentCalls:
-        m_Calls: []
---- !u!114 &240129346
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 240129342}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 30f966797dfd05745b20d74e8856ed5a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  talkDatabase: {fileID: 11400000, guid: 338a1575a06d350458a16232d3008682, type: 2}
---- !u!114 &240129347
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 240129342}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e52de21a22b6dd44c9cc19f810c65059, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Events:
-    m_Signals:
-    - {fileID: 11400000, guid: 9ceb0ebac18d1f74caa90047faf7aa38, type: 2}
-    - {fileID: 11400000, guid: 88f82e6d646a47a4ebf02dd36c5e38e8, type: 2}
-    - {fileID: 11400000, guid: 580484cea9bde274b851a0e4ee671d45, type: 2}
-    m_Events:
-    - m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 240129346}
-          m_TargetAssemblyTypeName: TalkSignalController, Assembly-CSharp
-          m_MethodName: ShowTalk
-          m_Mode: 5
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: Staffroom_01_1
-            m_BoolArgument: 0
-          m_CallState: 2
-        - m_Target: {fileID: 240129344}
-          m_TargetAssemblyTypeName: DirectorManager, Assembly-CSharp
-          m_MethodName: SetPause
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-    - m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 240129346}
-          m_TargetAssemblyTypeName: TalkSignalController, Assembly-CSharp
-          m_MethodName: ShowTalk_HideBackground
-          m_Mode: 5
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: Staffroom_01_2
-            m_BoolArgument: 0
-          m_CallState: 2
-        - m_Target: {fileID: 240129344}
-          m_TargetAssemblyTypeName: DirectorManager, Assembly-CSharp
-          m_MethodName: SetPause
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-    - m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 240129346}
-          m_TargetAssemblyTypeName: TalkSignalController, Assembly-CSharp
-          m_MethodName: ShowTalk
-          m_Mode: 5
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: Staffroom_02_1
-            m_BoolArgument: 0
-          m_CallState: 2
-        - m_Target: {fileID: 773426373}
-          m_TargetAssemblyTypeName: GetKeyAndGetPicture, Assembly-CSharp
-          m_MethodName: CanGoToLibraryScene
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-        - m_Target: {fileID: 240129344}
-          m_TargetAssemblyTypeName: DirectorManager, Assembly-CSharp
-          m_MethodName: SetPause
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
 --- !u!1001 &270633552
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3141,67 +2897,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8455458829855207409, guid: 57830eb7ea3928c40a8bbbf5cc187083, type: 3}
   m_PrefabInstance: {fileID: 1441350457}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1444179536
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1444179537}
-  - component: {fileID: 1444179538}
-  m_Layer: 0
-  m_Name: Director
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1444179537
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1444179536}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 240129343}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!320 &1444179538
-PlayableDirector:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1444179536}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_PlayableAsset: {fileID: 11400000, guid: b2ff76a70868e2d41ba81648c2b55496, type: 2}
-  m_InitialState: 0
-  m_WrapMode: 2
-  m_DirectorUpdateMode: 1
-  m_InitialTime: 0
-  m_SceneBindings:
-  - key: {fileID: -4199618579242751258, guid: b2ff76a70868e2d41ba81648c2b55496, type: 2}
-    value: {fileID: 240129345}
-  - key: {fileID: -4932152198842931511, guid: b2ff76a70868e2d41ba81648c2b55496, type: 2}
-    value: {fileID: 1692011850}
-  - key: {fileID: -3031260510125509939, guid: b2ff76a70868e2d41ba81648c2b55496, type: 2}
-    value: {fileID: 414847727}
-  - key: {fileID: 5887817332328138191, guid: 824e7f1065e3d2946aebb84912b580bc, type: 2}
-    value: {fileID: 240129345}
-  m_ExposedReferences:
-    m_References:
-    - 0df6275a035936544818dea50953d5ad: {fileID: 414847721}
-    - 7ebbe4555553a594a85c99682f06a0e1: {fileID: 1667276155}
-    - 2b27151fc939a124f956782e9a661663: {fileID: 414847721}
-    - fe87452392d05bc4b85d9b1fe3acd5ac: {fileID: 742926761}
 --- !u!1 &1566064863
 GameObject:
   m_ObjectHideFlags: 0
@@ -4928,11 +4623,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 7463868737238612366, guid: 4c27d6187d16ecb44b39dd531602bb0f, type: 3}
   m_PrefabInstance: {fileID: 1654772346}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1667276155 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7608056030925034134, guid: 1561efc0548390e4b98c5432e01ada78, type: 3}
-  m_PrefabInstance: {fileID: 4347827863565879328}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1668504446
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5031,17 +4721,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7452868269961117769, guid: 1561efc0548390e4b98c5432e01ada78, type: 3}
   m_PrefabInstance: {fileID: 4347827863565879328}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1692011850 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1172207643939591839, guid: 1561efc0548390e4b98c5432e01ada78, type: 3}
-  m_PrefabInstance: {fileID: 4347827863565879328}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e52de21a22b6dd44c9cc19f810c65059, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!223 &1704173007 stripped
 Canvas:
   m_CorrespondingSourceObject: {fileID: 373458956218988633, guid: 1561efc0548390e4b98c5432e01ada78, type: 3}
@@ -5548,8 +5227,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactData: {fileID: 11400000, guid: b7311488b2df8e54ba5172c86bab774f, type: 2}
-  hideAfterAcquire:
-  - {fileID: 596632793}
+  hideAfterAcquire: []
   requiredEvents:
   - {fileID: 934309335}
   isAllCompleteTest: 0
@@ -6402,6 +6080,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 335161957881173559, guid: 1561efc0548390e4b98c5432e01ada78, type: 3}
+      propertyPath: m_SceneBindings.Array.data[2].value
+      value: 
+      objectReference: {fileID: 414847727}
+    - target: {fileID: 335161957881173559, guid: 1561efc0548390e4b98c5432e01ada78, type: 3}
+      propertyPath: m_ExposedReferences.m_References.Array.data[0].second
+      value: 
+      objectReference: {fileID: 414847721}
+    - target: {fileID: 335161957881173559, guid: 1561efc0548390e4b98c5432e01ada78, type: 3}
+      propertyPath: m_ExposedReferences.m_References.Array.data[2].second
+      value: 
+      objectReference: {fileID: 414847721}
+    - target: {fileID: 335161957881173559, guid: 1561efc0548390e4b98c5432e01ada78, type: 3}
+      propertyPath: m_ExposedReferences.m_References.Array.data[3].second
+      value: 
+      objectReference: {fileID: 742926761}
     - target: {fileID: 456470828064533402, guid: 1561efc0548390e4b98c5432e01ada78, type: 3}
       propertyPath: otherCam.Array.size
       value: 1
@@ -6426,6 +6120,10 @@ PrefabInstance:
       propertyPath: Target.TrackingTarget
       value: 
       objectReference: {fileID: 77345242}
+    - target: {fileID: 3509462071466759620, guid: 1561efc0548390e4b98c5432e01ada78, type: 3}
+      propertyPath: m_Events.m_Events.Array.data[2].m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 773426373}
     - target: {fileID: 4479327168797419902, guid: 1561efc0548390e4b98c5432e01ada78, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
@@ -6438,6 +6136,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4557938563662762453, guid: 1561efc0548390e4b98c5432e01ada78, type: 3}
+      propertyPath: m_Events.m_Events.Array.data[0].m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 271681856}
     - target: {fileID: 7608056030925034134, guid: 1561efc0548390e4b98c5432e01ada78, type: 3}
       propertyPath: m_Name
       value: CCamera_Player
@@ -7044,7 +6746,6 @@ SceneRoots:
   - {fileID: 4347827863565879328}
   - {fileID: 2575193483607625645}
   - {fileID: 610964016}
-  - {fileID: 240129343}
   - {fileID: 1294851342}
   - {fileID: 6216832549678054703}
   - {fileID: 5273177774348575930}

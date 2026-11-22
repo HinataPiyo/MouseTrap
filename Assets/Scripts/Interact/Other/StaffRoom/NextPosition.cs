@@ -49,7 +49,10 @@ namespace Intetract.StaffRoom.Boy
         public void HideCharacter()
         {
             if (target != null)
+            {
                 target.gameObject.SetActive(false);
+                nextPosition.gameObject.SetActive(false);
+            }
         }
     }
 }

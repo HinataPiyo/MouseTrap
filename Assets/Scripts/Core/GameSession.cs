@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Playables;
 
 /// <summary>
 /// シーンをまたいで保持するゲーム進行状態。
@@ -35,6 +36,9 @@ public static class GameSession
     /// <summary>部屋移動直後の最初のシーンで、フェードアウトを再生するかどうか</summary>
     public static bool FadeOutPending { get; set; }
 
+    /// <summary>再生済みのDirectorとアセット</summary>
+    public static HashSet<(string, PlayableAsset)> PlayedDirectors { get; } = new HashSet<(string, PlayableAsset)>();
+
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
     public static void Reset()
     {
@@ -50,6 +54,7 @@ public static class GameSession
         MissionNextTitles.Clear();
         CurrentMissionTitle = null;
         InteractStateStore.Clear();
+        PlayedDirectors.Clear();
         FadeOutPending = false;
     }
 }

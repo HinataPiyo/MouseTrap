@@ -33,6 +33,8 @@ Unity Hubで指定バージョンのUnityを使ってリポジトリを開きま
 
 - **シーン単位の管理クラス**は`SceneSingleton<T>`（[SceneSingleton.cs](../Assets/Scripts/Core/SceneSingleton.cs)）を継承します。`Instance`は`Awake`で登録され、同一シーン内の重複は破棄されます。継承先で`Awake`/`OnDestroy`を定義するとUnityの仕様で基底の処理が呼ばれなくなるため、代わりに`OnSingletonAwake()`/`OnSingletonDestroy()`をoverrideします。他クラスが`Instance`を参照するのは`Start`以降にしてください。
 - **シーンをまたぐ状態**は`GameSession`（[GameSession.cs](../Assets/Scripts/Core/GameSession.cs)）に置きます。解放キャラ・現在のキャラ・解放済みの部屋・インベントリ・フェードアウト待ちフラグを保持し、起動時に`Reset()`で初期化されます。セーブ機能を作る場合の対象もここです。Interactオブジェクトごとの完了状態は`InteractStateStore`が保持します。
+
+- **Timelineの再生履歴**は`GameSession`がシーン内のDirectorとアセットの組み合わせごとに保持します。一度再生を開始したTimelineはシーンに戻っても再生されず、一時停止からの再開は可能です。履歴は`GameSession.Reset()`で初期化されます。
 - **フェード後の処理**はグローバルイベントではなく、`FadeScreen.FadeInToFadeOut(Action onBlackScreen, float duration)`の引数で渡します。完全に暗転した時点で一度だけ呼ばれるため、購読・解除は不要です。
 - **シーン遷移**は`SceneChangeManager.SceneChange`が行います。多重実行は防止されており、遷移先のフェードアウトは`GameSession.FadeOutPending`をもとに次のシーンの`FadeScreen`が実行します。
 - ボタンの`clicked`などのイベントは、表示のたびではなく一度だけ登録します（`RoomChangeUI`を参照）。
