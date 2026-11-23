@@ -10,7 +10,7 @@ public static class MissionNames
 
     // --- 職員室 ---
     public const string CheckLocker = "ロッカーを確認する";
-    public const string TalkToBoy = "少年に話す";
+    public const string TalkToBoy = "少年と話す";
     public const string ExploreStaffroom = "職員室を探索する";
 
     // --- 図書室 ---

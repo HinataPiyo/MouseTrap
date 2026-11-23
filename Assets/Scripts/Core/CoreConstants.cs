@@ -29,7 +29,7 @@ public static class Character
             case Name.Glasses_Boy: return "眼鏡少年";
             case Name.Delinquent_Boy: return "不良少年";
             case Name.Girl_TwinTail: return "ツインテールの少女";
-            case Name.FireSprit: return "火のこ";
+            case Name.FireSprit: return "火のコ";
             case Name.Unknown: return "？？？";
             default: return "";
         }

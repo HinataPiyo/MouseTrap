@@ -15,15 +15,15 @@ MonoBehaviour:
   tag: 
   entries:
   - character: {fileID: 2871323269120319739, guid: 48236b3b5f090c746ac8b74fd05fd78a, type: 3}
-    characterName: 5
+    characterName: 6
     body: "\u30A2\u30BD\u30DC\u30A6...\u3002\u306D\u3047\u3001\u3042\u305D\u307C\u3046...\u3002"
     delay: 0
   - character: {fileID: -937643186310742431, guid: 911ff9a22bee52f4f9b3f468be9ab3d2, type: 3}
-    characterName: 5
+    characterName: 1
     body: "\u308F\u3041\u3063\uFF01\uFF01\u304A\u3001\u304A\u3070\u3051\uFF01\uFF01\uFF01"
     delay: 0
   - character: {fileID: 1671125734038197700, guid: 48236b3b5f090c746ac8b74fd05fd78a, type: 3}
-    characterName: 5
+    characterName: 6
     body: "\u304A\u3070\u3051\u3058\u3083\u306A\u3044\uFF01"
     delay: 0
   - character: {fileID: 2144099334268728396, guid: 911ff9a22bee52f4f9b3f468be9ab3d2, type: 3}
@@ -35,7 +35,7 @@ MonoBehaviour:
     body: "\u304A\u3069\u308D\u3044\u305F...\u3002 \u541B\u304C\u672C\u3092\u3070\u3089\u307E\u3044\u305F\u306E\uFF1F"
     delay: 0
   - character: {fileID: -4695815441358518775, guid: 48236b3b5f090c746ac8b74fd05fd78a, type: 3}
-    characterName: 5
+    characterName: 6
     body: "\u3046\u3093\u3001\u305D\u3046\u3060\u3088\u3002 \u697D\u3057\u304B\u3063\u305F\uFF1F"
     delay: 0
   - character: {fileID: 6934103021583412983, guid: 4e8cce4651a588541b7e33a5def77712, type: 3}
@@ -52,7 +52,7 @@ MonoBehaviour:
       \u904A\u3076\u306A\u3089\u307E\u305A\u540D\u524D\u3092\u6559\u3048\u3066\u304F\u308C\u306A\u3044\u3068"
     delay: 0
   - character: {fileID: -4909642470625336807, guid: 48236b3b5f090c746ac8b74fd05fd78a, type: 3}
-    characterName: 5
+    characterName: 6
     body: "\u3046\u3093\u3001\u305D\u3046\u3060\u3088\u306D\u3001\u540D\u524D...\u30CA\u30DE\u30A8......"
     delay: 0
   - character: {fileID: 2144099334268728396, guid: 911ff9a22bee52f4f9b3f468be9ab3d2, type: 3}
@@ -60,7 +60,7 @@ MonoBehaviour:
     body: "\u3082\u3057\u304B\u3057\u3066\u540D\u524D\u308F\u304B\u3089\u306A\u3044\u306E\uFF1F"
     delay: 0
   - character: {fileID: 3931544661154857558, guid: 48236b3b5f090c746ac8b74fd05fd78a, type: 3}
-    characterName: 5
+    characterName: 6
     body: "\u30CA\u30DE\u30A8...\u3002 \u30DC\u30AF\u306E\u540D\u524D\u77E5\u3063\u3066\u308B\uFF1F"
     delay: 0
   - character: {fileID: 6934103021583412983, guid: 4e8cce4651a588541b7e33a5def77712, type: 3}
@@ -80,7 +80,7 @@ MonoBehaviour:
     body: "\u305D\u308C\u3058\u3083\u3042\u3001\u304A\u3070\u3051\u306E\u30B3\u3063\u3066\u3044\u3046\u306E\u306F\u3069\u3046\uFF1F"
     delay: 0
   - character: {fileID: 2871323269120319739, guid: 48236b3b5f090c746ac8b74fd05fd78a, type: 3}
-    characterName: 5
+    characterName: 6
     body: ......
     delay: 0
   - character: {fileID: -937643186310742431, guid: 911ff9a22bee52f4f9b3f468be9ab3d2, type: 3}
