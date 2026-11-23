@@ -86,10 +86,15 @@ public class TalkPanelController : PanelView<TalkPanelController>
 
     void OnTalkEnd()
     {
-        characterImage.style.backgroundImage = null;
-        characterName.text = "";
+        Reset();
         gameState.ChangeState(StateType.None);
         GameUIHandler.Instance.SetTalkActive(false);
+    }
+
+    void Reset()
+    {
+        characterImage.style.backgroundImage = null;
+        characterName.text = "";
     }
 
     public void BackgroundHide()
@@ -112,6 +117,7 @@ public class TalkPanelController : PanelView<TalkPanelController>
         isSkipping = false;
         isWaitingForAdvance = false;
         isAdvanceRequested = false;
+        Reset();
 
         GameUIHandler.Instance.SetTalkActive(true);
 
@@ -158,6 +164,7 @@ public class TalkPanelController : PanelView<TalkPanelController>
             isWaitingForAdvance = false;
             isAdvanceRequested = false;
         }
+
         currentTalkData = null;
         SetVisible(false);
 

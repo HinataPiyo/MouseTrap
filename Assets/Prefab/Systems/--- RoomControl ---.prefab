@@ -218,11 +218,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   returnPositionUI: {fileID: -2923669285791097797, guid: 65891e3a1483e634095a26816a2cfc5a, type: 3}
-  successLineNotes:
-  - {fileID: 11400000, guid: bb736af1a12295541b515aaf1f94b150, type: 2}
-  - {fileID: 11400000, guid: 1a951fa9bf2ae1e4e9657d7486852cd0, type: 2}
-  - {fileID: 11400000, guid: 79ad2bc0ea17ef74884090a096023f98, type: 2}
-  successNote: {fileID: 11400000, guid: 060cd61dd82f2dd4eae13b1180a0a6c5, type: 2}
 --- !u!1 &3707808568270857432
 GameObject:
   m_ObjectHideFlags: 0

@@ -31,12 +31,8 @@
                     <ui:VisualElement class="key-icon" style="background-image: url(&quot;project://database/Assets/Sprites/UI/KeyImage.png?fileID=295190187667336727&amp;guid=0e7217106006ceb42b41811e2c540917&amp;type=3#KeyImage_4&quot;);" />
                 </ui:VisualElement>
                 <ui:VisualElement name="get" style="flex-direction: row; margin-right: 15px; align-items: flex-end;">
-                    <ui:VisualElement class="key-icon" style="background-image: url(&quot;project://database/Assets/Sprites/UI/KeyImage.png?fileID=2286684442680296481&amp;guid=0e7217106006ceb42b41811e2c540917&amp;type=3#KeyImage_5&quot;); min-width: 60px; min-height: 60px;" />
+                    <ui:VisualElement class="key-icon" style="background-image: url(&quot;project://database/Assets/Sprites/UI/get-back.png?fileID=21300000&amp;guid=2477d289fc8b9a44198cb39af3b9a22d&amp;type=3#get-back&quot;); min-width: 110px; min-height: 65px;" />
                     <ui:VisualElement class="key-icon" style="background-image: url(&quot;project://database/Assets/Sprites/UI/KeyImage.png?fileID=1041382053101722775&amp;guid=0e7217106006ceb42b41811e2c540917&amp;type=3#KeyImage_6&quot;);" />
-                </ui:VisualElement>
-                <ui:VisualElement name="back" style="flex-direction: row; margin-right: 15px; align-items: flex-end;">
-                    <ui:VisualElement class="key-icon" style="background-image: url(&quot;project://database/Assets/Sprites/UI/KeyImage.png?fileID=3965941148180990596&amp;guid=0e7217106006ceb42b41811e2c540917&amp;type=3#KeyImage_7&quot;); min-width: 60px; min-height: 60px;" />
-                    <ui:VisualElement class="key-icon" style="background-image: url(&quot;project://database/Assets/Sprites/UI/KeyImage.png?fileID=-9041103542201106311&amp;guid=0e7217106006ceb42b41811e2c540917&amp;type=3#KeyImage_8&quot;);" />
                 </ui:VisualElement>
                 <ui:VisualElement name="inventory" style="flex-direction: row; margin-right: 15px; width: 220px; align-items: flex-end;">
                     <ui:VisualElement class="key-icon" style="background-image: url(&quot;project://database/Assets/Sprites/UI/KeyImage.png?fileID=-6967061092427517188&amp;guid=0e7217106006ceb42b41811e2c540917&amp;type=3#KeyImage_9&quot;); min-height: 60px; min-width: 140px;" />

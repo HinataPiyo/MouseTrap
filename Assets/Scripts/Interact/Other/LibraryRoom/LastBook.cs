@@ -6,7 +6,6 @@ public class LastBook : Interact
 {
     [Header("追いかけっこする演出")]
     [SerializeField] PlayableAsset chase;
-    bool isChasing;
     bool canGet;
     protected override void Initialize()
     {
@@ -60,7 +59,6 @@ public class LastBook : Interact
     public void StopChase()
     {
         GetComponentInChildren<SpriteRenderer>().sortingOrder = 0;
-        isChasing = false;
         canGet = true;
     }
 

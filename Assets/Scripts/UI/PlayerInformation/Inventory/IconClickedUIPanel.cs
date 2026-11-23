@@ -37,10 +37,9 @@ public class IconClickedUIPanel : MonoBehaviour
 
         useButton.clicked += () =>
         {
-            // 選択したものが破れたメモなら
-            if(selectedData is InteractTornNotesData)
+            if (selectedData is InteractArrangementData arrangement)
             {
-                TornNotesUIPanel.Instance.Show();
+                ArrangementUIPanel.Instance.Show(arrangement);
             }
         };
     }
@@ -68,7 +67,7 @@ public class IconClickedUIPanel : MonoBehaviour
         panel.style.display = DisplayStyle.None;
         icon.style.backgroundImage = null;
         selectedData = null;
-        if(TornNotesUIPanel.Instance != null) TornNotesUIPanel.Instance.Hide();
+        if (ArrangementUIPanel.Instance != null) ArrangementUIPanel.Instance.Hide();
     }
 
 }
