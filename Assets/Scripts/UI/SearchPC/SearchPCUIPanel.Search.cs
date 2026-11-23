@@ -23,10 +23,15 @@ public partial class SearchPCUIPanel
             searchButtons[i] = buttons[i];
             // 物語だけButton押下を許可
             if(i == 2)
-                searchButtons[i].clicked += () => OnSearch();
+                searchButtons[i].clicked += () =>
+                {
+                    AudioManager.Instance.PlaySE("普通のボタン");
+                    OnSearch();
+                };
         }
 
         backButton.clicked += BackToGenrePanel;
+        backButton.clicked += () => AudioManager.Instance.PlaySE("キャンセル");
     }
 
     /// <summary>

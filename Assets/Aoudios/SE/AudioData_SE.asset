@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86abd5850b76f0f418ee476eb1eced85, type: 3}
+  m_Name: AudioData_SE
+  m_EditorClassIdentifier: 
+  clips:
+  - tag: "\u666E\u901A\u306E\u30DC\u30BF\u30F3"
+    clip: {fileID: 8300000, guid: 012d3c6f7e8fbf14280119ad59e3816b, type: 3}
+  - tag: "\u666E\u901A\u306E\u30DC\u30BF\u30F32"
+    clip: {fileID: 8300000, guid: 80707c3e61e9b6449888e637766ff67e, type: 3}
+  - tag: "\u78BA\u5B9A\u306E\u30DC\u30BF\u30F3"
+    clip: {fileID: 8300000, guid: 376f085ff327579448d89c175e348588, type: 3}
+  - tag: "\u7279\u6B8A\u78BA\u5B9A\u30DC\u30BF\u30F3"
+    clip: {fileID: 8300000, guid: af4a60586ce2bca4188d3e64352d6d08, type: 3}
+  - tag: "\u7279\u6B8A\u30AD\u30E3\u30F3\u30BB\u30EB\u30DC\u30BF\u30F3"
+    clip: {fileID: 8300000, guid: ca9af538a2af6494a881b5117c034f74, type: 3}
+  - tag: "\u30A2\u30A4\u30C6\u30E0\u9078\u629E"
+    clip: {fileID: 8300000, guid: 54c779f1eaeec4c459af5f2a585cd00a, type: 3}
+  - tag: "\u30AD\u30E3\u30F3\u30BB\u30EB"
+    clip: {fileID: 8300000, guid: 778dc7469e99a8848afcc49fecaf6a48, type: 3}
+  - tag: "\u7F6E\u304F"
+    clip: {fileID: 8300000, guid: 2cdc940d1ed15764881d26a1fdd65617, type: 3}
+  - tag: "\u30A2\u30A4\u30C6\u30E0\u7372\u5F97"
+    clip: {fileID: 8300000, guid: ce6ffdab5256e2644a33ded8e97c4627, type: 3}
+  - tag: "\u6587\u5B57\u8868\u793A"
+    clip: {fileID: 8300000, guid: 0fa2d4018787ac348a0ade9861589d52, type: 3}
+  - tag: "\u672C\u304C\u305F\u304F\u3055\u3093\u843D\u3061\u308B"
+    clip: {fileID: 8300000, guid: a5efe3a6406d4454aab52e8d921a525c, type: 3}
+  - tag: "\u706B\u306E\u30B3\u767B\u5834"
+    clip: {fileID: 8300000, guid: 2fb7698ebb58e074293015156ed8caf9, type: 3}
+  - tag: "\u6559\u5BA4\u306E\u30C6\u30FC\u30D6\u30EB\u5F15\u304D\u305A\u308B\u97F3"
+    clip: {fileID: 8300000, guid: 23a800151655b264886735286aae8f97, type: 3}

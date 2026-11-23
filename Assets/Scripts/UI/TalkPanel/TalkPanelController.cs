@@ -143,6 +143,7 @@ public class TalkPanelController : PanelView<TalkPanelController>
             foreach (char c in entry.body)
             {
                 body.text += c;
+                AudioManager.Instance.PlaySE("文字表示");
 
                 // スキップ中の場合はループを抜ける
                 if (isSkipping)

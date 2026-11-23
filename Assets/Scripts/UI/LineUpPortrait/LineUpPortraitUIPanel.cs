@@ -77,7 +77,10 @@ public class LineUpPortraitUIPanel : PanelView<LineUpPortraitUIPanel>
                     returnButtons[index].style.backgroundImage = Background.FromSprite(returnPositionUI);
                     portraitOrders[index] = default(Character.PortraitOrder);
                     hasPortraits[index] = false;
+                    AudioManager.Instance.PlaySE("キャンセル");
                 }
+                else
+                    AudioManager.Instance.PlaySE("普通のボタン");
 
                 selectReturnIndex = index;
                 SelecterPanelShow();
@@ -93,6 +96,7 @@ public class LineUpPortraitUIPanel : PanelView<LineUpPortraitUIPanel>
                 SelecterPanelHide();
                 SetPortrait(portaitInfos[index]);
                 selectButtons[index].style.display = DisplayStyle.None;
+                AudioManager.Instance.PlaySE("置く");
             };
 
             selectButtons[i].style.backgroundImage = Background.FromSprite(portaitInfos[i].image);
@@ -100,6 +104,7 @@ public class LineUpPortraitUIPanel : PanelView<LineUpPortraitUIPanel>
         }
 
         backButton.clicked += SelecterPanelHide;
+        backButton.clicked += () => AudioManager.Instance.PlaySE("キャンセル");
     }
 
     void Start()

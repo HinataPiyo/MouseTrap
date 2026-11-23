@@ -40,6 +40,7 @@ public class UpperButtonsHandler : MonoBehaviour
 
     void OpenInventory()
     {
+        AudioManager.Instance.PlaySE("普通のボタン");
         if (InventoryUIPanel.Instance == null)
         {
             Debug.LogError("InventoryUIPanel is not available.", this);
@@ -51,6 +52,7 @@ public class UpperButtonsHandler : MonoBehaviour
 
     void OpenCharacterInformation()
     {
+        AudioManager.Instance.PlaySE("普通のボタン");
         if (CharacterInformationUIPanel.Instance == null)
         {
             Debug.LogError("CharacterInformationUIPanel is not available.", this);

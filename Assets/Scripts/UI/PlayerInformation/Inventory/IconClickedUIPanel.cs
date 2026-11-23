@@ -37,6 +37,7 @@ public class IconClickedUIPanel : MonoBehaviour
 
         useButton.clicked += () =>
         {
+            AudioManager.Instance.PlaySE("普通のボタン");
             if (selectedData is InteractArrangementData arrangement)
             {
                 ArrangementUIPanel.Instance.Show(arrangement);

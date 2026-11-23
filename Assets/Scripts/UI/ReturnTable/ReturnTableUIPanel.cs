@@ -114,19 +114,31 @@ public class ReturnTableUIPanel : PanelView<ReturnTableUIPanel>
         for (int i = 0; i < shapeButtons.Count; i++)
         {
             int index = i;
-            shapeButtons[i].clicked += () => OnShapeSelected(index);
+            shapeButtons[i].clicked += () =>
+            {
+                OnShapeSelected(index);
+                AudioManager.Instance.PlaySE("普通のボタン");
+            };
         }
 
         for (int i = 0; i < colorButtons.Count; i++)
         {
             int index = i;
-            colorButtons[i].clicked += () => OnColorSelected(index);
+            colorButtons[i].clicked += () =>
+            {
+                OnColorSelected(index);
+                AudioManager.Instance.PlaySE("普通のボタン");
+            };
         }
 
         for (int i = 0; i < columnButtons.Count; i++)
         {
             int index = i;
-            columnButtons[i].clicked += () => OnColumnSelected(index);
+            columnButtons[i].clicked += () =>
+            {
+                OnColumnSelected(index);
+                AudioManager.Instance.PlaySE("普通のボタン");
+            };
         }
 //------------------
     }

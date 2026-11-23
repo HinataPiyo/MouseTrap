@@ -8,6 +8,7 @@ namespace Player
 
         [SerializeField] float moveSpeed = 2f;
         [SerializeField] Animator ainm;
+        [SerializeField] AudioSource walkSE;
         public enum MoveType { None = -1, Idle, Left, Right, Up, Down }
 
         Vector2 moveDir;
@@ -19,6 +20,8 @@ namespace Player
         DirectorWaypointMovement directorMovement;
 
         bool isStopped = false;
+        bool isWalkSEControlledBySignal;
+        bool wasDirectorActive;
 
 
         void Awake()
@@ -91,19 +94,39 @@ namespace Player
 
         void LateUpdate()
         {
-            if (DirectorManager.Instance.CurrentState != DirectorManager.State.None)
+            bool isDirectorActive = DirectorManager.Instance.CurrentState != DirectorManager.State.None;
+
+            // 演出中は移動を止める
+            if (isDirectorActive)
             {
                 rb.linearVelocity = Vector2.zero;
+                if (!isWalkSEControlledBySignal)
+                    walkSE.Stop();
+                wasDirectorActive = true;
                 return;
             }
 
+            // 演出が終わったときの処理
+            if (wasDirectorActive)
+            {
+                walkSE.Stop();
+                isWalkSEControlledBySignal = false;
+                wasDirectorActive = false;
+            }
+
+            // 通常の移動処理
             if (!isStopped)
             {
                 rb.linearVelocity = moveDir * moveSpeed;
+                if (moveDir != Vector2.zero && !walkSE.isPlaying)       // 歩いてたら鳴らす
+                    walkSE.Play();
+                else if (moveDir == Vector2.zero)       // 止まったらSEも止める
+                    walkSE.Stop();
             }
-            else
+            else // 止まっているとき
             {
                 rb.linearVelocity = Vector2.zero;
+                walkSE.Stop();
             }
         }
 
@@ -150,6 +173,20 @@ namespace Player
                 ainm.SetInteger("MoveType", (int)currentMoveType);
             }
         }
-    }
 
+        /// <summary>
+        /// Signal用
+        /// </summary>
+        public void PlayWalkSE()
+        {
+            isWalkSEControlledBySignal = true;
+            walkSE.Play();
+        }
+
+        public void StopWalkSE()
+        {
+            isWalkSEControlledBySignal = false;
+            walkSE.Stop();
+        }
+    }
 }

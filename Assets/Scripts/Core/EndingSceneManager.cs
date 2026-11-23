@@ -9,6 +9,7 @@ public class EndingSceneManager : PanelView<EndingSceneManager>
         Button gotoTitle = panel.Q<Button>();
         gotoTitle.clicked += () =>
         {
+            AudioManager.Instance.PlaySE("普通のボタン");
             GoToTitle();
         };
     }

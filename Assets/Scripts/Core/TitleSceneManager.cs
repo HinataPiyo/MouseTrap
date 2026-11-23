@@ -22,6 +22,7 @@ public class TitleSceneManager : PanelView<TitleSceneManager>
 
     void OnStartClicked()
     {
+        AudioManager.Instance.PlaySE("普通のボタン");
         GameSession.Reset();
         SceneChangeManager.Instance.SceneChange(Room.Name.Staffroom);
     }

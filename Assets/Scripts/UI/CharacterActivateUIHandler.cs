@@ -177,6 +177,9 @@ public class CharacterActivateUIHandler : SceneSingleton<CharacterActivateUIHand
     void SelectCharacter(CharacterIcon icon)
     {
         if (icon.character != null)
+        {
+            AudioManager.Instance.PlaySE("普通のボタン");
             characterControlHandler.ChangeCharacterControlState(icon.character.CharacterNameEnum);
+        }
     }
 }

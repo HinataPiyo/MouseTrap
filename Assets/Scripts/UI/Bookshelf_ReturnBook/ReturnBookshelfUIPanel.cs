@@ -47,6 +47,7 @@ public class ReturnBookshelfUIPanel : PanelView<ReturnBookshelfUIPanel>
             {
                 selectedBook = Inventory.Instance.GetBook(index);
                 selectButton = selecterBookButtons[index];
+                AudioManager.Instance.PlaySE("アイテム選択");
             };
         }
 
@@ -72,6 +73,8 @@ public class ReturnBookshelfUIPanel : PanelView<ReturnBookshelfUIPanel>
                     returnNumberButtons[index].style.backgroundImage = new StyleBackground(returnPositionUI);
                     returnNumberButtons[index].text = (index + 1).ToString();
                     returnedBooks[index] = null;
+                    AudioManager.Instance.PlaySE("キャンセル");
+                    return;
                 }
 
                 if(selectedBook == null || selectButton == null) return;
@@ -82,6 +85,8 @@ public class ReturnBookshelfUIPanel : PanelView<ReturnBookshelfUIPanel>
                 returnedBooks[index] = selectedBook;
                 selectedBook = null;
                 selectButton = null;
+
+                AudioManager.Instance.PlaySE("置く");
 
                 // 全て埋まったか確認
                 if (!System.Array.TrueForAll(returnedBooks, book => book != null)) return;
