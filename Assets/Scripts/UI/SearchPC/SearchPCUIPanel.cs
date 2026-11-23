@@ -48,8 +48,8 @@ public partial class SearchPCUIPanel : PanelView<SearchPCUIPanel>
         }
         clearButton.clicked += ClearInput;
         excuteButton.clicked += Excute;
-        clearButton.clicked += () => AudioManager.Instance.PlaySE("普通のボタン");
-        excuteButton.clicked += () => AudioManager.Instance.PlaySE("普通のボタン");
+        clearButton.clicked += () => AudioManager.Instance.PlaySE("特殊キャンセルボタン");
+        excuteButton.clicked += () => AudioManager.Instance.PlaySE("特殊確定ボタン");
 
         SearchPanelInit();
 

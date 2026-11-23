@@ -25,10 +25,14 @@ public class LastBook : Interact
 
         yield return fadeScreen.FadeInToFadeOut();
 
+        AudioManager.Instance.PlaySE("火のコ登場");
+        yield return new WaitForSeconds(0.5f);
         yield return talk.Writing(GetTalkData(1));
 
         yield return fadeScreen.FadeInToFadeOut();
 
+        AudioManager.Instance.PlaySE("教室のテーブル引きずる音");
+        yield return new WaitForSeconds(2f);
         yield return talk.Writing(GetTalkData(2));
 
         IsEventCompleted = true;
