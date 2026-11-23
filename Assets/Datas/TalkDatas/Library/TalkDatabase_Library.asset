@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 623be72eb6e3fb54988220c31effebc2, type: 3}
+  m_Name: TalkDatabase_Library
+  m_EditorClassIdentifier: 
+  talks:
+  - {fileID: 11400000, guid: 9b21d719a798362498c319a2f0d54038, type: 2}
+  - {fileID: 11400000, guid: f0c2777361ef0b84d9770b896b30bf60, type: 2}

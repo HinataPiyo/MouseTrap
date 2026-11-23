@@ -72,6 +72,8 @@ public class TalkPanelController : PanelView<TalkPanelController>
 
     void CloseTalkPanel()
     {
+        if (currentTalkData == null) return;
+
         talkSessionId++;
         currentTalkData = null;
         isWriting = false;
@@ -79,12 +81,20 @@ public class TalkPanelController : PanelView<TalkPanelController>
         isWaitingForAdvance = false;
         isAdvanceRequested = false;
         SetVisible(false);
-        gameState.ChangeState(StateType.None);
+        OnTalkEnd();
     }
 
     void OnTalkEnd()
     {
+        Reset();
         gameState.ChangeState(StateType.None);
+        GameUIHandler.Instance.SetTalkActive(false);
+    }
+
+    void Reset()
+    {
+        characterImage.style.backgroundImage = null;
+        characterName.text = "";
     }
 
     public void BackgroundHide()
@@ -107,6 +117,9 @@ public class TalkPanelController : PanelView<TalkPanelController>
         isSkipping = false;
         isWaitingForAdvance = false;
         isAdvanceRequested = false;
+        Reset();
+
+        GameUIHandler.Instance.SetTalkActive(true);
 
         yield return new WaitForSeconds(delay);
         if (sessionId != talkSessionId) yield break;
@@ -119,6 +132,7 @@ public class TalkPanelController : PanelView<TalkPanelController>
         {
             var entry = data.entries[i];
             yield return new WaitForSeconds(entry.delay);
+            if (sessionId != talkSessionId) yield break;
             isWriting = true;
 
             characterImage.style.backgroundImage = entry.character != null ? new StyleBackground(entry.character) : null;
@@ -150,6 +164,7 @@ public class TalkPanelController : PanelView<TalkPanelController>
             isWaitingForAdvance = false;
             isAdvanceRequested = false;
         }
+
         currentTalkData = null;
         SetVisible(false);
 

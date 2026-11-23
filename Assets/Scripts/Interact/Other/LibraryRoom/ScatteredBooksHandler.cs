@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Playables;
 
 /// <summary>
 /// 眼鏡少年が最初の本をゲットしたのち散らばる本を管理する
@@ -10,9 +12,33 @@ public class ScatteredBooksHandler : Interact
 {
     [SerializeField] List<GameObject> books = new List<GameObject>();
 
-    protected override void Initialize() { }
+    protected override void Initialize()
+    {
+        if (!MissionManager.Instance.IsMissionCompleted(MissionNames.FindGlassesBoy) ||
+            MissionManager.Instance.IsMissionCompleted(MissionNames.CollectScatteredBooks))
+            return;
+
+        for (int i = books.Count - 1; i >= 0; i--)
+        {
+            string key = InteractStateStore.CreateKey(books[i]);
+            if (InteractStateStore.TryGet(key, out var state) && state.IsEventCompleted)
+                books.RemoveAt(i);
+            else
+                books[i].SetActive(true);
+        }
+    }
     protected override void AcquireItem() { }
-    protected override IEnumerator StartTalk() { yield return null; }
+    protected override IEnumerator StartTalk()
+    {
+        PlayerInputController.Instance.ChangeState(StateType.Talk);
+        yield return new WaitForSeconds(1f);
+        yield return talk.Writing(GetTalkData(0));
+
+        PlayerInputController.Instance.ChangeState(StateType.Interact);
+        yield return new WaitUntil(() => !InteractUIPanel.Instance.IsVisible());
+
+        PlayerInputController.Instance.ChangeState(StateType.None);
+    }
 
     /// <summary>
     /// 本を取ったときに呼ぶ
@@ -33,7 +59,10 @@ public class ScatteredBooksHandler : Interact
         if (books.Count == 0)
         {
             IsEventCompleted = true;
-            MissionManager.Instance.CompleteMission(MissionNames.CollectScatteredBooks);
+            MissionManager.Instance.CompleteMissionAndSetNext(
+                MissionNames.CollectScatteredBooks,
+                MissionNames.CheckBookshelf);
+            StartCoroutine(StartTalk());
         }
     }
 
@@ -45,6 +74,5 @@ public class ScatteredBooksHandler : Interact
         foreach (var book in books)
             book.SetActive(true);
 
-        MissionManager.Instance.SetMission(MissionNames.CollectScatteredBooks);
     }
 }

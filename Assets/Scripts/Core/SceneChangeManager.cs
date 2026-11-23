@@ -34,9 +34,12 @@ public class SceneChangeManager : SceneSingleton<SceneChangeManager>
     /// </summary>
     public Room.Name GetNextMoveableRoom()
     {
+        if (Room.IsDemoBuild && currentRoom == Room.Name.Library)
+            return GameSession.UnlockedRooms.Contains(Room.Name.EndingScene) ? Room.Name.EndingScene : Room.Name.None;
+
         foreach (Room.Name room in Enum.GetValues(typeof(Room.Name)))
         {
-            if (room > currentRoom && GameSession.UnlockedRooms.Contains(room))
+            if (room != Room.Name.Title && room > currentRoom && GameSession.UnlockedRooms.Contains(room))
                 return room;
         }
         return Room.Name.None;
@@ -50,7 +53,7 @@ public class SceneChangeManager : SceneSingleton<SceneChangeManager>
         Room.Name lastRoom = Room.Name.None;
         foreach (Room.Name room in Enum.GetValues(typeof(Room.Name)))
         {
-            if (room != Room.Name.None && room < currentRoom && GameSession.UnlockedRooms.Contains(room))
+            if (room != Room.Name.None && room != Room.Name.Title && room < currentRoom && GameSession.UnlockedRooms.Contains(room))
                 lastRoom = room;
         }
         return lastRoom;
@@ -73,6 +76,13 @@ public class SceneChangeManager : SceneSingleton<SceneChangeManager>
             PlayerInputController.Instance.ChangeState(StateType.Movie);
 
         yield return FadeScreen.Instance.FadeInCoroutine();
+
+        if (currentRoom == Room.Name.Staffroom && room == Room.Name.Library)
+        {
+            MissionManager.Instance.CompleteMissionAndSetNext(
+                MissionNames.ChangeRoom,
+                MissionNames.FindGlassesBoy);
+        }
 
         // 読み込み後のシーンで、暗転から明けるフェードアウトを再生させる
         GameSession.FadeOutPending = true;

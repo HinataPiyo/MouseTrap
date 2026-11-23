@@ -10,9 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3d3f61c76eb36134698696b0dd8b802c, type: 3}
-  m_Name: TalkData_HiddenHit_001
+  m_Name: TalkDataLibrary_BookshelfGenre
   m_EditorClassIdentifier: 
+  tag: 
   entries:
-  - character: {fileID: 4723107735738678597, guid: 76757b61b369a1747a0492da2c587d60, type: 3}
-    characterName: 0
-    body: "\u96A0\u3057\u30D2\u30F3\u30C8\u3092\u95B2\u89A7"
+  - character: {fileID: 0}
+    characterName: -1
+    body: "\u300C\u751F\u7269\u3001\u690D\u7269\u3001\u7269\u8A9E\u3001\u52C9\u5F37\u3001\u8DA3\u5473\u300D"
+    delay: 0

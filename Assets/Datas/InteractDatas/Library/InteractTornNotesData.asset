@@ -12,13 +12,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 491eeebeaff3ae44b8bf7769c96a520b, type: 3}
   m_Name: InteractTornNotesData
   m_EditorClassIdentifier: 
+  isShowUseButton: 1
   sprite: {fileID: 21300000, guid: 42a6a6520489f5f4cbc1b362a0f78432, type: 3}
   text: "\u30D0\u30E9\u30D0\u30E9\u306B\u306A\u3063\u305F\u30E1\u30E2"
   isDisabledAfterInteract: 0
   isShowPanel: 1
   isReusable: 0
   talkData: []
-  tornNotes:
-  - {fileID: 11400000, guid: 79ad2bc0ea17ef74884090a096023f98, type: 2}
-  - {fileID: 11400000, guid: bb736af1a12295541b515aaf1f94b150, type: 2}
-  - {fileID: 11400000, guid: 1a951fa9bf2ae1e4e9657d7486852cd0, type: 2}
+  elements:
+  - sprite: {fileID: -6859825939647066120, guid: 740b2f0e03ce966428a9a27f94f3373b, type: 3}
+    correctPosition: 3
+  - sprite: {fileID: -5280651088467014341, guid: 740b2f0e03ce966428a9a27f94f3373b, type: 3}
+    correctPosition: 1
+  - sprite: {fileID: 740859867210785336, guid: 740b2f0e03ce966428a9a27f94f3373b, type: 3}
+    correctPosition: 2
+  requireOrder: 1
+  completedItem: {fileID: 11400000, guid: 060cd61dd82f2dd4eae13b1180a0a6c5, type: 2}

@@ -42,6 +42,9 @@ namespace Intetract.LibraryRoom
 
             Invisible();
 
+            MissionManager.Instance.CompleteMissionAndSetNext(
+                MissionNames.FindGlassesBoy,
+                MissionNames.CollectScatteredBooks);
             scatteredBooks.ActivateBooks();     // 本を散らす
         }
 

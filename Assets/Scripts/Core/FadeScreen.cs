@@ -34,11 +34,12 @@ public class FadeScreen : SceneSingleton<FadeScreen>
     IEnumerator FadeOutOnSceneStart()
     {
         PlayerInputController input = PlayerInputController.Instance;
-        input.ChangeState(StateType.Movie);
+        if(input != null)
+            input.ChangeState(StateType.Movie);
 
         yield return FadeOutCoroutine();
 
-        if (input.CurrentState == StateType.Movie)
+        if (input != null && input.CurrentState == StateType.Movie)
             input.ChangeState(StateType.None);
     }
 

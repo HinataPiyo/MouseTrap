@@ -7,6 +7,7 @@ namespace Intetract.StaffRoom.Boy
     {
         [Header("次の位置")]
         [SerializeField] Transform nextPosition;
+        [SerializeField] GetKeyAndGetPicture getKeyAndGetPicture;
 
         Transform target;
         Collider2D localCol;
@@ -24,7 +25,7 @@ namespace Intetract.StaffRoom.Boy
         {
             MissionManager.Instance.CompleteMissionAndSetNext(
                 MissionNames.TalkToBoy,
-                MissionNames.ChangeRoom);
+                MissionNames.FindKey);
             StartCoroutine(StartTalk());
         }
 
@@ -33,8 +34,8 @@ namespace Intetract.StaffRoom.Boy
             // 会話を開始する処理をここに記述
             yield return talk.Writing(GetTalkData(0));
 
-            // 資料室と図書室に行けるようになる
             IsEventCompleted = true;
+            getKeyAndGetPicture.CheckAllGet();
         }
 
         // 次の位置に移動させる
@@ -49,7 +50,10 @@ namespace Intetract.StaffRoom.Boy
         public void HideCharacter()
         {
             if (target != null)
+            {
                 target.gameObject.SetActive(false);
+                nextPosition.gameObject.SetActive(false);
+            }
         }
     }
 }

@@ -1,0 +1,113 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d3f61c76eb36134698696b0dd8b802c, type: 3}
+  m_Name: TalkData_Library_GetLastBook_2
+  m_EditorClassIdentifier: 
+  tag: 
+  entries:
+  - character: {fileID: 2871323269120319739, guid: 48236b3b5f090c746ac8b74fd05fd78a, type: 3}
+    characterName: 5
+    body: "\u30A2\u30BD\u30DC\u30A6...\u3002\u306D\u3047\u3001\u3042\u305D\u307C\u3046...\u3002"
+    delay: 0
+  - character: {fileID: -937643186310742431, guid: 911ff9a22bee52f4f9b3f468be9ab3d2, type: 3}
+    characterName: 5
+    body: "\u308F\u3041\u3063\uFF01\uFF01\u304A\u3001\u304A\u3070\u3051\uFF01\uFF01\uFF01"
+    delay: 0
+  - character: {fileID: 1671125734038197700, guid: 48236b3b5f090c746ac8b74fd05fd78a, type: 3}
+    characterName: 5
+    body: "\u304A\u3070\u3051\u3058\u3083\u306A\u3044\uFF01"
+    delay: 0
+  - character: {fileID: 2144099334268728396, guid: 911ff9a22bee52f4f9b3f468be9ab3d2, type: 3}
+    characterName: 2
+    body: "\u3054\u3001\u3054\u3081\u3093\uFF01"
+    delay: 0
+  - character: {fileID: -9146700260069356333, guid: 4e8cce4651a588541b7e33a5def77712, type: 3}
+    characterName: 2
+    body: "\u304A\u3069\u308D\u3044\u305F...\u3002 \u541B\u304C\u672C\u3092\u3070\u3089\u307E\u3044\u305F\u306E\uFF1F"
+    delay: 0
+  - character: {fileID: -4695815441358518775, guid: 48236b3b5f090c746ac8b74fd05fd78a, type: 3}
+    characterName: 5
+    body: "\u3046\u3093\u3001\u305D\u3046\u3060\u3088\u3002 \u697D\u3057\u304B\u3063\u305F\uFF1F"
+    delay: 0
+  - character: {fileID: 6934103021583412983, guid: 4e8cce4651a588541b7e33a5def77712, type: 3}
+    characterName: 2
+    body: "\u6025\u306B\u672C\u3092\u843D\u3068\u3055\u308C\u308B\u3068\u3073\u3063\u304F\u308A\u3059\u308B\u3057\u3001\u672C\u306F\u5927\u5207\u306B\u6271\u308F\u306A\u3044\u3068"
+    delay: 0
+  - character: {fileID: -4175741997569924086, guid: 911ff9a22bee52f4f9b3f468be9ab3d2, type: 3}
+    characterName: 1
+    body: "\u305D\u3053\u306A\u3093\u3060\u306D\u3001\u672C\u3059\u304D\u3060\u3088\u306D\u3047"
+    delay: 0
+  - character: {fileID: 5151397350593897098, guid: 29203e436f9a4ad49bfcc223727a6d76, type: 3}
+    characterName: 5
+    body: "\u521D\u3081\u307E\u3057\u3066\u3001\u541B\u306F\u8AB0\u306A\u306E\uFF1F
+      \u904A\u3076\u306A\u3089\u307E\u305A\u540D\u524D\u3092\u6559\u3048\u3066\u304F\u308C\u306A\u3044\u3068"
+    delay: 0
+  - character: {fileID: -4909642470625336807, guid: 48236b3b5f090c746ac8b74fd05fd78a, type: 3}
+    characterName: 5
+    body: "\u3046\u3093\u3001\u305D\u3046\u3060\u3088\u306D\u3001\u540D\u524D...\u30CA\u30DE\u30A8......"
+    delay: 0
+  - character: {fileID: 2144099334268728396, guid: 911ff9a22bee52f4f9b3f468be9ab3d2, type: 3}
+    characterName: 1
+    body: "\u3082\u3057\u304B\u3057\u3066\u540D\u524D\u308F\u304B\u3089\u306A\u3044\u306E\uFF1F"
+    delay: 0
+  - character: {fileID: 3931544661154857558, guid: 48236b3b5f090c746ac8b74fd05fd78a, type: 3}
+    characterName: 5
+    body: "\u30CA\u30DE\u30A8...\u3002 \u30DC\u30AF\u306E\u540D\u524D\u77E5\u3063\u3066\u308B\uFF1F"
+    delay: 0
+  - character: {fileID: 6934103021583412983, guid: 4e8cce4651a588541b7e33a5def77712, type: 3}
+    characterName: 2
+    body: "\u50D5\u305F\u3061\u306F\u541B\u3092\u77E5\u3089\u306A\u3044\u304B\u3089\u540D\u524D\u3082\u308F\u304B\u3089\u306A\u3044\u3093\u3060"
+    delay: 0
+  - character: {fileID: -4175741997569924086, guid: 911ff9a22bee52f4f9b3f468be9ab3d2, type: 3}
+    characterName: 2
+    body: "\u3058\u3083\u3042\u50D5\u305F\u3061\u304C\u541B\u306B\u540D\u524D\u3092\u6C7A\u3081\u3066\u3042\u3052\u308B\uFF01"
+    delay: 0
+  - character: {fileID: 1365522473265853848, guid: 4e8cce4651a588541b7e33a5def77712, type: 3}
+    characterName: 2
+    body: "\u3053\u306E\u308D\u3046\u305D\u304F\u306E\u706B\u306B\u540D\u524D..."
+    delay: 0
+  - character: {fileID: -4175741997569924086, guid: 911ff9a22bee52f4f9b3f468be9ab3d2, type: 3}
+    characterName: 1
+    body: "\u305D\u308C\u3058\u3083\u3042\u3001\u304A\u3070\u3051\u306E\u30B3\u3063\u3066\u3044\u3046\u306E\u306F\u3069\u3046\uFF1F"
+    delay: 0
+  - character: {fileID: 2871323269120319739, guid: 48236b3b5f090c746ac8b74fd05fd78a, type: 3}
+    characterName: 5
+    body: ......
+    delay: 0
+  - character: {fileID: -937643186310742431, guid: 911ff9a22bee52f4f9b3f468be9ab3d2, type: 3}
+    characterName: 1
+    body: "\u3058\u3087\u3001\u3058\u3087\u3046\u3060\u3093\u3060\u3088..."
+    delay: 0
+  - character: {fileID: -4350108964438281031, guid: 29203e436f9a4ad49bfcc223727a6d76, type: 3}
+    characterName: 0
+    body: "\u3046\uFF5E\u3093\u3001\u5996\u7CBE...\u706B\u306E\u5996\u7CBE\u3063\u3066\u3044\u3046\u306E\u306F\u3069\u3046\uFF1F"
+    delay: 0
+  - character: {fileID: -9146700260069356333, guid: 4e8cce4651a588541b7e33a5def77712, type: 3}
+    characterName: 2
+    body: "\u3067\u306F\u3001\u3082\u3063\u3068\u547C\u3073\u3084\u3059\u304F\u201D\u706B\u306E\u5B50\u201D\u3063\u3066\u3044\u3046\u540D\u524D\u306F\u3069\u3046\u304B\u306A"
+    delay: 0
+  - character: {fileID: -387308690382296244, guid: 29203e436f9a4ad49bfcc223727a6d76, type: 3}
+    characterName: 0
+    body: "\u3044\u3044\u306D\uFF01 \u3058\u3083\u3042\u3001\u521D\u3081\u307E\u3057\u3066\u201D\u706B\u306E\u30B3\u201D\u3055\u3093"
+    delay: 0
+  - character: {fileID: -4695815441358518775, guid: 48236b3b5f090c746ac8b74fd05fd78a, type: 3}
+    characterName: 5
+    body: "\u30D2\u30CE\u30B3\u3001\u3046\u308C\u3057\u3044\u306A\u3002 \u3088\u308D\u3057\u304F\uFF01"
+    delay: 0
+  - character: {fileID: 2062838645660082655, guid: 48236b3b5f090c746ac8b74fd05fd78a, type: 3}
+    characterName: 5
+    body: "\u30C8\u30E2\u30C0\u30C1\uFF01"
+    delay: 0
+  - character: {fileID: -4175741997569924086, guid: 911ff9a22bee52f4f9b3f468be9ab3d2, type: 3}
+    characterName: 1
+    body: "\u3046\u3093\uFF01\u53CB\u9054\u3060\u306D\uFF01"
+    delay: 0

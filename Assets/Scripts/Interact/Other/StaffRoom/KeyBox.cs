@@ -5,6 +5,8 @@ namespace Interaction.StaffRoom
 
     public class KeyBox : Interact
     {
+        protected override bool ShouldRestoreDeactivatedState => false;
+
         [SerializeField] GetKeyAndGetPicture getKeyAndGetPicture;
         protected override void Initialize()
         {
@@ -14,7 +16,7 @@ namespace Interaction.StaffRoom
         {
             MissionManager.Instance.CompleteMissionAndSetNext(
                 MissionNames.FindKey,
-                MissionNames.TalkToBoy);
+                MissionNames.ExploreStaffroom);
 
             if(!IsEventCompleted)
                 StartCoroutine(StartTalk());

@@ -22,6 +22,7 @@ public class TitleSceneManager : PanelView<TitleSceneManager>
 
     void OnStartClicked()
     {
+        GameSession.Reset();
         SceneChangeManager.Instance.SceneChange(Room.Name.Staffroom);
     }
 }

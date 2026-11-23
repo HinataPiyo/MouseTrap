@@ -11,6 +11,10 @@ namespace Interaction.StaffRoom
         }
         protected override void AcquireItem()
         {
+            MissionManager.Instance.CompleteMissionAndSetNext(
+                MissionNames.ExploreStaffroom,
+                MissionNames.ChangeRoom);
+
             if(!IsEventCompleted)
                 StartCoroutine(StartTalk());
         }

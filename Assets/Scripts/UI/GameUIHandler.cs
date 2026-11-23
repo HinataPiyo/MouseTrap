@@ -3,22 +3,30 @@ using UnityEngine.UIElements;
 
 public class GameUIHandler : PanelView<GameUIHandler>
 {
+    bool isTalkActive;
+    bool isDirectorActive;
+
     protected override void OnSingletonAwake()
     {
         panel = GetComponent<UIDocument>().rootVisualElement;
+        UpdateVisibility();
     }
 
     protected override void OnSingletonDestroy()
     {
     }
 
-    public void Show()
+    public void SetTalkActive(bool active)
     {
-        panel.style.display = DisplayStyle.Flex;
+        isTalkActive = active;
+        UpdateVisibility();
     }
-    
-    public void Hide()
+
+    public void SetDirectorActive(bool active)
     {
-        panel.style.display = DisplayStyle.None;
+        isDirectorActive = active;
+        UpdateVisibility();
     }
+
+    void UpdateVisibility() => SetVisible(!isTalkActive && !isDirectorActive);
 }

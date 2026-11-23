@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class ReturnBookshelf : Interact
 {
+    [SerializeField] Match match;
     [SerializeField] LastBook lastBook;
     ReturnBookshelfUIPanel panel;
 
@@ -22,13 +23,17 @@ public class ReturnBookshelf : Interact
     void CompleteEvent()
     {
         IsEventCompleted = true;
+        MissionManager.Instance.CompleteMission(MissionNames.ReturnBooks);
     }
 
     // アイテム取得処理
     protected override void AcquireItem()
     {
+        MissionManager.Instance.CompleteMissionAndSetNext(
+            MissionNames.CheckBookshelf,
+            MissionNames.FindeBook);
         bool hasFour = ReturnBookshelfUIPanel.Instance.Show();
-        if(hasFour && !lastBook.IsEventCompleted) StartCoroutine(StartTalk());
+        if (hasFour && !lastBook.IsEventCompleted) StartCoroutine(StartTalk());
     }
 
     // 会話開始処理
@@ -42,8 +47,11 @@ public class ReturnBookshelf : Interact
 
         // 4冊所持していた時の会話（5冊目が足りない）
         yield return talk.Writing(GetTalkData(0));
-        lastBook.ActivateLastBook();      // 5冊目を表示する
+        match.Activate();
+        lastBook.ActivateLastBook();
+
         if (!panel.IsSessionOpen(sessionId)) yield break;
+
 
         panel.IsInteractable(true);
         if (PlayerInputController.Instance.CurrentState == StateType.None)

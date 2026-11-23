@@ -160,7 +160,7 @@
     scale: 0.99 0.99;
 }
 
-.return_number_button.torn-notes {
+.return_number_button.arrangement {
     background-image: url("project://database/Assets/Sprites/UI/UIJ.png?fileID=-2923669285791097797&guid=65891e3a1483e634095a26816a2cfc5a&type=3#UIJ_10");
     background-color: rgba(0, 0, 0, 0);
     -unity-background-scale-mode: stretch-to-fill;

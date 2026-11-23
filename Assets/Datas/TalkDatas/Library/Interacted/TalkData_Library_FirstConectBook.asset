@@ -1,0 +1,46 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d3f61c76eb36134698696b0dd8b802c, type: 3}
+  m_Name: TalkData_Library_FirstConectBook
+  m_EditorClassIdentifier: 
+  tag: 
+  entries:
+  - character: {fileID: -937643186310742431, guid: 911ff9a22bee52f4f9b3f468be9ab3d2, type: 3}
+    characterName: 1
+    body: "\u308F\u3041\u3063\uFF01\u672C\u304C\u52D5\u3044\u305F\uFF01\uFF1F"
+    delay: 0
+  - character: {fileID: 2144099334268728396, guid: 911ff9a22bee52f4f9b3f468be9ab3d2, type: 3}
+    characterName: 1
+    body: "\u3084\u3063\u3071\u308A\u3053\u3053\u306A\u3093\u304B\u3044\u308B\u3088\u3001\u5E30\u308A\u305F\u3044\u3088..."
+    delay: 0
+  - character: {fileID: -387308690382296244, guid: 29203e436f9a4ad49bfcc223727a6d76, type: 3}
+    characterName: 0
+    body: "\u5E30\u308B\u306E\u306F\u307F\u3093\u306A\u3092\u63A2\u3057\u3066\u304B\u3089\u306D\uFF01
+      \u304A\u3044\u3066\u3044\u304F\u308F\u3051\u306B\u306F\u3044\u304B\u306A\u3044\u3067\u3057\u3087\uFF1F"
+    delay: 0
+  - character: {fileID: -7596486664409611503, guid: 29203e436f9a4ad49bfcc223727a6d76, type: 3}
+    characterName: 0
+    body: "\u305D\u308C\u306B\u3057\u3066\u3082\u3002\u306A\u3093\u3067\u672C\u304C\u52DD\u624B\u306B\u52D5\u3044\u305F\u3093\u3060\u308D..."
+    delay: 0
+  - character: {fileID: 4011909726000411059, guid: 4e8cce4651a588541b7e33a5def77712, type: 3}
+    characterName: 2
+    body: "\u3068\u308A\u3042\u3048\u305A\u672C\u3092\u5143\u306E\u5834\u6240\u306B\u623B\u305D\u3046\u304B"
+    delay: 0
+  - character: {fileID: -998653170696616039, guid: 4e8cce4651a588541b7e33a5def77712, type: 3}
+    characterName: 2
+    body: "\u306A\u3093\u3067\u672C\u304C\u52DD\u624B\u306B\u843D\u3061\u3066\u304D\u305F\u306E\u304B\u306F
+      \u7247\u4ED8\u3051\u3066\u304B\u3089\u8003\u3048\u3088\uFF01"
+    delay: 0
+  - character: {fileID: 5151397350593897098, guid: 29203e436f9a4ad49bfcc223727a6d76, type: 3}
+    characterName: 0
+    body: "\u307F\u3093\u306A\u3044\u305F\u3089\u6016\u304F\u306A\u3044\uFF01\u307B\u3089\u3001\u672C\u3092\u63A2\u3057\u307E\u3057\u3087"
+    delay: 0

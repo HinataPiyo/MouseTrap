@@ -5,20 +5,13 @@ using UnityEngine;
 /// </summary>
 public class RoomChangePoint : BlockerArea
 {
-    RoomChangeUI roomChangeUI;
-    Collider2D col;
+    protected override bool ShouldRestoreDeactivatedState => false;
 
-    void Start()
+    RoomChangeUI roomChangeUI;
+
+    protected override void Initialize()
     {
         roomChangeUI = RoomChangeUI.Instance;
-        col = GetComponent<Collider2D>();
-        col.enabled = false;
-    }
-
-    void Update()
-    {
-        if(!col.enabled && TryCompleteRequired())
-            col.enabled = true;
     }
 
     protected override void OnCollisionEnter2D(Collision2D col)
