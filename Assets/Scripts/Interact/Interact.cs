@@ -69,12 +69,19 @@ public abstract class Interact : MonoBehaviour, IInteract
         hasAcquiredItem = state.HasAcquiredItem;
         IsEventCompleted |= state.IsEventCompleted;
 
+        if (hasAcquiredItem && interactData.IsDisabledAfterInteract)
+            DisableAfterInteract();
+
+        OnStateRestored();
+
         if (state.IsDeactivated && ShouldRestoreDeactivatedState)
             gameObject.SetActive(false);
     }
 
     // 初期化処理
     protected abstract void Initialize();
+
+    protected virtual void OnStateRestored() { }
 
     // アイテム取得処理
     protected abstract void AcquireItem();
@@ -115,21 +122,7 @@ public abstract class Interact : MonoBehaviour, IInteract
 
         // Interact後にオブジェクトを無効化するかどうかの処理
         if (interactData.IsDisabledAfterInteract)
-        {
-            // 他のオブジェクトも非表示
-            foreach(var o in hideAfterAcquire)
-            {
-                if(o.GetComponent<SpriteRenderer>() is var sr && sr != null)
-                    sr.enabled = false;
-                if(o.GetComponent<Collider2D>() is var col && col != null)
-                    col.enabled = false;
-            }
-
-            if(GetComponent<SpriteRenderer>() is var p_sr && p_sr != null)
-                p_sr.enabled = false;
-            if(GetComponent<Collider2D>() is var p_col && p_col != null)
-                p_col.enabled = false;
-        }
+            DisableAfterInteract();
 
         //? SearchInteractObjectsの方で表示するようにしてしまっているので要検討
         if (interactData.IsShowPanel)
@@ -143,6 +136,22 @@ public abstract class Interact : MonoBehaviour, IInteract
         AcquireItem();
 
         return true;
+    }
+
+    void DisableAfterInteract()
+    {
+        foreach (var o in hideAfterAcquire)
+        {
+            if (o.GetComponent<SpriteRenderer>() is var sr && sr != null)
+                sr.enabled = false;
+            if (o.GetComponent<Collider2D>() is var col && col != null)
+                col.enabled = false;
+        }
+
+        if (GetComponent<SpriteRenderer>() is var p_sr && p_sr != null)
+            p_sr.enabled = false;
+        if (GetComponent<Collider2D>() is var p_col && p_col != null)
+            p_col.enabled = false;
     }
 
     public bool TryCompleteRequired()

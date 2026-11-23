@@ -179,7 +179,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b273f0b3f76498c9ad0e2e8b37fd839, type: 3}
   m_Name: Waypoint Marker
   m_EditorClassIdentifier: 
-  m_Time: 8.033333333333333
+  m_Time: 5.05
   waypoint: {x: 2.231, y: -0.574}
 --- !u!114 &1728541449049706207
 MonoBehaviour:
@@ -193,7 +193,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15c38f6fa1940124db1ab7f6fe7268d1, type: 3}
   m_Name: Signal Emitter
   m_EditorClassIdentifier: 
-  m_Time: 8.033333333333333
+  m_Time: 5.05
   m_Retroactive: 0
   m_EmitOnce: 0
   m_Asset: {fileID: 11400000, guid: 03c620e468b2cfa41a0279116a666def, type: 2}
@@ -260,7 +260,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15c38f6fa1940124db1ab7f6fe7268d1, type: 3}
   m_Name: Signal Emitter
   m_EditorClassIdentifier: 
-  m_Time: 7
+  m_Time: 4
   m_Retroactive: 0
   m_EmitOnce: 0
   m_Asset: {fileID: 11400000, guid: 59d2ff13e09f7794f9bb0dbd8bc24bf7, type: 2}
@@ -276,5 +276,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b273f0b3f76498c9ad0e2e8b37fd839, type: 3}
   m_Name: Waypoint Marker
   m_EditorClassIdentifier: 
-  m_Time: 5.966666666666667
+  m_Time: 4
   waypoint: {x: 2.231, y: -1.644}

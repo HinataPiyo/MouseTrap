@@ -11,6 +11,7 @@ public static class MissionNames
     // --- 職員室 ---
     public const string CheckLocker = "ロッカーを確認する";
     public const string TalkToBoy = "少年に話す";
+    public const string ExploreStaffroom = "職員室を探索する";
 
     // --- 図書室 ---
     public const string CollectScatteredBooks = "散らばった本を集める";
@@ -18,6 +19,7 @@ public static class MissionNames
     public const string CheckBookshelf = "本棚を確認する";
     public const string ReturnBooks = "本を戻す";
     public const string FindeBook = "本を見つける";
+    public const string LeaveLibrary = "次の部屋へ移動する";
 
 
     static readonly HashSet<string> DefinedNames = new HashSet<string>
@@ -31,11 +33,19 @@ public static class MissionNames
         ChangeRoom,
         TalkToBoy,
         FindKey,
+        ExploreStaffroom,
+        LeaveLibrary,
     };
 
     public static bool IsDefined(string title)
     {
         return DefinedNames.Contains(title);
+    }
+
+    public static bool IsStaffroomMission(string title)
+    {
+        return title == CheckLocker || title == TalkToBoy || title == FindKey
+            || title == ExploreStaffroom || title == ChangeRoom;
     }
 }
 
@@ -47,8 +57,9 @@ public class MissionManager : SceneSingleton<MissionManager>
 
     void Start()
     {
-        if (string.IsNullOrEmpty(GameSession.CurrentMissionTitle) &&
-            Room.GetCurrentRoom(gameObject.scene.name) == Room.Name.Library)
+        if (Room.GetCurrentRoom(gameObject.scene.name) == Room.Name.Library &&
+            (string.IsNullOrEmpty(GameSession.CurrentMissionTitle) ||
+             MissionNames.IsStaffroomMission(GameSession.CurrentMissionTitle)))
         {
             SetMission(MissionNames.FindGlassesBoy);
             return;

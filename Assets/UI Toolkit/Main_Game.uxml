@@ -4,7 +4,7 @@
     <ui:VisualElement name="root" style="flex-grow: 1;">
         <ui:VisualElement name="ordinarily-view" style="flex-grow: 1;">
             <ui:VisualElement name="upper-right" style="flex-grow: 1; top: 0; right: 0; position: absolute; flex-direction: row-reverse;">
-                <ui:Button name="home-button" class="base-icon" style="background-image: url(&quot;project://database/Assets/Sprites/UI/UIA.png?fileID=3690055244155436632&amp;guid=8ebd33ce83c6888419b14cc57d7a7a48&amp;type=3#UIA_6&quot;); -unity-background-scale-mode: scale-to-fit;" />
+                <ui:Button name="home-button" class="base-icon" style="background-image: url(&quot;project://database/Assets/Sprites/UI/UIA.png?fileID=4639846264404113891&amp;guid=8ebd33ce83c6888419b14cc57d7a7a48&amp;type=3#UIA_9&quot;); -unity-background-scale-mode: scale-to-fit;" />
                 <ui:Button name="inventory-backpack-button" class="base-icon" style="background-image: url(&quot;project://database/Assets/Sprites/UI/UIA.png?fileID=-3218981894290647282&amp;guid=8ebd33ce83c6888419b14cc57d7a7a48&amp;type=3#UIA_5&quot;); -unity-background-scale-mode: scale-to-fit;" />
                 <ui:Button name="character-button" class="base-icon" style="background-image: url(&quot;project://database/Assets/Sprites/UI/UIA.png?fileID=-6392337855267190696&amp;guid=8ebd33ce83c6888419b14cc57d7a7a48&amp;type=3#UIA_4&quot;); -unity-background-scale-mode: scale-to-fit;" />
             </ui:VisualElement>

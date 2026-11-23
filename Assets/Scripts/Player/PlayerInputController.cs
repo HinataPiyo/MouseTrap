@@ -54,6 +54,8 @@ public class PlayerInputController : SceneSingleton<PlayerInputController>
         switch (CurrentState)
         {
             case StateType.RoomChange:
+                if (IsActionKeyPressed())
+                    CancelCurrentOperation();
                 return;
 
             case StateType.Talk:

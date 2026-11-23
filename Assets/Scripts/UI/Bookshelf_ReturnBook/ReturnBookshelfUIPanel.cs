@@ -111,7 +111,7 @@ public class ReturnBookshelfUIPanel : PanelView<ReturnBookshelfUIPanel>
                 // ミッション完了を通知(本を戻す→部屋を移動する)
                 MissionManager.Instance.CompleteMissionAndSetNext(
                     MissionNames.ReturnBooks,
-                    MissionNames.ChangeRoom);
+                    MissionNames.LeaveLibrary);
                 if (Room.IsDemoBuild)
                     SceneChangeManager.Instance.CanMoveRoom(Room.Name.EndingScene, true);
             };

@@ -9,6 +9,8 @@ namespace Intetract.StaffRoom.Boy
 
         [Header("表示するキャラクター")]
         [SerializeField] GameObject subCharacter;
+        [SerializeField] Sprite spawnedLocker;
+        [SerializeField] SpriteRenderer lockerRenderer;
 
         [Header("プレイヤーの位置")]
         [SerializeField] Transform playerSetPoint;
@@ -19,6 +21,12 @@ namespace Intetract.StaffRoom.Boy
         protected override void Initialize()
         {
             HideSubCharacter();
+        }
+
+        protected override void OnStateRestored()
+        {
+            if (IsEventCompleted)
+                lockerRenderer.sprite = spawnedLocker;
         }
 
         /// <summary>
@@ -37,7 +45,7 @@ namespace Intetract.StaffRoom.Boy
         {
             MissionManager.Instance.CompleteMissionAndSetNext(
                 MissionNames.CheckLocker,
-                MissionNames.FindKey);
+                MissionNames.TalkToBoy);
             StartCoroutine(StartTalk());
         }
 
@@ -46,6 +54,7 @@ namespace Intetract.StaffRoom.Boy
             PlayerInputController.Instance.ChangeState(StateType.Movie);     // 演出状態に遷移する
             yield return fadeScreen.FadeInCoroutine(0.2f);
             subCharacter.SetActive(true);       // 少年を表示
+            lockerRenderer.sprite = spawnedLocker;
             GameObject player = GameObject.FindWithTag("Player");
             player.transform.position = playerSetPoint.position;
 

@@ -14,6 +14,8 @@ public class GetKeyAndGetPicture : Interact
     bool gotPicture;
     protected override void Initialize()
     {
+        gotKey = MissionManager.Instance.IsMissionCompleted(MissionNames.FindKey);
+        gotPicture = MissionManager.Instance.IsMissionCompleted(MissionNames.ExploreStaffroom);
     }
 
     protected override void AcquireItem()
@@ -39,9 +41,9 @@ public class GetKeyAndGetPicture : Interact
     /// <summary>
     /// カギと写真を両方取得したか確認する
     /// </summary>
-    void CheckAllGet()
+    public void CheckAllGet()
     {
-        if (gotKey && gotPicture)
+        if (gotKey && gotPicture && nextPos.IsEventCompleted)
         {
             if(!IsEventCompleted)
             {

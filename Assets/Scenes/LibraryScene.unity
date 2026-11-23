@@ -6102,9 +6102,17 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5780303727188672613, guid: 769717d3ec8adb943b36bdc043747750, type: 3}
+      propertyPath: requiredEvents.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5780303727188672613, guid: 769717d3ec8adb943b36bdc043747750, type: 3}
       propertyPath: 'eventObjects.Array.data[0]'
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 5780303727188672613, guid: 769717d3ec8adb943b36bdc043747750, type: 3}
+      propertyPath: 'requiredEvents.Array.data[0]'
+      value: 
+      objectReference: {fileID: 734080363}
     - target: {fileID: 7694000956032830180, guid: 769717d3ec8adb943b36bdc043747750, type: 3}
       propertyPath: m_Name
       value: RoomChangePoint

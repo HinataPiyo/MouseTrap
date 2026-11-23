@@ -1176,6 +1176,7 @@ MonoBehaviour:
   requiredEvents: []
   isAllCompleteTest: 0
   nextPosition: {fileID: 596632794}
+  getKeyAndGetPicture: {fileID: 773426373}
 --- !u!58 &596632796
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -5217,6 +5218,8 @@ MonoBehaviour:
   - {fileID: 934309335}
   isAllCompleteTest: 0
   subCharacter: {fileID: 1654772348}
+  spawnedLocker: {fileID: 21300000, guid: 1d2f4d8dbc5c5ef40966212b35929cd4, type: 3}
+  lockerRenderer: {fileID: 1597323440}
   playerSetPoint: {fileID: 808842275}
   nextPosition: {fileID: 596632795}
 --- !u!1 &2008184300
@@ -6013,7 +6016,7 @@ PrefabInstance:
     - target: {fileID: 2954309226185604306, guid: d63411126afc659428b1f572ac77b0b4, type: 3}
       propertyPath: 'requiredEvents.Array.data[0]'
       value: 
-      objectReference: {fileID: 1955400010}
+      objectReference: {fileID: 596632795}
     - target: {fileID: 5221425013680491101, guid: d63411126afc659428b1f572ac77b0b4, type: 3}
       propertyPath: m_LocalPosition.x
       value: 3.193

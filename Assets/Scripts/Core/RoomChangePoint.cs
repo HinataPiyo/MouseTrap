@@ -5,6 +5,8 @@ using UnityEngine;
 /// </summary>
 public class RoomChangePoint : BlockerArea
 {
+    protected override bool ShouldRestoreDeactivatedState => false;
+
     RoomChangeUI roomChangeUI;
 
     protected override void Initialize()
