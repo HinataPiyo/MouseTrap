@@ -48,6 +48,8 @@ public partial class SearchPCUIPanel : PanelView<SearchPCUIPanel>
         }
         clearButton.clicked += ClearInput;
         excuteButton.clicked += Excute;
+        clearButton.clicked += () => AudioManager.Instance.PlaySE("普通のボタン");
+        excuteButton.clicked += () => AudioManager.Instance.PlaySE("普通のボタン");
 
         SearchPanelInit();
 
@@ -93,6 +95,7 @@ public partial class SearchPCUIPanel : PanelView<SearchPCUIPanel>
     {
         btn.clicked += () =>
         {
+            AudioManager.Instance.PlaySE("普通のボタン");
             if(inputNumber.Count < MaxInput) inputNumber.Add(num);
             passwordLabel.text = string.Join("", inputNumber);
         };

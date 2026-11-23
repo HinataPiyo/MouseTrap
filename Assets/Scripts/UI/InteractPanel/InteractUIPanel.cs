@@ -35,6 +35,8 @@ public class InteractUIPanel : PanelView<InteractUIPanel>
         object_view.style.backgroundImage = new StyleBackground(interactData.Sprite);
         itemName_view.text = interactData.Text;
         PlayerInputController.Instance.ChangeState(StateType.Interact);
+
+        AudioManager.Instance.PlaySE("アイテム獲得");
     }
 
     public void HideInteractPanel()

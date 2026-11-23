@@ -8,6 +8,7 @@ namespace Player
 
         [SerializeField] float moveSpeed = 2f;
         [SerializeField] Animator ainm;
+        [SerializeField] AudioSource walkSE;
         public enum MoveType { None = -1, Idle, Left, Right, Up, Down }
 
         Vector2 moveDir;
@@ -94,16 +95,22 @@ namespace Player
             if (DirectorManager.Instance.CurrentState != DirectorManager.State.None)
             {
                 rb.linearVelocity = Vector2.zero;
+                walkSE.Stop();
                 return;
             }
 
             if (!isStopped)
             {
                 rb.linearVelocity = moveDir * moveSpeed;
+                if (moveDir != Vector2.zero && !walkSE.isPlaying)
+                    walkSE.Play();
+                else if (moveDir == Vector2.zero)
+                    walkSE.Stop();
             }
             else
             {
                 rb.linearVelocity = Vector2.zero;
+                walkSE.Stop();
             }
         }
 

@@ -21,13 +21,18 @@ public class SafePasswordUIPanel : PanelView<SafePasswordUIPanel>
         numberButtons = panel.Q("number-buttons").Query<Button>().ToList();
         backButton = panel.Q<Button>("back");
         inputValue = panel.Q<Label>("input-value");
-        backButton.clicked += () => Hide();
+        backButton.clicked += () =>
+        {
+            AudioManager.Instance.PlaySE("キャンセル");
+            Hide();
+        };
 
         for(int i = 0; i < numberButtons.Count; i++)
         {
             int index = i;
             numberButtons[index].clicked += () =>
             {
+                AudioManager.Instance.PlaySE("普通のボタン");
                 if(inputNumber.Count < MaxInput) inputNumber.Add((index + 1) % 10);
                 inputValue.text = string.Join("", inputNumber);
 

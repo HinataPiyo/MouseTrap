@@ -44,8 +44,16 @@ public class RoomChangeUI : SceneSingleton<RoomChangeUI>
         inputTrigger = PlayerInputController.Instance;
 
         // クリック処理は一度だけ登録し、移動先は表示のたびに更新する
-        nextButton.clicked += () => sceneChangeManager.SceneChange(nextRoom);
-        backButton.clicked += () => sceneChangeManager.SceneChange(backRoom);
+        nextButton.clicked += () =>
+        {
+            AudioManager.Instance.PlaySE("普通のボタン");
+            sceneChangeManager.SceneChange(nextRoom);
+        };
+        backButton.clicked += () =>
+        {
+            AudioManager.Instance.PlaySE("キャンセル");
+            sceneChangeManager.SceneChange(backRoom);
+        };
 
         inputTrigger.OnInputESCKeyDisabled += HidePanel;
         HidePanel();

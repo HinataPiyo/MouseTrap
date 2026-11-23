@@ -59,6 +59,8 @@ public class LineUpDollsUIPanel : PanelView<LineUpDollsUIPanel>
                 if(!hasValidAnswer || IsSuccess)
                     return;
 
+                bool returnedDoll = false;
+
                 // 既に人形が置かれている場合は戻す
                 if(currentDolls[index] != null)
                 {
@@ -73,15 +75,22 @@ public class LineUpDollsUIPanel : PanelView<LineUpDollsUIPanel>
                     selectDollButtons[returnedDollIndex].style.display = DisplayStyle.Flex;
                     returnDollButtons[index].style.backgroundImage = Background.FromSprite(returnPositionUI);
                     currentDolls[index] = null;
+                    returnedDoll = true;
                 }
 
-                if(selectedDoll == null || selecterButton == null) return;
+                if(selectedDoll == null || selecterButton == null)
+                {
+                    if (returnedDoll)
+                        AudioManager.Instance.PlaySE("キャンセル");
+                    return;
+                }
 
                 currentDolls[index] = selectedDoll;
                 returnDollButtons[index].style.backgroundImage = Background.FromSprite(selectedDoll.ObjectSprite);
                 selecterButton.style.display = DisplayStyle.None;
                 selectedDoll = null;
                 selecterButton = null;
+                AudioManager.Instance.PlaySE("置く");
 
                 for(int j = 0; j < currentDolls.Length; j++)
                 {
@@ -113,10 +122,12 @@ public class LineUpDollsUIPanel : PanelView<LineUpDollsUIPanel>
             {
                 selectedDoll = Inventory.Instance.GetDoll(index);
                 selecterButton = selectDollButtons[index];
+                AudioManager.Instance.PlaySE("アイテム選択");
             };
         }
 
         backButton.clicked += Hide;
+        backButton.clicked += () => AudioManager.Instance.PlaySE("キャンセル");
     }
 
     void Start()

@@ -24,7 +24,11 @@ public class ArrangementUIPanel : PanelView<ArrangementUIPanel>
         for (int i = 0; i < elementButtons.Count; i++)
         {
             int index = i;
-            elementButtons[i].clicked += () => selectedElement = index;
+            elementButtons[i].clicked += () =>
+            {
+                selectedElement = index;
+                AudioManager.Instance.PlaySE("アイテム選択");
+            };
         }
 
         for (int i = 0; i < positionButtons.Count; i++)
@@ -34,6 +38,7 @@ public class ArrangementUIPanel : PanelView<ArrangementUIPanel>
         }
 
         backButton.clicked += Hide;
+        backButton.clicked += () => AudioManager.Instance.PlaySE("キャンセル");
         Hide();
     }
 
@@ -121,6 +126,7 @@ public class ArrangementUIPanel : PanelView<ArrangementUIPanel>
         positionButtons[position].iconImage = Background.FromSprite(currentItem.Elements[selectedElement].Sprite);
         elementButtons[selectedElement].style.display = DisplayStyle.None;
         selectedElement = -1;
+        AudioManager.Instance.PlaySE("置く");
 
         for (int i = 0; i < placedElements.Length; i++)
         {

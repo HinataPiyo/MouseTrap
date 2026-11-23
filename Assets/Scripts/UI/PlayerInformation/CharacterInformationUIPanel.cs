@@ -42,6 +42,7 @@ public class CharacterInformationUIPanel : PanelView<CharacterInformationUIPanel
         }
 
         backButton.clicked += HideCharacterInformationPanel;
+        backButton.clicked += () => AudioManager.Instance.PlaySE("キャンセル");
         SetVisible(false);
     }
 
@@ -161,6 +162,7 @@ public class CharacterInformationUIPanel : PanelView<CharacterInformationUIPanel
     void SelectCharacter(CharacterIcon icon)
     {
         // アイコンクリックでは操作キャラクターを変更せず、パネル内の情報表示だけ切り替える
+        AudioManager.Instance.PlaySE("普通のボタン");
         ShowCharacterInformation(icon.character);
     }
 

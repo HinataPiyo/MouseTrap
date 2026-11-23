@@ -40,7 +40,7 @@ MonoBehaviour:
     delay: 0
   - character: {fileID: -387308690382296244, guid: 29203e436f9a4ad49bfcc223727a6d76, type: 3}
     characterName: 0
-    body: "\u305D\u3088\u308A\uFF01\uFF01\uFF01\u304A\u3070\u3051\u3063\u3066\u3069\u3046\u3044\u3046\u3053\u3068\uFF01\uFF01"
+    body: "\u305D\u308C\u3088\u308A\uFF01\uFF01\uFF01\u304A\u3070\u3051\u3063\u3066\u3069\u3046\u3044\u3046\u3053\u3068\uFF01\uFF01"
     delay: 0
   - character: {fileID: 2282607180949004932, guid: 911ff9a22bee52f4f9b3f468be9ab3d2, type: 3}
     characterName: 1

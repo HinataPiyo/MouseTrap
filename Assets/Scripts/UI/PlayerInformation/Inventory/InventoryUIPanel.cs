@@ -29,6 +29,7 @@ public class InventoryUIPanel : PanelView<InventoryUIPanel>
 
         container.Clear();
         backButton.clicked += HideInventoryPanel;
+        backButton.clicked += () => AudioManager.Instance.PlaySE("キャンセル");
     }
 
     void Start()
@@ -94,7 +95,11 @@ public class InventoryUIPanel : PanelView<InventoryUIPanel>
         var countLabel = itemTemplate.Q<Label>("count");
         countLabel.text = "x" + data.count.ToString();
         countLabel.style.display = data.count > 1 ? DisplayStyle.Flex : DisplayStyle.None;
-        itemTemplate.Q<Button>().clicked += () => OnIconClicked?.Invoke(data);
+        itemTemplate.Q<Button>().clicked += () =>
+        {
+            AudioManager.Instance.PlaySE("普通のボタン");
+            OnIconClicked?.Invoke(data);
+        };
 
         container.Add(itemTemplate);
     }
