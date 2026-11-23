@@ -33,6 +33,9 @@ public class LastBook : Interact
         yield return talk.Writing(GetTalkData(2));
 
         IsEventCompleted = true;
+        MissionManager.Instance.CompleteMissionAndSetNext(
+            MissionNames.FindeBook,
+            MissionNames.ReturnBooks);
     }
 
     protected override bool CanInteract()

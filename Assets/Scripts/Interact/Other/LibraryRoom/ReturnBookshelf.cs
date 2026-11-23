@@ -23,11 +23,15 @@ public class ReturnBookshelf : Interact
     void CompleteEvent()
     {
         IsEventCompleted = true;
+        MissionManager.Instance.CompleteMission(MissionNames.ReturnBooks);
     }
 
     // アイテム取得処理
     protected override void AcquireItem()
     {
+        MissionManager.Instance.CompleteMissionAndSetNext(
+            MissionNames.CheckBookshelf,
+            MissionNames.FindeBook);
         bool hasFour = ReturnBookshelfUIPanel.Instance.Show();
         if (hasFour && !lastBook.IsEventCompleted) StartCoroutine(StartTalk());
     }

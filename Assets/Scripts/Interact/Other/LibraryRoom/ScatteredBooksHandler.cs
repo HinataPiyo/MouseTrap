@@ -12,7 +12,21 @@ public class ScatteredBooksHandler : Interact
 {
     [SerializeField] List<GameObject> books = new List<GameObject>();
 
-    protected override void Initialize() { }
+    protected override void Initialize()
+    {
+        if (!MissionManager.Instance.IsMissionCompleted(MissionNames.FindGlassesBoy) ||
+            MissionManager.Instance.IsMissionCompleted(MissionNames.CollectScatteredBooks))
+            return;
+
+        for (int i = books.Count - 1; i >= 0; i--)
+        {
+            string key = InteractStateStore.CreateKey(books[i]);
+            if (InteractStateStore.TryGet(key, out var state) && state.IsEventCompleted)
+                books.RemoveAt(i);
+            else
+                books[i].SetActive(true);
+        }
+    }
     protected override void AcquireItem() { }
     protected override IEnumerator StartTalk()
     {
@@ -45,7 +59,9 @@ public class ScatteredBooksHandler : Interact
         if (books.Count == 0)
         {
             IsEventCompleted = true;
-            MissionManager.Instance.CompleteMission(MissionNames.CollectScatteredBooks);
+            MissionManager.Instance.CompleteMissionAndSetNext(
+                MissionNames.CollectScatteredBooks,
+                MissionNames.CheckBookshelf);
             StartCoroutine(StartTalk());
         }
     }
@@ -58,6 +74,5 @@ public class ScatteredBooksHandler : Interact
         foreach (var book in books)
             book.SetActive(true);
 
-        MissionManager.Instance.SetMission(MissionNames.CollectScatteredBooks);
     }
 }

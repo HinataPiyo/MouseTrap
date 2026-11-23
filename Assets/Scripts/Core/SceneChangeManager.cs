@@ -77,6 +77,13 @@ public class SceneChangeManager : SceneSingleton<SceneChangeManager>
 
         yield return FadeScreen.Instance.FadeInCoroutine();
 
+        if (currentRoom == Room.Name.Staffroom && room == Room.Name.Library)
+        {
+            MissionManager.Instance.CompleteMissionAndSetNext(
+                MissionNames.ChangeRoom,
+                MissionNames.FindGlassesBoy);
+        }
+
         // 読み込み後のシーンで、暗転から明けるフェードアウトを再生させる
         GameSession.FadeOutPending = true;
         SceneManager.LoadScene(Room.RoomNameWithSceneName[room]);

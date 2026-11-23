@@ -15,14 +15,12 @@ public class FirstGetMemo : Interact
     }
     protected override void Initialize()
     {
-        MissionManager.Instance.SetMission(MissionNames.FirstGetMemo);
+        if (string.IsNullOrEmpty(GameSession.CurrentMissionTitle))
+            MissionManager.Instance.SetMission(MissionNames.CheckLocker);
     }
 
     protected override void AcquireItem()
     {
-        MissionManager.Instance.CompleteMissionAndSetNext(
-            MissionNames.FirstGetMemo,
-            MissionNames.CheckLocker);
     }
 
     protected override IEnumerator StartTalk()

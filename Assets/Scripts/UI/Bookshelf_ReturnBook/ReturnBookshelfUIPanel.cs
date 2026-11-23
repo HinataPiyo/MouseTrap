@@ -108,6 +108,10 @@ public class ReturnBookshelfUIPanel : PanelView<ReturnBookshelfUIPanel>
                 RoomChangeUI.Instance.PermitChange();
                 IsInteractable(false);
                 StartCoroutine(ShowSuccessTalk());
+                // ミッション完了を通知(本を戻す→部屋を移動する)
+                MissionManager.Instance.CompleteMissionAndSetNext(
+                    MissionNames.ReturnBooks,
+                    MissionNames.ChangeRoom);
                 if (Room.IsDemoBuild)
                     SceneChangeManager.Instance.CanMoveRoom(Room.Name.EndingScene, true);
             };
