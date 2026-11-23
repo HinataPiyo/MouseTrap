@@ -1,5 +1,6 @@
 using System.Collections;
 using Intetract.StaffRoom.Boy;
+using Player;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Playables;
@@ -58,6 +59,7 @@ public class GetKeyAndGetPicture : Interact
     /// </summary>
     public void CanGoToLibraryScene()
     {
+        CharacterControlHandler.Instance.SetCharacterControlState(Character.Name.Boy, true);
         SceneChangeManager.Instance.CanMoveRoom(Room.Name.Library, true);
     }
 }
