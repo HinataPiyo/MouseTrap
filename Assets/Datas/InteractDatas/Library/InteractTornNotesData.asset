@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 491eeebeaff3ae44b8bf7769c96a520b, type: 3}
   m_Name: InteractTornNotesData
   m_EditorClassIdentifier: 
+  isShowUseButton: 1
   sprite: {fileID: 21300000, guid: 42a6a6520489f5f4cbc1b362a0f78432, type: 3}
   text: "\u30D0\u30E9\u30D0\u30E9\u306B\u306A\u3063\u305F\u30E1\u30E2"
   isDisabledAfterInteract: 0

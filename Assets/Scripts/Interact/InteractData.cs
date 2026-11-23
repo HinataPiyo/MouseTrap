@@ -4,6 +4,7 @@ using UnityEngine;
 public class InteractData : ScriptableObject
 {
     [Header("UIに表示するデータ")]
+    [Header("使用ボタン表示"), SerializeField] bool isShowUseButton = false;
     [SerializeField] Sprite sprite;
     [SerializeField] string text;
     [Header("取得後にオブジェクトを破棄するかどうかのフラグ")]
@@ -15,7 +16,7 @@ public class InteractData : ScriptableObject
 
     [Header("会話データ")]
     [SerializeField] TalkData[] talkData;
-
+    public bool IsShowUseButton => isShowUseButton;
     public Sprite Sprite => sprite;
     public string Text => text;
     public bool IsDisabledAfterInteract => isDisabledAfterInteract;
