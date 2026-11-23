@@ -14,9 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 8005918012478678480, guid: 740b2f0e03ce966428a9a27f94f3373b, type: 3}
   text: "\u3044\u3064\u304B\u307E\u305F"
-  isDisabledAfterInteract: 0
+  isDisabledAfterInteract: 1
   isShowPanel: 1
   isReusable: 0
-  talkData: []
+  talkData:
+  - {fileID: 11400000, guid: 3b29e2573f125674a82dd22f08c79184, type: 2}
+  - {fileID: 11400000, guid: c261886a6e69b8c438323f60d3709922, type: 2}
+  - {fileID: 11400000, guid: 3542416b1370e174ba95a6d6f5b1586a, type: 2}
   bookId: 4
   ui: {fileID: 8005918012478678480, guid: 740b2f0e03ce966428a9a27f94f3373b, type: 3}

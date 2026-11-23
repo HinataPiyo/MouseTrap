@@ -12,10 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d3f61c76eb36134698696b0dd8b802c, type: 3}
   m_Name: TalkData_LastBookSpawn
   m_EditorClassIdentifier: 
+  tag: 
   entries:
-  - character: {fileID: -1384877757011659454, guid: da8ac5aff29f9f8488bbeeb5be843ed2, type: 3}
+  - character: {fileID: 4011909726000411059, guid: 4e8cce4651a588541b7e33a5def77712, type: 3}
     characterName: 2
-    body: "5\u518A\u76EE\u304C\u8DB3\u308A\u306A\u3044\u3067\u3059\u306D"
-  - character: {fileID: 3538703287705114611, guid: da8ac5aff29f9f8488bbeeb5be843ed2, type: 3}
-    characterName: 2
-    body: "\u3082\u3046\u4E00\u5EA6\u63A2\u7D22\u3057\u3066\u307F\u307E\u3057\u3087\u3046"
+    body: "\u5408\u8A08\u30675\u518A\u3044\u308B\u307F\u305F\u3044..."
+    delay: 0
+  - character: {fileID: -4175741997569924086, guid: 911ff9a22bee52f4f9b3f468be9ab3d2, type: 3}
+    characterName: 1
+    body: "\u3082\u3046\u4E00\u56DE\u63A2\u3057\u3066\u307F\u3088\uFF01"
+    delay: 0

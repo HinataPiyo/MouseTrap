@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d3f61c76eb36134698696b0dd8b802c, type: 3}
+  m_Name: TalkData_HiddenHit_001
+  m_EditorClassIdentifier: 
+  tag: 
+  entries:
+  - character: {fileID: -4350108964438281031, guid: 29203e436f9a4ad49bfcc223727a6d76, type: 3}
+    characterName: 0
+    body: "\u8272\u3005\u66F8\u304B\u308C\u3066\u308B\u3051\u3069\u8AAD\u3081\u306A\u3044\u3084"
+    delay: 0

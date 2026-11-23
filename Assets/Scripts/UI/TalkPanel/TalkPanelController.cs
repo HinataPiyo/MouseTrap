@@ -86,6 +86,8 @@ public class TalkPanelController : PanelView<TalkPanelController>
 
     void OnTalkEnd()
     {
+        characterImage.style.backgroundImage = null;
+        characterName.text = "";
         gameState.ChangeState(StateType.None);
         GameUIHandler.Instance.SetTalkActive(false);
     }

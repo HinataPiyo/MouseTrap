@@ -12,15 +12,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d3f61c76eb36134698696b0dd8b802c, type: 3}
   m_Name: TalkData_Sound from LibraryRoom
   m_EditorClassIdentifier: 
+  tag: 
   entries:
-  - character: {fileID: 3234629978573100161, guid: 76757b61b369a1747a0492da2c587d60, type: 3}
+  - character: {fileID: -4350108964438281031, guid: 29203e436f9a4ad49bfcc223727a6d76, type: 3}
     characterName: 0
     body: "\u4ECA\u3001\u3079\u3064\u306E \u90E8\u5C4B \u304B\u3089 \u5927\u304D\u306A
       \u97F3\u304C\u805E\u3053\u3048\u305F\u306E\u3060\u3051\u3069..."
-  - character: {fileID: -3428360358286950702, guid: 6a00a43202827c9438de0641ac4c5c91, type: 3}
+    delay: 0
+  - character: {fileID: 2282607180949004932, guid: 911ff9a22bee52f4f9b3f468be9ab3d2, type: 3}
     characterName: 1
     body: "\u304D\u3053\u3048\u306A\u304B\u3063\u305F\u3051\u3069 \u3060\u308C\u304B\u304C
       \u3044\u308B\u306E\u304B\u3082?"
-  - character: {fileID: 4723107735738678597, guid: 76757b61b369a1747a0492da2c587d60, type: 3}
+    delay: 0
+  - character: {fileID: 5151397350593897098, guid: 29203e436f9a4ad49bfcc223727a6d76, type: 3}
     characterName: 0
     body: "\u3044\u3063\u3066\u307F\u3088\u3046!"
+    delay: 0

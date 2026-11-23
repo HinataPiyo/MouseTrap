@@ -12,7 +12,15 @@ public class SearchPC : Interact
     protected override void AcquireItem()
     {
         SearchPCUIPanel.Instance.Show();
+        if(!IsEventCompleted) StartCoroutine(StartTalk());
     }
 
-    protected override IEnumerator StartTalk() { yield return null; }
+    protected override IEnumerator StartTalk()
+    {
+        PlayerInputController.Instance.ChangeState(StateType.Talk);
+        yield return new WaitForSeconds(1f);
+        yield return talk.Writing(GetTalkData(0));
+
+        IsEventCompleted = true;
+    }
 }

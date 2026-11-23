@@ -1,6 +1,6 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
 
 
@@ -11,6 +11,8 @@ public class ReturnBookshelfUIPanel : PanelView<ReturnBookshelfUIPanel>
 {
 
     [SerializeField] Sprite returnPositionUI;
+    [SerializeField] LastBook lastBook;
+    [SerializeField] TalkData successTalk;
     UIDocument uiDoc;
     List<Button> returnNumberButtons = new List<Button>();
     List<Button> selecterBookButtons = new List<Button>();
@@ -84,7 +86,10 @@ public class ReturnBookshelfUIPanel : PanelView<ReturnBookshelfUIPanel>
                 // 全て埋まったか確認
                 if (!System.Array.TrueForAll(returnedBooks, book => book != null)) return;
 
-                // 成功判定
+                // 火のコと遭遇していなければ成否がわからない
+                if(!lastBook.IsEventCompleted) return;
+
+                // 火のコが成否を判定してくれる設定
                 isSuccess = CheckSuccess();
                 if (!isSuccess)
                 {
@@ -92,13 +97,19 @@ public class ReturnBookshelfUIPanel : PanelView<ReturnBookshelfUIPanel>
                     return;
                 }
 
+                Debug.Log("<color=green>Success</color>");
+
                 // インベントリから削除
                 foreach (InteractBookData book in returnedBooks)
                     Inventory.Instance.RemoveItem(book);
 
                 // 成功時の処理
                 OnBooksReturned?.Invoke();
+                RoomChangeUI.Instance.PermitChange();
                 IsInteractable(false);
+                StartCoroutine(ShowSuccessTalk());
+                if (Room.IsDemoBuild)
+                    SceneChangeManager.Instance.CanMoveRoom(Room.Name.EndingScene, true);
             };
         }
 
@@ -109,6 +120,15 @@ public class ReturnBookshelfUIPanel : PanelView<ReturnBookshelfUIPanel>
     {
         playerInput = PlayerInputController.Instance;
         playerInput.OnInputESCKeyDisabled += Hide;
+    }
+
+    IEnumerator ShowSuccessTalk()
+    {
+        int sessionId = OpenSessionId;
+        yield return TalkPanelController.Instance.Writing(successTalk);
+
+        if (IsSessionOpen(sessionId) && playerInput.CurrentState == StateType.None)
+            playerInput.ChangeState(StateType.Interact);
     }
 
     protected override void OnSingletonDestroy()
@@ -127,6 +147,12 @@ public class ReturnBookshelfUIPanel : PanelView<ReturnBookshelfUIPanel>
 
         // 本を4冊所持していたら(会話を進行させる)
         return CheckHasFourBooks();
+    }
+
+    // Signal用
+    public void OnSignalShow()
+    {
+        Show();
     }
 
     public void Hide()

@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-using System.Net.Sockets;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -24,6 +22,7 @@ public class RoomChangeUI : SceneSingleton<RoomChangeUI>
     Button backButton;
     Room.Name nextRoom = Room.Name.None;
     Room.Name backRoom = Room.Name.None;
+    bool isBlocked;
 
     SceneChangeManager sceneChangeManager;
     PlayerInputController gameState;
@@ -79,16 +78,35 @@ public class RoomChangeUI : SceneSingleton<RoomChangeUI>
     
     void UpdateButtonState(Room.Name moveableRoom, Button button, StatType statType)
     {
-        bool isInteractive = moveableRoom != Room.Name.None;
+        bool isInteractive = !isBlocked && moveableRoom != Room.Name.None;
+        button.pickingMode = isInteractive ? PickingMode.Position : PickingMode.Ignore;
+        button.SetEnabled(isInteractive);
 
         foreach (var statSprite in statSprites)
         {
             if (statSprite.statType != statType || statSprite.isInteractive != isInteractive) continue;
 
             button.style.backgroundImage = new StyleBackground(statSprite.sprite);
-            button.pickingMode = isInteractive ? PickingMode.Position : PickingMode.Ignore;
             Debug.Log($"Button: {button.name}, MoveableRoom: {moveableRoom}, StatType: {statType}");
             break;
         }
+    }
+
+    /// <summary>
+    /// ボタンを押せなくする
+    /// </summary>
+    public void BlockChange()
+    {
+        isBlocked = true;
+        UpdateButtons();
+    }
+
+    /// <summary>
+    /// ボタンを押せるようにする
+    /// </summary>
+    public void PermitChange()
+    {
+        isBlocked = false;
+        UpdateButtons();
     }
 }

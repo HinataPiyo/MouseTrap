@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Playables;
 
 /// <summary>
 /// 眼鏡少年が最初の本をゲットしたのち散らばる本を管理する
@@ -12,7 +14,17 @@ public class ScatteredBooksHandler : Interact
 
     protected override void Initialize() { }
     protected override void AcquireItem() { }
-    protected override IEnumerator StartTalk() { yield return null; }
+    protected override IEnumerator StartTalk()
+    {
+        PlayerInputController.Instance.ChangeState(StateType.Talk);
+        yield return new WaitForSeconds(1f);
+        yield return talk.Writing(GetTalkData(0));
+
+        PlayerInputController.Instance.ChangeState(StateType.Interact);
+        yield return new WaitUntil(() => !InteractUIPanel.Instance.IsVisible());
+
+        PlayerInputController.Instance.ChangeState(StateType.None);
+    }
 
     /// <summary>
     /// 本を取ったときに呼ぶ
@@ -34,6 +46,7 @@ public class ScatteredBooksHandler : Interact
         {
             IsEventCompleted = true;
             MissionManager.Instance.CompleteMission(MissionNames.CollectScatteredBooks);
+            StartCoroutine(StartTalk());
         }
     }
 

@@ -13,7 +13,7 @@ public class InteractUIPanel : PanelView<InteractUIPanel>
         object_view = panel.Q<VisualElement>("image");
         itemName_view = panel.Q<Label>("item-name");
 
-        HideInteractPanel();
+        SetVisible(false);
     }
 
     void Start()
@@ -40,5 +40,6 @@ public class InteractUIPanel : PanelView<InteractUIPanel>
     public void HideInteractPanel()
     {
         SetVisible(false);
+        PlayerInputController.Instance.ChangeState(StateType.None);
     }
 }

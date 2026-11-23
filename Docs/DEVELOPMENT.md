@@ -73,7 +73,9 @@ Timelineでオブジェクトを移動する場合は、対象に`DirectorWaypoi
 
 ### 部屋移動と通行止め
 
-`RoomChangePoint`と`BlockerArea`は、関連イベントの完了状態を調べて通行可否を決めます。`SceneChangeManager`が部屋の移動可否（`GameSession.UnlockedRooms`）とシーン遷移を管理し、`CoreConstants.cs`の部屋名・シーン名対応を参照します。`GameSession.Reset`で図書室を移動可能にする設定にはテスト用の注記があるため、正式な進行条件に合わせて確認してください。
+`RoomChangePoint`と`BlockerArea`は、関連イベントの完了状態を調べて通行可否を決めます。`SceneChangeManager`が部屋の移動可否（`GameSession.UnlockedRooms`）とシーン遷移を管理し、`CoreConstants.cs`の部屋名・シーン名対応を参照します。現在は`Room.IsDemoBuild`が有効で、職員室から図書室に進み、本棚の返却を完了すると図書室の次の移動先としてエンディングが解放されます。デモ以外のルートに戻す場合は、この設定を無効にしてください。
+
+部屋移動UIからタイトルへは戻れません。職員室では戻るボタンが無効になり、タイトルへの遷移はエンディング画面などから行います。
 
 ### ミッション
 

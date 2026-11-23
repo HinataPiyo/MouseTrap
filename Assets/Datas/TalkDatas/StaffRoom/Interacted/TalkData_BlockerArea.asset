@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d3f61c76eb36134698696b0dd8b802c, type: 3}
   m_Name: TalkData_BlockerArea
   m_EditorClassIdentifier: 
+  tag: 
   entries:
-  - character: {fileID: 6373048116405451881, guid: 76757b61b369a1747a0492da2c587d60, type: 3}
+  - character: {fileID: -387308690382296244, guid: 29203e436f9a4ad49bfcc223727a6d76, type: 3}
     characterName: 0
     body: "\u3053\u3053\u306F \u307E\u3060\u3044\u3044\u304B\u306A"
+    delay: 0

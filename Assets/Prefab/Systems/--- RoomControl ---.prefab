@@ -287,7 +287,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af75159d7a83aca4fad6560a01e18ffe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  writingSpeed: 0.05
+  writingSpeed: 0.08
 --- !u!1 &3754717997071354208
 GameObject:
   m_ObjectHideFlags: 0
@@ -510,7 +510,7 @@ PlayableDirector:
   m_GameObject: {fileID: 5578386220086012471}
   m_Enabled: 1
   serializedVersion: 3
-  m_PlayableAsset: {fileID: 11400000, guid: b2ff76a70868e2d41ba81648c2b55496, type: 2}
+  m_PlayableAsset: {fileID: 0}
   m_InitialState: 0
   m_WrapMode: 2
   m_DirectorUpdateMode: 1
@@ -736,25 +736,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Events:
     m_Signals:
-    - {fileID: 11400000, guid: 115002d5b3abddc4597681e77e35ad05, type: 2}
     - {fileID: 11400000, guid: 59d2ff13e09f7794f9bb0dbd8bc24bf7, type: 2}
     - {fileID: 11400000, guid: 4db27454a879e4b419d79791e6617300, type: 2}
-    - {fileID: 11400000, guid: 580484cea9bde274b851a0e4ee671d45, type: 2}
     m_Events:
-    - m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 0}
-          m_TargetAssemblyTypeName: FadeScreen, Assembly-CSharp
-          m_MethodName: StartFadeOut
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
     - m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 8182647558712849231}
@@ -783,8 +767,6 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-    - m_PersistentCalls:
-        m_Calls: []
 --- !u!114 &3509462071466759620
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1211,7 +1193,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1244099910107276945, guid: 7000147a9539c5f4f9fd785b3569621f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.5
+      value: -2.72
       objectReference: {fileID: 0}
     - target: {fileID: 3748918600484239266, guid: 7000147a9539c5f4f9fd785b3569621f, type: 3}
       propertyPath: m_Name

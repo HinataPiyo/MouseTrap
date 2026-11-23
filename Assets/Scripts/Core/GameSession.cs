@@ -46,6 +46,7 @@ public static class GameSession
         CurrentCharacter = Character.Name.None;
 
         UnlockedRooms.Clear();
+        UnlockedRooms.Add(Room.Name.Title);
         UnlockedRooms.Add(Room.Name.Staffroom);
 
         InventoryItems.Clear();

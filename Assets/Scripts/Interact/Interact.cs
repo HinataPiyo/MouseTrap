@@ -119,12 +119,16 @@ public abstract class Interact : MonoBehaviour, IInteract
             // 他のオブジェクトも非表示
             foreach(var o in hideAfterAcquire)
             {
-                o.GetComponent<SpriteRenderer>().enabled = false;
-                o.GetComponent<Collider2D>().enabled = false;
+                if(o.GetComponent<SpriteRenderer>() is var sr && sr != null)
+                    sr.enabled = false;
+                if(o.GetComponent<Collider2D>() is var col && col != null)
+                    col.enabled = false;
             }
-            
-            GetComponent<SpriteRenderer>().enabled = false;
-            GetComponent<Collider2D>().enabled = false;
+
+            if(GetComponent<SpriteRenderer>() is var p_sr && p_sr != null)
+                p_sr.enabled = false;
+            if(GetComponent<Collider2D>() is var p_col && p_col != null)
+                p_col.enabled = false;
         }
 
         //? SearchInteractObjectsの方で表示するようにしてしまっているので要検討
