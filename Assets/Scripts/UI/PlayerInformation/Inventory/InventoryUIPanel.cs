@@ -91,7 +91,9 @@ public class InventoryUIPanel : PanelView<InventoryUIPanel>
         VisualElement itemTemplate = temp_InventoryItem.CloneTree();
 
         itemTemplate.Q<VisualElement>("icon").style.backgroundImage = new StyleBackground(data.item.Sprite);
-        itemTemplate.Q<Label>("count").text = "x" + data.count.ToString();
+        var countLabel = itemTemplate.Q<Label>("count");
+        countLabel.text = "x" + data.count.ToString();
+        countLabel.style.display = data.count > 1 ? DisplayStyle.Flex : DisplayStyle.None;
         itemTemplate.Q<Button>().clicked += () => OnIconClicked?.Invoke(data);
 
         container.Add(itemTemplate);
