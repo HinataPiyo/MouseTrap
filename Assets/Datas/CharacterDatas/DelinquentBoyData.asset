@@ -22,4 +22,4 @@ MonoBehaviour:
   character_Standing_Sprite: {fileID: -6680672515261728774, guid: cea2f7bf118845944b6eb823e1884c0c, type: 3}
   animation: {fileID: 9100000, guid: be3b180bb9eb8fd4daa15cf5c2c4209b, type: 2}
   specialSkillIcon: {fileID: 7094190288242544694, guid: cea2f7bf118845944b6eb823e1884c0c, type: 3}
-  specialSkillDescription: 
+  specialSkillDescription: "\u512A\u308C\u305F\u904B\u52D5\u795E\u7D4C\u3067\u3001\u7279\u5B9A\u306E\u4ED5\u639B\u3051\u3092\u52D5\u304B\u305B\u308B\u3002"

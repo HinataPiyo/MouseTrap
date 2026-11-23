@@ -21,5 +21,5 @@ MonoBehaviour:
   - {fileID: 3616403228904552112, guid: 8ebd33ce83c6888419b14cc57d7a7a48, type: 3}
   character_Standing_Sprite: {fileID: -3388638574136167375, guid: cea2f7bf118845944b6eb823e1884c0c, type: 3}
   animation: {fileID: 9100000, guid: 3b24d43f6b96fb04fb617bc0c6df7ed8, type: 2}
-  specialSkillIcon: {fileID: -5834046106654951984, guid: cea2f7bf118845944b6eb823e1884c0c, type: 3}
-  specialSkillDescription: 
+  specialSkillIcon: {fileID: -3663831674496775684, guid: cea2f7bf118845944b6eb823e1884c0c, type: 3}
+  specialSkillDescription: "\u4EBA\u5F62\u3084\u304A\u3082\u3061\u3083\u306B\u8A73\u3057\u304F\u3001\u500B\u5BA4\u306E\u4ED5\u639B\u3051\u3067\u6D3B\u8E8D\u3059\u308B\u3002"
