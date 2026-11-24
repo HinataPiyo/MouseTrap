@@ -15,7 +15,7 @@ MonoBehaviour:
   isShowUseButton: 0
   sprite: {fileID: 1686222183955351977, guid: ec6fbc8b6a5c10b40be22277e1ffa140, type: 3}
   text: "\u7A7A\u306E\u30E9\u30F3\u30D7"
-  isDisabledAfterInteract: 0
+  isDisabledAfterInteract: 1
   isShowPanel: 1
   isReusable: 0
   talkData: []

@@ -13,6 +13,11 @@ public class LineUpPortraitHandler : Interact
         LineUpPortraitUIPanel.Instance.Show();
     }
 
+    protected override bool CanInteract()
+    {
+        return !IsEventCompleted;
+    }
+
     protected override IEnumerator StartTalk()
     {
         yield return null;
@@ -21,5 +26,6 @@ public class LineUpPortraitHandler : Interact
     public void CompletedLineUp()
     {
         keyC.KeyActivate();
+        IsEventCompleted = true;
     }
 }
