@@ -20,7 +20,8 @@ public class SearchPC : Interact
         PlayerInputController.Instance.ChangeState(StateType.Talk);
         yield return new WaitForSeconds(1f);
         yield return talk.Writing(GetTalkData(0));
-
+        if (SearchPCUIPanel.Instance.IsVisible())
+            PlayerInputController.Instance.ChangeState(StateType.Interact);
         IsEventCompleted = true;
     }
 }

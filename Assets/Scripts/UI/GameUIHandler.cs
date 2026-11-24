@@ -5,6 +5,9 @@ public class GameUIHandler : PanelView<GameUIHandler>
 {
     bool isTalkActive;
     bool isDirectorActive;
+    bool isGimmickUIPanelActive;
+
+    public bool IsGimmickActive => isGimmickUIPanelActive;
 
     protected override void OnSingletonAwake()
     {
@@ -14,6 +17,12 @@ public class GameUIHandler : PanelView<GameUIHandler>
 
     protected override void OnSingletonDestroy()
     {
+    }
+
+    public void SetGimmickActive(bool active)
+    {
+        isGimmickUIPanelActive = active;
+        UpdateVisibility();
     }
 
     public void SetTalkActive(bool active)
@@ -28,5 +37,5 @@ public class GameUIHandler : PanelView<GameUIHandler>
         UpdateVisibility();
     }
 
-    void UpdateVisibility() => SetVisible(!isTalkActive && !isDirectorActive);
+    void UpdateVisibility() => SetVisible(!isTalkActive && !isDirectorActive && !isGimmickUIPanelActive);
 }

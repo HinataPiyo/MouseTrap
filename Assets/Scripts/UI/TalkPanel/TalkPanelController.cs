@@ -5,6 +5,7 @@ using UnityEngine.UIElements;
 public class TalkPanelController : PanelView<TalkPanelController>
 {
     [SerializeField] float writingSpeed = 0.05f;
+    static readonly WaitForSeconds quickwait = new WaitForSeconds(0.1f);
     TalkData currentTalkData;
 
     PlayerInputController gameState;
@@ -34,6 +35,8 @@ public class TalkPanelController : PanelView<TalkPanelController>
         characterImage = panel.Q<VisualElement>("left-character");
         arrow = panel.Q<VisualElement>("arrow");
         writingWait = new WaitForSeconds(writingSpeed);
+
+        Reset();
 
         SetVisible(false);
     }
@@ -95,6 +98,7 @@ public class TalkPanelController : PanelView<TalkPanelController>
     {
         characterImage.style.backgroundImage = null;
         characterName.text = "";
+        body.text = "";
     }
 
     public void BackgroundHide()
@@ -157,11 +161,15 @@ public class TalkPanelController : PanelView<TalkPanelController>
             }
 
             body.text = entry.body;
+            yield return quickwait;     // 連続スキップをなくすため
+
             arrow.style.display = DisplayStyle.Flex;
             isWriting = false;
             isWaitingForAdvance = true;
+
             yield return new WaitUntil(() => sessionId != talkSessionId || isAdvanceRequested);
             if (sessionId != talkSessionId) yield break;
+            
             isWaitingForAdvance = false;
             isAdvanceRequested = false;
         }

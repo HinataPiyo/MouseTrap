@@ -146,6 +146,7 @@ public class LineUpDollsUIPanel : PanelView<LineUpDollsUIPanel>
     public void Show()
     {
         SetVisible(true);
+        GameUIHandler.Instance.SetGimmickActive(true);
         UpdateHasDollData();
     }
 
@@ -154,6 +155,7 @@ public class LineUpDollsUIPanel : PanelView<LineUpDollsUIPanel>
         selectedDoll = null;
         selecterButton = null;
         SetVisible(false);
+        GameUIHandler.Instance.SetGimmickActive(false);
         inputController.ChangeState(StateType.None);
     }
 

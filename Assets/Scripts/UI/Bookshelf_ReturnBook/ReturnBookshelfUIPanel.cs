@@ -151,6 +151,7 @@ public class ReturnBookshelfUIPanel : PanelView<ReturnBookshelfUIPanel>
         OpenSessionId++;
         isVisible = true;
         uiDoc.rootVisualElement.style.display = DisplayStyle.Flex;
+        GameUIHandler.Instance.SetGimmickActive(true);
 
         if(!isSuccess) Reset();
 
@@ -172,6 +173,8 @@ public class ReturnBookshelfUIPanel : PanelView<ReturnBookshelfUIPanel>
             Reset();
             IsInteractable(true);
         }
+        
+        GameUIHandler.Instance.SetGimmickActive(false);
         uiDoc.rootVisualElement.style.display = DisplayStyle.None;
     }
 

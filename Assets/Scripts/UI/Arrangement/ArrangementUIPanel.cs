@@ -80,6 +80,7 @@ public class ArrangementUIPanel : PanelView<ArrangementUIPanel>
         placedElements = new int[item.Elements.Length];
         ResetArrangement();
         SetVisible(true);
+        GameUIHandler.Instance.SetGimmickActive(true);
     }
 
     public void Hide()
@@ -87,6 +88,7 @@ public class ArrangementUIPanel : PanelView<ArrangementUIPanel>
         currentItem = null;
         selectedElement = -1;
         SetVisible(false);
+        GameUIHandler.Instance.SetGimmickActive(false);
     }
 
     void ResetArrangement()

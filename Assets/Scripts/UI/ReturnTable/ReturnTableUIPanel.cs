@@ -155,12 +155,14 @@ public class ReturnTableUIPanel : PanelView<ReturnTableUIPanel>
     public void Show()
     {
         SetVisible(true);
+        GameUIHandler.Instance.SetGimmickActive(true);
         ChangeSelectType(SelectType.Shape);
     }
 
     public void Hide()
     {
         SetVisible(false);
+        GameUIHandler.Instance.SetGimmickActive(false);
         CheckPutTable();
     }
 

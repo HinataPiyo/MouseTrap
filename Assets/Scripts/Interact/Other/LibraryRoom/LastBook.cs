@@ -22,6 +22,7 @@ public class LastBook : Interact
         yield return new WaitUntil(() => !InteractUIPanel.Instance.IsVisible());
 
         yield return talk.Writing(GetTalkData(0));
+        PlayerInputController.Instance.ChangeState(StateType.Movie);
 
         yield return fadeScreen.FadeInToFadeOut();
 
@@ -29,6 +30,7 @@ public class LastBook : Interact
         yield return new WaitForSeconds(0.5f);
         yield return talk.Writing(GetTalkData(1));
 
+        PlayerInputController.Instance.ChangeState(StateType.Movie);
         yield return fadeScreen.FadeInToFadeOut();
 
         AudioManager.Instance.PlaySE("教室のテーブル引きずる音");

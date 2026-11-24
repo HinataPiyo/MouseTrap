@@ -124,12 +124,14 @@ public class LineUpPortraitUIPanel : PanelView<LineUpPortraitUIPanel>
     public void Show()
     {
         SetVisible(true);
+        GameUIHandler.Instance.SetGimmickActive(true);
         Reset();
     }
 
     public void Hide()
     {
         SetVisible(false);
+        GameUIHandler.Instance.SetGimmickActive(false);
     }
 
     void SelecterPanelHide()

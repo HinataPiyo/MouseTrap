@@ -68,12 +68,14 @@ public class SafePasswordUIPanel : PanelView<SafePasswordUIPanel>
     {
         if(IsSuccess) return;
         SetVisible(true);
+        GameUIHandler.Instance.SetGimmickActive(true);
         Reset();
     }
 
     public void Hide()
     {
         SetVisible(false);
+        GameUIHandler.Instance.SetGimmickActive(false);
     }
 
     void Reset()
