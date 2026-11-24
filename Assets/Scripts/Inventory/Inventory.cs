@@ -85,5 +85,15 @@ public class Inventory : SceneSingleton<Inventory>
         return false;
     }
 
+    public int GetItemCount(InteractData item)
+    {
+        for (int i = 0; i < items.Count; i++)
+        {
+            if (items[i].item == item)
+                return items[i].count;
+        }
+        return 0;
+    }
+
     public List<ItemData> GetItems() => items;
 }

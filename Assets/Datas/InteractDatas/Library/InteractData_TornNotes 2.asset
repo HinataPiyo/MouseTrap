@@ -12,9 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac802a46b03e87a429a3458126233beb, type: 3}
   m_Name: InteractData_TornNotes 2
   m_EditorClassIdentifier: 
+  isShowUseButton: 0
   sprite: {fileID: 740859867210785336, guid: 740b2f0e03ce966428a9a27f94f3373b, type: 3}
   text: "\u7834\u308C\u305F\u30E1\u30E2\u7D19"
   isDisabledAfterInteract: 0
   isShowPanel: 0
   isReusable: 0
   talkData: []
+  arrangementRecipe: {fileID: 11400000, guid: 545674621699a9443a4dc9b8a99825f7, type: 2}

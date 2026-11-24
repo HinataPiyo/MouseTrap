@@ -38,9 +38,13 @@ public class IconClickedUIPanel : MonoBehaviour
         useButton.clicked += () =>
         {
             AudioManager.Instance.PlaySE("普通のボタン");
-            if (selectedData is InteractArrangementData arrangement)
+            if (selectedData != null && selectedData.ArrangementRecipe != null)
             {
-                ArrangementUIPanel.Instance.Show(arrangement);
+                ArrangementUIPanel.Instance.Show(selectedData.ArrangementRecipe, selectedData);
+            }
+            else if (selectedData is InteractArrangementData arrangement)
+            {
+                ArrangementUIPanel.Instance.Show(arrangement, selectedData);
             }
         };
     }
@@ -58,7 +62,8 @@ public class IconClickedUIPanel : MonoBehaviour
         panel.style.display = DisplayStyle.Flex;
         icon.style.backgroundImage = new StyleBackground(item.item.Sprite);
         selectedData = item.item;
-        useButton.style.display = selectedData.IsShowUseButton ? DisplayStyle.Flex : DisplayStyle.None;
+        useButton.style.display = selectedData.IsShowUseButton || selectedData.ArrangementRecipe != null
+            ? DisplayStyle.Flex : DisplayStyle.None;
         description.text = selectedData.Text;
         Debug.Log($"IconClickedUIPanel showing item: {item.item.name}");
     }

@@ -4,6 +4,7 @@ using UnityEngine.UIElements;
 
 public class LineUpPortraitUIPanel : PanelView<LineUpPortraitUIPanel>
 {
+    [SerializeField] LineUpPortraitHandler handler;
     [SerializeField] Sprite returnPositionUI;
     [SerializeField] PortaitInfo[] portaitInfos;
     VisualElement selecterPortaitPanel;
@@ -75,7 +76,7 @@ public class LineUpPortraitUIPanel : PanelView<LineUpPortraitUIPanel>
 
                     selectButtons[selectorIndex].style.display = DisplayStyle.Flex;
                     returnButtons[index].style.backgroundImage = Background.FromSprite(returnPositionUI);
-                    portraitOrders[index] = default(Character.PortraitOrder);
+                    portraitOrders[index] = default;
                     hasPortraits[index] = false;
                     AudioManager.Instance.PlaySE("キャンセル");
                 }
@@ -154,6 +155,8 @@ public class LineUpPortraitUIPanel : PanelView<LineUpPortraitUIPanel>
         // 設置した肖像画を記録する
         portraitOrders[selectReturnIndex] = info.order;
         hasPortraits[selectReturnIndex] = true;
+
+        CheckComplete();
     }
 
     void Reset()
@@ -172,5 +175,20 @@ public class LineUpPortraitUIPanel : PanelView<LineUpPortraitUIPanel>
 
         System.Array.Clear(portraitOrders, 0, portraitOrders.Length);
         SelecterPanelHide();
+    }
+
+    void CheckComplete()
+    {
+        for (int i = 0; i < portraitOrders.Length; i++)
+        {
+            // まだ置かれていない肖像画があるか確認
+            if (!hasPortraits[i]) return;
+            if(portraitOrders[i] == successPortrait[i]) continue;
+            else return;
+        }
+        // ここまで来たら完成
+        handler.CompletedLineUp();
+        PlayerInputController.Instance.ChangeState(StateType.None);
+        Hide();
     }
 }

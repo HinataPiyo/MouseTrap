@@ -15,12 +15,13 @@ public class SafePassword : Interact
 
     protected override bool CanInteract()
     {
-        return !SafePasswordUIPanel.Instance.IsSuccess;
+        return !SafePasswordUIPanel.Instance.IsSuccess && !IsEventCompleted;
     }
 
     public void PasswordSuccess()
     {
         StartCoroutine(StartTalk());
+        IsEventCompleted = true;
     }
 
     protected override IEnumerator StartTalk()

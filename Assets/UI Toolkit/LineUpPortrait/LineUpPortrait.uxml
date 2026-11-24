@@ -14,7 +14,7 @@
             </ui:VisualElement>
             <ui:VisualElement name="memo-container" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/Sprites/UI/UIM.png?fileID=-8783073288762339520&amp;guid=cebcbc8bddf22f84b95b003eed5c15c3&amp;type=3#UIM_2&quot;); -unity-background-scale-mode: scale-to-fit; padding-top: 40px; padding-right: 40px; padding-bottom: 40px; padding-left: 40px;">
                 <ui:VisualElement style="background-image: url(&quot;project://database/Assets/Sprites/UI/UIM.png?fileID=-578830627665082091&amp;guid=cebcbc8bddf22f84b95b003eed5c15c3&amp;type=3#UIM_17&quot;); -unity-background-scale-mode: scale-to-fit; height: 27px; align-self: flex-start; width: 142px;" />
-                <ui:VisualElement name="container" style="flex-grow: 1; justify-content: space-evenly;">
+                <ui:VisualElement name="container" style="flex-grow: 1; justify-content: space-evenly; display: none;">
                     <ui:VisualElement style="background-image: url(&quot;project://database/Assets/Sprites/UI/UIM.png?fileID=9011988004680949887&amp;guid=cebcbc8bddf22f84b95b003eed5c15c3&amp;type=3#UIM_4&quot;); -unity-background-scale-mode: scale-to-fit; height: 30px;" />
                     <ui:VisualElement style="background-image: url(&quot;project://database/Assets/Sprites/UI/UIM.png?fileID=9028917171962972018&amp;guid=cebcbc8bddf22f84b95b003eed5c15c3&amp;type=3#UIM_46&quot;); -unity-background-scale-mode: scale-to-fit; height: 30px;" />
                     <ui:VisualElement style="background-image: url(&quot;project://database/Assets/Sprites/UI/UIM.png?fileID=-4598640628337216762&amp;guid=cebcbc8bddf22f84b95b003eed5c15c3&amp;type=3#UIM_66&quot;); -unity-background-scale-mode: scale-to-fit; height: 30px;" />

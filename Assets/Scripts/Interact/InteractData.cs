@@ -16,6 +16,8 @@ public class InteractData : ScriptableObject
 
     [Header("会話データ")]
     [SerializeField] TalkData[] talkData;
+    [Header("素材として使用する並べ替えレシピ")]
+    [SerializeField] InteractArrangementData arrangementRecipe;
     public bool IsShowUseButton => isShowUseButton;
     public Sprite Sprite => sprite;
     public string Text => text;
@@ -23,4 +25,5 @@ public class InteractData : ScriptableObject
     public bool IsShowPanel => isShowPanel;
     public bool IsReusable => isReusable;
     public TalkData[] TalkData => talkData;
+    public InteractArrangementData ArrangementRecipe => arrangementRecipe;
 }

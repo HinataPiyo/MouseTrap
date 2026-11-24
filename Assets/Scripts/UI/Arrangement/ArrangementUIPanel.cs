@@ -56,7 +56,7 @@ public class ArrangementUIPanel : PanelView<ArrangementUIPanel>
             backButton.clicked -= Hide;
     }
 
-    public void Show(InteractArrangementData item)
+    public void Show(InteractArrangementData item, InteractData source)
     {
         if (item == null)
         {
@@ -67,6 +67,13 @@ public class ArrangementUIPanel : PanelView<ArrangementUIPanel>
         if (!item.TryValidate(out string error))
         {
             Debug.LogError($"Invalid arrangement item '{item.name}': {error}", item);
+            return;
+        }
+
+        if (source == null || !Inventory.Instance.HasItem(source) ||
+            (item.UseIngredients ? !item.ContainsIngredient(source) : source != item))
+        {
+            Debug.LogError($"Cannot open arrangement '{item.name}' from an item that is not an owned ingredient.", item);
             return;
         }
 
@@ -110,12 +117,28 @@ public class ArrangementUIPanel : PanelView<ArrangementUIPanel>
         for (int i = 0; i < elementButtons.Count; i++)
         {
             Button button = elementButtons[i];
-            bool visible = i < placedElements.Length;
+            bool visible = i < placedElements.Length && IsElementAvailable(i);
             button.style.display = visible ? DisplayStyle.Flex : DisplayStyle.None;
             button.style.width = placedElements.Length == InteractArrangementData.MaxElements ? 100 : 120;
+            button.SetEnabled(visible);
             if (visible)
-                button.style.backgroundImage = new StyleBackground(currentItem.Elements[i].Sprite);
+            {
+                button.style.backgroundImage = new StyleBackground(currentItem.Elements[i].Ingredient.Sprite);
+                button.text = "";
+            }
         }
+    }
+
+    bool IsElementAvailable(int index)
+    {
+        if (!currentItem.UseIngredients) return true;
+
+        InteractData ingredient = currentItem.Elements[index].Ingredient;
+        int requiredCount = 0;
+        for (int i = 0; i <= index; i++)
+            if (currentItem.Elements[i].Ingredient == ingredient) requiredCount++;
+
+        return Inventory.Instance.GetItemCount(ingredient) >= requiredCount;
     }
 
     void PlaceElement(int position)
@@ -124,8 +147,15 @@ public class ArrangementUIPanel : PanelView<ArrangementUIPanel>
             placedElements[position] >= 0)
             return;
 
+        if (!IsElementAvailable(selectedElement))
+        {
+            Debug.LogError($"An ingredient for arrangement '{currentItem.name}' is no longer in the inventory.", currentItem);
+            Hide();
+            return;
+        }
+
         placedElements[position] = selectedElement;
-        positionButtons[position].iconImage = Background.FromSprite(currentItem.Elements[selectedElement].Sprite);
+        positionButtons[position].iconImage = Background.FromSprite(currentItem.Elements[selectedElement].Ingredient.Sprite);
         elementButtons[selectedElement].style.display = DisplayStyle.None;
         selectedElement = -1;
         AudioManager.Instance.PlaySE("置く");
@@ -147,15 +177,34 @@ public class ArrangementUIPanel : PanelView<ArrangementUIPanel>
             }
         }
 
-        if (!Inventory.Instance.HasItem(currentItem))
+        bool hasRequiredItems = true;
+        if (currentItem.UseIngredients)
         {
-            Debug.LogError($"Arrangement item '{currentItem.name}' is no longer in the inventory.", currentItem);
+            for (int i = 0; i < currentItem.Elements.Length; i++)
+                hasRequiredItems &= IsElementAvailable(i);
+        }
+        else
+        {
+            hasRequiredItems = Inventory.Instance.HasItem(currentItem);
+        }
+
+        if (!hasRequiredItems)
+        {
+            Debug.LogError($"Required items for arrangement '{currentItem.name}' are no longer in the inventory.", currentItem);
             Hide();
             return;
         }
 
         InteractData completedItem = currentItem.CompletedItem;
-        Inventory.Instance.RemoveItem(currentItem);
+        if (currentItem.UseIngredients)
+        {
+            foreach (InteractArrangementData.Element element in currentItem.Elements)
+                Inventory.Instance.RemoveItem(element.Ingredient);
+        }
+        else
+        {
+            Inventory.Instance.RemoveItem(currentItem);
+        }
         InventoryUIPanel.Instance.HideInventoryPanel();
         InteractUIPanel.Instance.ShowInteractPanel(completedItem);
         Inventory.Instance.AddItem(completedItem);
