@@ -59,12 +59,12 @@ public class PlayerInputController : SceneSingleton<PlayerInputController>
                 return;
 
             case StateType.Talk:
-                if (IsActionKeyPressed())
+                if (IsActionKeyPressed() || IsLeftClickPressed())
                     OnInputSpaceKeyPressed?.Invoke();
                 return;
 
             case StateType.Interact:
-                if (IsActionKeyPressed())
+                if (IsActionKeyPressed() || (!GameUIHandler.Instance.IsGimmickActive && IsLeftClickPressed()))
                     OnInputEKeyPressed?.Invoke();
                 return;
 
@@ -145,5 +145,7 @@ public class PlayerInputController : SceneSingleton<PlayerInputController>
         return Keyboard.current.eKey.wasPressedThisFrame
             || Keyboard.current.spaceKey.wasPressedThisFrame;
     }
+
+    static bool IsLeftClickPressed() => Mouse.current != null && Mouse.current.leftButton.wasPressedThisFrame;
 
 }

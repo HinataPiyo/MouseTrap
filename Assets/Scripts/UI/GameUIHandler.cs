@@ -7,6 +7,8 @@ public class GameUIHandler : PanelView<GameUIHandler>
     bool isDirectorActive;
     bool isGimmickUIPanelActive;
 
+    public bool IsGimmickActive => isGimmickUIPanelActive;
+
     protected override void OnSingletonAwake()
     {
         panel = GetComponent<UIDocument>().rootVisualElement;
