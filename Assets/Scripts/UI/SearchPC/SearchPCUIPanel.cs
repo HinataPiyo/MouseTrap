@@ -70,6 +70,7 @@ public partial class SearchPCUIPanel : PanelView<SearchPCUIPanel>
     public void Show()
     {
         uiDoc.rootVisualElement.style.display = DisplayStyle.Flex;
+        GameUIHandler.Instance.SetGimmickActive(true);
 
         // パスワード完了なら検索パネルへ
         if(isPasswordComplete) BackToGenrePanel();
@@ -85,6 +86,7 @@ public partial class SearchPCUIPanel : PanelView<SearchPCUIPanel>
     public void Hide()
     {
         uiDoc.rootVisualElement.style.display = DisplayStyle.None;
+        GameUIHandler.Instance.SetGimmickActive(false);
     }
 
     public bool IsVisible()
