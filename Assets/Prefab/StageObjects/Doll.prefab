@@ -83,7 +83,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactData: {fileID: 0}
-  hideAfterAcquire: []
+  hideAfterAcquire:
+  - {fileID: 8722872698355837699}
   requiredEvents: []
   isAllCompleteTest: 0
 --- !u!1 &8722872698355837699

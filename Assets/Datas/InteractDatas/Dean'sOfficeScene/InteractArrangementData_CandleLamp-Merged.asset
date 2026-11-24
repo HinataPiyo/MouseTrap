@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 491eeebeaff3ae44b8bf7769c96a520b, type: 3}
+  m_Name: InteractArrangementData_CandleLamp-Merged
+  m_EditorClassIdentifier: 
+  isShowUseButton: 0
+  sprite: {fileID: 0}
+  text: 
+  isDisabledAfterInteract: 0
+  isShowPanel: 1
+  isReusable: 0
+  talkData: []
+  elements:
+  - sprite: {fileID: -5479657409131135775, guid: ec6fbc8b6a5c10b40be22277e1ffa140, type: 3}
+    correctPosition: 1
+    ingredient: {fileID: 11400000, guid: af1d1b7de7b292f41b51f4df21c8694d, type: 2}
+  - sprite: {fileID: 1686222183955351977, guid: ec6fbc8b6a5c10b40be22277e1ffa140, type: 3}
+    correctPosition: 2
+    ingredient: {fileID: 11400000, guid: 90a910bc7cd6fd24bb45309e2e98d53e, type: 2}
+  requireOrder: 0
+  completedItem: {fileID: 11400000, guid: b352b76a37ebb9849a6ee607272540d2, type: 2}
+  useIngredients: 1

@@ -1,16 +1,21 @@
 using UnityEngine;
 
+/// <summary>
+/// 並べ替え用のデータ
+/// 要素を正しい順序で並べる必要があるかどうか
+/// 単一アイテムの並べ替え、または複数の素材を使った合成に使用する
+/// </summary>
 [CreateAssetMenu(fileName = "InteractArrangementData", menuName = "MouseTrap/InteractArrangementData")]
 public class InteractArrangementData : InteractData
 {
     [System.Serializable]
     public struct Element
     {
-        [SerializeField] Sprite sprite;
         [SerializeField, Range(1, 5)] int correctPosition;
+        [SerializeField] InteractData ingredient;
 
-        public Sprite Sprite => sprite;
         public int CorrectPosition => correctPosition;
+        public InteractData Ingredient => ingredient;
     }
 
     public const int MinElements = 2;
@@ -18,12 +23,27 @@ public class InteractArrangementData : InteractData
 
     [Header("並べ替え・配置する要素")]
     [SerializeField] Element[] elements;
+    [Header("並びを指定するか")]
     [SerializeField] bool requireOrder = true;
+    [Header("完成品")]
     [SerializeField] InteractData completedItem;
+    [Header("素材を使うか")]
+    [SerializeField] bool useIngredients;
 
     public Element[] Elements => elements;
     public bool RequireOrder => requireOrder;
     public InteractData CompletedItem => completedItem;
+    public bool UseIngredients => useIngredients;
+
+    public bool ContainsIngredient(InteractData item)
+    {
+        if (!useIngredients || item == null || elements == null) return false;
+
+        foreach (Element element in elements)
+            if (element.Ingredient == item) return true;
+
+        return false;
+    }
 
     public bool TryValidate(out string error)
     {
@@ -42,9 +62,15 @@ public class InteractArrangementData : InteractData
         bool[] positions = new bool[elements.Length];
         foreach (Element element in elements)
         {
-            if (element.Sprite == null)
+            if (useIngredients && element.Ingredient == null)
             {
-                error = "An arrangement element has no sprite.";
+                error = "An arrangement ingredient is not assigned.";
+                return false;
+            }
+
+            if (useIngredients && element.Ingredient.ArrangementRecipe != this)
+            {
+                error = $"Ingredient '{element.Ingredient.name}' does not reference this recipe.";
                 return false;
             }
 

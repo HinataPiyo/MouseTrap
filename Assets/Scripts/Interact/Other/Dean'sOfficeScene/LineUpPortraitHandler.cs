@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class LineUpPortraitHandler : Interact
 {
+    [SerializeField] InteractKey keyC;
     protected override void Initialize()
     {
     }
@@ -15,5 +16,10 @@ public class LineUpPortraitHandler : Interact
     protected override IEnumerator StartTalk()
     {
         yield return null;
+    }
+
+    public void CompletedLineUp()
+    {
+        keyC.KeyActivate();
     }
 }

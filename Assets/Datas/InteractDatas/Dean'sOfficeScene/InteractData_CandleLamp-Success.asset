@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac802a46b03e87a429a3458126233beb, type: 3}
+  m_Name: InteractData_CandleLamp-Success
+  m_EditorClassIdentifier: 
+  isShowUseButton: 0
+  sprite: {fileID: 8968081685085612624, guid: ec6fbc8b6a5c10b40be22277e1ffa140, type: 3}
+  text: "\u3057\u3085\u3057\u3087\u304F\u3089\u3093\u3077"
+  isDisabledAfterInteract: 0
+  isShowPanel: 1
+  isReusable: 0
+  talkData: []
