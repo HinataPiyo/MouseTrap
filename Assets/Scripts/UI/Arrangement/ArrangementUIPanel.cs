@@ -17,6 +17,7 @@ public class ArrangementUIPanel : PanelView<ArrangementUIPanel>
     protected override void OnSingletonAwake()
     {
         panel = GetComponent<UIDocument>().rootVisualElement.Q("ArrangementPanel");
+        SetVisible(false);
         backButton = panel.Q<Button>("back");
         elementButtons = panel.Q("element-buttons").Query<Button>().ToList();
         positionButtons = panel.Q("position-buttons").Query<Button>().ToList();
@@ -39,7 +40,6 @@ public class ArrangementUIPanel : PanelView<ArrangementUIPanel>
 
         backButton.clicked += Hide;
         backButton.clicked += () => AudioManager.Instance.PlaySE("キャンセル");
-        Hide();
     }
 
     void Start()

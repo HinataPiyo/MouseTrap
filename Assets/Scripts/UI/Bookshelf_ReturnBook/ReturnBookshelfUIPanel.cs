@@ -33,6 +33,7 @@ public class ReturnBookshelfUIPanel : PanelView<ReturnBookshelfUIPanel>
     protected override void OnSingletonAwake()
     {
         uiDoc = GetComponent<UIDocument>();
+        uiDoc.rootVisualElement.style.display = DisplayStyle.None;
         returnNumberButtons = uiDoc.rootVisualElement.Q("return-number-buttons").Query<Button>().ToList();
         selecterBookButtons = uiDoc.rootVisualElement.Q("book-selecter-buttons").Query<Button>().ToList();
         returnedBooks = new InteractBookData[returnNumberButtons.Count];
@@ -121,8 +122,6 @@ public class ReturnBookshelfUIPanel : PanelView<ReturnBookshelfUIPanel>
                     SceneChangeManager.Instance.CanMoveRoom(Room.Name.EndingScene, true);
             };
         }
-
-        Hide();
     }
 
     void Start()

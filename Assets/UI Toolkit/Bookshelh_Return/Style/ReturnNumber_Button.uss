@@ -16,7 +16,7 @@
     border-bottom-left-radius: 0;
     font-size: 76px;
     -unity-text-align: middle-center;
-    -unity-font-definition: resource('FlatSkin/Font/Roboto-Medium');
+    -unity-font-definition: url("project://database/Assets/Fonts/WaonJoyo-R.otf?fileID=12800000&guid=c5322e1a6d9c4154a9dc67844b979638&type=3#WaonJoyo-R");
     color: rgb(238, 215, 113);
     width: 123px;
     height: 269px;
@@ -45,7 +45,7 @@
     border-bottom-left-radius: 0;
     font-size: 76px;
     -unity-text-align: middle-center;
-    -unity-font-definition: resource('FlatSkin/Font/Roboto-Medium');
+    -unity-font-definition: url("project://database/Assets/Fonts/WaonJoyo-R.otf?fileID=12800000&guid=c5322e1a6d9c4154a9dc67844b979638&type=3#WaonJoyo-R");
     color: rgb(238, 215, 113);
     width: 123px;
     height: 269px;
@@ -75,7 +75,7 @@
     border-bottom-left-radius: 0;
     font-size: 76px;
     -unity-text-align: middle-center;
-    -unity-font-definition: resource('FlatSkin/Font/Roboto-Medium');
+    -unity-font-definition: url("project://database/Assets/Fonts/WaonJoyo-R.otf?fileID=12800000&guid=c5322e1a6d9c4154a9dc67844b979638&type=3#WaonJoyo-R");
     color: rgb(238, 215, 113);
     width: 123px;
     height: 269px;
@@ -178,7 +178,7 @@
     border-bottom-left-radius: 0;
     font-size: 76px;
     -unity-text-align: middle-center;
-    -unity-font-definition: resource('FlatSkin/Font/Roboto-Medium');
+    -unity-font-definition: url("project://database/Assets/Fonts/WaonJoyo-R.otf?fileID=12800000&guid=c5322e1a6d9c4154a9dc67844b979638&type=3#WaonJoyo-R");
     color: rgb(55, 55, 55);
     width: 130px;
     height: 80%;

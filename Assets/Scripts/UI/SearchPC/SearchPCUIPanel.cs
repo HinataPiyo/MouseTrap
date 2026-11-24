@@ -28,6 +28,7 @@ public partial class SearchPCUIPanel : PanelView<SearchPCUIPanel>
     protected override void OnSingletonAwake()
     {
         uiDoc = GetComponent<UIDocument>();
+        uiDoc.rootVisualElement.style.display = DisplayStyle.None;
         passwordField = uiDoc.rootVisualElement.Q("password-panel");
         passwordLabel = uiDoc.rootVisualElement.Q<Label>("input-value");
         clearButton = uiDoc.rootVisualElement.Q<Button>("clear");
@@ -52,8 +53,6 @@ public partial class SearchPCUIPanel : PanelView<SearchPCUIPanel>
         excuteButton.clicked += () => AudioManager.Instance.PlaySE("特殊確定ボタン");
 
         SearchPanelInit();
-
-        Hide();
     }
 
     protected override void OnSingletonDestroy()
