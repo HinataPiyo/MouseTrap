@@ -35,6 +35,8 @@ public class TalkPanelController : PanelView<TalkPanelController>
         arrow = panel.Q<VisualElement>("arrow");
         writingWait = new WaitForSeconds(writingSpeed);
 
+        Reset();
+
         SetVisible(false);
     }
 
@@ -95,6 +97,7 @@ public class TalkPanelController : PanelView<TalkPanelController>
     {
         characterImage.style.backgroundImage = null;
         characterName.text = "";
+        body.text = "";
     }
 
     public void BackgroundHide()

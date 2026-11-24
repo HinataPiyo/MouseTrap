@@ -87,6 +87,11 @@ public partial class SearchPCUIPanel : PanelView<SearchPCUIPanel>
         uiDoc.rootVisualElement.style.display = DisplayStyle.None;
     }
 
+    public bool IsVisible()
+    {
+        return uiDoc.rootVisualElement.style.display == DisplayStyle.Flex;
+    }
+
     /// <summary>
     /// ボタンを登録する
     /// </summary>
