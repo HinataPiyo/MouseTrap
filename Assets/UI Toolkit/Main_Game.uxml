@@ -10,7 +10,7 @@
             </ui:VisualElement>
             <ui:VisualElement name="mission-view" style="position: absolute; top: 0; left: 0; width: 600px; height: 75px;">
                 <ui:Button name="mission-button" style="border-left-color: rgba(255, 255, 255, 0); border-right-color: rgba(255, 255, 255, 0); border-top-color: rgba(255, 255, 255, 0); border-bottom-color: rgba(255, 255, 255, 0); border-top-width: 0; border-right-width: 0; border-bottom-width: 0; border-left-width: 0; background-color: rgba(255, 255, 255, 0); background-image: url(&quot;project://database/Assets/Sprites/UI/UIA.png?fileID=8359669229818307921&amp;guid=8ebd33ce83c6888419b14cc57d7a7a48&amp;type=3#UIA_0&quot;); -unity-background-scale-mode: stretch-to-fill; flex-grow: 1; justify-content: center; -unity-slice-scale: 0.8px;">
-                    <ui:Label name="mission-text" class="base-text" style="font-size: 26px; padding-right: 22px; -unity-font-style: bold;" />
+                    <ui:Label name="mission-text" text="あああああ" class="base-text" style="font-size: 26px; padding-right: 22px;" />
                 </ui:Button>
             </ui:VisualElement>
             <ui:VisualElement name="bottom-view" style="flex-grow: 1; position: absolute; bottom: 0; right: 0; padding-top: 6px; padding-right: 6px; padding-bottom: 18px; padding-left: 6px;">

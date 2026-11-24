@@ -27,7 +27,7 @@ MonoBehaviour:
     body: "\u304A\u3070\u3051\u3058\u3083\u306A\u3044\uFF01"
     delay: 0
   - character: {fileID: 2144099334268728396, guid: 911ff9a22bee52f4f9b3f468be9ab3d2, type: 3}
-    characterName: 2
+    characterName: 1
     body: "\u3054\u3001\u3054\u3081\u3093\uFF01"
     delay: 0
   - character: {fileID: -9146700260069356333, guid: 4e8cce4651a588541b7e33a5def77712, type: 3}
@@ -47,7 +47,7 @@ MonoBehaviour:
     body: "\u305D\u3053\u306A\u3093\u3060\u306D\u3001\u672C\u3059\u304D\u3060\u3088\u306D\u3047"
     delay: 0
   - character: {fileID: 5151397350593897098, guid: 29203e436f9a4ad49bfcc223727a6d76, type: 3}
-    characterName: 5
+    characterName: 0
     body: "\u521D\u3081\u307E\u3057\u3066\u3001\u541B\u306F\u8AB0\u306A\u306E\uFF1F
       \u904A\u3076\u306A\u3089\u307E\u305A\u540D\u524D\u3092\u6559\u3048\u3066\u304F\u308C\u306A\u3044\u3068"
     delay: 0
@@ -68,7 +68,7 @@ MonoBehaviour:
     body: "\u50D5\u305F\u3061\u306F\u541B\u3092\u77E5\u3089\u306A\u3044\u304B\u3089\u540D\u524D\u3082\u308F\u304B\u3089\u306A\u3044\u3093\u3060"
     delay: 0
   - character: {fileID: -4175741997569924086, guid: 911ff9a22bee52f4f9b3f468be9ab3d2, type: 3}
-    characterName: 2
+    characterName: 1
     body: "\u3058\u3083\u3042\u50D5\u305F\u3061\u304C\u541B\u306B\u540D\u524D\u3092\u6C7A\u3081\u3066\u3042\u3052\u308B\uFF01"
     delay: 0
   - character: {fileID: 1365522473265853848, guid: 4e8cce4651a588541b7e33a5def77712, type: 3}

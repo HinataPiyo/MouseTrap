@@ -1,5 +1,5 @@
 .base-text {
-    -unity-font-definition: url("project://database/Assets/Fonts/WaonJoyo-R.otf?fileID=12800000&guid=c5322e1a6d9c4154a9dc67844b979638&type=3#WaonJoyo-R");
+    -unity-font-definition: url("project://database/Assets/Fonts/KaiseiTokumin-Medium.ttf?fileID=12800000&guid=f6f406352ebc0374e9f3aea2cd23de66&type=3#KaiseiTokumin-Medium");
     font-size: 36px;
     -unity-text-align: middle-right;
     color: rgb(0, 0, 0);
